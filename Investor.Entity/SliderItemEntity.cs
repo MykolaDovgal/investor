@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Investor.Entity
 {
-    class SliderItemEntity
+    public class SliderItemEntity
     {
         [Key]
         public int SliderItemId { set; get; }

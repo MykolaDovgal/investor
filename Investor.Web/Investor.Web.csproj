@@ -80,9 +80,14 @@
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
+    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1-rc2-24027" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Investor.Entity\Investor.Entity.csproj" />
+    <ProjectReference Include="..\Investor.Repository\Investor.Repository.csproj" />
   </ItemGroup>
 
 </Project>

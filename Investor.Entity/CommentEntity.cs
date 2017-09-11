@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace Investor.Entity
 {
-    class CommentEntity
+    public class CommentEntity
     {
         [Key]
         public int CommentId { set; get; }
 
+        [Required(ErrorMessage = "Коментар не може бути порожнім")]
+        [MaxLength(10000)]
         public string Text { set; get; }
         public bool Pubished { set; get; }
 
