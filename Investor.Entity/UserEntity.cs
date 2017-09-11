@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Investor.Entity
 {
-    class UserEntity : IdentityUser
+    public class UserEntity : IdentityUser
     {
     }
 }

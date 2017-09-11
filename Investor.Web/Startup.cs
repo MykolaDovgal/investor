@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Investor.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Web
 {
@@ -27,6 +29,8 @@ namespace Investor.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<NewsContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Add framework services.
             services.AddMvc();
         }
@@ -55,6 +59,8 @@ namespace Investor.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            var context = app.ApplicationServices.GetService<NewsContext>();
+            SampleData.Initialize(context);
         }
     }
 }
