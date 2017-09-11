@@ -2,3 +2,125 @@
     ViewData["Title"] = "Home Page";
 }
 
+@Html.Partial("_HomeCarouselTemplate");
+
+<section class="section-main">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8 pl-0 p-0 pr-lg-2">
+
+                <div class="category-news politics-news">
+                    <div class="body-category-news block-border-top politics-border-color mb-3">
+                        <h1 class="title-block">Політика</h1>
+                        <div class="row">
+                            @for (int i = 0; i < 2; i++)
+                            {
+                                @Html.Partial("_LargePostTemplate")
+                            }
+                            @for (int i = 0; i < 6; i++)
+                            {
+                                @Html.Partial("_MiddlePostTemplate")
+                            }
+                        </div>
+                    </div>
+
+                    <div class="wrapper-btn-more">
+                        <a href="#" class="btn-more mx-auto"><span class="circle circle-politics-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+                    </div>
+
+                </div>
+
+                <div class="category-news culture-news">
+                    <div class="body-category-news block-border-top culture-border-color mb-3">
+                        <h1 class="title-block">Культура</h1>
+                        <div class="row">
+                            @for (int i = 0; i < 2; i++)
+                            {
+                                @Html.Partial("_LargePostTemplate")
+                            }
+                            @for (int i = 0; i < 6; i++)
+                            {
+                                @Html.Partial("_MiddlePostTemplate")
+                            }
+                        </div>
+                    </div>
+                    <div class="wrapper-btn-more">
+                        <a href="#" class="btn-more mx-auto"><span class="circle circle-culture-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+                    </div>
+                </div>
+
+
+
+                <div class="category-news economy-news">
+                    <div class="body-category-news block-border-top economy-border-color mb-3">
+                        <h1 class="title-block">Економіка</h1>
+                        <div class="row">
+
+                            @Html.Partial("_LargePostTemplate")
+
+                            <div class="col-md-6">
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    @Html.Partial("_SmallPostTemplate")
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper-btn-more">
+                        <a href="#" class="btn-more mx-auto"><span class="circle circle-economy-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+                    </div>
+                </div>
+
+                <div class="category-news it-news">
+                    <div class="body-category-news block-border-top it-border-color mb-3">
+                        <h2 class="title-block">IT технології</h2>
+                        <div class="row">
+                            @Html.Partial("_LargePostTemplate")
+
+                            <div class="col-md-6">
+                                @for (int i = 0; i < 3; i++)
+                                {
+                                    @Html.Partial("_SmallPostTemplate")
+                                }
+                            </div>
+                        </div>
+                        <div class="wrapper-btn-more">
+                            <a href="#" class="btn-more mx-auto"><span class="circle circle-it-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 pl-lg-2  p-0 pr-0">
+
+                <div class="block-border-top default-border-color last-news">
+                    <h2 class="title-block">Останні новини</h2>
+                    <div class="wrapper-last-news">
+                        @for (int i = 0; i < 20; i++)
+                        {
+                            @Html.Partial("_LastNewsTemplate")
+                        }
+                    </div>
+                    <a href="#" class="btn-more"><span class="circle circle-default-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+                </div>
+
+                <div class="sidebar-blog">
+                    <div class="sidebar-blog-body block-border-top default-border-color">
+                        <h2 class="title-block">Блоги</h2>
+                        <div class="wrapper-itrm-blog">
+                            @for (int i = 0; i < 5; i++)
+                                {
+                                @Html.Partial("_BlogPreviewTemplate")
+                                }
+                        </div>
+                        <a href="#" class="btn-more"><span class="circle circle-default-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>

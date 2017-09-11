@@ -7,6 +7,72 @@
   <PropertyGroup>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\css\style.css" />
+    <Content Include="wwwroot\css\style.min.css" />
+    <Content Include="wwwroot\fonts\circe-regular.ttf" />
+    <Content Include="wwwroot\fonts\Circe\.DS_Store" />
+    <Content Include="wwwroot\fonts\Circe\62899.png" />
+    <Content Include="wwwroot\fonts\Circe\62900.jpeg" />
+    <Content Include="wwwroot\fonts\Circe\62901.png" />
+    <Content Include="wwwroot\fonts\Circe\62902.png" />
+    <Content Include="wwwroot\fonts\Circe\62903.png" />
+    <Content Include="wwwroot\fonts\Circe\Circe-Bold.otf" />
+    <Content Include="wwwroot\fonts\Circe\Circe-ExtraBold.otf" />
+    <Content Include="wwwroot\fonts\Circe\Circe-Light\.DS_Store" />
+    <Content Include="wwwroot\fonts\Circe\Circe-Light\Circe-Light.eot" />
+    <Content Include="wwwroot\fonts\Circe\Circe-Light\Circe-Light.svg" />
+    <Content Include="wwwroot\fonts\Circe\Circe-Light\Circe-Light.ttf" />
+    <Content Include="wwwroot\fonts\Circe\Circe-Light\Circe-Light.woff" />
+    <Content Include="wwwroot\fonts\Circe\CRC25.otf" />
+    <Content Include="wwwroot\fonts\Circe\CRC35.otf" />
+    <Content Include="wwwroot\fonts\Circe\CRC55.otf" />
+    <Content Include="wwwroot\fonts\fontawesome-webfont.eot" />
+    <Content Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <Content Include="wwwroot\fonts\fontawesome-webfont.ttf" />
+    <Content Include="wwwroot\fonts\fontawesome-webfont.woff" />
+    <Content Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <Content Include="wwwroot\fonts\FontAwesome.otf" />
+    <Content Include="wwwroot\images\blog-img-1.png" />
+    <Content Include="wwwroot\images\blog-img-2.png" />
+    <Content Include="wwwroot\images\blog-img-3.png" />
+    <Content Include="wwwroot\images\blog-img-4.png" />
+    <Content Include="wwwroot\images\blog-img-5.png" />
+    <Content Include="wwwroot\images\down-arrow.png" />
+    <Content Include="wwwroot\images\img-popular-2.jpg" />
+    <Content Include="wwwroot\images\img-popular.jpg" />
+    <Content Include="wwwroot\images\img-slider.jpg" />
+    <Content Include="wwwroot\images\logo.png" />
+    <Content Include="wwwroot\images\news-img-1.png" />
+    <Content Include="wwwroot\images\news-img-2.png" />
+    <Content Include="wwwroot\images\news-img-3.png" />
+    <Content Include="wwwroot\images\news-img-4.png" />
+    <Content Include="wwwroot\images\news-img-5.png" />
+    <Content Include="wwwroot\images\news-img-6.png" />
+    <Content Include="wwwroot\images\news-img-7.png" />
+    <Content Include="wwwroot\images\news-img-8.png" />
+    <Content Include="wwwroot\images\news-img-culture-1.png" />
+    <Content Include="wwwroot\images\news-img-culture-2.png" />
+    <Content Include="wwwroot\images\news-img-culture-3.png" />
+    <Content Include="wwwroot\images\news-img-culture-4.png" />
+    <Content Include="wwwroot\images\news-img-culture-5.png" />
+    <Content Include="wwwroot\images\news-img-culture-6.png" />
+    <Content Include="wwwroot\images\news-img-culture-7.png" />
+    <Content Include="wwwroot\images\news-img-culture-8.png" />
+    <Content Include="wwwroot\images\news-img-economy-2.png" />
+    <Content Include="wwwroot\images\news-img-economy-3.png" />
+    <Content Include="wwwroot\images\news-img-economy-4.png" />
+    <Content Include="wwwroot\images\news-img-economy-8.png" />
+    <Content Include="wwwroot\images\news-img-it-1.png" />
+    <Content Include="wwwroot\images\news-img-it-2.png" />
+    <Content Include="wwwroot\images\news-img-it-3.png" />
+    <Content Include="wwwroot\images\news-img-it-4.png" />
+    <Content Include="wwwroot\images\search.png" />
+    <Content Include="wwwroot\js\allscripts.min.js" />
+    <Content Include="wwwroot\js\libs.min.js" />
+    <Content Include="wwwroot\js\script.js" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
