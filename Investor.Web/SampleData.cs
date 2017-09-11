@@ -11,7 +11,7 @@ namespace Investor.Web
     {
         public static void Initialize(NewsContext context)
         {
-            if (context.Articles.Any())
+            if (!context.Articles.Any())
             {
                 context.Articles.AddRange(
                     new Entity.ArticleEntity { Context = "<h1>Hello, everybody</h1>" },
@@ -21,26 +21,32 @@ namespace Investor.Web
                     new Entity.ArticleEntity { Context = "<p>ілвоипличдсшамрвап діовал</p>" },
                     new Entity.ArticleEntity { Context = "<p>іждвпрщдішвгапрдолвапиів дваш чдвопми дваоп</p>" }
                     );
-
+                context.SaveChanges();
             }
-            Entity.CategoryEntity[] categories = 
+
+            if (!context.Categories.Any())
             {
-                new Entity.CategoryEntity {Name = "Політика"},
-                new Entity.CategoryEntity {Name = "Соціум"},
-                new Entity.CategoryEntity {Name = "Культура"},
-                new Entity.CategoryEntity {Name = "Економіка"},
-                new Entity.CategoryEntity {Name = "ІТ технології"},
-
-
-            };
-            if (context.Posts.Any()) {
+                Entity.CategoryEntity[] categories =
+                {
+                    new Entity.CategoryEntity {Name = "Політика"},
+                    new Entity.CategoryEntity {Name = "Соціум"},
+                    new Entity.CategoryEntity {Name = "Культура"},
+                    new Entity.CategoryEntity {Name = "Економіка"},
+                    new Entity.CategoryEntity {Name = "ІТ технології"},
+                };
+                context.Categories.AddRange(categories);
+                context.SaveChanges();
+            }
+           
+            if (!context.Posts.Any())
+            {
                 context.Posts.AddRange(
                     new Entity.PostEntity
                     {
                         Name = "В The Economist вибачилися за фразу «громадянська війна на Донбасі»",
                         Article = context.Articles.ToList()[0],
                         Description = "blgblglblglblglblg",
-                        Category = categories[0],
+                        Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now
@@ -51,25 +57,27 @@ namespace Investor.Web
                         Name = "Поетичні новинки: що презентують на 24 Форумі видавців",
                         Article = context.Articles.ToList()[1],
                         Description = "gfhk;dlfkjh;dlfk",
-                        Category = categories[2],
+                        Category = context.Categories.ToList()[2],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now
-                        
+
                     },
                     new Entity.PostEntity
                     {
                         Name = "Пенсійна реформа України у питаннях і відповідях",
                         Article = context.Articles.ToList()[3],
                         Description = "gfhk;dlfkjh;dlfk",
-                        Category = categories[3],
+                        Category = context.Categories.ToList()[3],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now
 
                     }
                     );
+                context.SaveChanges();
             }
+
         }
     }
 }

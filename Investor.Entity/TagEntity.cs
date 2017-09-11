@@ -19,11 +19,11 @@ namespace Investor.Entity
         [MaxLength(100)]
         [StringLength(100)]
         public string Url { set; get; }
- 
-        public IList <PostEntity> Posts { set; get; }
+
+        public List<PostTagEntity> PostTags { get; set; }
         public TagEntity()
         {
-            Posts = new List<PostEntity>();
+            PostTags = new List<PostTagEntity>();
         }
     }
 }

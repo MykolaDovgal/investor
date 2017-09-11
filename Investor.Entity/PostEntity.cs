@@ -43,12 +43,12 @@ namespace Investor.Entity
         public int AuthorId { set; get; }
         public UserEntity Author { set; get; }
 
-        public IList<TagEntity> Tags { set; get; }
+        public List<PostTagEntity> PostTags { get; set; }
         public IList<CommentEntity> Comments { set; get; }
 
         public PostEntity()
         {
-            Tags = new List<TagEntity>();
+            PostTags = new List<PostTagEntity>();
             Comments = new List<CommentEntity>();
         }
     }

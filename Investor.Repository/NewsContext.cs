@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace Investor.Repository
 {
-    public class NewsContext : IdentityDbContext<UserEntity>
+    public class NewsContext : IdentityDbContext<UserEntity> 
     {
         public DbSet<ArticleEntity> Articles { get; set; }
         public DbSet<CategoryEntity> Categories { get; set; }
@@ -15,10 +15,33 @@ namespace Investor.Repository
         public DbSet<PostEntity> Posts { get; set; }
         public DbSet<SliderItemEntity> SliderItems { get; set; }
         public DbSet<TagEntity> Tags { get; set; }
+        public DbSet<PostTagEntity> PostTags { get; set; }
+
 
         public NewsContext(DbContextOptions<NewsContext> options) 
             : base(options)
         { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<PostTagEntity>()
+            .HasKey(t => new { t.PostId, t.TagId });
+
+            modelBuilder.Entity<PostTagEntity>()
+                .HasOne(pt => pt.Post)
+                .WithMany(p => p.PostTags)
+                .HasForeignKey(pt => pt.PostId);
+
+            modelBuilder.Entity<PostTagEntity>()
+                .HasOne(pt => pt.Tag)
+                .WithMany(t => t.PostTags)
+                .HasForeignKey(pt => pt.TagId);
+            base.OnModelCreating(modelBuilder);
+        }
+
+
+
 
         public async void EnsureSeedData(UserManager<UserEntity> userMgr, RoleManager<IdentityRole> roleMgr)
         {
