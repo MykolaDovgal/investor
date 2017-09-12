@@ -11,7 +11,6 @@ namespace Investor.Repository.Interfaces
         Task<IEnumerable<CategoryEntity>> GetAllCategoriesAsync();
         Task<CategoryEntity> GetCategoryByIdAsync(int id);
 
-        //void or CategoryEntity???????????????
         Task<CategoryEntity> AddCategoryAsync(CategoryEntity categoryEntity);
         Task UpdateCategoryAsync(CategoryEntity categoryEntity);
         Task RemoveCategoryAsync(int id);

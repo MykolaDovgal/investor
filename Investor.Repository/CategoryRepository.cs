@@ -20,7 +20,9 @@ namespace Investor.Repository
 
         public async Task<CategoryEntity> AddCategoryAsync(CategoryEntity categoryEntity)
         {
-            await _newsContext.Categories.AddAsync(categoryEntity);
+            await _newsContext
+                .Categories
+                .AddAsync(categoryEntity);
             await _newsContext.SaveChangesAsync();
 
             return categoryEntity;
@@ -28,27 +30,40 @@ namespace Investor.Repository
 
         public async Task<IEnumerable<CategoryEntity>> GetAllCategoriesAsync()
         {
-            return await _newsContext.Categories.ToListAsync();
+            return await _newsContext
+                .Categories
+                .ToListAsync();
         }
 
         public async Task<CategoryEntity> GetCategoryByIdAsync(int id)
         {
-            return await _newsContext.Categories.FindAsync(id);
+            return await _newsContext
+                .Categories
+                .FindAsync(id);
         }
 
         public async Task RemoveCategoryAsync(int id)
         {
-            CategoryEntity categoryToRemove = await _newsContext.Categories.FindAsync(id);
-            _newsContext.Categories.Remove(categoryToRemove);
+            CategoryEntity categoryToRemove = await _newsContext
+                .Categories
+                .FindAsync(id);
+
+            _newsContext
+                .Categories
+                .Remove(categoryToRemove);
 
             await _newsContext.SaveChangesAsync();
         }
 
         public async Task UpdateCategoryAsync(CategoryEntity category)
         {
-            CategoryEntity categoryToUpdate = await _newsContext.Categories.FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
+            CategoryEntity categoryToUpdate = await _newsContext
+                .Categories
+                .FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
+
             categoryToUpdate.Name = category.Name;
             categoryToUpdate.Url = category.Url;
+
 
             await _newsContext.SaveChangesAsync();
         }
