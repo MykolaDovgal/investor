@@ -14,7 +14,7 @@ namespace Investor.Entity
 
         [MaxLength(100)]
         [StringLength(100)]
-        public string Name { set; get; }
+        public string Title { set; get; }
 
         [MaxLength(500)]
         [StringLength(500)]

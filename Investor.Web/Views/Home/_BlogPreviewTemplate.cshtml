@@ -6,9 +6,9 @@
             @Model.Author.Name
         </span>
         <h4 class="title-blog">
-            @Model.Name
+            @Model.Title
         </h4>
 
-        <span class="today-item-news default-today-color">Сьогодні,  12:43</span>
+        <span class="today-item-news default-today-color">@Model.PublishedOn.Day"."@Model.PublishedOn.Month"."@Model.PublishedOn.Day  @Model.PublishedOn.Hour:@Model.PublishedOn.Minute</span>
     </div>
 </div>

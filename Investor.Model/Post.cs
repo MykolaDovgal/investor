@@ -7,7 +7,7 @@ namespace Investor.Model
     public class Post
     {
         public int PostId { set; get; }
-        public string Name { set; get; }
+        public string Title { set; get; }
         public string Description { set; get; }
         public string Image { set; get; }
         public DateTime CreatedOn { set; get; }

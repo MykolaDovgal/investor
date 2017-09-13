@@ -43,7 +43,7 @@ namespace Investor.Web
                 context.Posts.AddRange(
                     new Entity.PostEntity
                     {
-                        Name = "В The Economist вибачилися за фразу «громадянська війна на Донбасі»",
+                        Title = "В The Economist вибачилися за фразу «громадянська війна на Донбасі»",
                         Article = context.Articles.ToList()[0],
                         Description = "blgblglblglblglblg",
                         Category = context.Categories.ToList()[0],
@@ -54,7 +54,7 @@ namespace Investor.Web
                     },
                     new Entity.PostEntity
                     {
-                        Name = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
                         Article = context.Articles.ToList()[1],
                         Description = "gfhk;dlfkjh;dlfk",
                         Category = context.Categories.ToList()[2],
@@ -65,7 +65,7 @@ namespace Investor.Web
                     },
                     new Entity.PostEntity
                     {
-                        Name = "Пенсійна реформа України у питаннях і відповідях",
+                        Title = "Пенсійна реформа України у питаннях і відповідях",
                         Article = context.Articles.ToList()[3],
                         Description = "gfhk;dlfkjh;dlfk",
                         Category = context.Categories.ToList()[3],

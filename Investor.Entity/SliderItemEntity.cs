@@ -11,8 +11,10 @@ namespace Investor.Entity
     {
         [Key]
         public int SliderItemId { set; get; }
+
         public int PostId { set; get; }
         public PostEntity Post { set; get; }
+
         public bool IsOnSlider { set; get; }
         public bool IsOnSide { set; get; }
     }
