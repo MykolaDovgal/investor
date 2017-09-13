@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Investor.Entity\Investor.Entity.csproj" />
+    <ProjectReference Include="..\Investor.Model\Investor.Model.csproj" />
     <ProjectReference Include="..\Investor.Repository\Investor.Repository.csproj" />
   </ItemGroup>
 
