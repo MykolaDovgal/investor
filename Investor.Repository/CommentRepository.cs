@@ -53,7 +53,7 @@ namespace Investor.Repository
         {
             CommentEntity commentToRemove = await _newsContext
                 .Comments
-                .FirstOrDefaultAsync(c=> c.CommentId == id);
+                .FirstOrDefaultAsync(c => c.CommentId == id);
 
             _newsContext
                 .Comments
@@ -70,6 +70,6 @@ namespace Investor.Repository
             return comment;
         }
 
-        
+
     }
 }

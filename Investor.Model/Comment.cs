@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Investor.Model
 {
-    class Comment
+    public class Comment
     {
         public int CommentId { set; get; }
         public string Text { set; get; }

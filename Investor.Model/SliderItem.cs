@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Investor.Model
-{
+{ 
     class SliderItem
     {
         public int SliderItemId { set; get; }
