@@ -15,12 +15,13 @@ namespace Investor.Repository
         public SliderItemRepository(NewsContext newsContext)
         {
             _newsContext = newsContext;
+            
         }
-
         public async Task<IEnumerable<SliderItemEntity>> GetAllSliderItemsAsync()
         {
             return await _newsContext
                 .SliderItems
+                .Include(s=>s.Post)
                 .ToListAsync();
         }
 
@@ -28,7 +29,9 @@ namespace Investor.Repository
         {
             return await _newsContext
                 .SliderItems
-                .FindAsync(id);
+                .Include(s => s.Post)
+                .FirstOrDefaultAsync(s => s.SliderItemId == id);
+                
         }
 
         public async Task<SliderItemEntity> AddSliderItemAsync(SliderItemEntity sliderItem)
@@ -56,12 +59,9 @@ namespace Investor.Repository
 
         public async Task UpdateSliderItemAsync(SliderItemEntity sliderItem)
         {
-            SliderItemEntity sliderItemToUpdate = await _newsContext
+            _newsContext
                 .SliderItems
-                .FirstOrDefaultAsync(s => s.SliderItemId == sliderItem.SliderItemId);
-
-            sliderItemToUpdate.IsOnSide = sliderItem.IsOnSide;
-            sliderItemToUpdate.IsOnSlider = sliderItem.IsOnSlider;
+                .Update(sliderItem);
 
             await _newsContext.SaveChangesAsync();
         }

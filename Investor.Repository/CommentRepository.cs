@@ -22,6 +22,7 @@ namespace Investor.Repository
         {
             return await _newsContext
                 .Comments
+                .Include(c=>c.Post)
                 .ToListAsync();
         }
 
@@ -29,13 +30,15 @@ namespace Investor.Repository
         {
             return await _newsContext
                 .Comments
-                .Where(c => c.PostId == postId).ToListAsync();
+                .Where(c => c.PostId == postId)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<CommentEntity>> GetUnpublishedCommentsAsync()
         {
             return await _newsContext
                 .Comments
+                .Include(c=>c.Post)
                 .Where(c => c.Pubished == false).ToListAsync();
         }
 

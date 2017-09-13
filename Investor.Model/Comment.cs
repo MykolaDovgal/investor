@@ -11,7 +11,7 @@ namespace Investor.Model
         public bool Pubished { set; get; }
         public DateTime PublishedOn { set; get; }
         public DateTime CreatedOn { set; get; }
-        public int UserId { set; get; }    
+        public User User { set; get; }    
         public int PostId { set; get; }
     }
 }
