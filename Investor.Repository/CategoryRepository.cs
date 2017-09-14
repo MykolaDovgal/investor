@@ -42,6 +42,12 @@ namespace Investor.Repository
                 .FindAsync(id);
         }
 
+        public async Task<CategoryEntity> GetCategoryByNameAsync(string name)
+        {
+            return await _newsContext.Categories.
+                FirstOrDefaultAsync(c => c.Name == name);
+        }
+
         public async Task RemoveCategoryAsync(int id)
         {
             CategoryEntity categoryToRemove = await _newsContext

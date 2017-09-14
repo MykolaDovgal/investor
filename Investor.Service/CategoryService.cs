@@ -15,14 +15,20 @@ namespace Investor.Service
     {
         private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryService(ICategoryRepository postRepository)
+        public CategoryService(ICategoryRepository categoryRepository)
         {
-            _categoryRepository = postRepository;
+            _categoryRepository = categoryRepository;
         }
         public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
         {
             var categories = await _categoryRepository.GetAllCategoriesAsync();
             return categories.Select(Mapper.Map<CategoryEntity, Category>);
+        }
+
+        public async Task<Category> GetCategoriesByNameAsync(string name)
+        {
+            var category = await _categoryRepository.GetCategoryByNameAsync(name);
+            return Mapper.Map<CategoryEntity, Category>(category);
         }
     }
 }

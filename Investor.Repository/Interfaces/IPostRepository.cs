@@ -14,6 +14,8 @@ namespace Investor.Repository.Interfaces
         Task<int> GetTotalNumberOfPostByTagAsync(string tag);
         Task<PostEntity> GetByIdAsync(int id);
         Task<IEnumerable<PostEntity>> GetAllAsync();
+        Task<IEnumerable<PostEntity>> GetLatestPostsAsync(int limit);
+        IEnumerable<PostEntity> GetAll();
         Task<IEnumerable<PostEntity>> GetAllByCategoryNameAsync(string categoryName, bool onMainPage  );
         Task<IEnumerable<PostEntity>> GetAllByTagNameAsync(string tagName);
         Task<IEnumerable<PostEntity>> GetAllPagesAsync(int count, int page = 1);

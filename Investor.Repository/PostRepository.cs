@@ -32,7 +32,18 @@ namespace Investor.Repository
                 .Include(p => p.Article)
                 .Include(p => p.Author)
                 .Include(p => p.PostTags)
-                .ToListAsync();
+                .ToListAsync();           
+        }
+
+        public IEnumerable<PostEntity> GetAll()
+        {
+            return  _newsContext.Posts
+                .Include(p => p.Category)
+                .Include(p => p.Comments)
+                .Include(p => p.Article)
+                .Include(p => p.Author)
+                .Include(p => p.PostTags)
+                .ToList();
 
 
         }
@@ -132,6 +143,19 @@ namespace Investor.Repository
             _newsContext.Entry(post).State = EntityState.Modified;
             await _newsContext.SaveChangesAsync();
             return post;
+        }
+
+        public async Task<IEnumerable<PostEntity>> GetLatestPostsAsync(int limit)
+        {
+            return await _newsContext.Posts
+                .Include(p => p.Category)
+                .Include(p => p.Comments)
+                .Include(p => p.Article)
+                .Include(p => p.Author)
+                .Include(p => p.PostTags)
+                .OrderByDescending(p => p.PublishedOn)
+                .Take(limit)
+                .ToListAsync();
         }
     }
 }

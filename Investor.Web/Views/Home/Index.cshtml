@@ -19,7 +19,7 @@
                             }
                             @for (int i = 0; i < 6; i++)
                             {
-                                @Html.Partial("_MiddlePostTemplate")
+                                @Html.Partial("_MiddlePostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
                             }
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                             }
                             @for (int i = 0; i < 6; i++)
                             {
-                                @Html.Partial("_MiddlePostTemplate")
+                                @Html.Partial("_MiddlePostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
                             }
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                             <div class="col-md-6">
                                 @for (int i = 0; i < 3; i++)
                                 {
-                                    @Html.Partial("_SmallPostTemplate")
+                                    @Html.Partial("_SmallPostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
                                 }
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                             <div class="col-md-6">
                                 @for (int i = 0; i < 3; i++)
                                 {
-                                    @Html.Partial("_SmallPostTemplate")
+                                    @Html.Partial("_SmallPostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
                                 }
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                     <div class="wrapper-last-news">
                         @for (int i = 0; i < 20; i++)
                         {
-                            @Html.Partial("_LastNewsTemplate")
+                            @Html.Partial("_LastNewsTemplate", ViewBag.LatestPost[i] as Investor.Model.Post)
                         }
                     </div>
                     <a href="#" class="btn-more"><span class="circle circle-default-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>

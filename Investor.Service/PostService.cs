@@ -83,9 +83,15 @@ namespace Investor.Service
             return await _postRepository.GetTotalNumberOfPostsAsync();
         }
 
+        public async Task<IEnumerable<Post>> GetLatestPostsAsync(int limit)
+        {
+            var posts = await _postRepository.GetLatestPostsAsync(limit);
+            return posts.Select(Mapper.Map<PostEntity, Post>);
+        }
+
         //public async Task<Post> AddAsync(Post map)
         //{
-            
+
 
         //    post.Category = null;
         //    post.PostedOn = DateTime.Now;
