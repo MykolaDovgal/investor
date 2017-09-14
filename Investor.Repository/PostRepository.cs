@@ -24,26 +24,33 @@ namespace Investor.Repository
             return post;
         }
 
-        public Task<IEnumerable<PostEntity>> GetAllAsync()
+        public async Task<IEnumerable<PostEntity>> GetAllAsync()
         {
-            //return _newsContext.Posts
-            //    .Include(p => p.Category)
-            //    .Include(p => p.Comments)
-            //    .Include(p => p.Article)
-            //    .Include(p => p.Author)
-            //    .Include(p => p.PostTags).ToListAsync();
+            return await _newsContext.Posts
+                .Include(p => p.Category)
+                .Include(p => p.Comments)
+                .Include(p => p.Article)
+                .Include(p => p.Author)
+                .Include(p => p.PostTags)
+                .ToListAsync();
 
 
         }
 
-        public Task<IEnumerable<PostEntity>> GetAllByCategoryNameAsync(string categoryName)
+        public async Task<IEnumerable<PostEntity>> GetAllByCategoryNameAsync(string categoryName)
         {
-            throw new NotImplementedException();
+            return await _newsContext.Posts
+                .Include(p => p.Category)
+                .Where(p => p.Category.Name == categoryName)
+                .ToListAsync();
         }
 
-        public Task<IEnumerable<PostEntity>> GetAllByTagNameAsync(string tagName)
+        public async Task<IEnumerable<PostEntity>> GetAllByTagNameAsync(string tagName)
         {
-            throw new NotImplementedException();
+            return await _newsContext.Posts
+                .Include(p => p.PostTags)
+                .Where(p => p.PostTags.Find(pt => pt.Tag.Name == tagName) != null)
+                .ToListAsync();
         }
 
         public Task<IEnumerable<PostEntity>> GetAllPagesAsync(int count, int page = 1)
@@ -51,14 +58,27 @@ namespace Investor.Repository
             throw new NotImplementedException();
         }
 
-        public Task<PostEntity> GetByIdAsync(int id, bool includeExceprt)
+        public async Task<PostEntity> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _newsContext.Posts
+                .Include(p => p.Category)
+                .Include(p => p.Comments)
+                .Include(p => p.Article)
+                .Include(p => p.Author)
+                .Include(p => p.PostTags)
+                .FirstOrDefaultAsync(p => p.PostId == id);
         }
 
-        public Task<IEnumerable<PostEntity>> GetPostsBasedOnIdCollectionAsync(List<int> postIds)
+        public async Task<IEnumerable<PostEntity>> GetPostsBasedOnIdCollectionAsync(List<int> postIds)
         {
-            throw new NotImplementedException();
+            return await _newsContext.Posts
+                .Where(p => postIds.Contains(p.PostId))
+                .Include(p => p.Category)
+                .Include(p => p.Comments)
+                .Include(p => p.Article)
+                .Include(p => p.Author)
+                .Include(p => p.PostTags)
+                .ToListAsync();
         }
 
         public Task<IEnumerable<PostEntity>> GetQueryPagesAsync(string query, int count, int page = 1)
@@ -71,9 +91,11 @@ namespace Investor.Repository
             throw new NotImplementedException();
         }
 
-        public Task<int> GetTotalNumberOfPostsAsync()
+        public async Task<int> GetTotalNumberOfPostsAsync()
         {
-            throw new NotImplementedException();
+            return await _newsContext
+                    .Posts
+                    .CountAsync();
         }
 
         public Task<int> GetTotalNumberOfPostsByCategoryAsync(string category)
@@ -81,14 +103,24 @@ namespace Investor.Repository
             throw new NotImplementedException();
         }
 
-        public Task RemoveAsync(int id)
+        public async Task RemoveAsync(int id)
         {
-            throw new NotImplementedException();
+            var postToRemove = await _newsContext
+                    .Posts
+                    .FirstOrDefaultAsync(c => c.PostId == id);
+
+            _newsContext
+                .Posts
+                .Remove(postToRemove);
+
+            await _newsContext.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(Post post)
+        public async Task<PostEntity> UpdateAsync(PostEntity post)
         {
-            throw new NotImplementedException();
+            _newsContext.Entry(post).State = EntityState.Modified;
+            await _newsContext.SaveChangesAsync();
+            return post;
         }
     }
 }

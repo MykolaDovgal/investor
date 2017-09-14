@@ -12,7 +12,7 @@ namespace Investor.Repository.Interfaces
         Task<int> GetTotalNumberOfPostsAsync();
         Task<int> GetTotalNumberOfPostsByCategoryAsync(string category);
         Task<int> GetTotalNumberOfPostByTagAsync(string tag);
-        Task<PostEntity> GetByIdAsync(int id, bool includeExceprt);
+        Task<PostEntity> GetByIdAsync(int id);
         Task<IEnumerable<PostEntity>> GetAllAsync();
         Task<IEnumerable<PostEntity>> GetAllByCategoryNameAsync(string categoryName);
         Task<IEnumerable<PostEntity>> GetAllByTagNameAsync(string tagName);
@@ -20,7 +20,7 @@ namespace Investor.Repository.Interfaces
         Task<IEnumerable<PostEntity>> GetQueryPagesAsync(string query, int count, int page = 1);
         Task<IEnumerable<PostEntity>> GetPostsBasedOnIdCollectionAsync(List<int> postIds);
         Task<PostEntity> AddAsync(PostEntity map);
-        Task UpdateAsync(Post post);
+        Task<PostEntity> UpdateAsync(Post post);
         Task RemoveAsync(int id);
     }
 
