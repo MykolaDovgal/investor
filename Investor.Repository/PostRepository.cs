@@ -37,12 +37,23 @@ namespace Investor.Repository
 
         }
 
-        public async Task<IEnumerable<PostEntity>> GetAllByCategoryNameAsync(string categoryName)
+        public async Task<IEnumerable<PostEntity>> GetAllByCategoryNameAsync(string categoryName, bool onMainPage = false)
         {
-            return await _newsContext.Posts
-                .Include(p => p.Category)
-                .Where(p => p.Category.Name == categoryName)
-                .ToListAsync();
+            IQueryable<PostEntity> posts = null;
+        
+            switch (onMainPage)
+            {
+                case true:
+                    posts = _newsContext.Posts.Include(p => p.Category).Where(p => p.IsOnMainPage && p.Category.Name == categoryName);
+                    break;
+                case false:
+                    posts = _newsContext.Posts.Include(p => p.Category).Where(p => p.Category.Name == categoryName);
+                    break;
+                default:
+                    break;
+            }
+
+            return await posts.ToListAsync();
         }
 
         public async Task<IEnumerable<PostEntity>> GetAllByTagNameAsync(string tagName)
