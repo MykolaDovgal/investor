@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Repository
 {
-    class SliderItemRepository : ISliderItemRepository
+    public class SliderItemRepository : ISliderItemRepository
     {
         private readonly NewsContext _newsContext;
 

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Repository
 {
-    class PostRepository : IPostRepository
+    public class PostRepository : IPostRepository
     {
         readonly private NewsContext _newsContext;
         public PostRepository(NewsContext context)

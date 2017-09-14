@@ -10,6 +10,9 @@ using Microsoft.Extensions.Logging;
 using Investor.Repository;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Investor.Service;
+using Investor.Repository.Interfaces;
+using Investor.Service.Interfaces;
 
 namespace Investor.Web
 {
@@ -33,6 +36,22 @@ namespace Investor.Web
             services.AddDbContext<NewsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Add framework services.
+
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            //services.AddTransient<ITagRepository, TagRepository>();
+            services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IPostTagRepository, PostTagRepository>();
+
+            // Services
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IPostService, PostService>();
+            //services.AddTransient<IPostTagService, PostTagService>();
+            //services.AddTransient<ISearchService, SearchService>();
+            //services.AddTransient<ICommunicationService, CommunicationService>();
+            //services.AddTransient<ITagService, TagService>();
+            //services.AddTransient<ISiteMapService, SiteMapService>();
+            //ervices.AddTransient<ApplicationEnvironment>();
+
             services.AddMvc();
             services.AddAutoMapper();
         }
@@ -40,6 +59,8 @@ namespace Investor.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            ServiceMapperConfig.Config();
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 

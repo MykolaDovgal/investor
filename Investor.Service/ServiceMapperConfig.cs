@@ -8,9 +8,9 @@ using System.Text;
 
 namespace Investor.Service
 {
-    class ServiceMapperConfig 
+    public class ServiceMapperConfig 
     {
-        public void Config()
+        public static void Config()
         {
             Mapper.Initialize(cfg => {
                 cfg.CreateMap<Article, ArticleEntity>().ReverseMap();
@@ -21,6 +21,7 @@ namespace Investor.Service
                 cfg.CreateMap<PostEntity, Post>()
                      .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag))).ReverseMap();
                 cfg.CreateMap<User, UserEntity>().ReverseMap();
+                cfg.CreateMap<IList<PostEntity>, IList<Post>>().ReverseMap();
             });
                  
         }

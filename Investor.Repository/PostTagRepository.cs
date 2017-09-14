@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Repository
 {
-    class PostTagRepository : IPostTagRepository
+    public class PostTagRepository : IPostTagRepository
     {
         private readonly NewsContext _newsContext;
 

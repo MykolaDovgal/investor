@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Investor.Repository
 {
-    class CategoryRepository : ICategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         private readonly NewsContext _newsContext;
 

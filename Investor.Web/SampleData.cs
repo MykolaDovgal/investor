@@ -15,9 +15,21 @@ namespace Investor.Web
             {
                 context.Articles.AddRange(
                     new Entity.ArticleEntity { Context = "<h1>Hello, everybody</h1>" },
-                    new Entity.ArticleEntity { Context = "<a>likelikelike</a>" },
-                    new Entity.ArticleEntity { Context = "<p>sawsawsawsasa</p>" },
-                    new Entity.ArticleEntity { Context = "<p>вдлопжваптдвлопидваолп віапиівапвап</p>" },
+                    new Entity.ArticleEntity { Context = "В РНБО України заявляють, що реальна кількість учасників навчань - до чверті мільйона військовослужбовців. У НАТО стурбовані активністю російських і білоруських військ і переконані, що навчання спрямовані на провокування країн-членів Альянсу." },
+                    new Entity.ArticleEntity { Context = "<p>Крім України,  реальною загрозою війни ці навчання вважають у Литві та Польщі. Про це йдеться в сюжеті Сніданку з 1 + 1" },
+                    new Entity.ArticleEntity { Context = "<p>Відповідно до міжнародних вимог, у таких масштабних навчаннях, без спостерігачів, можуть брати участь не більше 13 тисяч вояків. Якщо більше - міжнародне спостереження обов'язкове. </p>" },
+                    new Entity.ArticleEntity { Context = "<p>ілвоипличдсшамрвап діовал</p>" },
+                    new Entity.ArticleEntity { Context = "<p>esdrtfyukl</p>" },
+                    new Entity.ArticleEntity { Context = "<p>xfjghmvghmvghmhgmghmghm</p>" },
+                    new Entity.ArticleEntity { Context = "<p>fdxkbnlxdfjgblk xlkfjbxldfkj b</p>" },
+                    new Entity.ArticleEntity { Context = "<p>sldkfjg dflkg ldkfj </p>" },
+                    new Entity.ArticleEntity { Context = "<p>xfblkxfjblxdjf lxkf vb lzxjf vb</p>" },
+                    new Entity.ArticleEntity { Context = "<p>xf cbmkxf gbkl xfclk </p>" },
+                    new Entity.ArticleEntity { Context = "<p>fgcn kljxfhg fxlgb </p>" },
+                    new Entity.ArticleEntity { Context = "<p>xfcgnxfgnxfgnc</p>" },
+                    new Entity.ArticleEntity { Context = "<p>;dlkfjgvb діовал</p>" },
+                    new Entity.ArticleEntity { Context = "<p> xdf;lk oisjdf psoidf [cfgvbo</p>" },
+                    new Entity.ArticleEntity { Context = "<p>qwertyuidfghjk fghjkl</p>" },
                     new Entity.ArticleEntity { Context = "<p>ілвоипличдсшамрвап діовал</p>" },
                     new Entity.ArticleEntity { Context = "<p>іждвпрщдішвгапрдолвапиів дваш чдвопми дваоп</p>" }
                     );
@@ -43,13 +55,141 @@ namespace Investor.Web
                 context.Posts.AddRange(
                     new Entity.PostEntity
                     {
-                        Title = "В The Economist вибачилися за фразу «громадянська війна на Донбасі»",
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
                         Article = context.Articles.ToList()[0],
                         Description = "blgblglblglblglblg",
                         Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
-                        ModifiedOn = DateTime.Now
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-1.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[0],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[0],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-1.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[0],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[0],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-1.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[1],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[1],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-2.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[2],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-3.png"
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[2],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-3.png"
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[2],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-3.png"
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[2],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-3.png"
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[2],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-3.png"
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[3],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-7.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[3],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-7.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Article = context.Articles.ToList()[3],
+                        Description = "blgblglblglblglblg",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-7.png"
 
                     },
                     new Entity.PostEntity
@@ -60,7 +200,8 @@ namespace Investor.Web
                         Category = context.Categories.ToList()[2],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
-                        ModifiedOn = DateTime.Now
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-4.png"
 
                     },
                     new Entity.PostEntity
@@ -71,9 +212,83 @@ namespace Investor.Web
                         Category = context.Categories.ToList()[3],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
-                        ModifiedOn = DateTime.Now
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-5.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Article = context.Articles.ToList()[3],
+                        Description = "gfhk;dlfkjh;dlfk",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-5.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Article = context.Articles.ToList()[3],
+                        Description = "gfhk;dlfkjh;dlfk",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-5.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Article = context.Articles.ToList()[4],
+                        Description = "gfhk;dlfkjh;dlfk",
+                        Category = context.Categories.ToList()[4],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-6.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Article = context.Articles.ToList()[4],
+                        Description = "gfhk;dlfkjh;dlfk",
+                        Category = context.Categories.ToList()[4],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-6.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Article = context.Articles.ToList()[4],
+                        Description = "gfhk;dlfkjh;dlfk",
+                        Category = context.Categories.ToList()[4],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-6.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Article = context.Articles.ToList()[4],
+                        Description = "gfhk;dlfkjh;dlfk",
+                        Category = context.Categories.ToList()[4],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        Image = "blog-img-6.png"
 
                     }
+
                     );
                 context.SaveChanges();
             }
