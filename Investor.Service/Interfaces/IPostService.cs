@@ -20,7 +20,7 @@ namespace Investor.Service.Interfaces
         //Task<IEnumerable<Post>> GetQueryPagesAsync(string query, int count, int page = 1);
         //Task<IEnumerable<Post>> GetPostsBasedOnIdCollectionAsync(List<int> postIds);
         Task<Post> AddAsync(Post map);
-        //Task<Post> UpdateAsync(Post post);
-        //Task RemoveAsync(int id);
+        Task UpdateAsync(Post post);
+        Task RemoveAsync(int id);
     }
 }

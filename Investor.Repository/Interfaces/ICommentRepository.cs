@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Investor.Model;
 
 namespace Investor.Repository.Interfaces
 {
@@ -15,5 +16,6 @@ namespace Investor.Repository.Interfaces
         Task<CommentEntity> AddCommentAsync(CommentEntity comment);
         Task <CommentEntity> UpdateCommentAsync(CommentEntity comment);
         Task RemoveCommentAsync(int id);
+        object AddCommentAsync(Func<Comment, CommentEntity> map);
     }
 }
