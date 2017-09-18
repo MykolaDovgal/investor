@@ -40,12 +40,14 @@ namespace Investor.Web
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             //services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<ISliderItemRepository, SliderItemRepository>();
             services.AddTransient<IPostTagRepository, PostTagRepository>();
             services.AddTransient<TimeService>();
             services.AddTransient<ThemeService>();
             // Services
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IPostService, PostService>();
+            services.AddTransient<ISliderItemService, SliderItemService>();
             //services.AddTransient<IPostTagService, PostTagService>();
             //services.AddTransient<ISearchService, SearchService>();
             //services.AddTransient<ICommunicationService, CommunicationService>();

@@ -50,7 +50,7 @@ namespace Investor.Web
                 context.Categories.AddRange(categories);
                 context.SaveChanges();
             }
-           
+
             if (!context.Posts.Any())
             {
                 context.Posts.AddRange(
@@ -63,7 +63,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-1.png"
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -75,7 +75,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-1.png"
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -87,7 +87,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-1.png"
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -99,7 +99,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-2.png"
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -111,7 +111,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-3.png"
+                        Image = "img-slider.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -122,7 +122,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-3.png"
+                        Image = "img-slider.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -133,7 +133,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-3.png"
+                        Image = "news-img-7.png"
                     },
                     new Entity.PostEntity
                     {
@@ -144,7 +144,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-3.png"
+                        Image = "news-img-8.png"
                     },
                     new Entity.PostEntity
                     {
@@ -155,7 +155,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-3.png"
+                        Image = "news-img-culture-1.png"
                     },
                     new Entity.PostEntity
                     {
@@ -166,7 +166,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-7.png"
+                        Image = "news-img-culture-2.png"
 
                     },
                     new Entity.PostEntity
@@ -178,7 +178,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-7.png"
+                        Image = "news-img-culture-3.png"
 
                     },
                     new Entity.PostEntity
@@ -190,7 +190,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-7.png"
+                        Image = "news-img-culture-4.png"
 
                     },
                     new Entity.PostEntity
@@ -202,7 +202,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-4.png"
+                        Image = "news-img-culture-5.png"
 
                     },
                     new Entity.PostEntity
@@ -214,7 +214,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-5.png"
+                        Image = "news-img-culture-6.png"
 
                     },
                     new Entity.PostEntity
@@ -226,7 +226,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-5.png"
+                        Image = "news-img-culture-7.png"
 
                     },
                     new Entity.PostEntity
@@ -238,7 +238,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-5.png"
+                        Image = "news-img-culture-8.png"
 
                     },
                     new Entity.PostEntity
@@ -250,7 +250,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-6.png"
+                        Image = "news-img-economy-1.png"
 
                     },
                     new Entity.PostEntity
@@ -262,7 +262,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-6.png"
+                        Image = "news-img-economy-2.png"
 
                     },
                     new Entity.PostEntity
@@ -274,7 +274,7 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-6.png"
+                        Image = "news-img-economy-3.png"
 
                     },
                     new Entity.PostEntity
@@ -286,23 +286,57 @@ namespace Investor.Web
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "blog-img-6.png"
+                        Image = "news-img-economy-4.png"
 
                     }
 
                     );
-                if (context.SliderItems.Any())
+                context.SaveChanges();
+            }
+                if (!context.SliderItems.Any())
                 {
                     context.SliderItems.AddRange(
                         new SliderItemEntity()
                         {
                             Post = context.Posts.ToList()[0],
                             IsOnSlider = true
+                        },
+                        new SliderItemEntity()
+                        {
+                            Post = context.Posts.ToList()[1],
+                            IsOnSlider = true
+                        },
+                        new SliderItemEntity()
+                        {
+                            Post = context.Posts.ToList()[2],
+                            IsOnSlider = true
+                        },
+                        new SliderItemEntity()
+                        {
+                            Post = context.Posts.ToList()[3],
+                            IsOnSlider = true
+                        },
+                        new SliderItemEntity()
+                        {
+                            Post = context.Posts.ToList()[4],
+                            IsOnSlider = true
+                        },
+                        new SliderItemEntity()
+                        {
+                            Post = context.Posts.ToList()[5],
+                            IsOnSide = true
+                        },
+                        new SliderItemEntity()
+                        {
+                            Post = context.Posts.ToList()[6],
+                            IsOnSide = true
                         }
+
                         );
-                }
                 context.SaveChanges();
             }
+                
+            
 
         }
     }
