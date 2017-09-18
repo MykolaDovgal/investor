@@ -41,7 +41,8 @@ namespace Investor.Web
             //services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<IPostTagRepository, PostTagRepository>();
-
+            services.AddTransient<TimeService>();
+            services.AddTransient<ThemeService>();
             // Services
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IPostService, PostService>();

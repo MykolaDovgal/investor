@@ -1,6 +1,13 @@
 ﻿@model Investor.Model.Post
+@inject Investor.Service.TimeService PostPublicationDate
+@inject Investor.Service.ThemeService CategoryStyle
+
+@{
+    string cssTimeStyle = CategoryStyle.categoryPublishedTimeTheme[Model.Category.Name];
+    string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+}
 <div class="item-news inline-item-news">
     <img src="images/news-img-economy-2.png" class="img-fluid"/>
     <h3 class="title-news">@Model.Title</h3>
-    <span class="today-item-news economy-today-color">Сьогодні, 12:43</span>
+    <span class="today-item-news @cssTimeStyle">@publishedTime</span>
 </div>
