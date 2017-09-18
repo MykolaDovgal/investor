@@ -24,7 +24,7 @@
                     <h2 class="title-block">Останні новини</h2>
                     <div class="wrapper-last-news">
 
-                        @foreach (Post lastPost in ViewBag.LatestPost as List<Post>)
+                        @foreach (PostPreview lastPost in ViewBag.LatestPost as List<PostPreview>)
                         {
                             @Html.Partial("_LastNewsTemplate", lastPost)
                         }

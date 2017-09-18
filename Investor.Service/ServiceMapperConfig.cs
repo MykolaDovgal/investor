@@ -18,6 +18,7 @@ namespace Investor.Service
                 cfg.CreateMap<Comment, CommentEntity>().ReverseMap();
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();
                 cfg.CreateMap<SliderItem, SliderItemEntity>().ReverseMap();
+                cfg.CreateMap<PostEntity, PostPreview>().ReverseMap();
                 cfg.CreateMap<PostEntity, Post>()
                      .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag))).ReverseMap();
                 cfg.CreateMap<User, UserEntity>().ReverseMap();
