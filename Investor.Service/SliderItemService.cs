@@ -14,9 +14,13 @@ namespace Investor.Service
     public class SliderItemService : ISliderItemService
     {
         private ISliderItemRepository _sliderItemRepository;
-        public SliderItemService(ISliderItemRepository sliderItemRepository)
+        private IPostRepository _postRepository;
+        private int _sideSliderItemsCount = 2;
+        private int _centralSliderItemsCount = 2;
+        public SliderItemService(ISliderItemRepository sliderItemRepository, IPostRepository postRepository)
         {
             _sliderItemRepository = sliderItemRepository;
+            _postRepository = postRepository;
         }
         public async Task<SliderItem> AddSliderItemAsync(SliderItem sliderItem)
         {
@@ -29,6 +33,52 @@ namespace Investor.Service
         {
             var sliderItems = await _sliderItemRepository.GetAllSliderItemsAsync();
             return sliderItems.Select(Mapper.Map<SliderItemEntity, SliderItem>);
+        }
+
+        public async Task<IEnumerable<SliderItem>> GetCentralSliderItemsAsync()
+        {
+            var slideItems = (await _sliderItemRepository
+                .GetCentralSliderItemsAsync())
+                .Select(Mapper.Map<SliderItemEntity, SliderItem>);
+
+            if (slideItems.Count() > _centralSliderItemsCount)
+                slideItems.Take(_centralSliderItemsCount);
+            else if (slideItems.Count() < _centralSliderItemsCount)
+            {
+                var sidePosts = (await _postRepository
+                     .GetLatestPostsAsync(_centralSliderItemsCount - slideItems.Count()))
+                     .Select(Mapper.Map<PostEntity, Post>);
+
+                for (int i = 0; slideItems.Count() <= 2; i++)
+                {
+                    SliderItem sliderItem = new SliderItem() { Post = sidePosts.ToList()[i], IsOnSide = true };
+                    slideItems.ToList().Add(await this.AddSliderItemAsync(sliderItem));
+                }
+            }
+            return slideItems;
+        }
+
+        public async Task<IEnumerable<SliderItem>> GetSideSliderItemsAsync()
+        {
+            var sideItems = (await _sliderItemRepository
+                .GetSideSliderItemsAsync())
+                .Select(Mapper.Map<SliderItemEntity, SliderItem>);
+
+            if (sideItems.Count() > _sideSliderItemsCount)
+                return sideItems.Take(_sideSliderItemsCount);
+            if (sideItems.Count() < _sideSliderItemsCount)
+            {
+               var sidePosts = (await _postRepository
+                    .GetLatestPostsAsync(_sideSliderItemsCount - sideItems.Count()))
+                    .Select(Mapper.Map<PostEntity, Post>);
+
+                for (int i = 0; sideItems.Count() <= 2; i++)
+                {
+                    SliderItem sliderItem = new SliderItem() { Post = sidePosts.ToList()[i], IsOnSide = true };
+                    sideItems.ToList().Add(sliderItem);
+                }
+            }
+            return sideItems;
         }
 
         public async Task<SliderItem> GetSliderItemByIdAsync(int id)

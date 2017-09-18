@@ -5,6 +5,7 @@ using System.Text;
 using Investor.Entity;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Investor.Repository
 {
@@ -64,6 +65,26 @@ namespace Investor.Repository
                 .Update(sliderItem);
 
             await _newsContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<SliderItemEntity>> GetSideSliderItemsAsync()
+        {
+            var sliderItems = await _newsContext
+               .SliderItems
+               .Include(s => s.Post)
+               .ToListAsync();
+            return sliderItems.Where(s => s.IsOnSide == true);
+                
+        }
+
+        public async Task<IEnumerable<SliderItemEntity>> GetCentralSliderItemsAsync()
+        {
+            var sliderItems = await _newsContext
+               .SliderItems
+               .Include(s => s.Post)
+               .ToListAsync();
+
+            return sliderItems.Where(s => s.IsOnSlider == true);
         }
     }
 }

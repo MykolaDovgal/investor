@@ -16,6 +16,5 @@ namespace Investor.Repository.Interfaces
         Task<CommentEntity> AddCommentAsync(CommentEntity comment);
         Task <CommentEntity> UpdateCommentAsync(CommentEntity comment);
         Task RemoveCommentAsync(int id);
-        object AddCommentAsync(Func<Comment, CommentEntity> map);
     }
 }

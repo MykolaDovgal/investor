@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using Investor.Entity;
 
 namespace Investor.Web
 {
@@ -290,6 +291,16 @@ namespace Investor.Web
                     }
 
                     );
+                if (context.SliderItems.Any())
+                {
+                    context.SliderItems.AddRange(
+                        new SliderItemEntity()
+                        {
+                            Post = context.Posts.ToList()[0],
+                            IsOnSlider = true
+                        }
+                        );
+                }
                 context.SaveChanges();
             }
 

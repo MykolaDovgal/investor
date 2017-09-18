@@ -25,14 +25,13 @@ namespace Investor.Web.Controllers
 
         public IActionResult Index()
         {
-            
             IList<Category> categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
             ViewBag.LatestPost = _postService.GetLatestPostsAsync(20).Result.ToList();
             ViewBag.Categories = categories;
-            ViewBag.Politics = _postService.GetAllByCategoryNameAsync(categories[0].Name, true).Result.ToList();
-            ViewBag.Social   = _postService.GetAllByCategoryNameAsync(categories[1].Name, true).Result.ToList();
-            ViewBag.Culture  = _postService.GetAllByCategoryNameAsync(categories[2].Name, true).Result.ToList();
-            ViewBag.Economy  = _postService.GetAllByCategoryNameAsync(categories[3].Name, true).Result.ToList();
+            ViewBag.Politics = _postService.GetAllByCategoryNameAsync(categories[0].Name, true, 8).Result.ToList();
+            ViewBag.Social   = _postService.GetAllByCategoryNameAsync(categories[1].Name, true, 8).Result.ToList();
+            ViewBag.Culture  = _postService.GetAllByCategoryNameAsync(categories[2].Name, true, 4).Result.ToList();
+            ViewBag.Economy  = _postService.GetAllByCategoryNameAsync(categories[3].Name, true, 4).Result.ToList();
             return View();
 
         }

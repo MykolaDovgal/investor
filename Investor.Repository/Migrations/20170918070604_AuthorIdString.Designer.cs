@@ -8,9 +8,10 @@ using Investor.Repository;
 namespace Investor.Repository.Migrations
 {
     [DbContext(typeof(NewsContext))]
-    partial class NewsContextModelSnapshot : ModelSnapshot
+    [Migration("20170918070604_AuthorIdString")]
+    partial class AuthorIdString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

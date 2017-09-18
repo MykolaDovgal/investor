@@ -45,11 +45,30 @@ namespace Investor.Service
             return posts.Select(Mapper.Map<PostEntity, Post>);
         }
 
-        public async Task<IEnumerable<Post>> GetAllByCategoryNameAsync(string category, bool onMainPage)
+        public async Task<IEnumerable<Post>> GetAllByCategoryNameAsync(string category, bool onMainPage, int? count)
         {
-            var posts = await _postRepository.GetAllByCategoryNameAsync(category, onMainPage);
-            return posts.Select(Mapper.Map<PostEntity, Post>);
+            var posts = (await _postRepository
+                .GetAllByCategoryNameAsync(category, onMainPage))
+                .Select(Mapper.Map<PostEntity, Post>);
+
+            if (onMainPage && count.HasValue)
+            {
+                if (posts.Count() > count.Value)
+                    return posts.Take(count.Value);
+
+                if(posts.Count() < count.Value)
+                {
+                    var mainPagePosts = (await _postRepository
+                    .GetLatestPostsAsync(count.Value - posts.Count()))
+                    .Select(Mapper.Map<PostEntity, Post>);
+
+                    posts.ToList().AddRange(mainPagePosts);
+                }
+            }
+            return posts;
         }
+
+
 
         public async Task<IEnumerable<Post>> GetAllByTagNameAsync(string tagName)
         {
@@ -99,6 +118,7 @@ namespace Investor.Service
             await _postRepository.RemoveAsync(id);
         }
 
+        
         //public async Task<Post> AddAsync(Post map)
         //{
 

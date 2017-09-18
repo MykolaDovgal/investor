@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace Investor.Entity
         [DataType(DataType.DateTime)]
         public DateTime PublishedOn { set; get; }
 
-        public bool Published { set; get; }
+        public bool IsPublished { set; get; }
         public bool IsOnMainPage { set; get; }
 
         public int CategoryId { set; get; }
@@ -40,7 +41,8 @@ namespace Investor.Entity
         public int ArticleId { set; get; }
         public ArticleEntity Article { set; get; }
 
-        public int AuthorId { set; get; }
+        public string AuthorId { set; get; }
+        [ForeignKey("AuthorId")]
         public UserEntity Author { set; get; }
 
         public List<PostTagEntity> PostTags { get; set; }
