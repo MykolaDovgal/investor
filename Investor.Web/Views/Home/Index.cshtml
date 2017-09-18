@@ -17,9 +17,9 @@
                             {
                                 @Html.Partial("_LargePostTemplate", ViewBag.Politics[i] as Investor.Model.Post)
                             }
-                            @for (int i = 2; i < 6; i++)
+                            @for (int i = 2; i < ViewBag.Politics.Count; i++)
                             {
-                                @Html.Partial("_MiddlePostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
+                                @Html.Partial("_MiddlePostTemplate", ViewBag.Politics[i] as Investor.Model.Post)
                             }
                         </div>
                     </div>
@@ -32,15 +32,15 @@
 
                 <div class="category-news culture-news">
                     <div class="body-category-news block-border-top culture-border-color mb-3">
-                        <h1 class="title-block">@ViewBag.Categories[0].Name</h1>
+                        <h1 class="title-block">@ViewBag.Categories[2].Name</h1>
                         <div class="row">
                             @for (int i = 0; i < 2; i++)
                             {
-                                @Html.Partial("_LargePostTemplate", ViewBag.Politics[i] as Investor.Model.Post)
+                                @Html.Partial("_LargePostTemplate", ViewBag.Culture[i] as Investor.Model.Post)
                             }
-                            @for (int i = 2; i < 6; i++)
+                            @for (int i = 2; i < ViewBag.Culture.Count; i++)
                             {
-                                @Html.Partial("_MiddlePostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
+                                @Html.Partial("_MiddlePostTemplate", ViewBag.Culture[i] as Investor.Model.Post)
                             }
                         </div>
                     </div>
@@ -53,15 +53,15 @@
 
                 <div class="category-news economy-news">
                     <div class="body-category-news block-border-top economy-border-color mb-3">
-                        <h1 class="title-block">@ViewBag.Categories[0].Name</h1>
+                        <h1 class="title-block">@ViewBag.Categories[3].Name</h1>
                         <div class="row">
 
-                            @Html.Partial("_LargePostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
+                            @Html.Partial("_LargePostTemplate", ViewBag.Economy[0] as Investor.Model.Post)
 
                             <div class="col-md-6">
-                                @for (int i = 1; i < 4; i++)
+                                @for (int i = 1; i < ViewBag.Economy.Count; i++)
                                 {
-                                    @Html.Partial("_SmallPostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
+                                    @Html.Partial("_SmallPostTemplate", ViewBag.Economy[i] as Investor.Model.Post)
                                 }
                             </div>
                         </div>
@@ -73,14 +73,14 @@
 
                 <div class="category-news it-news">
                     <div class="body-category-news block-border-top it-border-color mb-3">
-                        <h2 class="title-block">@ViewBag.Categories[0].Name</h2>
+                        <h2 class="title-block">@ViewBag.Categories[4].Name</h2>
                         <div class="row">
-                            @Html.Partial("_LargePostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
+                            @Html.Partial("_LargePostTemplate", ViewBag.Technologies[0] as Investor.Model.Post)
 
                             <div class="col-md-6">
-                                @for (int i = 1; i < 4; i++)
+                                @for (int i = 1; i < ViewBag.Technologies.Count; i++)
                                 {
-                                    @Html.Partial("_SmallPostTemplate", ViewBag.Politics[0] as Investor.Model.Post)
+                                    @Html.Partial("_SmallPostTemplate", ViewBag.Technologies[i] as Investor.Model.Post)
                                 }
                             </div>
                         </div>
