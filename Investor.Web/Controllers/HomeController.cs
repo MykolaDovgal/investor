@@ -7,20 +7,24 @@ using Investor.Service.Interfaces;
 using Investor.Model;
 using Investor.Repository;
 using Investor.Repository.Interfaces;
+using Investor.Model.Views;
 
 namespace Investor.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IPostService _postService;
-        private readonly IPostRepository _db;
         private readonly ICategoryService _categoryService;
+        private readonly ISliderItemService _sliderItemService;
 
-        public HomeController(IPostService postService, ICategoryService categoryService, IPostRepository db)
+
+        public HomeController(IPostService postService, 
+            ICategoryService categoryService, 
+            ISliderItemService sliderItemService)
         {
             _postService = postService;
             _categoryService = categoryService;
-            _db = db;
+            _sliderItemService = sliderItemService;
         }
 
         public IActionResult Index()
@@ -32,8 +36,14 @@ namespace Investor.Web.Controllers
             ViewBag.Technologies = _postService.GetAllByCategoryNameAsync(categories[4].Name, true, 8).Result.ToList();
             ViewBag.Culture  = _postService.GetAllByCategoryNameAsync(categories[2].Name, true, 4).Result.ToList();
             ViewBag.Economy  = _postService.GetAllByCategoryNameAsync(categories[3].Name, true, 4).Result.ToList();
+            SliderViewModel svm = new SliderViewModel()
+            {
+                SideItems = _sliderItemService.GetSideSliderItemsAsync().Result.ToList(),
+                SliderItems = _sliderItemService.GetCentralSliderItemsAsync().Result.ToList()
+            };
+            ViewBag.SVM = svm;
             return View();
-
+  
         }
 
     }
