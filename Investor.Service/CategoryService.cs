@@ -25,9 +25,9 @@ namespace Investor.Service
             return categories.Select(Mapper.Map<CategoryEntity, Category>);
         }
 
-        public async Task<Category> GetCategoriesByNameAsync(string name)
+        public async Task<Category> GetCategoryByUrlAsync(string url)
         {
-            var category = await _categoryRepository.GetCategoryByNameAsync(name);
+            var category = await _categoryRepository.GetCategoryByUrlAsync(url);
             return Mapper.Map<CategoryEntity, Category>(category);
         }
     }

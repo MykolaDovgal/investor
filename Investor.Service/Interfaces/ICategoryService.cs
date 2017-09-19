@@ -9,6 +9,6 @@ namespace Investor.Service.Interfaces
     public interface ICategoryService
     {
         Task<IEnumerable<Category>> GetAllCategoriesAsync();
-        Task<Category> GetCategoriesByNameAsync(string name);
+        Task<Category> GetCategoryByUrlAsync(string url);
     }
 }

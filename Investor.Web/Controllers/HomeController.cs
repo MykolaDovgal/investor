@@ -38,7 +38,7 @@ namespace Investor.Web.Controllers
 
             categories.ForEach(category =>
             {
-                var categoryPosts = _postService.GetAllByCategoryNameAsync(category.Name, true, _themeService.postPreviewCount[category.Name]).Result.ToList();
+                var categoryPosts = _postService.GetAllPostsByCategoryUrlAsync(category.Name, true, _themeService.postPreviewCount[category.Name]).Result.ToList();
                 int largePostCount = _themeService.largePostPreviewCount[category.Name];
                 news.Add(new CategoryPreviewViewModel
                 {

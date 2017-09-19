@@ -19,7 +19,7 @@ namespace Investor.Service
             _postRepository = postRepository;
         }
 
-        public async Task<Post> AddAsync(Post map)
+        public async Task<Post> AddPostAsync(Post map)
         {
 
             if (map.Title == null)
@@ -33,7 +33,7 @@ namespace Investor.Service
             map.CreatedOn = DateTime.Now;
             map.Published = false;
 
-            var response = await _postRepository.AddAsync(Mapper.Map<Post, PostEntity>(map));
+            var response = await _postRepository.AddPostAsync(Mapper.Map<Post, PostEntity>(map));
             map.PostId = response.PostId;
 
             return map;
@@ -41,14 +41,14 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PostPreview>> GetAllPostsAsync()
         {
-            var posts = await _postRepository.GetAllAsync();
+            var posts = await _postRepository.GetAllPostsAsync();
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
-        public async Task<IEnumerable<PostPreview>> GetAllByCategoryNameAsync(string category, bool onMainPage, int? count)
+        public async Task<IEnumerable<PostPreview>> GetAllPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage, int? count)
         {
             var posts = (await _postRepository
-                .GetAllByCategoryNameAsync(category, onMainPage))
+                .GetAllPostsByCategoryUrlAsync(categoryUrl, onMainPage))
                 .Select(Mapper.Map<PostEntity, PostPreview>);
 
             if (onMainPage && count.HasValue)
@@ -68,15 +68,15 @@ namespace Investor.Service
             return posts;
         }
 
-        public async Task<IEnumerable<PostPreview>> GetAllByTagNameAsync(string tagName)
+        public async Task<IEnumerable<PostPreview>> GetAllPostsByTagNameAsync(string tagName)
         {
-            var posts = await _postRepository.GetAllByTagNameAsync(tagName);
+            var posts = await _postRepository.GetAllPostsByTagNameAsync(tagName);
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
-        public async Task<Post> GetByIdAsync(int id)
+        public async Task<Post> GetPostByIdAsync(int id)
         {
-            return Mapper.Map<PostEntity, Post>(await _postRepository.GetByIdAsync(id));
+            return Mapper.Map<PostEntity, Post>(await _postRepository.GetPostByIdAsync(id));
         }
 
         public async Task<IEnumerable<PostPreview>> GetAllPagesAsync(int count, int page)
@@ -90,9 +90,9 @@ namespace Investor.Service
             return await _postRepository.GetTotalNumberOfPostByTagAsync(tag);
         }
 
-        public async Task<int> GetTotalNumberOfPostsByCategoryAsync(string category)
+        public async Task<int> GetTotalNumberOfPostsByCategoryUrlAsync(string categoryUrl)
         {
-            return await _postRepository.GetTotalNumberOfPostsByCategoryAsync(category);
+            return await _postRepository.GetTotalNumberOfPostsByCategoryAsync(categoryUrl);
         }
 
         public async Task<int> GetTotalNumberOfPostsAsync()
@@ -106,19 +106,19 @@ namespace Investor.Service
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
-        public async Task UpdateAsync(Post post)
+        public async Task UpdatePostAsync(Post post)
         {
-            await _postRepository.UpdateAsync(Mapper.Map<Post, PostEntity>(post));
+            await _postRepository.UpdatePostAsync(Mapper.Map<Post, PostEntity>(post));
         }
 
-        public async Task RemoveAsync(int id)
+        public async Task RemovePostAsync(int id)
         {
-            await _postRepository.RemoveAsync(id);
+            await _postRepository.RemovePostAsync(id);
         }
 
-        public async Task<IEnumerable<PostPreview>> GetPopularPostByCategoryNameAsync(string categoryName, int limit)
+        public async Task<IEnumerable<PostPreview>> GetPopularPostByCategoryUrlAsync(string categoryUrl, int limit)
         {
-            var posts = await _postRepository.GetPopularPostByCategoryNameAsync(categoryName, limit);
+            var posts = await _postRepository.GetPopularPostByCategoryUrlAsync(categoryUrl, limit);
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
