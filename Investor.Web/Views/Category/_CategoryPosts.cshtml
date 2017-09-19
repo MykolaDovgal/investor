@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Investor.Model.Post>
+@inject Investor.Service.ThemeService CategoryStyle
+@using Investor.Model
+@{
+    ViewData["Title"] = ViewBag.Category.Name + " Page";
+    string cssTimeStyle = CategoryStyle.categoryPublishedTimeTheme[ViewBag.Category.Name];
+    string cssBorderStyle = CategoryStyle.categoryBorderTheme[ViewBag.CategoryName];
+    string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[ViewBag.CategoryName];
+}
+<div class="col-lg-8 pl-0 p-0 pr-lg-2">
+    <div class="category-news politics-news">
+        <div class="body-category-news block-border-top @cssBorderStyle mb-3">
+            <h1 class="title-block">ViewBag.Category.Name</h1>
+            <div class="row">
+                @foreach(var post in Model)
+                {
+                    @Html.Partial("_NewsItem", post)
+                }
+            </div>
+        </div>
+        <div class="wrapper-btn-more">
+            <a href="#" class="btn-more mx-auto"><span class="circle @cssCircleStyle"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿@model Investor.Model.Post
+@inject Investor.Service.TimeService PostPublicationDate
+@{
+    string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+}
+<div class="item-news item-all-news col-12">
+    <div class="img-news">
+        <img src="img/@Model.Image" class="img-fluid" />
+    </div>
+    <div class="body-all-news">
+        <a href="#" class="title-news">
+            @Model.Title
+        </a>
+        <p class="text-news">
+            @Model.Description
+        </p>
+        <span class="today-item-news politics-today-color">@publishedTime</span>
+    </div>
+</div>

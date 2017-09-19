@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Investor.Model.Post>
+@using Investor.Model
+<div class="block-border-top default-border-color last-news">
+    <h2 class="title-block">Останні новини</h2>
+    <div class="wrapper-last-news">
+
+        @foreach (Post lastPost in Model)
+        {
+            @Html.Partial("_LastNewsTemplate", lastPost)
+        }
+    </div>
+    <a href="#" class="btn-more"><span class="circle circle-default-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+</div>

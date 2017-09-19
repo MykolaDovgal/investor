@@ -55,11 +55,7 @@ namespace Investor.Web.Controllers
             ViewBag.SVM = svm;
             ViewBag.News = news;        
             ViewBag.LatestPost = _postService.GetLatestPostsAsync(20).Result.ToList();
-            ViewBag.Categories = categories;
-            ViewBag.Politics = _postService.GetAllByCategoryNameAsync(categories[0].Name, true, 8).Result.ToList();
-            ViewBag.Technologies = _postService.GetAllByCategoryNameAsync(categories[4].Name, true, 8).Result.ToList();
-            ViewBag.Culture  = _postService.GetAllByCategoryNameAsync(categories[2].Name, true, 4).Result.ToList();
-            ViewBag.Economy  = _postService.GetAllByCategoryNameAsync(categories[3].Name, true, 4).Result.ToList();
+            
             return View();
   
         }
