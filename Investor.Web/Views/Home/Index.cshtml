@@ -20,18 +20,7 @@
 
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
 
-                <div class="block-border-top default-border-color last-news">
-                    <h2 class="title-block">Останні новини</h2>
-                    <div class="wrapper-last-news">
-
-                        @foreach (PostPreview lastPost in ViewBag.LatestPost as List<PostPreview>)
-                        {
-                            @Html.Partial("_LastNewsTemplate", lastPost)
-                        }
-                    </div>
-                    <a href="#" class="btn-more"><span class="circle circle-default-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
-                </div>
-
+                
                 <div class="sidebar-blog">
                     <div class="sidebar-blog-body block-border-top default-border-color">
                         <h2 class="title-block">Блоги</h2>
@@ -48,6 +37,5 @@
             </div>
 
         </div>
-    </div>
     </div>
 </section>

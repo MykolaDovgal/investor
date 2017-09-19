@@ -56,237 +56,309 @@ namespace Investor.Web
                 context.Posts.AddRange(
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "В The Economist вибачилися за фразу «громадянська війна на Донбасі»",
                         Article = context.Articles.ToList()[0],
-                        Description = "blgblglblglblglblg",
+                        Description = "The Economist Intelligence Unit, дослідницька організація The Economist Group, вибачилася за фразу «громадянська війна”,",
                         Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-1.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі",
                         Article = context.Articles.ToList()[0],
-                        Description = "blgblglblglblglblg",
+                        Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
                         Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-2.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "Чому Україна програла від «журналістського розслідування»",
                         Article = context.Articles.ToList()[0],
-                        Description = "blgblglblglblglblg",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-3.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "Вижити тут можуть хіба ті, хто тут народився, – українка про життя у Конго(фото)",
                         Article = context.Articles.ToList()[1],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[1],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-4.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "Перші «совєти» в Галичині: коли і хто такі ?",
                         Article = context.Articles.ToList()[2],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[2],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-5.png"
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "У «Борисполі» хочуть збудувати ще одну злітну смугу.",
                         Article = context.Articles.ToList()[2],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[2],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-6.png"
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "Фонд держмайна продав «Західерго» за ціною на 20 % вищою за стартову",
                         Article = context.Articles.ToList()[2],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[2],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-7.png"
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "Українських завод обслуговуватиме світових лідерів авіабудування",
                         Article = context.Articles.ToList()[2],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[2],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[0],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-8.png"
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
                         Article = context.Articles.ToList()[2],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[2],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-culture-1.png"
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "На вихідних у Львівській опері стартує новий театральний сезон",
                         Article = context.Articles.ToList()[3],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-culture-2.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "LvivMozArt: Що відвідати і послухати 22 серпня",
                         Article = context.Articles.ToList()[3],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-culture-3.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "У Малайзії понад 20 дітей згоріли заживо у школі",
+                        Title = "Львів’ян запрошують на виставку моделей найбільш знакових будівель світу",
                         Article = context.Articles.ToList()[3],
-                        Description = "blgblglblglblglblg",
-                        Category = context.Categories.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-culture-4.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Title = "Як Львів відсвяткує День Незалежності: програма заходів",
                         Article = context.Articles.ToList()[1],
-                        Description = "gfhk;dlfkjh;dlfk",
-                        Category = context.Categories.ToList()[2],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-culture-5.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Title = "Новий роман частково буде про пошук ідентичності, – Вікторія Амеліна",
                         Article = context.Articles.ToList()[3],
-                        Description = "gfhk;dlfkjh;dlfk",
-                        Category = context.Categories.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-culture-6.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Title = "Чому у Львові виник скандал навколо фільму про батярів",
                         Article = context.Articles.ToList()[3],
-                        Description = "gfhk;dlfkjh;dlfk",
-                        Category = context.Categories.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-culture-7.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "Пенсійна реформа України у питаннях і відповідях",
+                        Title = "На «Арені Львів» відбудеться фінал проекту «Українська пісня»: чого очікувати ?",
                         Article = context.Articles.ToList()[3],
-                        Description = "gfhk;dlfkjh;dlfk",
-                        Category = context.Categories.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-culture-8.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "Пенсійна реформа України у питаннях і відповідях",
-                        Article = context.Articles.ToList()[4],
-                        Description = "gfhk;dlfkjh;dlfk",
-                        Category = context.Categories.ToList()[4],
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
-                        Image = "news-img-economy-1.png"
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-economy-8.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "Пенсійна реформа України у питаннях і відповідях",
-                        Article = context.Articles.ToList()[4],
-                        Description = "gfhk;dlfkjh;dlfk",
-                        Category = context.Categories.ToList()[4],
+                        Title = "На «Арені Львів» відбудеться фінал проекту «Українська пісня»: чого очікувати ?",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-economy-2.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "Пенсійна реформа України у питаннях і відповідях",
-                        Article = context.Articles.ToList()[4],
-                        Description = "gfhk;dlfkjh;dlfk",
-                        Category = context.Categories.ToList()[4],
+                        Title = "Чому у Львові виник скандал навколо фільму про батярів",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-economy-3.png"
 
                     },
                     new Entity.PostEntity
                     {
-                        Title = "Пенсійна реформа України у питаннях і відповідях",
-                        Article = context.Articles.ToList()[4],
-                        Description = "gfhk;dlfkjh;dlfk",
-                        Category = context.Categories.ToList()[4],
+                        Title = "Як Львів відсвяткує День Незалежності: програма заходів",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
                         Image = "news-img-economy-4.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "В Україні почалась нова хакерська атака",
+                        Article = context.Articles.ToList()[4],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-it-2.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Google випустив нову Android — Oreo",
+                        Article = context.Articles.ToList()[4],
+                        Description = "У новій операційній системі з’явилася можливість працювати в режимі «картинка в картинці». Наприклад, можна продовжувати...",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-it-1.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Відомий львівський журналіст розповів, чому Садовому...",
+                        Article = context.Articles.ToList()[4],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-it-3.png"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку",
+                        Article = context.Articles.ToList()[4],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-img-it-4.png"
 
                     }
 
