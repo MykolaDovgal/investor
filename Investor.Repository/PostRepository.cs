@@ -149,12 +149,18 @@ namespace Investor.Repository
         {
             return await _newsContext.Posts
                 .Include(p => p.Category)
-                .Include(p => p.Comments)
-                .Include(p => p.Article)
-                .Include(p => p.Author)
-                .Include(p => p.PostTags)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PostEntity>> GetPopularPostByCategoryNameAsync(string categoryName, int limit)
+        {
+            return await _newsContext.Posts
+                .Where(p => p.Category.Name == categoryName)
+                .OrderByDescending(p => p.PublishedOn)
+                .Take(limit)
+                .Include(p => p.Category)
                 .ToListAsync();
         }
     }
