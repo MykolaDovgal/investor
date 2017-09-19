@@ -20,7 +20,7 @@
 
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
 
-                
+                @Html.Partial("_LatestNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
                 <div class="sidebar-blog">
                     <div class="sidebar-blog-body block-border-top default-border-color">
                         <h2 class="title-block">Блоги</h2>
