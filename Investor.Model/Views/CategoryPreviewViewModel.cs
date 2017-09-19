@@ -6,8 +6,8 @@ namespace Investor.Model.Views
 {
     public class CategoryPreviewViewModel
     {
-        public IEnumerable<Post> LargePostPreviewTemplate;
-        public IEnumerable<Post> SmallPostPreviewTemplate;
+        public IEnumerable<PostPreview> LargePostPreviewTemplate;
+        public IEnumerable<PostPreview> SmallPostPreviewTemplate;
         public string CategoryName { get; set; }
 
 

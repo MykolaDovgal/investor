@@ -39,17 +39,17 @@ namespace Investor.Service
             return map;
         }
 
-        public async Task<IEnumerable<Post>> GetAllPostsAsync()
+        public async Task<IEnumerable<PostPreview>> GetAllPostsAsync()
         {
             var posts = await _postRepository.GetAllAsync();
-            return posts.Select(Mapper.Map<PostEntity, Post>);
+            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
-        public async Task<IEnumerable<Post>> GetAllByCategoryNameAsync(string category, bool onMainPage, int? count)
+        public async Task<IEnumerable<PostPreview>> GetAllByCategoryNameAsync(string category, bool onMainPage, int? count)
         {
             var posts = (await _postRepository
                 .GetAllByCategoryNameAsync(category, onMainPage))
-                .Select(Mapper.Map<PostEntity, Post>);
+                .Select(Mapper.Map<PostEntity, PostPreview>);
 
             if (onMainPage && count.HasValue)
             {
@@ -60,7 +60,7 @@ namespace Investor.Service
                 {
                     var mainPagePosts = (await _postRepository
                     .GetLatestPostsAsync(count.Value - posts.Count()))
-                    .Select(Mapper.Map<PostEntity, Post>);
+                    .Select(Mapper.Map<PostEntity, PostPreview>);
 
                     posts.ToList().AddRange(mainPagePosts);
                 }
@@ -70,10 +70,10 @@ namespace Investor.Service
 
 
 
-        public async Task<IEnumerable<Post>> GetAllByTagNameAsync(string tagName)
+        public async Task<IEnumerable<PostPreview>> GetAllByTagNameAsync(string tagName)
         {
             var posts = await _postRepository.GetAllByTagNameAsync(tagName);
-            return posts.Select(Mapper.Map<PostEntity, Post>);
+            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task<Post> GetByIdAsync(int id)
@@ -81,10 +81,10 @@ namespace Investor.Service
             return Mapper.Map<PostEntity, Post>(await _postRepository.GetByIdAsync(id));
         }
 
-        public async Task<IEnumerable<Post>> GetAllPagesAsync(int count, int page)
+        public async Task<IEnumerable<PostPreview>> GetAllPagesAsync(int count, int page)
         {
             var posts = await _postRepository.GetAllPagesAsync(count, page);
-            return posts.Select(Mapper.Map<PostEntity, Post>);
+            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task<int> GetTotalNumberOfPostByTagAsync(string tag)
@@ -102,10 +102,10 @@ namespace Investor.Service
             return await _postRepository.GetTotalNumberOfPostsAsync();
         }
 
-        public async Task<IEnumerable<Post>> GetLatestPostsAsync(int limit)
+        public async Task<IEnumerable<PostPreview>> GetLatestPostsAsync(int limit)
         {
             var posts = await _postRepository.GetLatestPostsAsync(limit);
-            return posts.Select(Mapper.Map<PostEntity, Post>);
+            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task UpdateAsync(Post post)

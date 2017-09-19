@@ -55,7 +55,6 @@ namespace Investor.Web.Controllers
             ViewBag.SVM = svm;
             ViewBag.News = news;        
             ViewBag.LatestPost = _postService.GetLatestPostsAsync(20).Result.ToList();
-            
             return View();
   
         }

@@ -1,4 +1,5 @@
 ﻿@model Investor.Model.Views.CategoryPreviewViewModel
+@using Investor.Model
 @inject Investor.Service.ThemeService CategoryStyle
 
 @{
@@ -11,7 +12,7 @@
         <div class="row">
             @foreach (var largePost in Model.LargePostPreviewTemplate)
             {
-                @Html.Partial("_LargePostTemplate", largePost as Investor.Model.Post)
+                @Html.Partial("_LargePostTemplate", largePost as PostPreview)
             }
 
             @if (Model.LargePostPreviewTemplate.Count() == 1)
@@ -19,7 +20,7 @@
                 <div class="col-md-6">
                     @foreach (var smallPost in Model.SmallPostPreviewTemplate)
                     {
-                        @Html.Partial("_SmallPostTemplate", smallPost as Investor.Model.Post)
+                        @Html.Partial("_SmallPostTemplate", smallPost as PostPreview)
                     }
                 </div>
             }
@@ -27,7 +28,7 @@
             {
                 @foreach (var middlePost in Model.SmallPostPreviewTemplate)
                 {
-                    @Html.Partial("_MiddlePostTemplate", middlePost as Investor.Model.Post)
+                    @Html.Partial("_MiddlePostTemplate", middlePost as PostPreview)
                 }
 
             }
