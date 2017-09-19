@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Investor.Model.Post>
+﻿@model IEnumerable<Investor.Model.PostPreview>
 @using Investor.Model
 <div class="block-border-top default-border-color last-news">
     <h2 class="title-block">Останні новини</h2>
     <div class="wrapper-last-news">
 
-        @foreach (Post lastPost in Model)
+        @foreach (PostPreview lastPost in Model)
         {
             @Html.Partial("_LastNewsTemplate", lastPost)
         }

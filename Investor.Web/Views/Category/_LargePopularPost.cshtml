@@ -1,4 +1,4 @@
-﻿@model Investor.Model.Post
+﻿@model Investor.Model.PostPreview
 @inject Investor.Service.TimeService PostPublicationDate
 @{
     string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
