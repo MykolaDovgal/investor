@@ -2,7 +2,7 @@
 @inject Investor.Service.ThemeService CategoryStyle
 @using Investor.Model
 @{
-    ViewData["Title"] = ViewBag.Category.Name + " Page";
+    ViewData["Title"] = ViewBag.CategoryName + " Page";
     
     string cssBorderStyle = CategoryStyle.categoryBorderTheme[ViewBag.CategoryName];
     string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[ViewBag.CategoryName];

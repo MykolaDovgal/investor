@@ -81,7 +81,7 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PostPreview>> GetAllPagesAsync(int count, int page)
         {
-            var posts = await _postRepository.GetAllPagesAsync(count, page);
+            var posts = await _postRepository.GetAllPostsPagesAsync(count, page);
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
@@ -92,7 +92,7 @@ namespace Investor.Service
 
         public async Task<int> GetTotalNumberOfPostsByCategoryUrlAsync(string categoryUrl)
         {
-            return await _postRepository.GetTotalNumberOfPostsByCategoryAsync(categoryUrl);
+            return await _postRepository.GetTotalNumberOfPostsByCategoryUrlAsync(categoryUrl);
         }
 
         public async Task<int> GetTotalNumberOfPostsAsync()

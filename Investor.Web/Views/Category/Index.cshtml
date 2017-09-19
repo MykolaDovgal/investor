@@ -5,12 +5,12 @@
         <div class="row">
             @for(int i=0; i<2; i++)
             {
-                @Html.Partial("_LargePopularPost", ViewBag.CategoryPopularPosts[i] as Post)
+                @Html.Partial("_LargePopularPost", ViewBag.CategoryPopularPosts[i] as PostPreview)
             }
 
             @for (int i = 2; i < ViewBag.CategoryPopularPosts.Count; i++)
             {
-                @Html.Partial("_SmallPopularPost", ViewBag.CategoryPopularPosts[i] as Post)
+                @Html.Partial("_SmallPopularPost", ViewBag.CategoryPopularPosts[i] as PostPreview)
             }
         </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="row">
             @Html.Partial("_CategoryPostsPreviewTemplate", ViewBag.CategoryPosts as IEnumerable<PostPreview>)
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
-                @Html.Partial("_LatestNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
+                @Html.Partial("_LastNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
             </div>
         </div>
     </div>
