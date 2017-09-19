@@ -10,21 +10,21 @@ namespace Investor.Repository.Interfaces
     public interface IPostRepository
     {
         Task<int> GetTotalNumberOfPostsAsync();
-        Task<int> GetTotalNumberOfPostsByCategoryAsync(string category);
+        Task<int> GetTotalNumberOfPostsByCategoryUrlAsync(string url);
         Task<int> GetTotalNumberOfPostByTagAsync(string tag);
-        Task<PostEntity> GetByIdAsync(int id);
-        Task<IEnumerable<PostEntity>> GetAllAsync();
+        Task<PostEntity> GetPostByIdAsync(int id);
+        Task<IEnumerable<PostEntity>> GetAllPostsAsync();
         Task<IEnumerable<PostEntity>> GetLatestPostsAsync(int limit);
-        Task<IEnumerable<PostEntity>> GetPopularPostByCategoryNameAsync(string categoryName, int limit);
-        IEnumerable<PostEntity> GetAll();
-        Task<IEnumerable<PostEntity>> GetAllByCategoryNameAsync(string categoryName, bool onMainPage  );
-        Task<IEnumerable<PostEntity>> GetAllByTagNameAsync(string tagName);
-        Task<IEnumerable<PostEntity>> GetAllPagesAsync(int count, int page = 1);
+        Task<IEnumerable<PostEntity>> GetPopularPostByCategoryUrlAsync(string categoryUrl, int limit);
+        IEnumerable<PostEntity> GetAllPosts();
+        Task<IEnumerable<PostEntity>> GetAllPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage  );
+        Task<IEnumerable<PostEntity>> GetAllPostsByTagNameAsync(string tagName);
+        Task<IEnumerable<PostEntity>> GetAllPostsPagesAsync(int count, int page = 1);
         Task<IEnumerable<PostEntity>> GetQueryPagesAsync(string query, int count, int page = 1);
         Task<IEnumerable<PostEntity>> GetPostsBasedOnIdCollectionAsync(List<int> postIds);
-        Task<PostEntity> AddAsync(PostEntity map);
-        Task<PostEntity> UpdateAsync(PostEntity post);
-        Task RemoveAsync(int id);
+        Task<PostEntity> AddPostAsync(PostEntity map);
+        Task<PostEntity> UpdatePostAsync(PostEntity post);
+        Task RemovePostAsync(int id);
     }
 
 
