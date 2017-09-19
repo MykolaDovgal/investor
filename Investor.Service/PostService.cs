@@ -68,8 +68,6 @@ namespace Investor.Service
             return posts;
         }
 
-
-
         public async Task<IEnumerable<PostPreview>> GetAllByTagNameAsync(string tagName)
         {
             var posts = await _postRepository.GetAllByTagNameAsync(tagName);
@@ -118,21 +116,11 @@ namespace Investor.Service
             await _postRepository.RemoveAsync(id);
         }
 
-        
-        //public async Task<Post> AddAsync(Post map)
-        //{
-
-
-        //    post.Category = null;
-        //    post.PostedOn = DateTime.Now;
-        //    post.ModifiedOn = post.PostedOn;
-        //    post.CreatedOn = post.PostedOn;
-        //    post.Published = false;
-
-        //    var response = _postRepository.Add(Mapper.Map<Post, PostEntity>(post));
-        //    post.PostId = response.PostId;
-        //    return post;
-        //}
+        public async Task<IEnumerable<PostPreview>> GetPopularPostByCategoryNameAsync(string categoryName, int limit)
+        {
+            var posts = await _postRepository.GetPopularPostByCategoryNameAsync(categoryName, limit);
+            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
+        }
 
     }
 }
