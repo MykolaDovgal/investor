@@ -5,12 +5,12 @@
         <div class="row">
             @for(int i=0; i<2; i++)
             {
-                @Html.Partial("_LargePopularPost", ViewBag.CategoryPopularPosts[0] as Post)
+                @Html.Partial("_LargePopularPost", ViewBag.CategoryPopularPosts[i] as Post)
             }
 
             @for (int i = 2; i < ViewBag.CategoryPopularPosts.Count; i++)
             {
-                @Html.Partial("_SmallPopularPost", ViewBag.CategoryPopularPosts[0] as Post)
+                @Html.Partial("_SmallPopularPost", ViewBag.CategoryPopularPosts[i] as Post)
             }
         </div>
     </div>
@@ -19,16 +19,10 @@
 <section class="section-all-news">
     <div class="container">
         <div class="row">
-            @Html.Partial("_CategoryPosts", ViewBag.CategoryPosts as IEnumerable<Post>)
+            @Html.Partial("_CategoryPostsPreviewTemplate", ViewBag.CategoryPosts as IEnumerable<PostPreview>)
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
-                @Html.Partial("../Home/_LatestMewsPreviewTemplate.cshtml", ViewBag.LatestPosts as IEnumerable<PostPreview>)
+                @Html.Partial("_LatestNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
             </div>
         </div>
     </div>
 </section>
-
-<script src="js/allscripts.min.js"></script>
-<!--<script src="libs/jquery/dist/jquery.min.js"></script>
-   <script src="libs/popper.js/dist/umd/popper.min.js"></script>
-   <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
-   <script src="js/script.js"></script>-->

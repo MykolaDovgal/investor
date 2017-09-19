@@ -8,13 +8,13 @@
     string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[ViewBag.CategoryName];
 }
 <div class="col-lg-8 pl-0 p-0 pr-lg-2">
-    <div class="category-news politics-news">
+    <div class="category-news">
         <div class="body-category-news block-border-top @cssBorderStyle mb-3">
             <h1 class="title-block">ViewBag.Category.Name</h1>
             <div class="row">
                 @foreach(var post in Model)
                 {
-                    @Html.Partial("_NewsItem", post)
+                    @Html.Partial("_PostPreviewTemplate", post)
                 }
             </div>
         </div>
