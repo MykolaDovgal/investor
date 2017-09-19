@@ -20,6 +20,7 @@ namespace Investor.Repository
 
         public async Task<CategoryEntity> AddCategoryAsync(CategoryEntity categoryEntity)
         {
+            categoryEntity.Url = categoryEntity.Url.ToLower();
             await _newsContext
                 .Categories
                 .AddAsync(categoryEntity);
@@ -42,10 +43,10 @@ namespace Investor.Repository
                 .FindAsync(id);
         }
 
-        public async Task<CategoryEntity> GetCategoryByNameAsync(string name)
+        public async Task<CategoryEntity> GetCategoryByUrlAsync(string url)
         {
             return await _newsContext.Categories.
-                FirstOrDefaultAsync(c => c.Name == name);
+                FirstOrDefaultAsync(c => c.Url == url.ToLower());
         }
 
         public async Task RemoveCategoryAsync(int id)
@@ -68,7 +69,7 @@ namespace Investor.Repository
                 .FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
 
             categoryToUpdate.Name = category.Name;
-            categoryToUpdate.Url = category.Url;
+            categoryToUpdate.Url = category.Url.ToLower();
 
 
             await _newsContext.SaveChangesAsync();

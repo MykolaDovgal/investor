@@ -10,7 +10,7 @@ namespace Investor.Repository.Interfaces
     {
         Task<IEnumerable<CategoryEntity>> GetAllCategoriesAsync();
         Task<CategoryEntity> GetCategoryByIdAsync(int id);
-        Task<CategoryEntity> GetCategoryByNameAsync(string name);
+        Task<CategoryEntity> GetCategoryByUrlAsync(string url);
 
         Task<CategoryEntity> AddCategoryAsync(CategoryEntity categoryEntity);
         Task UpdateCategoryAsync(CategoryEntity categoryEntity);

@@ -17,14 +17,14 @@ namespace Investor.Repository
         {
             _newsContext = context;
         }
-        public async Task<PostEntity> AddAsync(PostEntity post)
+        public async Task<PostEntity> AddPostAsync(PostEntity post)
         {
             await _newsContext.Posts.AddAsync(post);
             await _newsContext.SaveChangesAsync();
             return post;
         }
 
-        public async Task<IEnumerable<PostEntity>> GetAllAsync()
+        public async Task<IEnumerable<PostEntity>> GetAllPostsAsync()
         {
             return await _newsContext.Posts
                 .Include(p => p.Category)
@@ -35,7 +35,7 @@ namespace Investor.Repository
                 .ToListAsync();           
         }
 
-        public IEnumerable<PostEntity> GetAll()
+        public IEnumerable<PostEntity> GetAllPosts()
         {
             return  _newsContext.Posts
                 .Include(p => p.Category)
@@ -48,17 +48,23 @@ namespace Investor.Repository
 
         }
 
-        public async Task<IEnumerable<PostEntity>> GetAllByCategoryNameAsync(string categoryName, bool onMainPage = false)
+        public async Task<IEnumerable<PostEntity>> GetAllPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false)
         {
             IQueryable<PostEntity> posts = null;
         
             switch (onMainPage)
             {
                 case true:
-                    posts = _newsContext.Posts.Include(p => p.Category).Where(p => p.IsOnMainPage && p.Category.Name == categoryName);
+                    posts = _newsContext
+                        .Posts
+                        .Include(p => p.Category)
+                        .Where(p => p.IsOnMainPage && p.Category.Url == categoryUrl.ToLower());
                     break;
                 case false:
-                    posts = _newsContext.Posts.Include(p => p.Category).Where(p => p.Category.Name == categoryName);
+                    posts = _newsContext
+                        .Posts
+                        .Include(p => p.Category)
+                        .Where(p => p.Category.Url == categoryUrl.ToLower());
                     break;
                 default:
                     break;
@@ -67,7 +73,7 @@ namespace Investor.Repository
             return await posts.ToListAsync();
         }
 
-        public async Task<IEnumerable<PostEntity>> GetAllByTagNameAsync(string tagName)
+        public async Task<IEnumerable<PostEntity>> GetAllPostsByTagNameAsync(string tagName)
         {
             return await _newsContext.Posts
                 .Include(p => p.PostTags)
@@ -75,12 +81,12 @@ namespace Investor.Repository
                 .ToListAsync();
         }
 
-        public Task<IEnumerable<PostEntity>> GetAllPagesAsync(int count, int page = 1)
+        public Task<IEnumerable<PostEntity>> GetAllPostsPagesAsync(int count, int page = 1)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<PostEntity> GetByIdAsync(int id)
+        public async Task<PostEntity> GetPostByIdAsync(int id)
         {
             return await _newsContext.Posts
                 .Include(p => p.Category)
@@ -120,12 +126,16 @@ namespace Investor.Repository
                     .CountAsync();
         }
 
-        public Task<int> GetTotalNumberOfPostsByCategoryAsync(string category)
+        public async Task<int> GetTotalNumberOfPostsByCategoryUrlAsync(string categoryUrl)
         {
-            throw new NotImplementedException();
+            return await _newsContext
+                .Posts
+                .Include(p => p.Category)
+                .Where(p => p.Category.Url == categoryUrl)
+                .CountAsync();
         }
 
-        public async Task RemoveAsync(int id)
+        public async Task RemovePostAsync(int id)
         {
             var postToRemove = await _newsContext
                     .Posts
@@ -138,7 +148,7 @@ namespace Investor.Repository
             await _newsContext.SaveChangesAsync();
         }
 
-        public async Task<PostEntity> UpdateAsync(PostEntity post)
+        public async Task<PostEntity> UpdatePostAsync(PostEntity post)
         {
             _newsContext.Entry(post).State = EntityState.Modified;
             await _newsContext.SaveChangesAsync();
@@ -154,10 +164,10 @@ namespace Investor.Repository
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<PostEntity>> GetPopularPostByCategoryNameAsync(string categoryName, int limit)
+        public async Task<IEnumerable<PostEntity>> GetPopularPostByCategoryUrlAsync(string categoryUrl, int limit)
         {
             return await _newsContext.Posts
-                .Where(p => p.Category.Name == categoryName)
+                .Where(p => p.Category.Url == categoryUrl)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
                 .Include(p => p.Category)
