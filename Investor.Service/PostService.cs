@@ -103,6 +103,7 @@ namespace Investor.Service
         public async Task<IEnumerable<PostPreview>> GetLatestPostsAsync(int limit)
         {
             var posts = await _postRepository.GetLatestPostsAsync(limit);
+            
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 

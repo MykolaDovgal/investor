@@ -16,6 +16,7 @@ namespace Investor.Repository.Interfaces
         Task<IEnumerable<PostEntity>> GetAllPostsAsync();
         Task<IEnumerable<PostEntity>> GetLatestPostsAsync(int limit);
         Task<IEnumerable<PostEntity>> GetImportantPostAsync(int limit);
+        
         Task<IEnumerable<PostEntity>> GetPopularPostByCategoryUrlAsync(string categoryUrl, int limit);
         IEnumerable<PostEntity> GetAllPosts();
         Task<IEnumerable<PostEntity>> GetAllPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage  );
