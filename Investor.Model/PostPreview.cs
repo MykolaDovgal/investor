@@ -12,5 +12,6 @@ namespace Investor.Model
         public string Image { set; get; }
         public DateTime PublishedOn { set; get; }
         public Category Category { set; get; }
+        public bool? IsImportant { set; get; }
     }
 }

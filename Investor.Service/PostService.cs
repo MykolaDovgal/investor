@@ -122,5 +122,10 @@ namespace Investor.Service
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
+        public async Task<IEnumerable<PostPreview>> GetImportantPostsAsync(int limit)
+        {
+            var posts = await _postRepository.GetImportantPostAsync(limit);
+            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
+        }
     }
 }

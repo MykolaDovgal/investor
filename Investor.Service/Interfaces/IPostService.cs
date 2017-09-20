@@ -14,6 +14,7 @@ namespace Investor.Service.Interfaces
         Task<Post> GetPostByIdAsync(int id);
         Task<IEnumerable<PostPreview>> GetAllPostsAsync();
         Task<IEnumerable<PostPreview>> GetLatestPostsAsync(int limit);
+        Task<IEnumerable<PostPreview>> GetImportantPostsAsync(int limit);
         Task<IEnumerable<PostPreview>> GetPopularPostByCategoryUrlAsync(string categoryUrl, int limit);
         Task<IEnumerable<PostPreview>> GetAllPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage, int? count);
         Task<IEnumerable<PostPreview>> GetAllPostsByTagNameAsync(string tagName);
