@@ -64,7 +64,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-1.png"
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -77,7 +77,46 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-2.png"
+                        Image = "img-slider.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 2",
+                        Article = context.Articles.ToList()[0],
+                        Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
+                        Category = context.Categories.ToList()[0],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "img-slider.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 3",
+                        Article = context.Articles.ToList()[0],
+                        Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
+                        Category = context.Categories.ToList()[0],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "img-slider.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 4",
+                        Article = context.Articles.ToList()[0],
+                        Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
+                        Category = context.Categories.ToList()[0],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -90,7 +129,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-3.png"
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -103,7 +142,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-4.png"
+                        Image = "nimg-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -112,11 +151,11 @@ namespace Investor.Web
                         Article = context.Articles.ToList()[2],
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[0],
-                        IsOnMainPage = true,
+                        IsOnMainPage = false,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-5.png"
+                        Image = "img-slider.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -128,7 +167,19 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-6.png"
+                        Image = "img-slider.jpg"
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У «Борисполі» хочуть збудувати ще одну злітну смугу 2.",
+                        Article = context.Articles.ToList()[2],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[0],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "img-slider.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -140,7 +191,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-7.png"
+                        Image = "img-slider.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -152,7 +203,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-8.png"
+                        Image = "img-slider.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -164,7 +215,19 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-culture-1.png"
+                        Image = "news-politic-1.jpg"
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
+                        Article = context.Articles.ToList()[2],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-1.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -176,7 +239,20 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-culture-2.png"
+                        Image = "news-politic-1.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "На вихідних у Львівській опері стартує новий театральний сезон",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-1.jpg"
 
                     },
                     new Entity.PostEntity
@@ -189,7 +265,20 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-culture-3.png"
+                        Image = "news-politic-1.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "LvivMozArt: Що відвідати і послухати 22 серпня",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-1.jpg"
 
                     },
                     new Entity.PostEntity
@@ -202,7 +291,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-culture-4.png"
+                        Image = "news-politic-1.jpg"
 
                     },
                     new Entity.PostEntity
@@ -215,7 +304,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-culture-5.png"
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -228,7 +317,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-culture-6.png"
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -241,7 +330,20 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-culture-7.png"
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Чому у Львові виник скандал навколо фільму про батярів 2",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[1],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -254,7 +356,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-culture-8.png"
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -267,7 +369,59 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-economy-8.png"
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -280,7 +434,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-economy-2.png"
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -293,7 +447,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-economy-3.png"
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -306,7 +460,33 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-economy-4.png"
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Як Львів відсвяткує День Незалежності: програма заходів",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Як Львів відсвяткує День Незалежності: програма заходів 2",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[2],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -319,7 +499,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-it-2.png"
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -332,7 +512,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-it-1.png"
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -345,7 +525,20 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-it-3.png"
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Відомий львівський журналіст розповів, чому Садовому... 2",
+                        Article = context.Articles.ToList()[4],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
 
                     },
                     new Entity.PostEntity
@@ -358,7 +551,33 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-img-it-4.png"
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку 2",
+                        Article = context.Articles.ToList()[4],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
+
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку",
+                        Article = context.Articles.ToList()[4],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[3],
+                        IsOnMainPage = true,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "news-politic-2.jpg"
 
                     }
 
@@ -375,33 +594,38 @@ namespace Investor.Web
                         },
                         new SliderItemEntity()
                         {
-                            Post = context.Posts.ToList()[1],
+                            Post = context.Posts.ToList()[22],
                             IsOnSlider = true
                         },
                         new SliderItemEntity()
                         {
-                            Post = context.Posts.ToList()[2],
+                            Post = context.Posts.ToList()[23],
                             IsOnSlider = true
                         },
                         new SliderItemEntity()
                         {
-                            Post = context.Posts.ToList()[3],
+                            Post = context.Posts.ToList()[24],
                             IsOnSlider = true
                         },
                         new SliderItemEntity()
                         {
-                            Post = context.Posts.ToList()[4],
+                            Post = context.Posts.ToList()[25],
                             IsOnSlider = true
                         },
                         new SliderItemEntity()
                         {
-                            Post = context.Posts.ToList()[5],
+                            Post = context.Posts.ToList()[26],
                             IsOnSide = true
                         },
                         new SliderItemEntity()
                         {
-                            Post = context.Posts.ToList()[6],
+                            Post = context.Posts.ToList()[27],
                             IsOnSide = true
+                        },
+                        new SliderItemEntity()
+                        {
+                            Post = context.Posts.ToList()[28],
+                            IsOnSide = false
                         }
 
                         );
