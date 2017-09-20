@@ -41,11 +41,11 @@ namespace Investor.Web
             {
                 Entity.CategoryEntity[] categories =
                 {
-                    new Entity.CategoryEntity {Name = "Політика"},
-                    new Entity.CategoryEntity {Name = "Соціум"},
-                    new Entity.CategoryEntity {Name = "Культура"},
-                    new Entity.CategoryEntity {Name = "Економіка"},
-                    new Entity.CategoryEntity {Name = "ІТ технології"},
+                    new Entity.CategoryEntity {Name = "Політика", Url = "politics"},
+                    new Entity.CategoryEntity {Name = "Соціум", Url = "social"},
+                    new Entity.CategoryEntity {Name = "Культура", Url = "culture"},
+                    new Entity.CategoryEntity {Name = "Економіка", Url = "economics"},
+                    new Entity.CategoryEntity {Name = "ІТ технології", Url = "it" },
                 };
                 context.Categories.AddRange(categories);
                 context.SaveChanges();

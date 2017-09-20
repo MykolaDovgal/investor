@@ -2,15 +2,15 @@
 @inject Investor.Service.ThemeService CategoryStyle
 @using Investor.Model
 @{
-    ViewData["Title"] = ViewBag.CategoryName + " Page";
+    ViewData["Title"] = ViewBag.CategoryUrl + " Page";
     
-    string cssBorderStyle = CategoryStyle.categoryBorderTheme[ViewBag.CategoryName];
-    string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[ViewBag.CategoryName];
+    string cssBorderStyle = CategoryStyle.categoryBorderTheme[Model.FirstOrDefault().Category.Url];
+    string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[Model.FirstOrDefault().Category.Url];
 }
 <div class="col-lg-8 pl-0 p-0 pr-lg-2">
     <div class="category-news">
         <div class="body-category-news block-border-top @cssBorderStyle mb-3">
-            <h1 class="title-block">ViewBag.Category.Name</h1>
+            <h1 class="title-block">@ViewBag.CategoryName</h1>
             <div class="row">
                 @foreach(var post in Model)
                 {

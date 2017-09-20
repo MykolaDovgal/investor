@@ -21,6 +21,7 @@ namespace Investor.Web.Controllers
         public IActionResult Index(string url)
         {
             ViewBag.CategoryName = _categoryService.GetCategoryByUrlAsync(url).Result.Name;
+
             ViewBag.CategoryPopularPosts = _postService.GetPopularPostByCategoryUrlAsync(url, 5).Result.ToList() as IEnumerable<PostPreview>;
             ViewBag.CategoryPosts = _postService.GetAllPostsByCategoryUrlAsync(url,false,null).Result.ToList() as IEnumerable<PostPreview>;
             ViewBag.LatestPosts = _postService.GetLatestPostsAsync(20).Result.ToList();

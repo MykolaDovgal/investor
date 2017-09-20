@@ -3,11 +3,11 @@
 @inject Investor.Service.ThemeService CategoryStyle
 @{
     string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
-    string cssTimeStyle = CategoryStyle.categoryPublishedTimeTheme[ViewBag.CategoryName];
+    string cssTimeStyle = CategoryStyle.categoryPublishedTimeTheme[Model.Category.Url];
 }
 <div class="item-news item-all-news col-12">
     <div class="img-news">
-        <img src="img/@Model.Image" class="img-fluid" />
+        <img src="~/images/@Model.Image" class="img-fluid" />
     </div>
     <div class="body-all-news">
         <a href="#" class="title-news">

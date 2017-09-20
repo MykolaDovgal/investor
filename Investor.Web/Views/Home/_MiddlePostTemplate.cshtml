@@ -8,7 +8,9 @@
 }
 
 <div class="item-news col-sm-6 col-md-4">
-    <img src="images/@Model.Image" class="img-fluid"/>
-    <h3 class="title-news">@Model.Title</h3>
+    <div class="img-news">
+        <img src="~/images/@Model.Image" class="img-fluid" />
+    </div>
+    <a href="#" class="title-news">@Model.Title</a>
     <span class="today-item-news @cssTimeStyle">@publishedTime</span>
 </div>
