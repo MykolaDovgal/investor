@@ -3,7 +3,7 @@
 @inject Investor.Service.ThemeService CategoryStyle
 
 @{
-    string cssTimeStyle = CategoryStyle.categoryPublishedTimeTheme[Model.Category.Name];
+    string cssTimeStyle = CategoryStyle.categoryPublishedTimeTheme[Model.Category.Url];
     string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
 }
 <div class="item-news inline-item-news">

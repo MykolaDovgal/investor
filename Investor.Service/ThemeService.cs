@@ -16,40 +16,40 @@ namespace Investor.Service
         {
             postPreviewCount = new Dictionary<string, int>
             {
-                { "Політика", 8 },
-                { "Культура", 8 },
-                { "Економіка", 4 },
-                { "IT технології", 4 }
+                { "politics", 8 },
+                { "culture", 8 },
+                { "economics", 4 },
+                { "it", 4 }
             };
             largePostPreviewCount = new Dictionary<string, int>
             {
-                { "Політика", 2 },
-                { "Культура", 2 },
-                { "Економіка", 1 },
-                { "IT технології", 1 }
+                { "politics", 2 },
+                { "culture", 2 },
+                { "economics", 1 },
+                { "it", 1 }
             };
             categoryMoreButtonTheme = new Dictionary<string, string>
             {
-                { "Політика", "circle-politics-color" },
-                { "Культура", "circle-culture-color" },
-                { "Економіка", "circle-economy-color" },
-                { "IT технології", "circle-it-color" }
+                { "politics", "circle-politics-color" },
+                { "culture", "circle-culture-color" },
+                { "economics", "circle-economy-color" },
+                { "it", "circle-it-color" }
             };
 
             categoryBorderTheme = new Dictionary<string, string>
             {
-                { "Політика", "politics-today-color" },
-                { "Культура", "culture-border-color" },
-                { "Економіка", "economy-border-color" },
-                { "IT технології", "it-border-color" }
+                { "politics", "politics-today-color" },
+                { "culture", "culture-border-color" },
+                { "economics", "economy-border-color" },
+                { "it", "it-border-color" }
             };
 
             categoryPublishedTimeTheme = new Dictionary<string, string>
             {
-                { "Політика", "politics-today-color" },
-                { "Культура", "culture-today-color" },
-                { "Економіка", "economy-today-color" },
-                { "IT технології", "it-today-color" }
+                { "politics", "politics-today-color" },
+                { "culture", "culture-today-color" },
+                { "economics", "economy-today-color" },
+                { "it", "it-today-color" }
             };
         }
     }

@@ -3,8 +3,8 @@
 @inject Investor.Service.ThemeService CategoryStyle
 
 @{
-    string cssBorderStyle = CategoryStyle.categoryBorderTheme[Model.CategoryName];
-    string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[Model.CategoryName];
+    string cssBorderStyle = CategoryStyle.categoryBorderTheme[Model.CategoryUrl];
+    string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[Model.CategoryUrl];
 }
 <div class="category-news">
     <div class="body-category-news block-border-top @cssBorderStyle mb-3">

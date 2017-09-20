@@ -38,10 +38,11 @@ namespace Investor.Web.Controllers
 
             categories.ForEach(category =>
             {
-                var categoryPosts = _postService.GetAllPostsByCategoryUrlAsync(category.Name, true, _themeService.postPreviewCount[category.Name]).Result.ToList();
-                int largePostCount = _themeService.largePostPreviewCount[category.Name];
+                var categoryPosts = _postService.GetAllPostsByCategoryUrlAsync(category.Url, true, _themeService.postPreviewCount[category.Url]).Result.ToList();
+                int largePostCount = _themeService.largePostPreviewCount[category.Url];
                 news.Add(new CategoryPreviewViewModel
                 {
+                    CategoryUrl = category.Url,
                     CategoryName = category.Name,
                     LargePostPreviewTemplate = categoryPosts.Take(largePostCount),
                     SmallPostPreviewTemplate = categoryPosts.Skip(largePostCount)                    

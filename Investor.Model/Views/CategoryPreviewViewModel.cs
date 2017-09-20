@@ -9,6 +9,7 @@ namespace Investor.Model.Views
         public IEnumerable<PostPreview> LargePostPreviewTemplate;
         public IEnumerable<PostPreview> SmallPostPreviewTemplate;
         public string CategoryName { get; set; }
+        public string CategoryUrl { get; set; }
 
 
     }
