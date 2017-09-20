@@ -58,7 +58,7 @@ namespace Investor.Repository
                     posts = _newsContext
                         .Posts
                         .Include(p => p.Category)
-                        .Where(p => p.IsOnMainPage && p.Category.Url == categoryUrl.ToLower());
+                        .Where(p => (p.IsOnMainPage ?? false) && p.Category.Url == categoryUrl.ToLower());
                     break;
                 case false:
                     posts = _newsContext
@@ -171,6 +171,15 @@ namespace Investor.Repository
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
                 .Include(p => p.Category)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PostEntity>> GetImportantPostAsync(int limit)
+        {
+            return await _newsContext.Posts
+                .Where(p => p.IsImportant ?? false)
+                .OrderByDescending(p => p.PublishedOn)
+                .Take(limit)
                 .ToListAsync();
         }
     }

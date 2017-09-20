@@ -28,12 +28,13 @@ namespace Investor.Entity
         [DataType(DataType.DateTime)]
         public DateTime CreatedOn { set; get; }
         [DataType(DataType.DateTime)]
-        public DateTime ModifiedOn { set; get; }
+        public DateTime? ModifiedOn { set; get; }
         [DataType(DataType.DateTime)]
-        public DateTime PublishedOn { set; get; }
+        public DateTime? PublishedOn { set; get; }
 
-        public bool IsPublished { set; get; }
-        public bool IsOnMainPage { set; get; }
+        public bool? IsPublished { set; get; }
+        public bool? IsOnMainPage { set; get; }
+        public bool? IsImportant { set; get; }
 
         public int CategoryId { set; get; }
         public CategoryEntity Category { set; get; }
