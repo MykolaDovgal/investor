@@ -15,8 +15,8 @@ namespace Investor.Service
 
             switch (res)
             {
-                case 0: return String.Format("Сьогодні, {0}:{1}", postPublishedDate.Hours, postPublishedDate.Minutes);
-                case 1: return String.Format("Вчора, {0}:{1}", postPublishedDate.Hours, postPublishedDate.Minutes);
+                case 0: return String.Format("Сьогодні, {0}:" + (postPublishedDate.Minutes < 10 ? "0{1}" : "{1}"), postPublishedDate.Hours, postPublishedDate.Minutes);
+                case 1: return String.Format("Вчора, {0}:" + (postPublishedDate.Minutes < 10 ? "0{1}" : "{1}"), postPublishedDate.Hours, postPublishedDate.Minutes);
                 default:
                     return String.Format(publishedDate.ToString("dd.MM.yyyy HH:mm"));
             }
