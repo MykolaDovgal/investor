@@ -1,16 +1,15 @@
 ﻿@model Investor.Model.PostPreview
 <div class="item-last-news">
-
-    <a bold href="#" class="title-last-news">
+    @{
+        string classStyle = "";
         @if (Model.IsImportant ?? false)
         {
-            <b>@Model.Title</b>
+            classStyle = "bold";
+        }
 
-        }
-        else
-        {
-            @Model.Title
-        }
+    }
+    <a bold href="#" class="title-last-news @classStyle">
+        @Model.Title
     </a>
     <span class="today-item-news default-today-color">Сьогодні,  12:43</span>
 </div>

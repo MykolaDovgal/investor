@@ -6,7 +6,7 @@
     string cssBorderStyle = CategoryStyle.categoryBorderTheme[Model.CategoryUrl];
     string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[Model.CategoryUrl];
 }
-<div class="category-news">
+<div class="category-news @Model.CategoryUrl-news">
     <div class="body-category-news block-border-top @cssBorderStyle mb-3">
         <h1 class="title-block">@Model.CategoryName</h1>
         <div class="row">

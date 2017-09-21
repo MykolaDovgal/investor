@@ -3,14 +3,12 @@
 <section class="section-popular-news">
     <div class="container">
         <div class="row">
-            @for(int i=0; i<2; i++)
+            @for (int i = 0; i < ViewBag.CategoryPopularPosts.Count; i++)
             {
-                @Html.Partial("_LargePopularPost", ViewBag.CategoryPopularPosts[i] as PostPreview)
-            }
-
-            @for (int i = 2; i < ViewBag.CategoryPopularPosts.Count; i++)
-            {
-                @Html.Partial("_SmallPopularPost", ViewBag.CategoryPopularPosts[i] as PostPreview)
+                 string styleClass = i < 2 ? "col-md-6" : "col-md-4";
+                <div class="item-popular-news col-xs-12 @styleClass">
+                    @Html.Partial("_PopularPostTemplate", ViewBag.CategoryPopularPosts[i] as PostPreview)
+                </div>
             }
         </div>
     </div>

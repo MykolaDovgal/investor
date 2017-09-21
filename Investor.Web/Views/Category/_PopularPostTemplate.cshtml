@@ -1,0 +1,11 @@
+﻿@model Investor.Model.PostPreview
+@inject Investor.Service.TimeService PostPublicationDate
+@{
+    string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+}
+
+<img src="~/images/@Model.Image" class="img-fluid" />
+<div class="body-popular-news">
+    <a href="#" class="title-popular-news color-white">@Model.Title</a>
+    <span class="data-popular-news other-days">@publishedTime</span>
+</div>
