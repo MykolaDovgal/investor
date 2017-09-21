@@ -18,21 +18,21 @@ namespace Investor.Service
             {
                 { "politics", 8 },
                 { "culture", 8 },
-                { "economics", 4 },
+                { "economy", 4 },
                 { "it", 4 }
             };
             largePostPreviewCount = new Dictionary<string, int>
             {
                 { "politics", 2 },
                 { "culture", 2 },
-                { "economics", 1 },
+                { "economy", 1 },
                 { "it", 1 }
             };
             categoryMoreButtonTheme = new Dictionary<string, string>
             {
                 { "politics", "circle-politics-color" },
                 { "culture", "circle-culture-color" },
-                { "economics", "circle-economy-color" },
+                { "economy", "circle-economy-color" },
                 { "it", "circle-it-color" }
             };
 
@@ -40,7 +40,7 @@ namespace Investor.Service
             {
                 { "politics", "politics-today-color" },
                 { "culture", "culture-border-color" },
-                { "economics", "economy-border-color" },
+                { "economy", "economy-border-color" },
                 { "it", "it-border-color" }
             };
 
@@ -48,7 +48,7 @@ namespace Investor.Service
             {
                 { "politics", "politics-today-color" },
                 { "culture", "culture-today-color" },
-                { "economics", "economy-today-color" },
+                { "economy", "economy-today-color" },
                 { "it", "it-today-color" }
             };
         }

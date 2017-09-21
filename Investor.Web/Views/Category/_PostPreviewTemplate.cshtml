@@ -1,9 +1,7 @@
 ﻿@model Investor.Model.PostPreview
 @inject Investor.Service.TimeService PostPublicationDate
-@inject Investor.Service.ThemeService CategoryStyle
 @{
     string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
-    string cssTimeStyle = CategoryStyle.categoryPublishedTimeTheme[Model.Category.Url];
 }
 <div class="item-news item-all-news col-12">
     <div class="img-news">
@@ -16,6 +14,6 @@
         <p class="text-news">
             @Model.Description
         </p>
-        <span class="today-item-news @cssTimeStyle">@publishedTime</span>
+        <span class="today-item-news @Model.Category.Url-today-color">@publishedTime</span>
     </div>
 </div>

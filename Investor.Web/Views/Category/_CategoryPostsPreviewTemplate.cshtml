@@ -1,15 +1,11 @@
 ﻿@model IEnumerable<Investor.Model.PostPreview>
-@inject Investor.Service.ThemeService CategoryStyle
 @using Investor.Model
 @{
     ViewData["Title"] = ViewBag.CategoryUrl + " Page";
-    
-    string cssBorderStyle = CategoryStyle.categoryBorderTheme[Model.FirstOrDefault().Category.Url];
-    string cssCircleStyle = CategoryStyle.categoryMoreButtonTheme[Model.FirstOrDefault().Category.Url];
 }
 <div class="col-lg-8 pl-0 p-0 pr-lg-2">
-    <div class="category-news">
-        <div class="body-category-news block-border-top @cssBorderStyle mb-3">
+    <div class="category-news  @Model.FirstOrDefault().Category.Url-news">
+        <div class="body-category-news block-border-top @Model.FirstOrDefault().Category.Url-border-color mb-3">
             <h1 class="title-block">@ViewBag.CategoryName</h1>
             <div class="row">
                 @foreach(var post in Model)
@@ -19,7 +15,7 @@
             </div>
         </div>
         <div class="wrapper-btn-more">
-            <a href="#" class="btn-more mx-auto"><span class="circle @cssCircleStyle"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+            <a href="#" class="btn-more mx-auto"><span class="circle circle-@Model.FirstOrDefault().Category.Url-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
         </div>
     </div>
 </div>
