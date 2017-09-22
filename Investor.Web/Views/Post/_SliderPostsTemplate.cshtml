@@ -1,0 +1,9 @@
+﻿@using Investor.Model
+@model IEnumerable<PostPreview>
+
+<div class="owl-carousel owl-theme carousel-popular-theme">
+    @foreach (PostPreview post in Model)
+    {
+        @Html.Partial("_PostPreviewTemplate", post)
+    }
+</div>
