@@ -39,69 +39,8 @@
 
             <div class="col-sm-12 p-0 mt-3">
                 <span class="title-block d-block title-block-border-b pb-2 mb-3">Вибір редакції</span>
-                <div class="owl-carousel owl-theme carousel-editorial-choice">
-                    <div class="item-carousel">
-                        <div class="item-popular-news">
-                            <img src="img/img-popular.jpg" class="img-fluid">
-                            <div class="body-popular-news">
-                                <a href="#" class="title-popular-news color-white">Бій Мейвезер - Макгрегор</a>
-                                <span class="data-popular-news today text-left">Сьогодні,  13:26</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-carousel">
-                        <div class="item-popular-news">
-                            <img src="img/img-popular.jpg" class="img-fluid">
-                            <div class="body-popular-news">
-                                <a href="#" class="title-popular-news color-white">Бій Мейвезер - Макгрегор</a>
-                                <span class="data-popular-news today text-left">Сьогодні,  13:26</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-carousel">
-                        <div class="item-popular-news">
-                            <img src="img/img-popular.jpg" class="img-fluid">
-                            <div class="body-popular-news">
-                                <a href="#" class="title-popular-news color-white">Бій Мейвезер - Макгрегор</a>
-                                <span class="data-popular-news today text-left">Сьогодні,  13:26</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-carousel">
-                        <div class="item-popular-news">
-                            <img src="img/img-popular.jpg" class="img-fluid">
-                            <div class="body-popular-news">
-                                <a href="#" class="title-popular-news color-white">Бій Мейвезер - Макгрегор</a>
-                                <span class="data-popular-news today text-left">Сьогодні,  13:26</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-carousel">
-                        <div class="item-popular-news">
-                            <img src="img/img-popular.jpg" class="img-fluid">
-                            <div class="body-popular-news">
-                                <a href="#" class="title-popular-news color-white">Бій Мейвезер - Макгрегор</a>
-                                <span class="data-popular-news today text-left">Сьогодні,  13:26</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-carousel">
-                        <div class="item-popular-news">
-                            <img src="img/img-popular.jpg" class="img-fluid">
-                            <div class="body-popular-news">
-                                <a href="#" class="title-popular-news color-white">Бій Мейвезер - Макгрегор</a>
-                                <span class="data-popular-news today text-left">Сьогодні,  13:26</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item-popular-news">
-                        <img src="img/img-popular.jpg" class="img-fluid">
-                        <div class="body-popular-news">
-                            <a href="#" class="title-popular-news color-white">Бій Мейвезер - Макгрегор</a>
-                            <span class="data-popular-news today text-left">Сьогодні,  13:26</span>
-                        </div>
-                    </div>
-                </div>
+                @Html.Partial("_SliderPostsTemplate", ViewBag.ImportantPosts as IEnumerable<PostPreview>)
+               
             </div>
         </div>
     </div>

@@ -20,7 +20,8 @@ namespace Investor.Web.Controllers
         {
             Post post = _postService.GetPostByIdAsync(id).Result;
             ViewBag.Post = post;
-            ViewBag.LatestPosts = _postService.GetLatestPostsAsync(20).Result.ToList();
+            ViewBag.LatestPosts = _postService.GetLatestPostsAsync(10).Result.ToList();
+            ViewBag.ImportantPosts = _postService.GetImportantPostsAsync(10).Result.ToList();
             return View("Index");
         }
     }
