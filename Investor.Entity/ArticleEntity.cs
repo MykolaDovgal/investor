@@ -11,6 +11,6 @@ namespace Investor.Entity
     {
         [Key]
         public int ArticleId { get; set; }
-        public string Context { get; set; }
+        public string Content { get; set; }
     }
 }

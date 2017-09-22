@@ -15,24 +15,24 @@ namespace Investor.Web
             if (!context.Articles.Any())
             {
                 context.Articles.AddRange(
-                    new Entity.ArticleEntity { Context = "<h1>Hello, everybody</h1>" },
-                    new Entity.ArticleEntity { Context = "В РНБО України заявляють, що реальна кількість учасників навчань - до чверті мільйона військовослужбовців. У НАТО стурбовані активністю російських і білоруських військ і переконані, що навчання спрямовані на провокування країн-членів Альянсу." },
-                    new Entity.ArticleEntity { Context = "<p>Крім України,  реальною загрозою війни ці навчання вважають у Литві та Польщі. Про це йдеться в сюжеті Сніданку з 1 + 1" },
-                    new Entity.ArticleEntity { Context = "<p>Відповідно до міжнародних вимог, у таких масштабних навчаннях, без спостерігачів, можуть брати участь не більше 13 тисяч вояків. Якщо більше - міжнародне спостереження обов'язкове. </p>" },
-                    new Entity.ArticleEntity { Context = "<p>ілвоипличдсшамрвап діовал</p>" },
-                    new Entity.ArticleEntity { Context = "<p>esdrtfyukl</p>" },
-                    new Entity.ArticleEntity { Context = "<p>xfjghmvghmvghmhgmghmghm</p>" },
-                    new Entity.ArticleEntity { Context = "<p>fdxkbnlxdfjgblk xlkfjbxldfkj b</p>" },
-                    new Entity.ArticleEntity { Context = "<p>sldkfjg dflkg ldkfj </p>" },
-                    new Entity.ArticleEntity { Context = "<p>xfblkxfjblxdjf lxkf vb lzxjf vb</p>" },
-                    new Entity.ArticleEntity { Context = "<p>xf cbmkxf gbkl xfclk </p>" },
-                    new Entity.ArticleEntity { Context = "<p>fgcn kljxfhg fxlgb </p>" },
-                    new Entity.ArticleEntity { Context = "<p>xfcgnxfgnxfgnc</p>" },
-                    new Entity.ArticleEntity { Context = "<p>;dlkfjgvb діовал</p>" },
-                    new Entity.ArticleEntity { Context = "<p> xdf;lk oisjdf psoidf [cfgvbo</p>" },
-                    new Entity.ArticleEntity { Context = "<p>qwertyuidfghjk fghjkl</p>" },
-                    new Entity.ArticleEntity { Context = "<p>ілвоипличдсшамрвап діовал</p>" },
-                    new Entity.ArticleEntity { Context = "<p>іждвпрщдішвгапрдолвапиів дваш чдвопми дваоп</p>" }
+                    new Entity.ArticleEntity { Content = "<h1>Hello, everybody</h1>" },
+                    new Entity.ArticleEntity { Content = "В РНБО України заявляють, що реальна кількість учасників навчань - до чверті мільйона військовослужбовців. У НАТО стурбовані активністю російських і білоруських військ і переконані, що навчання спрямовані на провокування країн-членів Альянсу." },
+                    new Entity.ArticleEntity { Content = "<p>Крім України,  реальною загрозою війни ці навчання вважають у Литві та Польщі. Про це йдеться в сюжеті Сніданку з 1 + 1" },
+                    new Entity.ArticleEntity { Content = "<p>Відповідно до міжнародних вимог, у таких масштабних навчаннях, без спостерігачів, можуть брати участь не більше 13 тисяч вояків. Якщо більше - міжнародне спостереження обов'язкове. </p>" },
+                    new Entity.ArticleEntity { Content = "<p>ілвоипличдсшамрвап діовал</p>" },
+                    new Entity.ArticleEntity { Content = "<p>esdrtfyukl</p>" },
+                    new Entity.ArticleEntity { Content = "<p>xfjghmvghmvghmhgmghmghm</p>" },
+                    new Entity.ArticleEntity { Content = "<p>fdxkbnlxdfjgblk xlkfjbxldfkj b</p>" },
+                    new Entity.ArticleEntity { Content = "<p>sldkfjg dflkg ldkfj </p>" },
+                    new Entity.ArticleEntity { Content = "<p>xfblkxfjblxdjf lxkf vb lzxjf vb</p>" },
+                    new Entity.ArticleEntity { Content = "<p>xf cbmkxf gbkl xfclk </p>" },
+                    new Entity.ArticleEntity { Content = "<p>fgcn kljxfhg fxlgb </p>" },
+                    new Entity.ArticleEntity { Content = "<p>xfcgnxfgnxfgnc</p>" },
+                    new Entity.ArticleEntity { Content = "<p>;dlkfjgvb діовал</p>" },
+                    new Entity.ArticleEntity { Content = "<p> xdf;lk oisjdf psoidf [cfgvbo</p>" },
+                    new Entity.ArticleEntity { Content = "<p>qwertyuidfghjk fghjkl</p>" },
+                    new Entity.ArticleEntity { Content = "<p>ілвоипличдсшамрвап діовал</p>" },
+                    new Entity.ArticleEntity { Content = "<p>іждвпрщдішвгапрдолвапиів дваш чдвопми дваоп</p>" }
                     );
                 context.SaveChanges();
             }

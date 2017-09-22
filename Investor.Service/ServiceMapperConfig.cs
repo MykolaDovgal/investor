@@ -20,7 +20,7 @@ namespace Investor.Service
                 cfg.CreateMap<SliderItem, SliderItemEntity>().ReverseMap();
                 cfg.CreateMap<PostEntity, PostPreview>().ReverseMap();
                 cfg.CreateMap<PostEntity, Post>()
-                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag))).ReverseMap();
+                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));
                 cfg.CreateMap<User, UserEntity>().ReverseMap();
                 cfg.CreateMap<IList<PostEntity>, IList<Post>>().ReverseMap();
             });
