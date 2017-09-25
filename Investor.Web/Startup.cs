@@ -81,8 +81,12 @@ namespace Investor.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute("post", "post/{id}",
+                    defaults: new { controller = "Post", action = "Index" });
+
                 routes.MapRoute("blog","category/{url}",
                     defaults: new { controller = "Category", action = "Index" });
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
