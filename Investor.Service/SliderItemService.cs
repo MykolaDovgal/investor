@@ -47,7 +47,7 @@ namespace Investor.Service
             {
                 var sidePosts = (await _postRepository
                      .GetLatestPostsAsync(_centralSliderItemsCount - slideItems.Count()))
-                     .Select(Mapper.Map<PostEntity, Post>);
+                     .Select(Mapper.Map<PostEntity, PostPreview>);
 
                 for (int i = 0; slideItems.Count() <= 2; i++)
                 {
@@ -70,7 +70,7 @@ namespace Investor.Service
             {
                var sidePosts = (await _postRepository
                     .GetLatestPostsAsync(_sideSliderItemsCount - sideItems.Count()))
-                    .Select(Mapper.Map<PostEntity, Post>);
+                    .Select(Mapper.Map<PostEntity, PostPreview>);
 
                 for (int i = 0; sideItems.Count() <= 2; i++)
                 {

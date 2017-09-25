@@ -3,7 +3,7 @@
 @{ 
     string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
 }
-<div class="item-carousel">
+
     <div class="item-popular-news">
         <img src="~/img/@Model.Image" class="img-fluid">
         <div class="body-popular-news">
@@ -11,4 +11,4 @@
             <span class="data-popular-news today text-left">@publishedTime</span>
         </div>
     </div>
-</div>
+

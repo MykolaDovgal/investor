@@ -17,7 +17,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 p-sm-0 pr-lg-2">
-                @Html.Partial("_PostTemplate", ViewBag.Post as Post)
+                
+                    @Html.Partial("_PostTemplate", ViewBag.Post as Post)
+
             </div>
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
                 <div class="block-border-top default-border-color last-news mb-3">
@@ -40,7 +42,7 @@
             <div class="col-sm-12 p-0 mt-3">
                 <span class="title-block d-block title-block-border-b pb-2 mb-3">Вибір редакції</span>
                 @Html.Partial("_SliderPostsTemplate", ViewBag.ImportantPosts as IEnumerable<PostPreview>)
-               
+
             </div>
         </div>
     </div>
@@ -62,6 +64,10 @@
         myWin = open("http://www.facebook.com/sharer.php?u=http://solidbrain.com.ua/", "displayWindow", "width=520,height=300,left=350,top=170,status=no,toolbar=no,menubar=no");
     }
 
+</script>
+<div class="fb-comments" data-href="http://example.com" data-width="470" data-num-posts="3"></div>
+<script>
+    $(".fb-comments").attr("data-href", window.location.href);
 </script>
 
 <script>
