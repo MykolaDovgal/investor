@@ -37,13 +37,7 @@
                 @for (int i = 0; i < Model.SideItems.Count; i++)
                 {
                     string publishedTime = PostPublicationDate.GetFormattedDate(Model.SliderItems[i].Post.PublishedOn);
-                    <div class="item-popular-news">
-                        <img src="~/img/@Model.SideItems[i].Post.Image" class="img-fluid" />
-                        <div class="body-popular-news">
-                            <a href="#" class="title-popular-news color-white">@Model.SideItems[i].Post.Title</a>
-                            <span class="data-popular-news today">@publishedTime</span>
-                        </div>
-                    </div>
+                    @Html.Partial("_PopularPostPreviewTemplate", Model.SideItems[i].Post)
                 }
             </div>
         </div>

@@ -4,6 +4,9 @@
 <div class="owl-carousel owl-theme carousel-popular-theme">
     @foreach (PostPreview post in Model)
     {
-        @Html.Partial("_PostPreviewTemplate", post)
+        <div class="item-carousel">
+            @Html.Partial("_PopularPostPreviewTemplate", post)
+        </div>
     }
+
 </div>
