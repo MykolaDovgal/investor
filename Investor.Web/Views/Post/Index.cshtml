@@ -56,7 +56,7 @@
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v2.10";
-        fjs.parentNode.insertBefore(js, fjs); 
+        fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
 
@@ -64,6 +64,10 @@
         myWin = open("http://www.facebook.com/sharer.php?u=http://solidbrain.com.ua/", "displayWindow", "width=520,height=300,left=350,top=170,status=no,toolbar=no,menubar=no");
     }
 
+</script>
+<div class="fb-comments" data-href="http://example.com" data-width="470" data-num-posts="3"></div>
+<script>
+    $(".fb-comments").attr("data-href", window.location.href);
 </script>
 
 <script>

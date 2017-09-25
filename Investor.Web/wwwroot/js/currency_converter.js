@@ -3,9 +3,9 @@
 		url: "http://devel.farebookings.com/api/curconversor/EUR/UAH/1/",
 		dataType: 'jsonp',
 		success: function (data) {
-			console.log(data.UAH);
+			console.log(Math.round(data.UAH*100)/100);
 			console.log($('#EUR').text());
-			$('#EUR').text($('#EUR').text() + data.UAH);
+			$('#EUR').text($('#EUR').text() + Math.round(data.UAH * 100) / 100);
 		}
 
 	}); 
