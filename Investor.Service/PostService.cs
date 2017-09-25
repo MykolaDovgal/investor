@@ -45,27 +45,18 @@ namespace Investor.Service
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
-        public async Task<IEnumerable<PostPreview>> GetAllPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage, int? count)
+        public async Task<IEnumerable<PostPreview>> GetLatestPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false, int limit = 10)
         {
-            var posts = (await _postRepository
-                .GetAllPostsByCategoryUrlAsync(categoryUrl, onMainPage))
+            return (await _postRepository
+                .GetLatestPostsByCategoryUrlAsync(categoryUrl,onMainPage,limit))
                 .Select(Mapper.Map<PostEntity, PostPreview>);
+        }
 
-            if (onMainPage && count.HasValue)
-            {
-                if (posts.Count() > count.Value)
-                    return posts.Take(count.Value);
-
-                if(posts.Count() < count.Value)
-                {
-                    var mainPagePosts = (await _postRepository
-                    .GetLatestPostsAsync(count.Value - posts.Count()))
-                    .Select(Mapper.Map<PostEntity, PostPreview>);
-
-                    posts.ToList().AddRange(mainPagePosts);
-                }
-            }
-            return posts;
+        public async Task<IEnumerable<PostPreview>> GetPagedLatestPostsByCategoryUrlAsync(string categoryUrl, int limit = 10, int page = 1)
+        {
+            return (await _postRepository
+                .GetPagedLatestPostsByCategoryUrlAsync(categoryUrl,limit,page))
+                .Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetAllPostsByTagNameAsync(string tagName)
@@ -77,12 +68,6 @@ namespace Investor.Service
         public async Task<Post> GetPostByIdAsync(int id)
         {
             return Mapper.Map<PostEntity, Post>(await _postRepository.GetPostByIdAsync(id));
-        }
-
-        public async Task<IEnumerable<PostPreview>> GetAllPagesAsync(int count, int page)
-        {
-            var posts = await _postRepository.GetAllPostsPagesAsync(count, page);
-            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task<int> GetTotalNumberOfPostByTagAsync(string tag)
@@ -128,5 +113,6 @@ namespace Investor.Service
             var posts = await _postRepository.GetImportantPostAsync(limit);
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
+
     }
 }

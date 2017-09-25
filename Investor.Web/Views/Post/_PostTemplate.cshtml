@@ -1,10 +1,11 @@
 ﻿@model Investor.Model.Post
+@inject Investor.Service.TimeService PostPublicationDate
 
 <h1 class="title-card-page">
     @Model.Title
 </h1>
 <div class="info-news">
-    <span class="data-post"><i class="icons icon-clock"></i> @Model.PublishedOn.DayOfWeek,  @Model.PublishedOn.ToString()</span>
+    <span class="data-post"><i class="icons icon-clock"></i> @PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
     <span class="reviews-post"><i class="icons icon-reviews"></i>154</span>
 </div>
 <div class="wrapper-social-share">

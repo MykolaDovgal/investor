@@ -32,12 +32,12 @@ namespace Investor.Repository
                 .Include(p => p.Article)
                 .Include(p => p.Author)
                 .Include(p => p.PostTags)
-                .ToListAsync();           
+                .ToListAsync();
         }
 
         public IEnumerable<PostEntity> GetAllPosts()
         {
-            return  _newsContext.Posts
+            return _newsContext.Posts
                 .Include(p => p.Category)
                 .Include(p => p.Comments)
                 .Include(p => p.Article)
@@ -48,21 +48,23 @@ namespace Investor.Repository
 
         }
 
-        public async Task<IEnumerable<PostEntity>> GetAllPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false)
+        public async Task<IEnumerable<PostEntity>> GetLatestPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage, int limit)
         {
             IQueryable<PostEntity> posts = null;
-        
+
             switch (onMainPage)
             {
                 case true:
                     posts = _newsContext
                         .Posts
+                        .OrderByDescending(p => p.PublishedOn)
                         .Include(p => p.Category)
                         .Where(p => (p.IsOnMainPage ?? false) && p.Category.Url == categoryUrl.ToLower());
                     break;
                 case false:
                     posts = _newsContext
                         .Posts
+                        .OrderByDescending(p => p.PublishedOn)
                         .Include(p => p.Category)
                         .Where(p => p.Category.Url == categoryUrl.ToLower());
                     break;
@@ -70,7 +72,20 @@ namespace Investor.Repository
                     break;
             }
 
-            return await posts.ToListAsync();
+
+
+            return await posts.Take(limit).ToListAsync();
+        }
+
+        public async Task<IEnumerable<PostEntity>> GetPagedLatestPostsByCategoryUrlAsync(string categoryUrl, int limit, int page)
+        {
+            return await _newsContext.Posts
+                .Where(p => p.Category.Url == categoryUrl.ToLower())
+                .Include(p => p.Category)
+                .OrderByDescending(p => p.PublishedOn)
+                .Skip(limit * (page - 1))
+                .Take(limit)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<PostEntity>> GetAllPostsByTagNameAsync(string tagName)
