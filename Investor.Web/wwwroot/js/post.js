@@ -2,7 +2,7 @@
 let moreNewsLimit = 10;
 
 $(document).ready(function () {
-    $(".btn-more").click(function (e) {
+    $(".btn-more.dynamic").click(function (e) {
         e.preventDefault();
         getMoreNews.apply(this, [$(this).data("categoryName"), moreNewsPage, moreNewsLimit]);
     });
