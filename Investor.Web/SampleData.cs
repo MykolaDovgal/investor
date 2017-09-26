@@ -43,8 +43,8 @@ namespace Investor.Web
                 {
                     new Entity.CategoryEntity {Name = "Політика", Url = "politics"},
                     new Entity.CategoryEntity {Name = "Соціум", Url = "social"},
-                    new Entity.CategoryEntity {Name = "Культура", Url = "culture"},
-                    new Entity.CategoryEntity {Name = "Економіка", Url = "economics"},
+                    // new Entity.CategoryEntity {Name = "Культура", Url = "culture"},
+                    new Entity.CategoryEntity {Name = "Економіка", Url = "economy"},
                     new Entity.CategoryEntity {Name = "ІТ технології", Url = "it" },
                 };
                 context.Categories.AddRange(categories);
