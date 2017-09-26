@@ -18,6 +18,7 @@ namespace Investor.Web.Controllers
         } 
         public IActionResult Index(int id)
         {
+            ViewBag.PathBase = Request.Host.Value;
             Post post = _postService.GetPostByIdAsync(id).Result;
             ViewBag.Post = post;
             ViewBag.LatestPosts = _postService.GetLatestPostsAsync(10).Result.ToList();

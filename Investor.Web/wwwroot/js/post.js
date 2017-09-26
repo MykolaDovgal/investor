@@ -1,5 +1,5 @@
-﻿let moreNewsPage = 1;
-let moreNewsLimit = 3;
+﻿let moreNewsPage = 2;
+let moreNewsLimit = 10;
 
 $(document).ready(function () {
     $(".btn-more").click(function (e) {
