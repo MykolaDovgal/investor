@@ -142,7 +142,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "nimg-slider.jpg"
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
