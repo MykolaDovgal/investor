@@ -91,8 +91,6 @@ namespace Investor.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            var context = app.ApplicationServices.GetService<NewsContext>();
-            SampleData.Initialize(context);
         }
     }
 }
