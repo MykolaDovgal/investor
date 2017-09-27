@@ -20,6 +20,4 @@ let getMoreNews = function (categoryName,page,limit) {
             moreNewsPage += 1;
         }
     });
-
-    
 };

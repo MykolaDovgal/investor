@@ -56,7 +56,7 @@ namespace Investor.Repository
             if (adminRole == null)
             {
                 adminRole = new IdentityRole("admin");
-                adminRole.Claims.Add(new IdentityRoleClaim<string> { ClaimType = "isAdmin", ClaimValue = "true" });
+                
                 await roleMgr.CreateAsync(adminRole);
             }
 
