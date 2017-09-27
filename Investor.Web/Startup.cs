@@ -34,7 +34,7 @@ namespace Investor.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NewsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("GearConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("TestConnection")));
             // Add framework services.
 
             services.AddTransient<ICategoryRepository, CategoryRepository>();
