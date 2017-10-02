@@ -36,7 +36,7 @@ namespace Investor.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NewsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("TestConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("GearConnection")));
             // Add framework services.
 
             services.AddIdentity<UserEntity, IdentityRole>(opts =>
@@ -73,7 +73,7 @@ namespace Investor.Web
             services.AddMvc();
             services.AddAutoMapper();
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
