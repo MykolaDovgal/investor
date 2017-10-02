@@ -1,0 +1,49 @@
+﻿<head>
+    <meta property="fb:moderator" content="100008434181861" />
+</head>
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="theme-panel hidden-xs hidden-sm">
+            <div class="toggler"> </div>
+            <div class="toggler-close"> </div>
+            <div class="theme-options">
+
+            </div>
+        </div>
+        <div class="page-bar">
+            <ul class="page-breadcrumb">
+                <li>
+                    <a href="index.html">Home</a>
+                    <i class="fa fa-circle"></i>
+                </li>
+                <li>
+                    <span>Dashboard</span>
+                </li>
+            </ul>
+        </div>
+        <h1 class="page-title">
+            Admin Dashboard
+            <small>statistics, charts, recent events and reports</small>
+        </h1>
+        <div id="fb-root"></div>
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '124034454921732',
+                    status: true,
+                    cookie: true,
+                    xfbml: true
+                });
+            };
+            (function () {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol +
+                    '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+            }());
+        </script>
+
+
+    </div>
+</div>
