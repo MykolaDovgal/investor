@@ -7,6 +7,12 @@
   <PropertyGroup>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Properties\PublishProfiles\InvestorWeb2017 - Web Deploy.pubxml" />
+    <None Remove="Properties\PublishProfiles\InvestorWeb20170922104355 - Web Deploy.pubxml" />
+    <None Remove="Properties\PublishProfiles\InvestorWebTest - Web Deploy.pubxml" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="6.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
@@ -24,6 +30,9 @@
     <ProjectReference Include="..\Investor.Model\Investor.Model.csproj" />
     <ProjectReference Include="..\Investor.Repository\Investor.Repository.csproj" />
     <ProjectReference Include="..\Investor.Service\Investor.Service.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>

@@ -54,5 +54,24 @@
             Admin Dashboard
             <small>statistics, charts, recent events and reports</small>
         </h1>
+        <div id="fb-root"></div>
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '124034454921732',
+                    status: true,
+                    cookie: true,
+                    xfbml: true
+                });
+            };
+            (function () {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol +
+                    '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+            }());
+        </script>
+
+
     </div>
 </div>
