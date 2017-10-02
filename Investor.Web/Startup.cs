@@ -36,7 +36,7 @@ namespace Investor.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NewsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("GearConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("TestConnection")));
             // Add framework services.
 
             services.AddIdentity<UserEntity, IdentityRole>(opts =>
@@ -59,6 +59,7 @@ namespace Investor.Web
             services.AddTransient<TimeService>();
             services.AddTransient<ThemeService>();
             // Services
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<ISliderItemService, SliderItemService>();
@@ -97,6 +98,10 @@ namespace Investor.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute("login", "login",
+                    defaults: new { controller = "Account", action = "Login" });
+                routes.MapRoute("register", "register",
+                    defaults: new { controller = "Account", action = "Register" });
                 routes.MapRoute("post", "post/{id}",
                     defaults: new { controller = "Post", action = "Index" });
 
