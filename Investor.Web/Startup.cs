@@ -13,6 +13,8 @@ using AutoMapper;
 using Investor.Service;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
+using Investor.Entity;
+using Microsoft.AspNetCore.Identity;
 
 namespace Investor.Web
 {
@@ -37,6 +39,18 @@ namespace Investor.Web
                 options.UseSqlServer(Configuration.GetConnectionString("TestConnection")));
             // Add framework services.
 
+            services.AddIdentity<UserEntity, IdentityRole>(opts =>
+            {
+                opts.Password.RequiredLength = 6;   
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireLowercase = false; 
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequireDigit = false;
+            })
+            .AddEntityFrameworkStores<NewsContext>()
+            .AddDefaultTokenProviders();
+
+
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             //services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
@@ -45,6 +59,7 @@ namespace Investor.Web
             services.AddTransient<TimeService>();
             services.AddTransient<ThemeService>();
             // Services
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<ISliderItemService, SliderItemService>();
@@ -77,15 +92,20 @@ namespace Investor.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseAuthentication();
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
-                
+                routes.MapRoute("login", "login",
+                    defaults: new { controller = "Account", action = "Login" });
+                routes.MapRoute("register", "register",
+                    defaults: new { controller = "Account", action = "Register" });
                 routes.MapRoute("post", "post/{id}",
                     defaults: new { controller = "Post", action = "Index" });
 
-                routes.MapRoute("blog","category/{url}",
+                routes.MapRoute("blog", "category/{url}",
                     defaults: new { controller = "Category", action = "Index" });
 
                 routes.MapRoute(
