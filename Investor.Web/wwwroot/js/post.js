@@ -10,13 +10,12 @@ $(document).ready(function () {
 
 let getMoreNews = function (categoryName,page,limit) {
 
-    let params = `?categoryUrl=${categoryName}&page=${page}&limit=${limit}`;
-    console.log(params);
+    const params = `?categoryUrl=${categoryName}&page=${page}&limit=${limit}`;
     $.ajax({
-        url: '/api/post/more' + params,
-        type: 'GET',
+        url: `/api/post/more${params}`,
+        type: "GET",
         success: function (data) {
-            $('.category-news-body').append(data);
+            $(".category-news-body").append(data);
             moreNewsPage += 1;
         }
     });
