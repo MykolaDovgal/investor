@@ -28,10 +28,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Posts
                 .Include(p => p.Category)
-                .Include(p => p.Comments)
-                .Include(p => p.Article)
                 .Include(p => p.Author)
-                .Include(p => p.PostTags)
                 .ToListAsync();
         }
 

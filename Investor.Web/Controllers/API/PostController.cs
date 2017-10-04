@@ -24,7 +24,6 @@ namespace Investor.Web.Controllers.API
         [HttpGet]
         public async Task<IActionResult> GetMoreNews(string categoryUrl, int page, int limit)
         {
-            var t = new PartialViewResult();
             var posts = await _postService.GetPagedLatestPostsByCategoryUrlAsync(categoryUrl, limit, page);
             return PartialView("~/Views/Category/_MoreNewsPostsTemplate.cshtml", posts as IEnumerable<PostPreview>); 
         }

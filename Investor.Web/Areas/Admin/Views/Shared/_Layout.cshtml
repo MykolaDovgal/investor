@@ -19,17 +19,25 @@
     <link href="~/css/metronic/bootstrap-tagsinput-typeahead.css" rel="stylesheet" />
     <link href="~/css/metronic/bootstrap-tagsinput.css" rel="stylesheet" />
     <link rel="shortcut icon" href="http://favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 </head>
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
     <div class="page-wrapper">
-        <header>@Html.Partial("_HeaderSection")</header>
+        <header>
+            @Html.Partial("_HeaderSection")
+        </header>
         <div class="page-container">
-            <div>@Html.Partial("_SideBarSection")</div>
+            <div>
+                @Html.Partial("_SideBarSection")
+            </div>
 
             @RenderBody()
+
         </div>
-        <footer>@Html.Partial("_FooterSection")</footer>
+        <footer>
+            @Html.Partial("_FooterSection")
+        </footer>
     </div>
     @*admin-content scripts*@
 
