@@ -39,10 +39,10 @@ namespace Investor.Service
             return map;
         }
 
-        public async Task<IEnumerable<PostPreview>> GetAllPostsAsync()
+        public async Task<IEnumerable<T>> GetAllPostsAsync<T>()
         {
             var posts = await _postRepository.GetAllPostsAsync();
-            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
+            return posts.Select(Mapper.Map<PostEntity, T>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetLatestPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false, int limit = 10)

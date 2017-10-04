@@ -16,31 +16,35 @@
     <link href="~/css/metronic/layout.min.css" rel="stylesheet" />
     <link href="~/css/metronic/darkblue.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="http://favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 </head>
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
     <div class="page-wrapper">
-        <header>@Html.Partial("_HeaderSection")</header>
+        <header>
+            @Html.Partial("_HeaderSection")
+        </header>
         <div class="page-container">
-            <div>@Html.Partial("_SideBarSection")</div>
+            <div>
+                @Html.Partial("_SideBarSection")
+            </div>
 
             @RenderBody()
+
         </div>
-        <footer>@Html.Partial("_FooterSection")</footer>
+        <footer>
+            @Html.Partial("_FooterSection")
+        </footer>
     </div>
 
 
-
-    @*admin-content scripts*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
     <script src="js/admin/content/news.js"></script>
-
-
-
-    <script src="~/js/allscripts.min.js"></script>
-    <script src="~/js/post.js"></script>
-    <script src="~/js/metronic/jquery.min.js"></script>
     <script src="~/js/metronic/bootstrap.min.js"></script>
     <script src="~/js/metronic/jquery.flot.resize.js"></script>
     <script src="~/js/metronic/app.min.js"></script>
     <script src="~/js/metronic/layout.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 </body>
 </html>

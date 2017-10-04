@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Investor.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class ContentController : Controller
     {
         public IActionResult Blogs()

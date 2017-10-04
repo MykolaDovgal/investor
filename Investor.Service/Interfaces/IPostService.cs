@@ -12,7 +12,7 @@ namespace Investor.Service.Interfaces
         Task<int> GetTotalNumberOfPostsByCategoryUrlAsync(string categoryUrl);
         Task<int> GetTotalNumberOfPostByTagAsync(string tag);
         Task<Post> GetPostByIdAsync(int id);
-        Task<IEnumerable<PostPreview>> GetAllPostsAsync();
+        Task<IEnumerable<T>> GetAllPostsAsync<T>();
         Task<IEnumerable<PostPreview>> GetLatestPostsAsync(int limit);
         Task<IEnumerable<PostPreview>> GetImportantPostsAsync(int limit);
         Task<IEnumerable<PostPreview>> GetPopularPostByCategoryUrlAsync(string categoryUrl, int limit);
