@@ -9,7 +9,7 @@
         <label class="newpost-widget-title ng-binding">Метки</label>
 
 
-        <select class="bs-select form-control"  tabindex="-98">
+        <select class="bs-select form-control" tabindex="-98">
             @for (int i = 0; i < ViewBag.Categories.Count; i++)
             {
                 <option @(Model.Category.Name == ViewBag.Categories[i].Name ? "selected" : "")>@ViewBag.Categories[i].Name</option>
@@ -22,22 +22,22 @@
     </div>
     <label class="mt-checkbox mt-checkbox-outline">
         На головній сторінці
-        <input type="checkbox" value="1" name="test"  @(Model.IsOnMainPage ? "checked" : "")/>
+        <input type="checkbox" value="1" name="test" @(Model.IsOnMainPage ? "checked" : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На боковій панелі слайдера
-        <input type="checkbox" value="1" name="test" @(ViewBag.IsOnSide ? "checked" : "")/>
+        <input type="checkbox" value="1" name="test" @(ViewBag.IsOnSide ? "checked" : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На слайдері
-        <input type="checkbox" value="1" name="test" @(ViewBag.IsOnSlider ? "checked" : "")/>
+        <input type="checkbox" value="1" name="test" @(ViewBag.IsOnSlider ? "checked" : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline color-white">
         Рекомендовано редакцією
-        <input type="checkbox" value="1" name="test" @(Model.IsImportant ? "checked" : "")/>
+        <input type="checkbox" value="1" name="test" @(Model.IsImportant ? "checked" : "") />
         <span></span>
     </label>
 </div>

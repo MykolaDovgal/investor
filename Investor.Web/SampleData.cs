@@ -646,9 +646,86 @@ namespace Investor.Web
                         );
                 context.SaveChanges();
             }
-                
-            
+            if (!context.Tags.Any())
+            {
+                context.Tags.AddRange(
+                    new TagEntity()
+                    {
+                        Name = "Ураган Ірма",
+                        Url = "uragan_irrma" 
+                    },
+                    new TagEntity()
+                    {
+                        Name = "Саакашвілі і Львів",
+                        Url = "saakashvili_i_lviv"
+                    },
+                    new TagEntity()
+                    {
+                        Name = "Культурний вибух",
+                        Url = "kulturnyi_vybukh"
+                    },
+                    new TagEntity()
+                    {
+                        Name = "Політична течія",
+                        Url = "politychna_techiya"
+                    },
+                    new TagEntity()
+                    {
+                        Name = "теракт у центрі Києва",
+                        Url = "teract_u_centri_Kyeva"
+                    }
+                    );
+                context.SaveChanges();
+            }
+            if (!context.PostTags.Any())
+            {
+                context.PostTags.AddRange(
+                    new PostTagEntity()
+                    {
+                        Post = context.Posts.ToList()[0],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        Tag = context.Tags.ToList()[0],
+                        TagId = context.Tags.ToList()[0].TagId
+                    },
+                    new PostTagEntity()
+                    {
+                        Post = context.Posts.ToList()[0],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        Tag = context.Tags.ToList()[1],
+                        TagId = context.Tags.ToList()[1].TagId
+                    },
+                    new PostTagEntity()
+                    {
+                        Post = context.Posts.ToList()[0],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        Tag = context.Tags.ToList()[2],
+                        TagId = context.Tags.ToList()[2].TagId
+                    },
+                    new PostTagEntity()
+                    {
+                        Post = context.Posts.ToList()[0],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        Tag = context.Tags.ToList()[3],
+                        TagId = context.Tags.ToList()[3].TagId
+                    },
+                    new PostTagEntity()
+                    {
+                        Post = context.Posts.ToList()[0],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        Tag = context.Tags.ToList()[4],
+                        TagId = context.Tags.ToList()[4].TagId
+                    }
+                    );
+                context.SaveChanges();
+            }
 
+            if (!context.Posts.ToList()[0].PostTags.Any())
+            {
+                context.Posts.ToList()[0].PostTags.AddRange(
+                    (IEnumerable<PostTagEntity>)(context.Tags)
+                    );
+                context.SaveChanges();
+            }
         }
     }
 }

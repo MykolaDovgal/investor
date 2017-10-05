@@ -20,7 +20,6 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             _postService = postService;
         }
 
-
         [Route("GetAllNews")]
         [HttpGet]
         public async Task<IActionResult> GetAllNews()

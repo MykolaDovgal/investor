@@ -52,7 +52,7 @@ namespace Investor.Web
 
 
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-            //services.AddTransient<ITagRepository, TagRepository>();
+            services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<ISliderItemRepository, SliderItemRepository>();
             services.AddTransient<IPostTagRepository, PostTagRepository>();
@@ -63,10 +63,10 @@ namespace Investor.Web
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<ISliderItemService, SliderItemService>();
-            //services.AddTransient<IPostTagService, PostTagService>();
+            services.AddTransient<IPostTagService, PostTagService>();
             //services.AddTransient<ISearchService, SearchService>();
             //services.AddTransient<ICommunicationService, CommunicationService>();
-            //services.AddTransient<ITagService, TagService>();
+            services.AddTransient<ITagService, TagService>();
             //services.AddTransient<ISiteMapService, SiteMapService>();
             //ervices.AddTransient<ApplicationEnvironment>();
 
