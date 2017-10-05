@@ -21,7 +21,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         }
 
 
-        [Route("more")]
+        [Route("GetAllNews")]
         [HttpGet]
         public async Task<IActionResult> GetAllNews()
         {
@@ -29,9 +29,11 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             return Json(new {data = result });
         }
 
-
-
-
-
+        [Route("UpdateNews")]
+        [HttpPost]
+        public JsonResult UpdateNews()
+        {            
+            return Json(new { data = "ok" });
+        }
     }
 }
