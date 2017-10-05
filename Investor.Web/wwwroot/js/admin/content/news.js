@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿let tables = { };
+
+$(document).ready(function () {
 
     $("a.nav-link").click(function (e) {
 
@@ -16,16 +18,46 @@
 });
 
 
+$(document).on('change', 'tbody td:not(:first-child)', function (e) {
+
+    const tableId = "#" + $(this).closest('table').prop("id");
+    const idx = tables[tableId].cell(this).index().column;
+    const tableDataObj = tables[tableId].row(idx).data();
+
+    console.log(e.target);
+    console.log(this);
+    console.log(tableDataObj);
+
+});
+
+
+
+//$(document).on('click', 'tbody td', function() {
+//    var idx = table.cell(this).index().column;
+//    console.log(table.row(idx).data());
+//});
+
+
 
 
 let initialTable = function (tableId) {
-    $(tableId).DataTable({
-        "ajax": "/api/Content/more",
+
+    tables[tableId] = $(tableId).DataTable({
+
+        "ajax": "/api/Content/GetAllNews",
         "columns": [
             {
-                "data": "",
+                data: null,
+                orderable: false,
+                render: function () {
+                    return `<div class="text-center"><input type="checkbox" class="md-check"></div>`
+                }
+            },
+            {
+                "data": "postId",
+                "visible": false,
                 render: function (data, type, full, meta) {
-                    return `<div class="text-center"><input type="checkbox" class="md-check"></div>`;
+                    return data;
                 }
 
             },
@@ -43,19 +75,19 @@ let initialTable = function (tableId) {
             {
                 "data": "isPublished",
                 render: function (data, type, full, meta) {
-                    return `<div class="text-center"><input disabled type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
+                    return `<div class="text-center"><input data-name="IsPublished" type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
                 }
             },
             {
                 "data": "isOnMainPage",
                 render: function (data, type, full, meta) {
-                    return `<div class="text-center"><input disabled type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
+                    return `<div class="text-center"><input data-name="IsOnMainPage" type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
                 }
             },
             {
                 "data": "isImportant",
                 render: function (data, type, full, meta) {
-                    return `<div class="text-center"><input disabled type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
+                    return `<div class="text-center"><input data-name="IsImportant" type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
                 }
             }
         ]

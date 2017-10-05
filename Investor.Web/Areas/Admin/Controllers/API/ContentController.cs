@@ -21,12 +21,19 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         }
 
 
-        [Route("more")]
+        [Route("GetAllNews")]
         [HttpGet]
         public async Task<IActionResult> GetAllNews()
         {
             var result = await _postService.GetAllPostsAsync<TablePostPreview>();
             return Json(new {data = result });
+        }
+
+        [Route("UpdateNews")]
+        [HttpPost]
+        public JsonResult UpdateNews()
+        {            
+            return Json(new { data = "ok" });
         }
     }
 }
