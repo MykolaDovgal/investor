@@ -22,7 +22,7 @@ namespace Investor.Web.Areas.Admin.Controllers
             _categoryService = categoryService;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult SinglePost(int id)
         {
             Post post = _postService.GetPostByIdAsync(id).Result;
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
@@ -30,7 +30,7 @@ namespace Investor.Web.Areas.Admin.Controllers
             SliderItem sliderItem = sliderItems.FirstOrDefault(s => s.Post.PostId == id);
             ViewBag.IsOnSlider = sliderItem != null ? sliderItem.IsOnSlider : false;
             ViewBag.IsOnSide = sliderItem != null ? sliderItem.IsOnSide : false;
-            return View(post);
+            return PartialView("SinglePost",post);
         }
         public IActionResult Blogs()
         {

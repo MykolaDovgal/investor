@@ -2,18 +2,7 @@
 
 $(document).ready(function () {
 
-    $("a.nav-link").click(function (e) {
-
-        const url = $(this).data("href");
-        const type = $(e.target).data("type");
-
-        if (type && type === "news") {
-            getPartialView(`admin${url}`, initialTable, "#newsTable");
-        }
-        if (type && type === "blogs") {
-            getPartialView(`admin${url}`, initialTable, "#blogsTable");
-        }
-    });
+    
 
 });
 
@@ -28,6 +17,22 @@ $(document).on('change', 'tbody td:not(:first-child)', function (e) {
     console.log(this);
     console.log(tableDataObj);
 
+});
+
+$(document).on("click", "a.nav-link", function (e) {
+
+    const url = $(this).data("href");
+    const type = $(e.target).data("type");
+
+    if (type && type === "news") {
+        getPartialView(`admin${url}`, initialTable, "#newsTable");
+    }
+    if (type && type === "blogs") {
+        getPartialView(`admin${url}`, initialTable, "#blogsTable");
+    }
+    if (type && type === "singlepost") {
+        getPartialView(`admin${url}`);
+    }
 });
 
 
@@ -62,7 +67,10 @@ let initialTable = function (tableId) {
 
             },
             {
-                "data": "title"
+                "data": "title",
+                render: function (data, type, full) {
+                    return `<a href="#" data-type="singlepost" class="nav-link" data-href="/content/singlepost/${full.postId}">${data}</a>`
+                }
 
             },
             {

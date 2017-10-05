@@ -11,14 +11,12 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="~/css/metronic/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/metronic/simple-line-icons.min.css" rel="stylesheet" />
-    <link href="~/css/metronic/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/metronic/components-rounded.min.css" rel="stylesheet" />
     <link href="~/css/metronic/layout.min.css" rel="stylesheet" />
     <link href="~/css/metronic/darkblue.min.css" rel="stylesheet" />
     <link href="~/css/metronic/bootstrap-fileinput.css" rel="stylesheet" />
     <link href="~/css/metronic/bootstrap-tagsinput-typeahead.css" rel="stylesheet" />
     <link href="~/css/metronic/bootstrap-tagsinput.css" rel="stylesheet" />
-    <link rel="shortcut icon" href="http://favicon.ico" />
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
 </head>
 
@@ -31,8 +29,10 @@
             <div>
                 @Html.Partial("_SideBarSection")
             </div>
-
-            @RenderBody()
+            <div id="container">
+                @RenderBody()
+            </div>
+            
 
         </div>
         <footer>
@@ -42,11 +42,10 @@
     @*admin-content scripts*@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-    <script src="js/admin/content/news.js"></script>
+    <script src="~/js/admin/content/news.js"></script>
     <script src="~/js/metronic/bootstrap.min.js"></script>
-    <script src="~/js/metronic/jquery.flot.resize.js"></script>
     <script src="~/js/metronic/app.min.js"></script>
     <script src="~/js/metronic/layout.min.js"></script>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
