@@ -28,5 +28,10 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             var result = await _postService.GetAllPostsAsync<TablePostPreview>();
             return Json(new {data = result });
         }
+
+
+
+
+
     }
 }

@@ -1,4 +1,5 @@
-﻿<div class="sidebar-right">
+﻿@model Investor.Model.Post
+<div class="sidebar-right">
     <button type="button" class="btn green-meadow" style="width: 100%">Перейти до поста</button>
     <button type="button" class="btn yellow-crusta" style="width: 100%">Відмінити публікацію</button>
     <button type="button" class="btn blue-madison" style="width: 100%">Зберегти</button>
@@ -6,37 +7,37 @@
 
     <div class="newpost-widget">
         <label class="newpost-widget-title ng-binding">Метки</label>
-        <div class="post-tags-selector">
-            <div class="dropdown-menu open" role="combobox" style="max-height: 567px; overflow: hidden; min-height: 0px;">
-                <ul class="dropdown-menu inner" role="listbox" aria-expanded="false" style="max-height: 565px; overflow-y: auto; min-height: 0px;">
-                    <li data-original-index="0" class="">
-                        <a tabindex="0" class="" style="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
-                            <span class="text">Mustard</span>
-                            <span class="fa fa-check check-mark"></span>
-                        </a>
-                    </li>
-                    <li data-original-index="1" class="">
-                        <a tabindex="0" class="" style="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
-                            <span class="text">Ketchup</span>
-                            <span class="fa fa-check check-mark"></span>
-                        </a>
-                    </li>
-                    <li data-original-index="2" class="selected">
-                        <a tabindex="0" class="" style="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true">
-                            <span class="text">Relish</span>
-                            <span class="fa fa-check check-mark"></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <select class="bs-select form-control" tabindex="-98">
-                <option>Mustard</option>
-                <option>Ketchup</option>
-                <option>Relish</option>
-            </select>
-        </div>
+
+
+        <select class="bs-select form-control"  tabindex="-98">
+            @for (int i = 0; i < ViewBag.Categories.Count; i++)
+            {
+                <option @(Model.Category.Name == ViewBag.Categories[i].Name ? "selected" : "")>@ViewBag.Categories[i].Name</option>
+            }
+        </select>
+
     </div>
     <div id="the-basics">
         <input id="tagTypeahead" class="typeahead" type="text" placeholder="States of USA " data-role="tagsinput" />
     </div>
+    <label class="mt-checkbox mt-checkbox-outline">
+        На головній сторінці
+        <input type="checkbox" value="1" name="test"  @(Model.IsOnMainPage ? "checked" : "")/>
+        <span></span>
+    </label>
+    <label class="mt-checkbox mt-checkbox-outline">
+        На боковій панелі слайдера
+        <input type="checkbox" value="1" name="test" @(ViewBag.IsOnSide ? "checked" : "")/>
+        <span></span>
+    </label>
+    <label class="mt-checkbox mt-checkbox-outline">
+        На слайдері
+        <input type="checkbox" value="1" name="test" @(ViewBag.IsOnSlider ? "checked" : "")/>
+        <span></span>
+    </label>
+    <label class="mt-checkbox mt-checkbox-outline color-white">
+        Рекомендовано редакцією
+        <input type="checkbox" value="1" name="test" @(Model.IsImportant ? "checked" : "")/>
+        <span></span>
+    </label>
 </div>

@@ -1,4 +1,6 @@
-﻿<div class="page-content page-post">
+﻿@model Investor.Model.Post
+
+<div class="page-content page-post">
     <div class="page-bar">
         <ul class="page-breadcrumb">
             <li>
@@ -16,9 +18,17 @@
     </h1>
 
 
+    <div class="form-group form-md-line-input form-md-floating-label has-info">
+        <input type="text" class="form-control" id="form_control_1" value="@Model.Title">
+        <label for="form_control_1">Назва</label>
+    </div>
+    <div class="form-group form-md-line-input form-md-floating-label has-info">
+        <textarea class="form-control" id="form_control_1" >@Model.Description</textarea>
+        <label for="form_control_1">Опис</label>
+    </div>
     <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
-            <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+            <img src="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")" alt="" />
         </div>
         <div>
             <span class="btn red btn-outline btn-file">
@@ -30,6 +40,6 @@
         </div>
     </div>
 
-    <textarea></textarea>
+    <textarea class="text-editor">@Model.Article.Content</textarea>
 </div>
 

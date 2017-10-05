@@ -163,6 +163,7 @@ namespace Investor.Repository
         public async Task<PostEntity> UpdatePostAsync(PostEntity post)
         {
             _newsContext.Entry(post).State = EntityState.Modified;
+   
             await _newsContext.SaveChangesAsync();
             return post;
         }

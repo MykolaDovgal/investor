@@ -39,7 +39,8 @@ $("#tagTypeahead").tagsinput({
 
 $(document).ready(function () {
 	tinymce.init({
-		selector: "textarea",
+		mode: "specific_textareas",
+		selector: ".text-editor",
 		theme: "modern",
 		plugins: [
 			"advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",

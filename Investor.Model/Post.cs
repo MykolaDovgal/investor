@@ -15,6 +15,7 @@ namespace Investor.Model
         public DateTime PublishedOn { set; get; }
         public bool Published { set; get; }
         public bool IsOnMainPage { set; get; }
+        public bool IsImportant { set; get; }
         public Category Category { set; get; }
         public Article Article { set; get; }
         public User Author { set; get; }
