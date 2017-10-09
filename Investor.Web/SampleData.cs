@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Investor.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Web
 {
@@ -65,7 +66,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg",
+                        Image = "img-slider.jpg"
 
                     },
                     new Entity.PostEntity
@@ -677,8 +678,48 @@ namespace Investor.Web
                     );
                 context.SaveChanges();
             }
-          
-           
+                context.AddRange(
+                    new PostTagEntity
+                    {
+                        PostTagId = 1,
+                        Post = context.Posts.ToList()[0],
+                        Tag = context.Tags.ToList()[0],
+                    },
+                    new PostTagEntity
+                    {
+                        PostTagId = 2,
+                        Post = context.Posts.ToList()[0],
+                        Tag = context.Tags.ToList()[1],
+                    },
+                    new PostTagEntity
+                    {
+                        PostTagId = 3,
+                        Post = context.Posts.ToList()[0],
+                        Tag = context.Tags.ToList()[2],
+                    },
+                    new PostTagEntity
+                    {   
+                        PostTagId = 4,
+                        Post = context.Posts.ToList()[0],
+                        Tag = context.Tags.ToList()[3],
+                    },
+                    new PostTagEntity
+                    {
+                        PostTagId = 5,
+                        Post = context.Posts.ToList()[0],
+                        Tag = context.Tags.ToList()[4],
+                    }
+                    );
+                context.SaveChanges();
+            
+
+            //if (!context.Posts.ToList()[0].PostTags.Any())
+            //{
+            //    context.Posts.ToList()[0].PostTags.AddRange(
+            //        (IEnumerable<PostTagEntity>)(context.Tags)
+            //        );
+            //    context.SaveChanges();
+            //}
         }
     }
 }

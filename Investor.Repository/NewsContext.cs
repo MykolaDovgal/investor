@@ -27,21 +27,10 @@ namespace Investor.Repository
 
             modelBuilder.Entity<PostTagEntity>()
             .HasKey(t => new { t.PostId, t.TagId });
-
-            modelBuilder.Entity<PostTagEntity>()
-                .HasOne(pt => pt.Post)
-                .WithMany(p => p.PostTags)
-                .HasForeignKey(pt => pt.PostId);
-
-            modelBuilder.Entity<PostTagEntity>()
-                .HasOne(pt => pt.Tag)
-                .WithMany(t => t.PostTags)
-                .HasForeignKey(pt => pt.TagId);
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<PostTagEntity>().HasIndex(x => new { x.PostId, x.TagId }).IsUnique(true);
         }
-
-
-
 
         public async void EnsureSeedData(UserManager<UserEntity> userMgr, RoleManager<IdentityRole> roleMgr)
         {

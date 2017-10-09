@@ -30,8 +30,8 @@ $(document).on("click", "a.nav-link", function (e) {
     if (type && type === "blogs") {
         getPartialView(`admin${url}`, initialTable, "#blogsTable");
     }
-    if (type && type === "singlepost") {
-        getPartialView(`admin${url}`);
+	if (type && type === "singlepost") {
+		getPartialView(`admin${url}`, initTypeahead);
     }
 });
 
