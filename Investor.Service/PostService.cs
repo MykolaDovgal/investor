@@ -114,5 +114,15 @@ namespace Investor.Service
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
+        public async Task AddTagToPostAsync(int postId, string tagName)
+        {
+            await _postRepository.AddTagToPostAsync(postId, tagName);
+        }
+
+        public async Task<IEnumerable<Tag>> GetAllTagsByPostId(int id)
+        {
+            List<TagEntity> tags = await _postRepository.GetAllTagsByPostIdAsync(id);
+            return tags.Select(Mapper.Map<TagEntity, Tag>);
+        }
     }
 }

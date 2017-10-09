@@ -43,14 +43,6 @@ namespace Investor.Repository
                .Include(s => s.PostTags)
                .FirstOrDefaultAsync(s => s.TagId == id);
         }
-        
-        public async Task<List<TagEntity>> GetAllTagsByPostIdAsync(int id)
-        {
-            return await _newsContext.Tags
-                 .Include(p => p.PostTags)
-                 .Where(p => p.PostTags.Find(pt => pt.PostId == id) != null)
-                 .ToListAsync();
-        }
 
         public async Task RemoveTagAsync(int id)
         {
@@ -64,6 +56,8 @@ namespace Investor.Repository
 
             await _newsContext.SaveChangesAsync();
         }
+
+
 
         public async Task UpdateTagAsync(TagEntity tag)
         {

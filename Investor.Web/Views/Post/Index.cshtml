@@ -17,18 +17,17 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 p-sm-0 pr-lg-2">
-                
-                    @Html.Partial("_PostTemplate", ViewBag.Post as Post)
+
+                @Html.Partial("_PostTemplate", ViewBag.Post as Post)
 
             </div>
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
                 <div class="block-border-top default-border-color last-news mb-3">
                     <div class="wrapper-tag-news">
-                        <a href="#" class="tag-item">Ураган Ірма</a>
-                        <a href="#" class="tag-item">Саакашвіллі і Львів</a>
-                        <a href="#" class="tag-item">Культурний вибух</a>
-                        <a href="#" class="tag-item">Політична течія</a>
-                        <a href="#" class="tag-item">Теракт у центрі Києва</a>
+                        @foreach (Tag tag in ViewBag.Tags)
+                        {
+                            <a href="#" class="tag-item">@tag.Name</a>
+                        }
                     </div>
                 </div>
 

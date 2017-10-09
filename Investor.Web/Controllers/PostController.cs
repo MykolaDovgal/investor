@@ -23,6 +23,7 @@ namespace Investor.Web.Controllers
             ViewBag.Post = post;
             ViewBag.LatestPosts = _postService.GetLatestPostsAsync(10).Result.ToList();
             ViewBag.ImportantPosts = _postService.GetImportantPostsAsync(10).Result.ToList();
+            ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
             return View("Index");
         }
     }

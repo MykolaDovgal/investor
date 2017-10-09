@@ -11,9 +11,10 @@ using System;
 namespace Investor.Repository.Migrations
 {
     [DbContext(typeof(NewsContext))]
-    partial class NewsContextModelSnapshot : ModelSnapshot
+    [Migration("20171009103128_renamePostTagEntityTable")]
+    partial class renamePostTagEntityTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,9 +132,6 @@ namespace Investor.Repository.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.HasIndex("PostId", "TagId")
-                        .IsUnique();
-
                     b.ToTable("PostTags");
                 });
 
@@ -181,8 +179,6 @@ namespace Investor.Repository.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("Description");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
@@ -206,13 +202,7 @@ namespace Investor.Repository.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("Photo");
-
                     b.Property<string>("SecurityStamp");
-
-                    b.Property<string>("SerializedSocials");
-
-                    b.Property<string>("Surname");
 
                     b.Property<bool>("TwoFactorEnabled");
 

@@ -48,10 +48,5 @@ namespace Investor.Service
             await _tagRepository.UpdateTagAsync(Mapper.Map<Tag, TagEntity>(tag));
         }
 
-        public async Task<IEnumerable<Tag>> GetAllTagsByPostId(int id)
-        {
-            List<TagEntity> tags = await _tagRepository.GetAllTagsByPostIdAsync(id);
-            return tags.Select(Mapper.Map<TagEntity, Tag>);
-        }
     }
 }
