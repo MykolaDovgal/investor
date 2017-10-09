@@ -14,10 +14,12 @@ namespace Investor.Web.Areas.Admin.Controllers.API
     public class ContentController : Controller
     {
         private readonly IPostService _postService;
+        private readonly ITagService _tagService;
 
-        public ContentController(IPostService postService)
+        public ContentController(IPostService postService, ITagService tagService)
         {
             _postService = postService;
+            _tagService = tagService;
         }
 
         [Route("GetAllNews")]
@@ -33,6 +35,14 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         public JsonResult UpdateNews()
         {            
             return Json(new { data = "ok" });
+        }
+        
+        [Route("GetAllTags")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllTags()
+        {
+            var result = await _tagService.GetAllTagsAsync();
+            return Json(new { data = result });
         }
     }
 }
