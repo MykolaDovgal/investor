@@ -35,7 +35,12 @@ namespace Investor.Service
 
         public async Task<SignInResult> PasswordSignInUserAsync(string email, string password, bool rememberMe, bool isLongTime)
         {
-            return await _signInManager.PasswordSignInAsync(email, password, rememberMe, isLongTime);
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                return await _signInManager.PasswordSignInAsync(user, password, rememberMe, isLongTime);
+            }
+            return SignInResult.Failed;
         }
 
         public async Task SignOutUserAsync()

@@ -1,34 +1,121 @@
 ﻿@model Investor.Model.Views.RegisterViewModel
-<h2>Реєстрація користувача</h2>
-<form method="post" asp-controller="Account" asp-action="Register">
-    <div asp-validation-summary="ModelOnly"></div>
-    <div>
-        <label asp-for="Email"></label><br />
-        <input asp-for="Email" />
-        <span asp-validation-for="Email"></span>
-    </div>
 
-    <div>
-        <label asp-for="UserName"></label><br />
-        <input asp-for="UserName" />
-        <span asp-validation-for="UserName"></span>
+<section class="page-registration pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 pl-0 p-0 pr-lg-2">
+                <form method="post" asp-controller="Account" asp-action="Register">
+                    
+                    <div class="block-border-top default-border-color body-register body-registration-data">
+                        <h1 class="title-block">Дані</h1>
+
+                        <div class="row inline-form">
+                            <div class="col-sm-6 form-group">
+                                <label asp-for="UserName">Ваш nickname</label>
+                                <input asp-for="UserName" id="input-value1" type="text" class="form-control focus-input focus-color-default input-value" data-validation="length" data-validation-length="min4" data-validation="custom" data-validation-regexp="^([a-z]+)$"/>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label asp-for="Email">Електронна адреса</label>
+                                <input asp-for="Email" type="text" class="form-control focus-input focus-color-default" data-validation="email"/>
+                            </div>
+                        </div>
+
+                        <div class="row inline-form">
+                            <div class="col-sm-6 form-group">
+                                <label asp-for="Name">Ваше ім’я</label>
+                                <input asp-for="Name" id="input-value2" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"/>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label asp-for="Surname">Ваше прізвище</label>
+                                <input asp-for="Surname" id="input-value3" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
+                            </div>
+                        </div>
+
+                        <div class="row inline-form">
+                            <div class="col-sm-6 form-group">
+                                <label asp-for="Password">Придумайте пароль</label>
+                                <input asp-for="Password" type="password" class="form-control focus-input focus-color-default"  data-validation="length custom strength" data-validation-length="min8" data-validation-regexp="^([a-z, A-Z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]+)$"/>
+                                <label class="reliability">Надійність</label>
+                            </div>
+                            <div class="col form-group">
+                                <label asp-for="PasswordConfirm">Повторіть ваш пароль</label>
+                                <input asp-for="PasswordConfirm" type="password" class="form-control focus-input focus-color-default" data-validation="confirmation"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="block-border-top turquoise-border-top body-register body-registration-biography mb-3">
+                        <h2 class="title-block">Біографія</h2>
+
+                        <div class="form-group inline-form">
+                            
+                            <label asp-for="Description">Розкажіть про себе</label>
+                            <textarea asp-for="Description" id="input-value4"  class="form-control focus-input focus-color-turquoise input-value"  rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"></textarea>
+                        </div>
+                        
+                        <div class="form-group inline-form">
+                            <label>Завантажте фотографію</label>
+                            <div class="input-group input-file">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-turquoise btn-file">
+                                        Вибрати файл <input asp-for="Photo" type="file" id="imgInp" name="Photo">
+                                    </span>
+                                </span>
+                                <input type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="social-form">
+                            <p>Вкажіть посилання на ваші профілі</p>
+                            <div class="input-group input-social">
+                                <span class="input-group-addon"><i class="fa fa-facebook fa-1_3x color-fb" aria-hidden="true"></i></span>
+                                <input asp-for="@Model.Socials[0]" id="input-value5" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                            </div>
+                            <div class="input-group input-social">
+                                <span class="input-group-addon"><i class="fa fa-twitter fa-1_3x color-tw" aria-hidden="true"></i></span>
+                                <input asp-for="@Model.Socials[1]" id="input-value6" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                            </div>
+                            <div class="input-group input-social">
+                                <span class="input-group-addon"><i class="fa fa-google-plus fa-1_3x color-g" aria-hidden="true"></i></span>
+                                <input asp-for="@Model.Socials[2]" id="input-value7" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-standart"><span class="circle circle-default-color"><i class="icons icon-plus"></i></span>Зареєструватись</button>
+
+                </form>
+            </div>
+
+            <div class="col-lg-4 pl-lg-2  p-0 pr-0">
+                
+                <div class="block-border-top default-border-color body-preview">
+                    <div id='img-upload' class="img-fluid preview-img rounded-circle mx-auto" style="background-image: url(img/user-no-image.png)"/>
+                </div>
+
+                <h4 class="preview-name text-center"> <span class="input-value2">Ім'я</span> <span class="input-value3">Прізвище</span></h4>
+
+                <p class="input-value4 text-center preview-description">Ваша біографія</p>
+
+                <div class="link-social">
+
+                    <div class="item-link-social link-fb">
+                        <i class="fa fa-facebook fa-1_3x text-center d-none" aria-hidden="true"></i>
+                        <p class="input-value5 text-center"></p>
+                    </div>
+
+                    <div class="item-link-social link-tw">
+                        <i class="fa fa-twitter fa-1_3x text-center d-none" aria-hidden="true"></i>
+                        <p class="input-value6 text-center"></p>
+                    </div>
+
+                    <div class="item-link-social link-g">
+                        <i class="fa fa-google-plus fa-1_3x text-center d-none" aria-hidden="true"></i>
+                        <p class="input-value7 text-center"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div>
-        <label asp-for="Name"></label><br />
-        <input asp-for="Name" />
-        <span asp-validation-for="Name"></span>
-    </div>
-    <div>
-        <label asp-for="PasswordConfirm"></label><br />
-        <input asp-for="PasswordConfirm" />
-        <span asp-validation-for="PasswordConfirm"></span>
-    </div>
-    <div>
-        <label asp-for="Password"></label><br />
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-    </div>
-    <div>
-        <input type="submit" value="Реєстрація" />
-    </div>
-</form>
+</section>
