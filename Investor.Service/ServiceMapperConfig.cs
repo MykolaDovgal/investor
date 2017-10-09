@@ -9,13 +9,17 @@ using Investor.Model.Views;
 
 namespace Investor.Service
 {
-    public class ServiceMapperConfig 
+    public class ServiceMapperConfig
     {
         public static void Config()
         {
-            Mapper.Initialize(cfg => {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<User, UserEntity>()
+                    .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)));
+                cfg.CreateMap<UserEntity, User>()
+                    .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';',StringSplitOptions.RemoveEmptyEntries)));
                 cfg.CreateMap<Article, ArticleEntity>().ReverseMap();
-                cfg.CreateMap<User, UserEntity>().ReverseMap();
                 cfg.CreateMap<RegisterViewModel, User>().ReverseMap();
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();
                 cfg.CreateMap<Comment, CommentEntity>().ReverseMap();
@@ -24,11 +28,10 @@ namespace Investor.Service
                 cfg.CreateMap<PostEntity, PostPreview>().ReverseMap();
                 cfg.CreateMap<PostEntity, TablePostPreview>().ReverseMap();
                 cfg.CreateMap<PostEntity, Post>()
-                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));
-                cfg.CreateMap<User, UserEntity>().ReverseMap();
+                    .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));
                 cfg.CreateMap<IList<PostEntity>, IList<Post>>().ReverseMap();
             });
-                 
+
         }
     }
 }
