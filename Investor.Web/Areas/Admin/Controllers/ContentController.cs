@@ -14,12 +14,14 @@ namespace Investor.Web.Areas.Admin.Controllers
         private readonly IPostService _postService;
         private readonly ISliderItemService _sliderItemService;
         private readonly ICategoryService _categoryService;
+        private readonly ITagService _tagService;
 
-        public ContentController(IPostService postService, ISliderItemService sliderItemService, ICategoryService categoryService)
+        public ContentController(IPostService postService, ISliderItemService sliderItemService, ICategoryService categoryService, ITagService tagService)
         {
             _postService = postService;
             _sliderItemService = sliderItemService;
             _categoryService = categoryService;
+            _tagService = tagService;
         }
 
         public IActionResult SinglePost(int id)
@@ -30,6 +32,7 @@ namespace Investor.Web.Areas.Admin.Controllers
             SliderItem sliderItem = sliderItems.FirstOrDefault(s => s.Post.PostId == id);
             ViewBag.IsOnSlider = sliderItem != null ? sliderItem.IsOnSlider : false;
             ViewBag.IsOnSide = sliderItem != null ? sliderItem.IsOnSide : false;
+            ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
             return PartialView("SinglePost",post);
         }
         public IActionResult Blogs()

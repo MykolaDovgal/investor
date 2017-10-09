@@ -27,6 +27,8 @@ namespace Investor.Repository.Interfaces
         Task<PostEntity> AddPostAsync(PostEntity map);
         Task<PostEntity> UpdatePostAsync(PostEntity post);
         Task RemovePostAsync(int id);
+        Task AddTagToPostAsync(int postId, string tagName);
+        Task<List<TagEntity>> GetAllTagsByPostIdAsync(int id);
     }
 
 

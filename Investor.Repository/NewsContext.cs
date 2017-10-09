@@ -15,7 +15,7 @@ namespace Investor.Repository
         public DbSet<PostEntity> Posts { get; set; }
         public DbSet<SliderItemEntity> SliderItems { get; set; }
         public DbSet<TagEntity> Tags { get; set; }
-        public DbSet<PostTagEntity> PostTags { get; set; }
+        //public DbSet<PostTagEntity> PostTags { get; set; }
 
 
         public NewsContext(DbContextOptions<NewsContext> options) 
@@ -24,12 +24,19 @@ namespace Investor.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<PostTagEntity>()
+             .HasKey(t => new { t.PostId, t.TagId });
 
             modelBuilder.Entity<PostTagEntity>()
-            .HasKey(t => new { t.PostId, t.TagId });
-            base.OnModelCreating(modelBuilder);
+                .HasOne(pt => pt.Post)
+                .WithMany(pt=>pt.PostTags)
+                .HasForeignKey(pt=>pt.PostId);
 
-            modelBuilder.Entity<PostTagEntity>().HasIndex(x => new { x.PostId, x.TagId }).IsUnique(true);
+            modelBuilder.Entity<PostTagEntity>()
+               .HasOne(pt => pt.Tag)
+               .WithMany(pt => pt.PostTags)
+               .HasForeignKey(pt => pt.TagId);
+            base.OnModelCreating(modelBuilder);
         }
 
         public async void EnsureSeedData(UserManager<UserEntity> userMgr, RoleManager<IdentityRole> roleMgr)

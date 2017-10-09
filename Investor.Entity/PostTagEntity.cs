@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Investor.Entity
 {
+    [Table("PostTags")]
     public class PostTagEntity
     {
-        [Key]
-        public int PostTagId { get; set; }
-
         public int TagId { get; set; }
 
         public int PostId { get; set; }

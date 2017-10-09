@@ -600,51 +600,51 @@ namespace Investor.Web
                     );
                 context.SaveChanges();
             }
-                if (!context.SliderItems.Any())
-                {
-                    context.SliderItems.AddRange(
-                        new SliderItemEntity()
-                        {
-                            Post = context.Posts.ToList()[0],
-                            IsOnSlider = true
-                        },
-                        new SliderItemEntity()
-                        {
-                            Post = context.Posts.ToList()[22],
-                            IsOnSlider = true
-                        },
-                        new SliderItemEntity()
-                        {
-                            Post = context.Posts.ToList()[23],
-                            IsOnSlider = true
-                        },
-                        new SliderItemEntity()
-                        {
-                            Post = context.Posts.ToList()[24],
-                            IsOnSlider = true
-                        },
-                        new SliderItemEntity()
-                        {
-                            Post = context.Posts.ToList()[25],
-                            IsOnSlider = true
-                        },
-                        new SliderItemEntity()
-                        {
-                            Post = context.Posts.ToList()[26],
-                            IsOnSide = true
-                        },
-                        new SliderItemEntity()
-                        {
-                            Post = context.Posts.ToList()[27],
-                            IsOnSide = true
-                        },
-                        new SliderItemEntity()
-                        {
-                            Post = context.Posts.ToList()[28],
-                            IsOnSide = false
-                        }
+            if (!context.SliderItems.Any())
+            {
+                context.SliderItems.AddRange(
+                    new SliderItemEntity()
+                    {
+                        Post = context.Posts.ToList()[0],
+                        IsOnSlider = true
+                    },
+                    new SliderItemEntity()
+                    {
+                        Post = context.Posts.ToList()[22],
+                        IsOnSlider = true
+                    },
+                    new SliderItemEntity()
+                    {
+                        Post = context.Posts.ToList()[23],
+                        IsOnSlider = true
+                    },
+                    new SliderItemEntity()
+                    {
+                        Post = context.Posts.ToList()[24],
+                        IsOnSlider = true
+                    },
+                    new SliderItemEntity()
+                    {
+                        Post = context.Posts.ToList()[25],
+                        IsOnSlider = true
+                    },
+                    new SliderItemEntity()
+                    {
+                        Post = context.Posts.ToList()[26],
+                        IsOnSide = true
+                    },
+                    new SliderItemEntity()
+                    {
+                        Post = context.Posts.ToList()[27],
+                        IsOnSide = true
+                    },
+                    new SliderItemEntity()
+                    {
+                        Post = context.Posts.ToList()[28],
+                        IsOnSide = false
+                    }
 
-                        );
+                    );
                 context.SaveChanges();
             }
             if (!context.Tags.Any())
@@ -653,7 +653,7 @@ namespace Investor.Web
                     new TagEntity()
                     {
                         Name = "Ураган Ірма",
-                        Url = "uragan_irrma" 
+                        Url = "uragan_irrma"
                     },
                     new TagEntity()
                     {
@@ -678,48 +678,52 @@ namespace Investor.Web
                     );
                 context.SaveChanges();
             }
-                context.AddRange(
-                    new PostTagEntity
+            if (context.Posts.ToList()[0].PostTags.Count == 0)
+            {
+                PostEntity post = context.Posts.ToList()[0];
+                post.PostTags.AddRange(
+               new List<PostTagEntity>
+               {
+                    new PostTagEntity()
                     {
-                        PostTagId = 1,
-                        Post = context.Posts.ToList()[0],
-                        Tag = context.Tags.ToList()[0],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        TagId = context.Tags.ToList()[0].TagId
                     },
-                    new PostTagEntity
+                    new PostTagEntity()
                     {
-                        PostTagId = 2,
-                        Post = context.Posts.ToList()[0],
-                        Tag = context.Tags.ToList()[1],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        TagId = context.Tags.ToList()[1].TagId
                     },
-                    new PostTagEntity
+                    new PostTagEntity()
                     {
-                        PostTagId = 3,
-                        Post = context.Posts.ToList()[0],
-                        Tag = context.Tags.ToList()[2],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        TagId = context.Tags.ToList()[2].TagId
                     },
-                    new PostTagEntity
-                    {   
-                        PostTagId = 4,
-                        Post = context.Posts.ToList()[0],
-                        Tag = context.Tags.ToList()[3],
-                    },
-                    new PostTagEntity
+                    new PostTagEntity()
                     {
-                        PostTagId = 5,
-                        Post = context.Posts.ToList()[0],
-                        Tag = context.Tags.ToList()[4],
+                        PostId = context.Posts.ToList()[0].PostId,
+                        TagId = context.Tags.ToList()[3].TagId
                     }
-                    );
-                context.SaveChanges();
-            
+               }
+               
+               );
+                context.Posts.Update(post);
 
-            //if (!context.Posts.ToList()[0].PostTags.Any())
-            //{
-            //    context.Posts.ToList()[0].PostTags.AddRange(
-            //        (IEnumerable<PostTagEntity>)(context.Tags)
-            //        );
-            //    context.SaveChanges();
-            //}
+                context.SaveChanges();
+            }
+           
+           
         }
+
+
+
+        //if (!context.Posts.ToList()[0].PostTags.Any())
+        //{
+        //    context.Posts.ToList()[0].PostTags.AddRange(
+        //        (IEnumerable<PostTagEntity>)(context.Tags)
+        //        );
+        //    context.SaveChanges();
+        //}
     }
 }
+
