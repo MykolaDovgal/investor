@@ -1,0 +1,23 @@
+﻿@using Investor.Model
+@model PostPreview
+@inject Investor.Service.TimeService PostPublicationDate
+
+
+<div class="item-search-result p-3 p-md-0">
+    <div class="row">
+        
+        <div class="col-md-4 img-result">
+            <img src="~/img/@Model.Image" class="img-fluid"/>
+        </div>
+
+        <div class="col-md-8">
+            <a href="/post/@Model.PostId" class="title-news title-search">@Model.Title</a>
+            <p class="text-news text-search">@Model.Description</p>
+            <div class="footer-result">
+                <span class="@Model.Category.Url-today-color">@Model.Category.Name</span>
+                <span class="today-item-news default-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿@using Investor.Model
+@model IEnumerable<PostPreview>
+
+<div class="wrapper-search-result">
+    @foreach (PostPreview post in Model)
+    {
+        @Html.Partial("_SearchPostPreviewTemplate", post)
+    }
+</div>
