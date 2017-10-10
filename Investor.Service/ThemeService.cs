@@ -16,21 +16,21 @@ namespace Investor.Service
         {
             postPreviewCount = new Dictionary<string, int>
             {
-                { "politics", 8 },
+                { "policy", 8 },
                 { "culture", 8 },
                 { "economy", 4 },
                 { "it", 4 }
             };
             largePostPreviewCount = new Dictionary<string, int>
             {
-                { "politics", 2 },
+                { "policy", 2 },
                 { "culture", 2 },
                 { "economy", 1 },
                 { "it", 1 }
             };
             categoryMoreButtonTheme = new Dictionary<string, string>
             {
-                { "politics", "circle-politics-color" },
+                { "policy", "circle-policy-color" },
                 { "culture", "circle-culture-color" },
                 { "economy", "circle-economy-color" },
                 { "it", "circle-it-color" }
@@ -38,7 +38,7 @@ namespace Investor.Service
 
             categoryBorderTheme = new Dictionary<string, string>
             {
-                { "politics", "politics-today-color" },
+                { "policy", "policy-today-color" },
                 { "culture", "culture-border-color" },
                 { "economy", "economy-border-color" },
                 { "it", "it-border-color" }
@@ -46,7 +46,7 @@ namespace Investor.Service
 
             categoryPublishedTimeTheme = new Dictionary<string, string>
             {
-                { "politics", "politics-today-color" },
+                { "policy", "policy-today-color" },
                 { "culture", "culture-today-color" },
                 { "economy", "economy-today-color" },
                 { "it", "it-today-color" }

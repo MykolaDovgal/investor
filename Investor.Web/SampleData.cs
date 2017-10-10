@@ -42,7 +42,7 @@ namespace Investor.Web
             {
                 Entity.CategoryEntity[] categories =
                 {
-                    new Entity.CategoryEntity {Name = "Політика", Url = "politics"},
+                    new Entity.CategoryEntity {Name = "Політика", Url = "policy"},
                     //new Entity.CategoryEntity {Name = "Соціум", Url = "social"},
                     new Entity.CategoryEntity {Name = "Культура", Url = "culture"},
                     new Entity.CategoryEntity {Name = "Економіка", Url = "economy"},
