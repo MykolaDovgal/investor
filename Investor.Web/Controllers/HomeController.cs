@@ -9,6 +9,7 @@ using Investor.Repository;
 using Investor.Repository.Interfaces;
 using Investor.Model.Views;
 using Investor.Service;
+using UnidecodeSharpFork;
 
 namespace Investor.Web.Controllers
 {

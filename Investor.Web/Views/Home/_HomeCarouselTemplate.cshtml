@@ -16,10 +16,12 @@
                     @for (int i = 1; i < Model.SliderItems.Count; i++)
                     {
                         <div class="carousel-item">
-                            <img class="d-block img-fluid" src="~/img/@Model.SliderItems[i].Post.Image" alt="Second slide">
-                            <div class="carousel-caption d-none d-sm-block">
-                                <a href="/post/@Model.SliderItems[i].Post.PostId" class="text-left color-white">@Model.SliderItems[i].Post.Title</a>
-                                <p class="text-left">@Model.SliderItems[i].Post.Description</p>
+                            <div class="img-eclipse">
+                                <img class="d-block img-fluid" src="~/img/@Model.SliderItems[i].Post.Image" alt="Second slide">
+                                <div class="carousel-caption d-none d-sm-block">
+                                    <a href="/post/@Model.SliderItems[i].Post.PostId" class="text-left color-white">@Model.SliderItems[i].Post.Title</a>
+                                    <p class="text-left">@Model.SliderItems[i].Post.Description</p>
+                                </div>
                             </div>
                         </div>
                     }

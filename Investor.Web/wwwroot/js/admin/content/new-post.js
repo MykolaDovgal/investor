@@ -29,13 +29,14 @@
 			url: "/api/Content/GetAllTags",
 			type: "GET",
 			success: function (data) {
-				data.data.map(item => {
-					tags.push(item.name);
-				});
+				for (let i = 0; i < data.data.length; i++)
+					data.data.map(item => {
+						tags.push(item.name);
+					});
+
 			}
 		});
 	});
-
 	var substringMatcher = function (strs) {
 		return function findMatches(q, cb) {
 			var matches, substringRegex;
@@ -56,13 +57,14 @@
 			cb(matches);
 		};
 	};
-
 	$("#tagTypeahead").tagsinput({
 		typeaheadjs: {
 			name: 'tags',
 			source: substringMatcher(tags)
 		}
 	});
+
+	$
 
 	
 }
