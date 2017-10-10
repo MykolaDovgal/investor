@@ -21,14 +21,13 @@ namespace Investor.Repository.Interfaces
         Task<IEnumerable<PostEntity>> GetLatestPostsByCategoryUrlAsync(string categoryUrl,bool onMainPage,int limit);
         Task<IEnumerable<PostEntity>> GetPagedLatestPostsByCategoryUrlAsync(string categoryUrl, int limit, int page);
         Task<IEnumerable<PostEntity>> GetAllPostsByTagNameAsync(string tagName);
-        Task<IEnumerable<PostEntity>> GetAllPostsPagesAsync(int count, int page = 1);
-        Task<IEnumerable<PostEntity>> GetQueryPagesAsync(string query, int count, int page = 1);
         Task<IEnumerable<PostEntity>> GetPostsBasedOnIdCollectionAsync(List<int> postIds);
         Task<PostEntity> AddPostAsync(PostEntity map);
         Task<PostEntity> UpdatePostAsync(PostEntity post);
         Task RemovePostAsync(int id);
         Task AddTagToPostAsync(int postId, string tagName);
         Task<List<TagEntity>> GetAllTagsByPostIdAsync(int id);
+        Task<IEnumerable<PostEntity>> GetQueriedPost(PostSearchQuery query);
     }
 
 

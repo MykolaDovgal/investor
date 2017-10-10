@@ -35,5 +35,52 @@
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\lib\air-datepicker\dist\js\datepicker.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\datepicker.min.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.cs.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.da.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.de.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.en.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.es.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.fi.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.fr.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.hu.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.nl.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.pl.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.pt-BR.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.pt.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.ro.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.sk.js" />
+    <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.zh.js" />
+    <None Include="wwwroot\lib\air-datepicker\LICENSE.md" />
+    <None Include="wwwroot\lib\air-datepicker\README.md" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\air-datepicker.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\body.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\datepicker.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.cs.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.da.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.de.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.en.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.es.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.fi.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.fr.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.hu.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.nl.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.pl.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.pt-BR.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.pt.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.ro.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.sk.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\i18n\datepicker.zh.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\navigation.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\js\timepicker.js" />
+    <None Include="wwwroot\lib\air-datepicker\src\sass\cell.scss" />
+    <None Include="wwwroot\lib\air-datepicker\src\sass\datepicker.scss" />
+    <None Include="wwwroot\lib\air-datepicker\src\sass\navigation.scss" />
+    <None Include="wwwroot\lib\air-datepicker\src\sass\timepicker.scss" />
+    <None Include="wwwroot\lib\air-datepicker\src\sass\_datepicker-config.scss" />
+    <None Include="wwwroot\lib\air-datepicker\static-server.js" />
+  </ItemGroup>
 
 </Project>

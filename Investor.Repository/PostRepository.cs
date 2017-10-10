@@ -163,7 +163,7 @@ namespace Investor.Repository
         public async Task<PostEntity> UpdatePostAsync(PostEntity post)
         {
             _newsContext.Entry(post).State = EntityState.Modified;
-   
+
             await _newsContext.SaveChangesAsync();
             return post;
         }
@@ -217,6 +217,20 @@ namespace Investor.Repository
             var post = await _newsContext.Posts.Include(p => p.PostTags).ThenInclude(p => p.Tag).FirstOrDefaultAsync(p => p.PostId == id);
             return post.PostTags.Select(p => p.Tag).ToList();
 
+        }
+
+        public async Task<IEnumerable<PostEntity>> GetQueriedPost(PostSearchQuery query)
+        {
+            IQueryable<PostEntity> posts = _newsContext.Posts
+                .Include(post => post.Category)
+                .Where(post => (string.IsNullOrEmpty(query.CategoryUrl) || post.Category.Url == query.CategoryUrl) &&
+                               (string.IsNullOrEmpty(query.Query) || post.Description.ToLower().Contains(query.Query.ToLower()) ||
+                                post.Title.ToLower().Contains(query.Query.ToLower())) &&
+                               (post.IsPublished ?? true))//TODO change true to false
+                .OrderByDescending(x => x.PublishedOn)
+                .Skip((query.Page - 1) * query.Count)
+                .Take(query.Count);
+            return await posts.ToListAsync();
         }
     }
 }

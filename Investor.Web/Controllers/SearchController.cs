@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,8 +15,8 @@ namespace Investor.Web.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.SearchResult = _postService.GetLatestPostsAsync(5).Result.ToList();
-            return View();
+            var searchResult = _postService.GetLatestPostsAsync(5).Result.ToList();
+            return View("Index", searchResult);
         }
     }
 }
