@@ -1,38 +1,66 @@
-﻿let searchMoreResultPage = 1;
-const searchMoreResultCount = 10;
+﻿let searchMoreResultPage = 2;
+const searchMoreResultCount = 5;
 let searchCategoryUrlQuery = "";
-let searchDateQuery;
+let searchDateQuery = "";
+let searchTextQuery = "";
 
 
 $(document).ready(function () {
     $('.my-datepicker').datepicker({
         language: 'ua',
-        onSelect: function(formattedDate, date, inst) {
-            searchDateQuery = +date;
+        onSelect: function (formattedDate, date, inst) {
+            console.log(date);
+            searchDateQuery = date && date !== "null" ? date.toUTCString() : "";
+            console.log(searchDateQuery);
         }
     });
 
+    $("#postTextQuery").blur(function() {
+        searchTextQuery = $(this).val();
+    });
+
     $("#searchBtn").click(function (e) {
-        console.log("click");
-        let t = $("#postTextQuery");
-        let k = t.val();
+        searchMoreResultPage = 1;
         getSearchResult(
             searchCategoryUrlQuery,
-            k,
+            searchTextQuery,
             searchDateQuery,
             searchMoreResultPage,
             searchMoreResultCount);
 
     });
 
-    $(".dropdown-item").click(function(e) {
-        $("#dropdownMenu2").val($(this).data("categoryUrl"));
+    $(".dropdown-item").click(function (e) {
+        $("#dropdownMenu2").text($(this).text());
         searchCategoryUrlQuery = $(this).data("categoryUrl");
     });
+
+    $("#moreSearchResult").click(function (e) {
+        e.preventDefault();
+        getMoreSearchResult.apply(this, [searchCategoryUrlQuery,
+            searchTextQuery,
+            searchDateQuery,
+            searchMoreResultPage,
+            searchMoreResultCount]);
+    });
+
 });
 
 
-let getSearchResult = function (categoryUrl,queryText,date,page,count) {
+let getMoreSearchResult = function (categoryUrl, queryText, date, page, count) {
+
+    const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}`;
+    $.ajax({
+        url: `/api/search/posts${params}`,
+        type: "GET",
+        success: function (data) {
+            $("#searchResultContainer").append(data);
+            searchMoreResultPage += 1;
+        }
+    });
+};
+
+let getSearchResult = function (categoryUrl, queryText, date, page, count) {
 
     const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}`;
     $.ajax({
@@ -41,7 +69,7 @@ let getSearchResult = function (categoryUrl,queryText,date,page,count) {
         success: function (data) {
             $("#searchResultContainer").empty();
             $("#searchResultContainer").append(data);
-            //searchMoreResultPage += 1;
+            $(".title-page-search").text(`Результати пошуку за запитом "${queryText}"`);
         }
     });
 };

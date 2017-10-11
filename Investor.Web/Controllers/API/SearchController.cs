@@ -18,9 +18,22 @@ namespace Investor.Web.Controllers.API
 
         [Route("posts")]
         [HttpGet]
-        public async Task<IActionResult> SearchPosts(string categoryUrl, string query, DateTime date, int page, int count)
+        public async Task<IActionResult> SearchPosts(int page, int count, string categoryUrl = null, string query = null, string date = null)
         {
-            var postQuery = new PostSearchQuery { CategoryUrl = categoryUrl, Count = count, Date = date, Page = page, Query = query };
+            DateTime? dt = null;
+            if (!String.IsNullOrEmpty(date))
+            {
+                dt = DateTime.Parse(date);
+            }
+            var postQuery = new PostSearchQuery
+            {
+                CategoryUrl = categoryUrl,
+                Count = count,
+                Date = dt,
+                Page = page,
+                Query = query
+            };
+
             var posts = await _searchService.SearchPosts(postQuery);
             return PartialView("~/Views/Search/_SearchResultTemplate.cshtml", posts);
         }

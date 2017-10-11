@@ -12,7 +12,7 @@ namespace Investor.Repository
 {
     public class PostRepository : IPostRepository
     {
-        readonly private NewsContext _newsContext;
+        private readonly NewsContext _newsContext;
         public PostRepository(NewsContext context)
         {
             _newsContext = context;
@@ -221,11 +221,21 @@ namespace Investor.Repository
 
         public async Task<IEnumerable<PostEntity>> GetQueriedPost(PostSearchQuery query)
         {
+            DateTime? dtStart = null;
+            DateTime? dtEnd = null;
+
+            if (query.Date.HasValue)
+            {
+                dtStart = new DateTime(query.Date.Value.Year, query.Date.Value.Month, query.Date.Value.Day);
+                dtEnd = new DateTime(query.Date.Value.Year, query.Date.Value.Month, query.Date.Value.Day + 1);
+            }
+
             IQueryable<PostEntity> posts = _newsContext.Posts
                 .Include(post => post.Category)
                 .Where(post => (string.IsNullOrEmpty(query.CategoryUrl) || post.Category.Url == query.CategoryUrl) &&
                                (string.IsNullOrEmpty(query.Query) || post.Description.ToLower().Contains(query.Query.ToLower()) ||
                                 post.Title.ToLower().Contains(query.Query.ToLower())) &&
+                               (!query.Date.HasValue || post.PublishedOn.HasValue && (post.PublishedOn.Value > dtStart && post.PublishedOn.Value < dtEnd)) &&
                                (post.IsPublished ?? true))//TODO change true to false
                 .OrderByDescending(x => x.PublishedOn)
                 .Skip((query.Page - 1) * query.Count)

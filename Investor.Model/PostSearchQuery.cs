@@ -23,5 +23,6 @@ namespace Investor.Model
             Page = 1;
             Count = 10;
         }
+
     }
 }
