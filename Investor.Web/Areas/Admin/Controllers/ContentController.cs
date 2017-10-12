@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Investor.Service.Interfaces;
 using Investor.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Investor.Web.Areas.Admin.Controllers
 {
@@ -35,6 +37,24 @@ namespace Investor.Web.Areas.Admin.Controllers
             ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
             return PartialView("SinglePost",post);
         }
+
+        [HttpPost]
+        public void UpdatePost( Post post, [FromForm] string Article)
+        {
+            if(post != null)
+            {
+                if (Request.Form.Files[0].FileName != "")
+                    post.Image = Request.Form.Files[0].FileName;
+
+                if(post.PostId != 0)
+                {
+                    post.Article.Content = Article;
+
+                }
+
+            }
+        }
+
         public IActionResult Blogs()
         {
             return PartialView("_Blogs");

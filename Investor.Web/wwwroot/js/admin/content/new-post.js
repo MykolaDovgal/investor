@@ -36,6 +36,38 @@
 
 			}
 		});
+
+		$("#updateFormSubmit").on('click', function (e) {
+			var isvalidate = $("#updateForm")[0].checkValidity();
+			if (isvalidate) {
+				let formData = new FormData(document.getElementById('updateForm'));
+				formData.append("Image", $("input[name='Image']").get(0).files);
+				formData.append("Article", $("textarea[name='Article']").text);
+				console.log(formData.values);
+				e.preventDefault();
+				$.ajax({
+					type: "POST",
+					url: "Admin/Content/UpdatePost",
+					data: formData,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success: function (data) {
+						console.log('lol', data);
+					},
+					error: function (data) {
+						console.log(data);
+					}
+				});
+			}
+			else $("#createForm").submit();
+		});
+		$(document).on('submit', '#updateForm', function (e) {
+			//prevent the form from doing a submit
+			e.preventDefault();
+			return false;
+		})
+
 	});
 	var substringMatcher = function (strs) {
 		return function findMatches(q, cb) {
@@ -64,9 +96,6 @@
 		}
 	});
 
-	$
-
-	
 }
 
 

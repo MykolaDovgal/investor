@@ -26,5 +26,7 @@ namespace Investor.Web.Controllers
             ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
             return View("Index");
         }
+
+        
     }
 }
