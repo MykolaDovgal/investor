@@ -21,9 +21,6 @@ namespace Investor.Service.Interfaces
         Task<IEnumerable<PostPreview>> GetAllPostsByTagNameAsync(string tagName);
         Task AddTagToPostAsync(int postId, string tagName);
         Task<IEnumerable<Tag>> GetAllTagsByPostId(int id);
-
-        //Task<IEnumerable<Post>> GetQueryPagesAsync(string query, int count, int page = 1);
-        //Task<IEnumerable<Post>> GetPostsBasedOnIdCollectionAsync(List<int> postIds);
         Task<Post> AddPostAsync(Post map);
         Task UpdatePostAsync(Post post);
         Task RemovePostAsync(int id);

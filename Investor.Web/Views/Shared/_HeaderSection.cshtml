@@ -54,11 +54,11 @@
                             <a class="nav-link" href="/category/it">IT технології</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/category/politics">Блоги</a>
+                            <a class="nav-link" href="/category/policy">Блоги</a>
                         </li>
                     </ul>
-                    <form class="form-inline form-search">
-                        <input class="form-control" type="text" placeholder="Пошук" aria-label="Search">
+                    <form class="form-inline form-search" action="/search/posts" method="get">
+                        <input name="query" class="form-control" type="text" placeholder="Пошук" aria-label="Search">
                         <button class="btn btn-search" type="submit"><i class="icons icon-search"></i></button>
                     </form>
                 </div>

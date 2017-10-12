@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Investor.Model;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,17 +7,19 @@ namespace Investor.Web.Controllers
 {
     public class SearchController : Controller
     {
-        private readonly IPostService _postService;
+        private readonly ISearchService _searchService;
 
-        public SearchController(IPostService postService)
+        public SearchController(ISearchService searchService)
         {
-            _postService = postService;
+            _searchService = searchService;
         }
-
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Posts(string query)
         {
-            ViewBag.SearchResult = _postService.GetLatestPostsAsync(5).Result.ToList();
-            return View();
+            ViewBag.TextQuery = query;
+            var postQuery = new PostSearchQuery { Query = query };
+            var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
+            return View("Index", searchResult);
         }
     }
 }
