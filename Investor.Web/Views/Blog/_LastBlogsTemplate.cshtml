@@ -1,0 +1,7 @@
+﻿@using Investor.Model
+@model IEnumerable<BlogPreview>
+
+@foreach (var blog in Model)
+{
+    @Html.Partial("_BlogPreviewTemplate", blog)
+}

@@ -11281,7 +11281,9 @@ footer .logo {
   color: #000; }
 
 body {
-  background: #f9f9f9; }
+  background: #f9f9f9;
+  height: 100%;
+  position: relative; }
 
 .carousel-main {
   z-index: 99999; }
@@ -11401,7 +11403,7 @@ body {
   position: absolute;
   bottom: 0;
   z-index: 99999;
-  padding: 0 0 15px 35px; }
+  padding: 0 15px 15px 35px; }
 
 .title-popular-news {
   display: block;
@@ -11459,8 +11461,8 @@ body {
   margin: 0 0 25px; }
   .item-news:nth-child(1) .title-news, .item-news:nth-child(2) .title-news {
     font-size: 18px;
-    max-height: 2em;
-    /*max-height: 3.3em;*/ }
+    max-height: 2.4em;
+    line-height: 22px; }
 
 .section-main {
   margin-bottom: 165px; }
@@ -11476,6 +11478,12 @@ body {
 
 .culture-news .title-news:hover {
   color: #00a9c2;
+  -webkit-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s; }
+
+.socium-news .title-news:hover {
+  color: #ff5400;
   -webkit-transition: all 0.25s;
   -o-transition: all 0.25s;
   transition: all 0.25s; }
@@ -11587,11 +11595,10 @@ body {
 
 /***/
 .inline-item-news .title-news {
-  max-height: 3.3em;
   margin: 0; }
 
 .inline-item-news .title-news {
-  font-size: 16px; }
+  font-size: 16px !important; }
 
 /***style last-news***/
 .item-last-news {
@@ -12188,7 +12195,7 @@ input.my-datepicker {
   display: block;
   height: auto; }
 
-.footer-result .policy-today-color {
+.footer-result .search-category {
   margin-right: 25px; }
 
 .item-search-result .title-search:hover {
@@ -12223,10 +12230,12 @@ input.my-datepicker {
   .item-blog-news:not(:last-child) {
     margin: 0 0 20px; }
   .item-blog-news .img-news {
-    width: 16%; }
+    width: 16%;
+    float: left; }
   .item-blog-news .body-all-news {
     width: 84%;
-    padding-top: 0; }
+    float: left;
+    padding: 0 0 0 15px; }
   .item-blog-news .title-news {
     font-size: 16px !important;
     margin-bottom: 2px; }
@@ -12348,7 +12357,15 @@ input.my-datepicker {
   .wrapper-btn-all-news, .wrapper-subscribe-news {
     margin: 0 auto; }
   .wrapper-btn-all-news {
-    margin-bottom: 15px !important; } }
+    margin-bottom: 15px !important; }
+  .section-carousel .item-popular-news {
+    max-height: 176px; }
+    .section-carousel .item-popular-news:first-child {
+      margin-bottom: 1.4%; }
+  .item-all-news .img-news {
+    width: 36%; }
+  .item-all-news .body-all-news {
+    width: 64%; } }
 
 @media (max-width: 991px) {
   .category-news:last-child {
@@ -12358,9 +12375,28 @@ input.my-datepicker {
   .navbar-nav .nav-item .nav-link {
     padding: 5px 10px; }
     .navbar-nav .nav-item .nav-link:after {
-      bottom: -30px; }
+      bottom: 0px; }
   .navbar .collapse {
-    margin-top: 0; } }
+    margin-top: 0; }
+  .carousel-main {
+    width: 100%;
+    margin: 0 0 1% 0; }
+  .item-all-news .img-news {
+    width: 31%; }
+  .item-all-news .body-all-news {
+    width: 69%; }
+  .wrapper-popular {
+    width: 100%; }
+    .wrapper-popular .item-popular-news {
+      width: 49%;
+      max-height: 200px;
+      float: left; }
+      .wrapper-popular .item-popular-news:first-child {
+        margin-right: 1%; }
+      .wrapper-popular .item-popular-news:last-child {
+        margin-left: 1%; }
+  .wrapper-exchange-rate {
+    display: none; } }
 
 @media (max-width: 767px) {
   .section-popular-news .item-popular-news {
@@ -12396,21 +12432,17 @@ input.my-datepicker {
     margin-top: 15px;
     left: 5%; }
   .img-result {
-    margin-bottom: 15px; } }
+    margin-bottom: 15px; }
+  .item-all-news .img-news, .item-all-news .body-all-news {
+    width: 100%; }
+  .item-all-news .body-all-news {
+    padding: 10px 0 0 0px; }
+  .item-blog-news .img-news {
+    width: 25%; }
+  .item-blog-news .body-all-news {
+    width: 75%; } }
 
 @media (max-width: 575px) {
-  .carousel-main {
-    width: 100%;
-    margin: 0 0 1% 0; }
-  .wrapper-popular {
-    width: 100%; }
-    .wrapper-popular .item-popular-news {
-      width: 49%;
-      float: left; }
-      .wrapper-popular .item-popular-news:first-child {
-        margin-right: 1%; }
-      .wrapper-popular .item-popular-news:last-child {
-        margin-left: 1%; }
   .navbar {
     padding: 16px 15px 18px; }
   .header-top {
@@ -12437,7 +12469,13 @@ input.my-datepicker {
   .item-blog-news .img-news {
     width: 30%; }
   .item-blog-news .body-all-news {
-    width: 70%; } }
+    width: 70%; }
+  .item-all-news .img-news {
+    width: 100%;
+    margin-bottom: 10px; }
+  .item-all-news .body-all-news {
+    width: 100%;
+    padding: 0; } }
 
 @media (max-width: 385px) {
   .wrapper-popular .item-popular-news {

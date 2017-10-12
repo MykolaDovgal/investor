@@ -50,24 +50,23 @@ namespace Investor.Web
             .AddEntityFrameworkStores<NewsContext>()
             .AddDefaultTokenProviders();
 
-
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ITagRepository, TagRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IBlogRepository, BlogRepository>();
             services.AddTransient<ISliderItemRepository, SliderItemRepository>();
             services.AddTransient<TimeService>();
             services.AddTransient<ThemeService>();
+
             // Services
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IBlogService, BlogService>();
             services.AddTransient<ISearchService, SearchService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<ISliderItemService, SliderItemService>();
-            //services.AddTransient<ISearchService, SearchService>();
-            //services.AddTransient<ICommunicationService, CommunicationService>();
             services.AddTransient<ITagService, TagService>();
-            //services.AddTransient<ISiteMapService, SiteMapService>();
-            //ervices.AddTransient<ApplicationEnvironment>();
+
 
             services.AddMvc();
             services.AddAutoMapper();

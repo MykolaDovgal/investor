@@ -66,7 +66,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        Image = "img-slider.jpg",
+                        IsBlogPost = true
 
                     },
                     new Entity.PostEntity
@@ -79,8 +80,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
-
+                        Image = "img-slider.jpg",
+                        IsBlogPost = true
                     },
                     new Entity.PostEntity
                     {
@@ -93,8 +94,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
-
+                        Image = "img-slider.jpg",
+                        IsBlogPost = true
                     },
                     new Entity.PostEntity
                     {
@@ -120,8 +121,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
-
+                        Image = "img-slider.jpg",
+                        IsBlogPost = true
                     },
                     new Entity.PostEntity
                     {
@@ -133,8 +134,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
-
+                        Image = "img-slider.jpg",
+                        IsBlogPost = true
                     },
                     new Entity.PostEntity
                     {
@@ -198,7 +199,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        Image = "img-slider.jpg",
+                        IsBlogPost = true
                     },
                     new Entity.PostEntity
                     {
@@ -235,7 +237,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg"
+                        Image = "news-politic-1.jpg",
+                        IsBlogPost = true
                     },
                     new Entity.PostEntity
                     {
@@ -287,7 +290,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg"
+                        Image = "news-politic-1.jpg",
+                        IsBlogPost = true
 
                     },
                     new Entity.PostEntity
