@@ -39,17 +39,26 @@ namespace Investor.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public void UpdatePost( Post post, [FromForm] string Article)
+        public void UpdatePost( [Bind("PostId, Title, Description, Published, IsImportant, IsOnMainPage")]Post post, [FromForm] string[] Tags, bool IsOnSlider, bool IsOnSide)
         {
             if(post != null)
             {
-                if (Request.Form.Files[0].FileName != "")
-                    post.Image = Request.Form.Files[0].FileName;
-
+                //if Post exists
                 if(post.PostId != 0)
                 {
-                    post.Article.Content = Article;
+                    if (Request.Form.Files[0].FileName != String.Empty)
+                        post.Image = Request.Form.Files[0].FileName;
 
+                    post.Article.Content = Request.Form["Article"].First();
+                    post.Category = _categoryService.GetCategoryByUrlAsync(Request.Form["Category"].First()).Result;
+                    if (ModelState.IsValid)
+                        _postService.UpdatePostAsync(post);
+
+                }
+                else
+                {
+                    post.Article = new Article { Content = Request.Form["Article"].First() }; // не знаю чи заканає, мало би додавати до таблиці статей новий об'єкт
+                    _postService.AddPostAsync(post);
                 }
 
             }

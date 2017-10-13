@@ -1,41 +1,35 @@
 ﻿@model Investor.Model.Post
 
-<form method="post" id="updateForm"  enctype="multipart/form-data">
+<input type="hidden" value="@Model.PostId" name="PostId" />
 
-    <fieldset>
-        <input type="hidden" value="@Model.PostId" name="PostId" />
+<div class="page-content page-post">
 
-        <div class="page-content page-post">
+    <div class="form-group form-md-line-input form-md-floating-label has-info">
+        <input type="text" class="form-control @(String.IsNullOrEmpty(Model.Title) ? "" : "edited")" id="title" value="@Model.Title" name="Title" required="required">
+        <label for="title">Назва</label>
+    </div>
 
-            <div class="form-group form-md-line-input form-md-floating-label has-info">
-                <input type="text" class="form-control @(String.IsNullOrEmpty(Model.Title) ? "" : "edited")" id="title" value="@Model.Title" name="Title" required="required">
-                <label for="title">Назва</label>
-            </div>
+    <div class="form-group form-md-line-input form-md-floating-label has-info">
+        <textarea class="form-control @(String.IsNullOrEmpty(Model.Title) ? "" : "edited")" id="description" name="Description" required="required">@Model.Description</textarea>
+        <label for="description">Опис</label>
+    </div>
 
-            <div class="form-group form-md-line-input form-md-floating-label has-info">
-                <textarea class="form-control @(String.IsNullOrEmpty(Model.Title) ? "" : "edited")" id="description" name="Description" required="required">@Model.Description</textarea>
-                <label for="description">Опис</label>
-            </div>
+    <div class="fileinput fileinput-new" data-provides="fileinput">
 
-            <div class="fileinput fileinput-new" data-provides="fileinput">
-
-                <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
-                    <img src="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")" alt="" required="required"/>
-                </div>
-
-                <div>
-                    <span class="btn red btn-outline btn-file">
-                        <span class="fileinput-new"> Вибрати світлину </span>
-                        <span class="fileinput-exists"> Змніити </span>
-                        <input type="file" name="Image" value="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")">
-                    </span>
-                    <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Видалити </a>
-                </div>
-
-            </div>
-
-            <textarea class="text-editor" required="required" name="Article">@Model.Article.Content</textarea>
+        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+            <img src="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")" alt="" required="required" />
         </div>
-    </fieldset>
 
-</form>
+        <div>
+            <span class="btn red btn-outline btn-file">
+                <span class="fileinput-new"> Вибрати світлину </span>
+                <span class="fileinput-exists"> Змніити </span>
+                <input type="file" name="Image" value="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")">
+            </span>
+            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Видалити </a>
+        </div>
+
+    </div>
+
+    <textarea class="text-editor" required="required" name="Article">@Model.Article.Content</textarea>
+</div>
