@@ -11,7 +11,7 @@ weekday[6] = "Субота";
 var day = weekday[data.getDay()];
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     $.fn.datepicker.language['ua'] = {
         days: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
         daysShort: ["Нед", "Пон", "Вів", "Сер", "Чет", "П'ят", "Суб"],
@@ -23,7 +23,7 @@ $(document).ready(function() {
         dateFormat: 'DD dd.mm.yyyy',
         timeFormat: 'hh:ii',
         firstDay: 1
-    } 
+    }
 });
 
 
@@ -31,9 +31,9 @@ $(document).ready(function() {
 
 var currentDate = data.toLocaleDateString();
 
-$("#data").html('<span class="day color-white-70">'+day+'</span><span class="current-date color-white-70">'+currentDate+'</span>');
+$("#data").html('<span class="day color-white-70">' + day + '</span><span class="current-date color-white-70">' + currentDate + '</span>');
 
-$("#my-datepicker").val(day+' '+currentDate);
+$("#my-datepicker").val(day + ' ' + currentDate);
 /***/
 
 $(".carousel-popular-theme").owlCarousel({
@@ -59,123 +59,127 @@ $(".carousel-popular-theme").owlCarousel({
 });
 
 $(".carousel-editorial-choice").owlCarousel({
-  margin:10,
-  loop:true,
-  lazyLoad:true,
-  dots: true,
-  nav: true,
-  slideBy: 3,
- responsiveClass:true,
- responsive:{
-  0:{
-    items:1
-  },
-  600:{
-    items:2
-  },
-  1000:{
-    items:3
-  }
-}
-}); 
-
-$(".carousel-top-blog").owlCarousel({
-  margin:10,
-  loop:true,
-  lazyLoad:true,
-  dots: true,
-  nav: true,
-  slideBy: 3,
- responsiveClass:true,
- responsive:{
-  0:{
-    items:1
-  },
-  600:{
-    items:2
-  },
-  1000:{
-    items:3
-  }
-}
-});  
-
-
-
-$(document).on('change', '.btn-file :file', function() {
-  var input = $(this),
-  label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-  input.trigger('fileselect', [label]);
+    margin: 10,
+    loop: true,
+    lazyLoad: true,
+    dots: true,
+    nav: true,
+    slideBy: 3,
+    responsiveClass: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 2
+        },
+        1000: {
+            items: 3
+        }
+    }
 });
 
-$('.btn-file :file').on('fileselect', function(event, label) {
+$('.grid').masonry({
+    itemSelector: '.grid-item'
+});
 
-  var input = $(this).parents('.input-group').find(':text'),
-  log = label;
+$(".carousel-top-blog").owlCarousel({
+    margin: 10,
+    loop: true,
+    lazyLoad: true,
+    dots: true,
+    nav: true,
+    slideBy: 3,
+    responsiveClass: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 2
+        },
+        1000: {
+            items: 3
+        }
+    }
+});
 
-  if( input.length ) {
-    input.val(log);
-  } else {
-    if( log ) alert(log);
-  }
+
+
+$(document).on('change', '.btn-file :file', function () {
+    var input = $(this),
+        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [label]);
+});
+
+$('.btn-file :file').on('fileselect', function (event, label) {
+
+    var input = $(this).parents('.input-group').find(':text'),
+        log = label;
+
+    if (input.length) {
+        input.val(log);
+    } else {
+        if (log) alert(log);
+    }
 
 });
 function readURL(input) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-    reader.onload = function (e) {
-      $('#img-upload').attr('style', 'background-image: url('+e.target.result+');');
+        reader.onload = function (e) {
+            $('#img-upload').attr('style', 'background-image: url(' + e.target.result + ');');
+        }
+
+        reader.readAsDataURL(input.files[0]);
     }
-
-    reader.readAsDataURL(input.files[0]);
-  }
 }
 
-$("#imgInp").change(function(){
-  readURL(this);
-}); 
+$("#imgInp").change(function () {
+    readURL(this);
+});
 
 /***preview registration***/
-$('.input-value').keyup(function(){
-  var $this = $(this);
-  var text = $this.val();
-  $('.'+$this.attr('id')+'').html($this.val()); 
+$('.input-value').keyup(function () {
+    var $this = $(this);
+    var text = $this.val();
+    $('.' + $this.attr('id') + '').html($this.val());
 
-    if( text.length  > 1){
-      $('.'+$this.attr('id')+'').prev('i').removeClass('d-none'); 
-    }else if(text.length  < 1){
-      $('.'+$this.attr('id')+'').prev('i').addClass('d-none');
-  }
+    if (text.length > 1) {
+        $('.' + $this.attr('id') + '').prev('i').removeClass('d-none');
+    } else if (text.length < 1) {
+        $('.' + $this.attr('id') + '').prev('i').addClass('d-none');
+    }
 
 
     var name = $('#input-value2').val();
-  if(name.length  < 1){
-      $('.input-value2').html('Ім’я');
-  }
+    if (name.length < 1) {
+        $('.input-value2').html('Ім’я');
+    }
 
 
-  var lastname = $('#input-value3').val();
-  if(lastname.length  < 1){
-      $('.input-value3').html('Прізвище');
-  }
+    var lastname = $('#input-value3').val();
+    if (lastname.length < 1) {
+        $('.input-value3').html('Прізвище');
+    }
 
-  var autobiography = $('#input-value4').val();
-  if(autobiography.length  < 1){
-      $('.input-value4').html('Ваша біографія');
-  }
+    var autobiography = $('#input-value4').val();
+    if (autobiography.length < 1) {
+        $('.input-value4').html('Ваша біографія');
+    }
 });
 /***end preview registration***/
 
 /***number of description lines***/
- $('.item-blog-news').each(function(){
+$('.item-blog-news').each(function () {
     var blog = $(this);
     var heightTitle = blog.find('.title-news').height();
 
-    if(heightTitle < 19){
-      blog.find('.text-news').removeClass('brief-description');
-     }
-   }); 
+    if (heightTitle < 19) {
+        blog.find('.text-news').removeClass('brief-description');
+    }
+});
 /***end number of description lines***/
 
    /*    var myLanguage = {

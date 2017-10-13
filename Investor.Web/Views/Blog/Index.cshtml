@@ -1,0 +1,57 @@
+﻿@using Investor.Model
+<section class="page-blog">
+    <div class="container">
+        <div class="row">
+            <div class="block-border-top blog-border-color top-blog">
+                <div class="offset-p">
+                    <h1 class="title-block">Топ блогерів</h1>
+                    @Html.Partial("_BlogersCarrouselTemplate")
+                </div>
+            </div>
+
+            <div class="col-lg-8 pl-0 p-0 pr-lg-2">
+                <!--Popular blogs-->
+                <div class="body-category-news block-border-top blog-border-color mb-4">
+                    <h1 class="title-block">Популярні блоги</h1>
+                    @Html.Partial("_PopularBlogsTemplate",ViewBag.PopularBlogs as IEnumerable<BlogPreview>)
+
+                </div>
+                <!--end popular blogs-->
+                <!--Recent recent-->
+                <div class="block-recent-recent">
+                    <div class="body-category-news block-border-top blog-border-color mb-3">
+                        <h2 class="title-block">Останні записи</h2>
+                        @Html.Partial("_LastBlogsTemplate", ViewBag.LatestBlogs as IEnumerable<BlogPreview>)
+                    </div>
+                    <div class="wrapper-btn-more">
+                        <a href="#" class="btn-more text-center"><span class="circle circle-blog-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+                    </div>
+                </div>
+
+                <div class="body-category-news block-border-top blog-border-color mb-4">
+                    <h2 class="title-block">Всі блогери</h2>
+                    @Html.Partial("_AllBlogersTemplate")
+                </div>
+                <!--end recent recent-->
+            </div>
+
+            <div class="col-lg-4 pl-lg-2  p-0 pr-0">
+
+                <div class="block-border-top blog-border-color last-news blog-tags mb-3">
+                    <h2 class="title-block">Категорії</h2>
+                    @Html.Partial("_BlogsCategoryTemplate")
+                </div>
+
+                <div class="block-border-top blog-border-color last-news mb-0">
+
+                        @Html.Partial("_LastNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
+
+                    <a href="#" class="btn-more"><span class="circle circle-blog-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>

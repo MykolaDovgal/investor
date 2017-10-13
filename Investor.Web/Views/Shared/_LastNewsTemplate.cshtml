@@ -1,8 +1,9 @@
 ﻿@model Investor.Model.PostPreview
+@inject Investor.Service.TimeService PostPublicationDate
 <div class="item-last-news">
     @{
         string classStyle = "";
-        @if (Model.IsImportant ?? false)
+        if (Model.IsImportant ?? false)
         {
             classStyle = "bold";
         }
@@ -11,5 +12,5 @@
     <a bold href="/post/@Model.PostId" class="title-last-news @classStyle">
         @Model.Title
     </a>
-    <span class="today-item-news default-today-color">Сьогодні,  12:43</span>
+    <span class="today-item-news default-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
 </div>
