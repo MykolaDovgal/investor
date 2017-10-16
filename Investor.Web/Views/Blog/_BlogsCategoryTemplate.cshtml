@@ -1,6 +1,8 @@
-﻿<div class="wrapper-tag-news">
-    @for (int i = 0; i < 10; i++)
+﻿@model IEnumerable<Investor.Model.Category>
+
+<div class="wrapper-tag-news">
+    @foreach (var category in Model)
     {
-        <a href="#" class="tag-item">Спорт</a>
+        <a href="/category/@category.Url" class="tag-item">@category.Name</a>
     }
 </div>

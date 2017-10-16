@@ -39,15 +39,13 @@
 
                 <div class="block-border-top blog-border-color last-news blog-tags mb-3">
                     <h2 class="title-block">Категорії</h2>
-                    @Html.Partial("_BlogsCategoryTemplate")
+                    @Html.Partial("_BlogsCategoryTemplate",ViewBag.Categories as IEnumerable<Category>)
                 </div>
 
-                <div class="block-border-top blog-border-color last-news mb-0">
+                
 
-                        @Html.Partial("_LastNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
+                   @Html.Partial("_LastNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
 
-                    <a href="#" class="btn-more"><span class="circle circle-blog-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
-                </div>
 
             </div>
 

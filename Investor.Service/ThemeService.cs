@@ -33,7 +33,8 @@ namespace Investor.Service
                 { "policy", "circle-policy-color" },
                 { "culture", "circle-culture-color" },
                 { "economy", "circle-economy-color" },
-                { "it", "circle-it-color" }
+                { "it", "circle-it-color" },
+                { "blog", "circle-blog-color" }
             };
 
             categoryBorderTheme = new Dictionary<string, string>
@@ -41,7 +42,8 @@ namespace Investor.Service
                 { "policy", "policy-today-color" },
                 { "culture", "culture-border-color" },
                 { "economy", "economy-border-color" },
-                { "it", "it-border-color" }
+                { "it", "it-border-color" },
+                { "blog", "blog-border-color" }
             };
 
             categoryPublishedTimeTheme = new Dictionary<string, string>

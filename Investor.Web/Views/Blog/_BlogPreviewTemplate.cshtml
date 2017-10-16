@@ -7,7 +7,7 @@
         <img src="img/@Model.Image" class="img-fluid rounded-circle">
     </div>
     <div class="body-all-news">
-        <a href="#" class="title-news">@Model.Title</a>
+        <a href="/post/@Model.PostId" class="title-news">@Model.Title</a>
         <p class="text-news brief-description">@Model.Description</p>
         <span class="blog-today-color data-blog">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
         <a href="#" class="user-publish ml-3"><img src="img/blog-img-3.png" class="photo-img rounded-circle" />Юлія Панченко</a>
