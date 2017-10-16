@@ -6,6 +6,7 @@ using Investor.Entity;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using UnidecodeSharpFork;
 
 namespace Investor.Repository
 {
@@ -20,6 +21,7 @@ namespace Investor.Repository
 
         public async Task<TagEntity> AddTagAsync(TagEntity tagEntity)
         {
+            tagEntity.Url = tagEntity.Name.Unidecode();
             await _newsContext
                .Tags
                .AddAsync(tagEntity);
@@ -42,6 +44,14 @@ namespace Investor.Repository
                .Tags
                .Include(s => s.PostTags)
                .FirstOrDefaultAsync(s => s.TagId == id);
+        }
+
+        public async Task<TagEntity> GetTagByNameAsync(string name)
+        {
+            return await _newsContext
+                .Tags
+                .Include(s => s.PostTags)
+                .FirstOrDefaultAsync(s => s.Name == name);
         }
 
         public async Task RemoveTagAsync(int id)

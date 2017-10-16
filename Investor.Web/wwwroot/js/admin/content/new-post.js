@@ -29,11 +29,11 @@
 			url: "/api/Content/GetAllTags",
 			type: "GET",
 			success: function (data) {
-				for (let i = 0; i < data.data.length; i++)
-					data.data.map(item => {
-						tags.push(item.name);
-					});
-
+				console.log(data);
+				data.data.map(item => {
+					tags.push(item.name);
+				});
+				console.log(tags);
 			}
 		});
 
@@ -44,18 +44,18 @@
 				formData.append("Image", $("input[name='Image']").get(0).files);
 				formData.append("Article", $("textarea[name='Article']").text);
 				var var1 = $("input[name='IsOnMainPage']").val;
-				console.log(var1);
-				formData.append("IsOnMainPage",$("input[name='IsOnMainPage']").val != null ? true : false);
-				formData.append("IsImportant",$("input[name='IsImportant']").val != null ? true : false);
-				formData.append("IsOnSide",$("input[name='IsOnSide']").val != null ? true : false);
-				formData.append("IsOnSlider",$("input[name='IsOnSlider']").val != null ? true : false);
+				//console.log(var1);
+
+				formData.append("IsOnMainPage", ($("input[name='IsOnMainPage']").prop("checked")) ? true : false);
+				formData.append("IsImportant", ($("input[name='IsImportant']").prop("checked")) ? true : false);
+				formData.append("IsOnSide", ($("input[name='IsOnSide']").prop("checked")) ? true : false);
+				formData.append("IsOnSlider", ($("input[name='IsOnSlider']").prop("checked")) ? true : false);
 				var tagsArray = $("input[Name='tagsName']").tagsinput('items');
 				for (let i = 0; i < tagsArray.length; i++) {
-					console.log(tagsArray[i]);
+					//console.log(tagsArray[i]);
 					formData.append(`Tags`, tagsArray[i]);
 				}
-					
-				console.log(formData);
+
 				e.preventDefault();
 				$.ajax({
 					type: "POST",

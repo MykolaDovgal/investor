@@ -1,5 +1,6 @@
 ﻿@model Investor.Model.Post
 @inject Investor.Service.TimeService PostPublicationDate
+@using Investor.Model
 
 <h1 class="title-card-page">
     @Model.Title
@@ -32,6 +33,12 @@
 <div class="card-news-desc mb-5">
     @Html.Raw(Model.Article.Content)
 </div>
+<ul class="wrapper-hashtag  mb-4">
+    @foreach(Tag tag in ViewBag.Tags)
+    { 
+        <li><a href="#" class="item-hashtag">@tag.Name</a></li>
+    }
+</ul>
 <div class="post-comment">
     <span class="title-block">Коментарі</span>
     <div class='fb-comments' data-href="http://@{@ViewBag.PathBase;}/post/@{@ViewBag.Post.PostId;}" data-num-posts='2' data-width='470'></div>

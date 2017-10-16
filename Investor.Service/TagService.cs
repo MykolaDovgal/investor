@@ -48,5 +48,9 @@ namespace Investor.Service
             await _tagRepository.UpdateTagAsync(Mapper.Map<Tag, TagEntity>(tag));
         }
 
+        public async Task<Tag> GetTagByNameAsync(string name)
+        {
+            return Mapper.Map<TagEntity, Tag>(await _tagRepository.GetTagByNameAsync(name));
+        }
     }
 }

@@ -2,7 +2,6 @@
 @using Investor.Model
 <div class="sidebar-right">
     <button type="button" class="btn green-meadow" style="width: 100%">Перейти до поста</button>
-    <button type="button" class="btn yellow-crusta" style="width: 100%">Відмінити публікацію</button>
     <button type="submit" class="btn blue-madison" style="width: 100%" form="updateForm" id="updateFormSubmit">Зберегти</button>
     <button type="button" class="btn grey-cascade" style="width: 100%">Відмінити</button>
 
@@ -21,7 +20,7 @@
         string tags = "";
         foreach (Tag tag in ViewBag.Tags)
         {
-            tags += tag.Name + ", ";
+            tags += tag.Name + ",";
 
         }
     }
@@ -30,27 +29,28 @@
         <input id="tagTypeahead" class="typeahead" type="text" placeholder="States of USA " data-role="tagsinput" name="tagsName" value="@tags" />
     </div>
     <label class="mt-checkbox mt-checkbox-outline">
+        Опубліковано
+        <input type="checkbox" value="true" name="Published" @(Model.Published ? "checked" : "") />
+        <span></span>
+    </label>
+    <label class="mt-checkbox mt-checkbox-outline">
         На головній сторінці
-        <input type="checkbox" value="1" name="IsOnMainPage" @(Model.IsOnMainPage ? "checked" : "") />
-        <input type="hidden" value="@Model.IsOnMainPage" name="IsOnMainPage" />
+        <input type="checkbox" value="true" name="IsOnMainPage" @(Model.IsOnMainPage ? "checked" : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На боковій панелі слайдера
-        <input type="checkbox" value="1" name="IsOnSide" @(ViewBag.IsOnSide ? "checked" : "") />
-        <input type="hidden" value="@ViewBag.IsOnSide" name="IsOnSide" />
+        <input type="checkbox" value="true" name="IsOnSide" @(ViewBag.IsOnSide ? "checked" : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На слайдері
-        <input type="checkbox" value="1" name="IsOnSlider" @(ViewBag.IsOnSlider ? "checked" : "") />
-        <input type="hidden" value="@ViewBag.IsOnSlider" name="IsOnSlider" />
+        <input type="checkbox" value="true" name="IsOnSlider" @(ViewBag.IsOnSlider ? "checked" : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline color-white">
         Рекомендовано редакцією
-        <input type="checkbox" value="1" name="IsImportant" @(Model.IsImportant ? "checked" : "") />
-        <input type="hidden" value="@ViewBag.IsImportant" name="IsImportant" />
+        <input type="checkbox" value="true" name="IsImportant" @(Model.IsImportant ? "checked" : "") />
         <span></span>
     </label>
 </div>

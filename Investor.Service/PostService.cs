@@ -92,9 +92,9 @@ namespace Investor.Service
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
-        public async Task UpdatePostAsync(Post post)
+        public async Task<Post> UpdatePostAsync(Post post)
         {
-            await _postRepository.UpdatePostAsync(Mapper.Map<Post, PostEntity>(post));
+            return Mapper.Map <PostEntity,Post> (await _postRepository.UpdatePostAsync(Mapper.Map<Post, PostEntity>(post)));
         }
 
         public async Task RemovePostAsync(int id)

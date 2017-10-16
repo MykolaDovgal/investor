@@ -196,20 +196,23 @@ namespace Investor.Repository
                 .ToListAsync();
         }
 
-        public async Task AddTagToPostAsync(int postId, string tagName)
+        public async Task<TagEntity> AddTagToPostAsync(int postId, string tagName)
         {
-            var post = await _newsContext
+            var tag = _newsContext
+                .Tags
+                .FirstOrDefault(t => t.Name == tagName);
+
+            var post = _newsContext
                  .Posts
                  .Include(t => t.PostTags)
-                 .FirstOrDefaultAsync(p => p.PostId == postId);
+                 .FirstOrDefault(p => p.PostId == postId);
 
-            var tag = await _newsContext
-                .Tags
-                .FirstOrDefaultAsync(t => t.Name == tagName);
-
-            post.PostTags.Add(new PostTagEntity() { Post = post, Tag = tag });
+            var newTag = new PostTagEntity() { Post = post, Tag = tag };
+            post.PostTags.Add(newTag);
 
             await _newsContext.SaveChangesAsync();
+
+            return newTag.Tag;
         }
 
         public async Task<List<TagEntity>> GetAllTagsByPostIdAsync(int id)

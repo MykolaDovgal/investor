@@ -35,33 +35,58 @@ namespace Investor.Web.Areas.Admin.Controllers
             ViewBag.IsOnSlider = sliderItem != null ? sliderItem.IsOnSlider : false;
             ViewBag.IsOnSide = sliderItem != null ? sliderItem.IsOnSide : false;
             ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
-            return PartialView("SinglePost",post);
+            return PartialView("SinglePost", post);
         }
 
         [HttpPost]
-        public void UpdatePost( [Bind("PostId, Title, Description, Published, IsImportant, IsOnMainPage")]Post post, [FromForm] string[] Tags, bool IsOnSlider, bool IsOnSide)
+        public void UpdatePost([Bind("PostId, Title, Description, IsOnMainPage, IsImportant, Published")]Post post, [FromForm] string[] Tags, [FromForm] bool IsOnSlider, [FromForm] bool IsOnSide)
         {
-            if(post != null)
+            Post newPost; 
+                
+            if(post.PostId < 0)
             {
-                //if Post exists
-                if(post.PostId != 0)
-                {
-                    if (Request.Form.Files[0].FileName != String.Empty)
-                        post.Image = Request.Form.Files[0].FileName;
-
-                    post.Article.Content = Request.Form["Article"].First();
-                    post.Category = _categoryService.GetCategoryByUrlAsync(Request.Form["Category"].First()).Result;
-                    if (ModelState.IsValid)
-                        _postService.UpdatePostAsync(post);
-
-                }
-                else
-                {
-                    post.Article = new Article { Content = Request.Form["Article"].First() }; // не знаю чи заканає, мало би додавати до таблиці статей новий об'єкт
-                    _postService.AddPostAsync(post);
-                }
-
+                newPost = _postService.GetPostByIdAsync(post.PostId).Result;
+                newPost.IsOnMainPage = post.IsOnMainPage;
+                newPost.IsImportant = post.IsImportant;
+                newPost.Published = post.Published;
+                newPost.Title = post.Title;
+                newPost.Description = post.Description;
             }
+            else
+            { 
+                newPost = _postService.AddPostAsync(post).Result;
+            }
+
+            //Image
+            if (Request.Form.Files[0].FileName != String.Empty)
+                newPost.Image = Request.Form.Files[0].FileName;
+
+            //Category
+            newPost.Category = _categoryService.GetCategoryByUrlAsync(Request.Form["Category"].First()).Result;
+
+            //Tags
+            List<Tag> allTags = _tagService.GetAllTagsAsync().Result.ToList();
+            List<Tag> postTags = _postService.GetAllTagsByPostId(post.PostId).Result.ToList();
+
+            for (int i = 0; i < Tags.Length; i++)
+            {
+                Tag tag = allTags.FirstOrDefault(s => s.Name.Equals(Tags[i]));
+
+                if (tag == null)
+                    tag = _tagService.AddTagAsync(new Tag { Name = Tags[i] }).Result;
+
+                if ((postTags.Find(t=>t.TagId == tag.TagId) == null))
+                    _postService.AddTagToPostAsync(newPost.PostId, Tags[i]);
+            }
+
+            //Article
+            if (newPost.Article != null)
+                newPost.Article = new Article { Content = Request.Form["Article"].First() };
+            else
+                newPost.Article.Content = Request.Form["Article"].First();
+
+            _postService.UpdatePostAsync(newPost);
+            //}
         }
 
         public IActionResult Blogs()
