@@ -25,11 +25,22 @@ namespace Investor.Service
                 cfg.CreateMap<Comment, CommentEntity>().ReverseMap();
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();
                 cfg.CreateMap<SliderItem, SliderItemEntity>().ReverseMap();
-                cfg.CreateMap<PostEntity, PostPreview>().ReverseMap();
-                cfg.CreateMap<PostEntity, BlogPreview>().ReverseMap();
-                cfg.CreateMap<PostEntity, TablePostPreview>().ReverseMap();
+
+                cfg.CreateMap<PostPreview, PostEntity>();
+                cfg.CreateMap<PostEntity, PostPreview>()
+                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image));
+
+                cfg.CreateMap<PostEntity, BlogPreview>()
+                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image));
+
+                cfg.CreateMap<PostEntity, TablePostPreview>();
+
+                cfg.CreateMap<Post, PostEntity>();
+
                 cfg.CreateMap<PostEntity, Post>()
-                    .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));
+                    .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)))
+                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image));
+
                 cfg.CreateMap<IList<PostEntity>, IList<Post>>().ReverseMap();
             });
 

@@ -25,14 +25,13 @@ namespace Investor.Service
             if (map.Title == null)
             {
                 map.Title = Guid.NewGuid().ToString();
-                //map.Url = map.Title;
             }
-
-            map.Category = null;
             map.ModifiedOn = DateTime.Now;
             map.CreatedOn = DateTime.Now;
-            map.Published = false;
-
+            if (String.IsNullOrWhiteSpace(map.Image))
+            {
+                map.Image = $"no-img/no-img-{map.Category.Url}.png";
+            }
             var response = await _postRepository.AddPostAsync(Mapper.Map<Post, PostEntity>(map));
             map.PostId = response.PostId;
 
@@ -111,7 +110,8 @@ namespace Investor.Service
         public async Task<IEnumerable<PostPreview>> GetImportantPostsAsync(int limit)
         {
             var posts = await _postRepository.GetImportantPostAsync(limit);
-            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
+            var test = posts.Select(Mapper.Map<PostEntity, PostPreview>);
+            return test;
         }
 
         public async Task AddTagToPostAsync(int postId, string tagName)

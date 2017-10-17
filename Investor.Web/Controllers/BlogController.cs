@@ -23,7 +23,6 @@ namespace Investor.Web.Controllers
 
         public IActionResult Index(string[] arr)
         {
-
             ViewBag.IsBlog = true;
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
             ViewBag.LatestPosts = _postService.GetLatestPostsAsync(20).Result.ToList();

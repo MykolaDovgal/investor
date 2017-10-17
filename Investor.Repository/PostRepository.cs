@@ -193,6 +193,7 @@ namespace Investor.Repository
                 .Where(p => p.IsImportant ?? false)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
+                .Include(p => p.Category)
                 .ToListAsync();
         }
 
