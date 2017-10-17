@@ -1,4 +1,4 @@
-﻿let searchMoreResultPage = 2;
+﻿let searchMoreResultPage = 1;
 const searchMoreResultCount = 5;
 let searchCategoryUrlQuery = "";
 let searchDateQuery = "";
@@ -9,21 +9,29 @@ $(document).ready(function () {
     $('.my-datepicker').datepicker({
         language: 'ua',
         onSelect: function (formattedDate, date, inst) {
-            console.log(date);
+            searchMoreResultPage = 1;
             searchDateQuery = date && date !== "null" ? date.toUTCString() : "";
-            console.log(searchDateQuery);
+            getSearchResult(
+                searchCategoryUrlQuery,
+                searchTextQuery,
+                searchDateQuery,
+                searchMoreResultPage,
+                searchMoreResultCount);
         }
     });
 
-    $("#postTextQuery").blur(function() {
+
+
+    $("#postTextQuery").blur(function () {
         searchTextQuery = $(this).val();
     });
 
-    $("#searchBtn").click(function (e) {
+    $("#searchForm").submit(function (e) {
+        e.preventDefault();
         searchMoreResultPage = 1;
         getSearchResult(
             searchCategoryUrlQuery,
-            searchTextQuery,
+            $("#postTextQuery").val(),
             searchDateQuery,
             searchMoreResultPage,
             searchMoreResultCount);
@@ -32,11 +40,19 @@ $(document).ready(function () {
 
     $(".dropdown-item").click(function (e) {
         $("#dropdownMenu2").text($(this).text());
+        searchMoreResultPage = 1;
         searchCategoryUrlQuery = $(this).data("categoryUrl");
+        getSearchResult(
+            searchCategoryUrlQuery,
+            searchTextQuery,
+            searchDateQuery,
+            searchMoreResultPage,
+            searchMoreResultCount);
     });
 
     $("#moreSearchResult").click(function (e) {
         e.preventDefault();
+        searchMoreResultPage += 1;
         getMoreSearchResult.apply(this, [searchCategoryUrlQuery,
             searchTextQuery,
             searchDateQuery,
@@ -54,14 +70,14 @@ let getMoreSearchResult = function (categoryUrl, queryText, date, page, count) {
         url: `/api/search/posts${params}`,
         type: "GET",
         success: function (data) {
-            $("#searchResultContainer").append(data);
-            searchMoreResultPage += 1;
+            $("#searchResultContainer").append(data);           
         }
     });
 };
 
 let getSearchResult = function (categoryUrl, queryText, date, page, count) {
 
+    console.log(` ${categoryUrl}  ${queryText}   ${date}   ${page}   ${count}`);
     const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}`;
     $.ajax({
         url: `/api/search/posts${params}`,
