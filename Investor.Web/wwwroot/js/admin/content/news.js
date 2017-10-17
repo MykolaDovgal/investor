@@ -32,7 +32,8 @@ $(document).on("click", "a.nav-link", function (e) {
     }
 	if (type && type === "singlepost") {
 		getPartialView(`admin${url}`, initTypeahead);
-    }
+	}
+	
 });
 
 

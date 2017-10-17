@@ -41,7 +41,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpGet]
         public async Task<IActionResult> GetAllTags()
         {
-            var result = await _tagService.GetAllTagsAsync();
+            var result = await _tagService.GetAllTagsWithPostCountAsync();
             return Json(new { data = result });
         }
     }

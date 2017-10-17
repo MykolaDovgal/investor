@@ -103,5 +103,9 @@ namespace Investor.Web.Areas.Admin.Controllers
         {
             return PartialView("_News");
         }
+        public IActionResult Tags()
+        {
+            return PartialView("_Tags");
+        }
     }
 }

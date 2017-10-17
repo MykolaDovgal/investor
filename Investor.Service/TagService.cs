@@ -8,6 +8,7 @@ using Investor.Repository.Interfaces;
 using AutoMapper;
 using Investor.Entity;
 using System.Linq;
+using Investor.Model.Views;
 
 namespace Investor.Service
 {
@@ -52,5 +53,22 @@ namespace Investor.Service
         {
             return Mapper.Map<TagEntity, Tag>(await _tagRepository.GetTagByNameAsync(name));
         }
+
+        public async Task<IEnumerable<AdminTag>> GetAllTagsWithPostCountAsync()
+        {
+            IEnumerable<TagEntity> tags = await _tagRepository.GetAllTagsAsync();
+            List<AdminTag> list = new List<AdminTag>();
+            tags.ToList().ForEach(tag => list.Add(
+                new AdminTag
+                {
+                    Name = tag.Name,
+                    PostCount = tag.PostTags.Count,
+                    TagId = tag.TagId,
+                    Url = tag.Url
+                }));
+            return list;
+        }
+
+
     }
 }
