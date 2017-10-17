@@ -6,6 +6,7 @@
     @Model.Title
 </h1>
 <div class="info-news">
+    <span class="card-category-news color-@(Model.Category.Url) m"><img src="/img/little-icons/no-img-@(Model.Category.Url).png">@Model.Category.Name</span>
     <span class="data-post"><i class="icons icon-clock"></i> @PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
     <span class="reviews-post"><i class="icons icon-reviews"></i>154</span>
 </div>
@@ -34,8 +35,8 @@
     @Html.Raw(Model.Article.Content)
 </div>
 <ul class="wrapper-hashtag  mb-4">
-    @foreach(Tag tag in ViewBag.Tags)
-    { 
+    @foreach (Tag tag in ViewBag.Tags)
+    {
         <li><a href="#" class="item-hashtag">@tag.Name</a></li>
     }
 </ul>

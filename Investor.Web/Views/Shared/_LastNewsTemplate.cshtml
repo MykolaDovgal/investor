@@ -12,5 +12,5 @@
     <a bold href="/post/@Model.PostId" class="title-last-news @classStyle">
         @Model.Title
     </a>
-    <span class="today-item-news default-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+    <span class="today-item-news @(ViewBag.IsBlog != null ? "blog" : "default")-today-color" > @PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
 </div>

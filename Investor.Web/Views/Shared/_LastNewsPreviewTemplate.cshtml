@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Investor.Model.PostPreview>
 @using Investor.Model
-<div class="block-border-top default-border-color last-news">
+<div class="block-border-top @(ViewBag.IsBlog != null ? "blog" : "default")-border-color last-news">
     <h2 class="title-block">Останні новини</h2>
     <div class="wrapper-last-news">
 
@@ -9,5 +9,5 @@
             @Html.Partial("_LastNewsTemplate", lastPost)
         }
     </div>
-    <a href="#" class="btn-more"><span class="circle circle-default-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+    <a href="#" class="btn-more"><span class="circle circle-@(ViewBag.IsBlog != null ? "blog" : "default")-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
 </div>
