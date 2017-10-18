@@ -52,14 +52,13 @@
 				formData.append("IsOnSlider", ($("input[name='IsOnSlider']").prop("checked")) ? true : false);
 				var tagsArray = $("input[Name='tagsName']").tagsinput('items');
 				for (let i = 0; i < tagsArray.length; i++) {
-					//console.log(tagsArray[i]);
 					formData.append(`Tags`, tagsArray[i]);
 				}
 
 				e.preventDefault();
 				$.ajax({
 					type: "POST",
-					url: "Admin/Content/UpdatePost",
+					url: "/api/Content/UpdatePost",
 					data: formData,
 					cache: false,
 					contentType: false,

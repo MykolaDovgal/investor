@@ -86,5 +86,12 @@ namespace Investor.Repository
 
             return sliderItems.Where(s => s.IsOnSlider == true);
         }
+
+        public async Task<SliderItemEntity> GetSliderItemByPostIdAsync(int PostId)
+        {
+            return await _newsContext
+                .SliderItems
+                .FirstOrDefaultAsync(s => s.PostId == PostId);
+        }
     }
 }

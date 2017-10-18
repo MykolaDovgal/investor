@@ -12,6 +12,7 @@ namespace Investor.Repository.Interfaces
         Task<SliderItemEntity> GetSliderItemByIdAsync(int id);
         Task<IEnumerable<SliderItemEntity>> GetSideSliderItemsAsync();
         Task<IEnumerable<SliderItemEntity>> GetCentralSliderItemsAsync();
+        Task<SliderItemEntity> GetSliderItemByPostIdAsync(int PostId);
 
         Task<SliderItemEntity> AddSliderItemAsync(SliderItemEntity sliderItem);
         Task UpdateSliderItemAsync(SliderItemEntity sliderItem);

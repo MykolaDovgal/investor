@@ -12,7 +12,7 @@ namespace Investor.Service.Interfaces
         Task<IEnumerable<Tag>> GetAllTagsAsync();
         Task<Tag> GetTagByIdAsync(int id);
         Task<Tag> AddTagAsync(Tag tag);
-        Task UpdateTagAsync(Tag tag);
+        Task<Tag> UpdateTagAsync(Tag tag);
         Task RemoveTagAsync(int id);
         Task<Tag> GetTagByNameAsync(string name);
         Task<IEnumerable<AdminTag>> GetAllTagsWithPostCountAsync();

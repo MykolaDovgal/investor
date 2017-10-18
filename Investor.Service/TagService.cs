@@ -44,9 +44,10 @@ namespace Investor.Service
             await _tagRepository.RemoveTagAsync(id);
         }
 
-        public async Task UpdateTagAsync(Tag tag)
+        public async Task<Tag> UpdateTagAsync(Tag tag)
         {
-            await _tagRepository.UpdateTagAsync(Mapper.Map<Tag, TagEntity>(tag));
+            var result = await _tagRepository.UpdateTagAsync(Mapper.Map<Tag, TagEntity>(tag));
+            return Mapper.Map<TagEntity, Tag>(result);
         }
 
         public async Task<Tag> GetTagByNameAsync(string name)
