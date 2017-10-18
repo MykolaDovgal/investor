@@ -35,7 +35,7 @@ namespace Investor.Service
                     .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image));
 
                 cfg.CreateMap<PostEntity, TablePostPreview>();
-
+                cfg.CreateMap<Post, PostPreview>();
                 cfg.CreateMap<Post, PostEntity>();
 
                 cfg.CreateMap<PostEntity, Post>()

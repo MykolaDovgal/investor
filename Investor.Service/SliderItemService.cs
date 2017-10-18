@@ -86,6 +86,11 @@ namespace Investor.Service
             return Mapper.Map<SliderItemEntity, SliderItem>(await _sliderItemRepository.GetSliderItemByIdAsync(id));
         }
 
+        public async Task<SliderItem> GetSliderItemByPostIdAsync(int postId)
+        {
+            return Mapper.Map<SliderItemEntity, SliderItem>( await _sliderItemRepository.GetSliderItemByPostIdAsync(postId));
+        }
+
         public async Task RemoveSliderItemAsync(int id)
         {
             await _sliderItemRepository.RemoveSliderItemAsync(id);

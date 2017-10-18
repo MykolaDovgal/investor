@@ -67,8 +67,6 @@ namespace Investor.Repository
             await _newsContext.SaveChangesAsync();
         }
 
-
-
         public async Task<TagEntity> UpdateTagAsync(TagEntity tag)
         {
             tag.Url = tag.Name.Unidecode();

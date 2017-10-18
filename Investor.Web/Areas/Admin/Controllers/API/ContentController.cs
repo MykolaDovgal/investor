@@ -6,6 +6,7 @@ using Investor.Model;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 namespace Investor.Web.Areas.Admin.Controllers.API
 {
@@ -89,7 +90,18 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             else
                 newPost.Article.Content = Request.Form["Article"].First();
 
+            SliderItem sliderItem = _sliderItemService.GetSliderItemByPostIdAsync(newPost.PostId).Result;
 
+            if(sliderItem != null)
+            {
+                sliderItem.IsOnSide = IsOnSide;
+                sliderItem.IsOnSlider = IsOnSlider;
+                _sliderItemService.UpdateSliderItemAsync(sliderItem);
+            }
+            else if(IsOnSlider && IsOnSide)
+            {
+                _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(newPost), IsOnSide = IsOnSide, IsOnSlider = IsOnSlider });
+            }
 
             _postService.UpdatePostAsync(newPost);
             //}
