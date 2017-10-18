@@ -102,13 +102,13 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
             SliderItem sliderItem = _sliderItemService.GetSliderItemByPostIdAsync(newPost.PostId).Result;
 
-            if(sliderItem != null)
+            if (sliderItem != null)
             {
                 sliderItem.IsOnSide = IsOnSide;
                 sliderItem.IsOnSlider = IsOnSlider;
                 _sliderItemService.UpdateSliderItemAsync(sliderItem);
             }
-            else if(IsOnSlider && IsOnSide)
+            else if (IsOnSlider && IsOnSide)
             {
                 _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(newPost), IsOnSide = IsOnSide, IsOnSlider = IsOnSlider });
             }
@@ -129,8 +129,8 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpPost]
         public async Task<Tag> UpdateTag(Tag tag)
         {
-           Tag newTag = await _tagService.UpdateTagAsync(tag);
-            return newTag; 
+            Tag newTag = await _tagService.UpdateTagAsync(tag);
+            return newTag;
         }
 
         [Route("RemoveTag")]

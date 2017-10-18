@@ -23,49 +23,50 @@
 </head>
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-    <div class="page-wrapper">
-        <header>
-            @Html.Partial("_HeaderSection")
-        </header>
-        <div class="page-container">
-            <div>
-                @Html.Partial("_SideBarSection")
-            </div>
-            <div id="container">
-                @RenderBody()
-            </div>
-
-
+<div class="page-wrapper">
+    <header>
+        @Html.Partial("_HeaderSection")
+    </header>
+    <div class="page-container">
+        <div>
+            @Html.Partial("_SideBarSection")
         </div>
-        <footer>
-            @Html.Partial("_FooterSection")
-        </footer>
+        <div id="container">
+            @RenderBody()
+        </div>
+
+
     </div>
-    @*admin-content scripts*@
+    <footer>
+        @Html.Partial("_FooterSection")
+    </footer>
+</div>
+@*admin-content scripts*@
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 
 
-    <script src="~/js/metronic/bootstrap.min.js"></script>
-    <script src="~/js/metronic/app.min.js"></script>
-    <script src="~/js/metronic/layout.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+<script src="~/js/metronic/bootstrap.min.js"></script>
+<script src="~/js/metronic/app.min.js"></script>
+<script src="~/js/metronic/layout.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
-    <script src="~/js/tinymce/tinymce.min.js"></script>
-    <script src="~/js/tinymce/themes/modern/theme.min.js" type="text/javascript"></script>
-    <script src="~/js/tinymce/editor.js" type="text/javascript"></script>
-    <script src="~/js/metronic/bootstrap-fileinput.js"></script>
-    <script src="~/js/metronic/bootstrap-tagsinput.js"></script>
-    <script src="~/js/typeahead/typeahead.bundle.js"></script>
+<script src="~/js/tinymce/tinymce.min.js"></script>
+<script src="~/js/tinymce/themes/modern/theme.min.js" type="text/javascript"></script>
+<script src="~/js/tinymce/editor.js" type="text/javascript"></script>
+<script src="~/js/metronic/bootstrap-fileinput.js"></script>
+<script src="~/js/metronic/bootstrap-tagsinput.js"></script>
+<script src="~/js/typeahead/typeahead.bundle.js"></script>
+    
+<script src="~/js/admin/content/news.js"></script>
+<script src="~/js/admin/content/new-post.js"></script>
+<script src="~/js/admin/content/tags.js"></script>
+<script src="~/js/admin/content/blogs.js"></script>
 
-    <script src="~/js/admin/content/new-post.js"></script>
-    <script src="~/js/admin/content/tags.js"></script>
-    <script src="~/js/admin/content/blogs.js"></script>
-
-    <script src="~/js/metronic/bootstrap-modal.js"></script>
-    <script src="~/js/metronic/bootstrap-modalmanager.js"></script>
+<script src="~/js/metronic/bootstrap-modal.js"></script>
+<script src="~/js/metronic/bootstrap-modalmanager.js"></script>
 
 </body>
 </html>
