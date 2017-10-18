@@ -36,5 +36,13 @@ namespace Investor.Repository
                 .Take(limit)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<PostEntity>> GetAllBlogsAsync()
+        {
+            return await _newsContext.Posts
+                .Where(p => p.IsBlogPost ?? false)
+                .Include(p => p.Author)
+                .ToListAsync();
+        }
     }
 }

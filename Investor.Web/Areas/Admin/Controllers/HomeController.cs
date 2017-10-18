@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Investor.Web.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "admin")]
+    //[Authorize(Roles = "admin")]
     public class HomeController : Controller
     {
         [Area("Admin")]
