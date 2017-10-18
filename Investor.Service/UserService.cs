@@ -14,17 +14,34 @@ namespace Investor.Service
     {
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UserService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
+        public UserService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
-        public async Task<IdentityResult> CreateUserAsync(User user)
+        private async Task<IdentityResult> CreateRoleAsync(string role)
+        {
+            if (!_roleManager.RoleExistsAsync(role).Result)
+            {
+                return await _roleManager.CreateAsync(new IdentityRole(role));
+            }
+            return IdentityResult.Success;
+        }
+
+        public async Task<IdentityResult> CreateUserAsync(User user,string userRole = "user")
         {
             var userEntity = Mapper.Map<User, UserEntity>(user);
-            return await _userManager.CreateAsync(userEntity, user.Password);
+            var userRegisterResult = await _userManager.CreateAsync(userEntity, user.Password);
+
+            if (userRegisterResult.Succeeded && CreateRoleAsync(userRole).Result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(userEntity, userRole);
+            }
+            return IdentityResult.Failed();
         }
           
         public async Task SignInUserAsync(User user, bool isLongTime)
