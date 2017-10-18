@@ -11,7 +11,7 @@ namespace Investor.Repository.Interfaces
         Task<IEnumerable<TagEntity>> GetAllTagsAsync();
         Task<TagEntity> GetTagByIdAsync(int id);
         Task<TagEntity> AddTagAsync(TagEntity tagEntity);
-        Task UpdateTagAsync(TagEntity tag);
+        Task<TagEntity> UpdateTagAsync(TagEntity tag);
         Task RemoveTagAsync(int id);
         Task<TagEntity> GetTagByNameAsync(string name);
     }

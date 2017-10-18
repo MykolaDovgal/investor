@@ -13,7 +13,7 @@ $(document).on('change', 'tbody td:not(:first-child)', function (e) {
     const idx = tables[tableId].cell(this).index().column;
     const tableDataObj = tables[tableId].row(idx).data();
 
-    console.log(e.target);
+	console.log(e.target);
     console.log(this);
     console.log(tableDataObj);
 
