@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Investor.Entity;
+using Investor.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Investor.Repository;
+using Investor.Service;
+using Microsoft.AspNetCore.Identity;
 
 namespace Investor.Web
 {
@@ -25,7 +29,10 @@ namespace Investor.Web
                 {
 
                     var context = services.GetService<NewsContext>();
-                    SampleData.Initialize(context);
+                    var signInManager = services.GetService<SignInManager<UserEntity>>();
+                    var userManager = services.GetService<UserManager<UserEntity>>();
+                    var roleManager = services.GetService<RoleManager<IdentityRole>>();
+                    SampleData.Initialize(context, signInManager, userManager,roleManager);
                 }
                 catch (Exception ex)
                 {

@@ -20,8 +20,6 @@ $(document).ready(function () {
         }
     });
 
-
-
     $("#postTextQuery").blur(function () {
         searchTextQuery = $(this).val();
     });
@@ -35,7 +33,6 @@ $(document).ready(function () {
             searchDateQuery,
             searchMoreResultPage,
             searchMoreResultCount);
-
     });
 
     $(".dropdown-item").click(function (e) {
@@ -59,7 +56,6 @@ $(document).ready(function () {
             searchMoreResultPage,
             searchMoreResultCount]);
     });
-
 });
 
 

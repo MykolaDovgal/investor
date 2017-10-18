@@ -39,7 +39,7 @@ namespace Investor.Web.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public void UpdatePost([Bind("PostId, Title, Description, IsOnMainPage, IsImportant, Published")]Post post, [FromForm] string[] Tags, [FromForm] bool IsOnSlider, [FromForm] bool IsOnSide)
+        public void UpdatePost([Bind("PostId, Title, Description, IsOnMainPage, IsImportant, Published, Category")]Post post, [FromForm] string[] Tags, [FromForm] bool IsOnSlider, [FromForm] bool IsOnSide)
         {
             Post newPost; 
                 

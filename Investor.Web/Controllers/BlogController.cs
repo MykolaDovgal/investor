@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Investor.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Investor.Web.Controllers
 {
+    [Authorize(Roles = "bloger")]
     public class BlogController : Controller
     {
 

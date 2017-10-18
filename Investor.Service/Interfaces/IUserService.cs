@@ -10,7 +10,7 @@ namespace Investor.Service.Interfaces
 {
     public interface IUserService
     {
-        Task<IdentityResult> CreateUserAsync(User user);
+        Task<IdentityResult> CreateUserAsync(User user, string userRole = "user");
         Task SignInUserAsync(User user, bool isLongTime);
         Task<SignInResult> PasswordSignInUserAsync(string email, string password, bool rememberMe, bool isLongTime);
         Task SignOutUserAsync();

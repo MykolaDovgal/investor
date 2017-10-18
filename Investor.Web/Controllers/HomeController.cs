@@ -9,10 +9,12 @@ using Investor.Repository;
 using Investor.Repository.Interfaces;
 using Investor.Model.Views;
 using Investor.Service;
+using Microsoft.AspNetCore.Authorization;
 using UnidecodeSharpFork;
 
 namespace Investor.Web.Controllers
 {
+    [Authorize(Roles = "user")]
     public class HomeController : Controller
     {
         private readonly IPostService _postService;
