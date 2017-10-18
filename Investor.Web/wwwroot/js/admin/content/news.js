@@ -34,15 +34,6 @@ $(document).on("click", "a.nav-link", function (e) {
 });
 
 
-
-//$(document).on('click', 'tbody td', function() {
-//    var idx = table.cell(this).index().column;
-//    console.log(table.row(idx).data());
-//});
-
-
-
-
 let initialTable = function (tableId) {
 
     tables[tableId] = $(tableId).DataTable({
