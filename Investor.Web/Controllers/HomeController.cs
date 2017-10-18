@@ -14,7 +14,7 @@ using UnidecodeSharpFork;
 
 namespace Investor.Web.Controllers
 {
-    [Authorize(Roles = "user")]
+    //[Authorize(Roles = "user")]
     public class HomeController : Controller
     {
         private readonly IPostService _postService;

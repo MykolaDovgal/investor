@@ -61,11 +61,18 @@
     <script src="~/js/typeahead/typeahead.bundle.js"></script>
 
     <script src="~/js/admin/content/new-post.js"></script>
+    <script src="~/js/admin/content/news.js"></script>
+<<<<<<< HEAD
     <script src="~/js/admin/content/tags.js"></script>
     <script src="~/js/admin/content/blogs.js"></script>
+=======
 
     <script src="~/js/metronic/bootstrap-modal.js"></script>
     <script src="~/js/metronic/bootstrap-modalmanager.js"></script>
+
+    <script src="~/js/admin/content/tags.js"></script>
+>>>>>>> f9f29138539d92926c64e6fcef2c1ebfca722f21
+
 
 </body>
 </html>

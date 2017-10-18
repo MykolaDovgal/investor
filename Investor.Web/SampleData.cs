@@ -19,6 +19,82 @@ namespace Investor.Web
             UserManager<UserEntity> userManager,
             RoleManager<IdentityRole> roleManager)
         {
+            if (!context.Users.Any())
+            {
+
+                if (!roleManager.RoleExistsAsync("user").Result)
+                {
+                    var roleResult = roleManager.CreateAsync(new IdentityRole("user")).Result;
+                }
+                if (!roleManager.RoleExistsAsync("bloger").Result)
+                {
+                    var roleResult1 = roleManager.CreateAsync(new IdentityRole("bloger")).Result;
+                }
+                if (!roleManager.RoleExistsAsync("admin").Result)
+                {
+                    var roleResult2 = roleManager.CreateAsync(new IdentityRole("admin")).Result;
+                }
+
+                var user = new UserEntity
+                {
+                    Name = "user",
+                    Description = "user",
+                    Email = "user@gmail.com",
+                    UserName = "user",
+                    Surname = "user"
+                };
+                var user1 = new UserEntity
+                {
+                    Name = "user1",
+                    Description = "user1",
+                    Email = "user1@gmail.com",
+                    UserName = "user1",
+                    Surname = "user1"
+                };
+                var bloger = new UserEntity
+                {
+                    Name = "bloger",
+                    Description = "bloger",
+                    Email = "bloger@gmail.com",
+                    UserName = "bloger",
+                    Surname = "bloger"
+                };
+                var admin = new UserEntity
+                {
+                    Name = "admin",
+                    Description = "admin",
+                    Email = "admin@gmail.com",
+                    UserName = "admin",
+                    Surname = "admin"
+                };
+
+                var userRegisterResult = userManager.CreateAsync(user, "user123123").Result;
+                if (userRegisterResult.Succeeded)
+                {
+                    var x = userManager.AddToRoleAsync(user, "user").Result;
+                }
+
+                var userRegisterResult1 = userManager.CreateAsync(user1, "user1123123").Result;
+                if (userRegisterResult1.Succeeded)
+                {
+                    var x1 = userManager.AddToRoleAsync(user1, "admin").Result;
+                }
+
+                var identityResult2 = userManager.CreateAsync(bloger, "bloger123123").Result;
+                if (identityResult2.Succeeded)
+                {
+                    var x2 = userManager.AddToRoleAsync(bloger, "bloger").Result;
+                }
+
+                var identityResult3 = userManager.CreateAsync(admin, "admin123123").Result;
+                if (identityResult3.Succeeded)
+                {
+                    var x3 = userManager.AddToRoleAsync(admin, "user").Result;
+                }
+
+
+                context.SaveChanges();
+            }
             if (!context.Articles.Any())
             {
                 context.Articles.AddRange(
@@ -58,6 +134,7 @@ namespace Investor.Web
             }
             if (!context.Posts.Any())
             {
+                var myUsers = context.Users.ToList<UserEntity>();
                 context.Posts.AddRange(
                     new Entity.PostEntity
                     {
@@ -71,7 +148,8 @@ namespace Investor.Web
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "img-slider.jpg",
-                        IsBlogPost = true
+                        IsBlogPost = true,
+                        AuthorId = myUsers[0].Id
 
                     },
                     new Entity.PostEntity
@@ -85,7 +163,9 @@ namespace Investor.Web
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "img-slider.jpg",
-                        IsBlogPost = true
+                        IsBlogPost = true,
+                        AuthorId = myUsers[1].Id
+
                     },
                     new Entity.PostEntity
                     {
@@ -99,7 +179,8 @@ namespace Investor.Web
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "img-slider.jpg",
-                        IsBlogPost = true
+                        IsBlogPost = true,
+                        AuthorId = myUsers[2].Id
                     },
                     new Entity.PostEntity
                     {
@@ -111,7 +192,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        Image = "img-slider.jpg",
+                        AuthorId = myUsers[0].Id
 
                     },
                     new Entity.PostEntity
@@ -126,7 +208,8 @@ namespace Investor.Web
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "img-slider.jpg",
-                        IsBlogPost = true
+                        IsBlogPost = true,
+                        AuthorId = myUsers[3].Id
                     },
                     new Entity.PostEntity
                     {
@@ -139,7 +222,8 @@ namespace Investor.Web
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "img-slider.jpg",
-                        IsBlogPost = true
+                        IsBlogPost = true,
+                        AuthorId = myUsers[2].Id
                     },
                     new Entity.PostEntity
                     {
@@ -204,7 +288,8 @@ namespace Investor.Web
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "img-slider.jpg",
-                        IsBlogPost = true
+                        IsBlogPost = true,
+                        AuthorId = myUsers[1].Id
                     },
                     new Entity.PostEntity
                     {
@@ -242,7 +327,8 @@ namespace Investor.Web
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "news-politic-1.jpg",
-                        IsBlogPost = true
+                        IsBlogPost = true,
+                        AuthorId = myUsers[1].Id
                     },
                     new Entity.PostEntity
                     {
@@ -295,7 +381,8 @@ namespace Investor.Web
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "news-politic-1.jpg",
-                        IsBlogPost = true
+                        IsBlogPost = true,
+                        AuthorId = myUsers[1].Id
 
                     },
                     new Entity.PostEntity
@@ -719,82 +806,7 @@ namespace Investor.Web
 
                 context.SaveChanges();
             }
-            if (!context.Users.Any())
-            {
-
-                if (!roleManager.RoleExistsAsync("user").Result)
-                {
-                    var roleResult = roleManager.CreateAsync(new IdentityRole("user")).Result;
-                }
-                if (!roleManager.RoleExistsAsync("bloger").Result)
-                {
-                    var roleResult1 = roleManager.CreateAsync(new IdentityRole("bloger")).Result;
-                }
-                if (!roleManager.RoleExistsAsync("admin").Result)
-                {
-                    var roleResult2 = roleManager.CreateAsync(new IdentityRole("admin")).Result;
-                }
-
-                var user = new UserEntity
-                {
-                    Name = "user",
-                    Description = "user",
-                    Email = "user@gmail.com",
-                    UserName = "user",
-                    Surname = "user"
-                };
-                var user1 = new UserEntity
-                {
-                    Name = "user1",
-                    Description = "user1",
-                    Email = "user1@gmail.com",
-                    UserName = "user1",
-                    Surname = "user1"
-                };
-                var bloger = new UserEntity
-                {
-                    Name = "bloger",
-                    Description = "bloger",
-                    Email = "bloger@gmail.com",
-                    UserName = "bloger",
-                    Surname = "bloger"
-                };
-                var admin = new UserEntity
-                {
-                    Name = "admin",
-                    Description = "admin",
-                    Email = "admin@gmail.com",
-                    UserName = "admin",
-                    Surname = "admin"
-                };
-
-                var userRegisterResult = userManager.CreateAsync(user, "user123123").Result;
-                if (userRegisterResult.Succeeded)
-                {
-                    var x = userManager.AddToRoleAsync(user, "user").Result;
-                }
-                
-                var userRegisterResult1 = userManager.CreateAsync(user1, "user1123123").Result;
-                if (userRegisterResult1.Succeeded)
-                {
-                    var x1 = userManager.AddToRoleAsync(user1, "admin").Result;
-                }
-
-                var identityResult2 = userManager.CreateAsync(bloger, "bloger123123").Result;
-                if (identityResult2.Succeeded)
-                {
-                    var x2 = userManager.AddToRoleAsync(bloger, "bloger").Result;
-                }
-
-                var identityResult3 = userManager.CreateAsync(admin, "admin123123").Result;
-                if (identityResult3.Succeeded)
-                {
-                    var x3 = userManager.AddToRoleAsync(admin, "user").Result;
-                }
-
-
-                context.SaveChanges();
-            }
+            
         }
     }
 }

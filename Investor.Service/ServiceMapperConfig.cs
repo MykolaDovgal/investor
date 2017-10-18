@@ -26,6 +26,7 @@ namespace Investor.Service
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();
                 cfg.CreateMap<AdminTag, TagEntity>().ReverseMap();
                 cfg.CreateMap<SliderItem, SliderItemEntity>().ReverseMap();
+                cfg.CreateMap<TableBlogPreview, PostEntity>().ReverseMap();
 
                 cfg.CreateMap<PostPreview, PostEntity>();
                 cfg.CreateMap<PostEntity, PostPreview>()

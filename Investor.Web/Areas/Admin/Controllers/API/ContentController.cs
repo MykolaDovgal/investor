@@ -18,11 +18,13 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         private readonly ITagService _tagService;
         private readonly ICategoryService _categoryService;
         private readonly ISliderItemService _sliderItemService;
+        private readonly IBlogService _blogService;
 
-        public ContentController(IPostService postService, ITagService tagService, ICategoryService categoryService, ISliderItemService sliderItemService)
+        public ContentController(IPostService postService, ITagService tagService, IBlogService blogService, ISliderItemService sliderItemService, ICategoryService categoryService)
         {
             _postService = postService;
             _tagService = tagService;
+            _blogService = blogService;
             _categoryService = categoryService;
             _sliderItemService = sliderItemService;
         }
@@ -32,15 +34,23 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         public async Task<IActionResult> GetAllNews()
         {
             var result = await _postService.GetAllPostsAsync<TablePostPreview>();
-            return Json(new {data = result });
+            return Json(new { data = result });
+        }
+        [Route("GetAllBlogs")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllBlogs()
+        {
+            var result = await _blogService.GetLatestBlogsAsync();
+            return Json(new { data = result });
         }
 
         [Route("UpdateNews")]
         [HttpPost]
         public JsonResult UpdateNews()
-        {            
+        {
             return Json(new { data = "ok" });
         }
+
 
         [Route("UpdatePost")]
         [HttpPost]

@@ -30,5 +30,11 @@ namespace Investor.Service
             var blogs = await _blogRepository.GetLatestBlogsAsync(limit);
             return blogs.Select(Mapper.Map<PostEntity, BlogPreview>);
         }
+
+        public async Task<IEnumerable<T>> GetAllPostsAsync<T>()
+        {
+            var posts = await _blogRepository.GetAllBlogsAsync();
+            return posts.Select(Mapper.Map<PostEntity, T>);
+        }
     }
 }

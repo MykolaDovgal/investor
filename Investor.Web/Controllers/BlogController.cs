@@ -8,10 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Investor.Web.Controllers
 {
-    [Authorize(Roles = "bloger")]
+    //[Authorize(Roles = "bloger")]
     public class BlogController : Controller
-    {
-
+    { 
         private readonly IPostService _postService;
         private readonly IBlogService _blogService;
         private readonly ICategoryService _categoryService;
