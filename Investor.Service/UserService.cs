@@ -64,5 +64,6 @@ namespace Investor.Service
         {
             await _signInManager.SignOutAsync();
         }
+
     }
 }

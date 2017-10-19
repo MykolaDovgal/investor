@@ -36,5 +36,9 @@ namespace Investor.Service
             var posts = await _blogRepository.GetAllBlogsAsync();
             return posts.Select(Mapper.Map<PostEntity, T>);
         }
+        //public async Task<Dictionary<string, string>> GetBlogersNameDictionaryAsync()
+        //{
+        //    var blogers = await _
+        //}
     }
 }

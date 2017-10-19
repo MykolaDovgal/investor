@@ -123,11 +123,11 @@ namespace Investor.Web
             {
                 Entity.CategoryEntity[] categories =
                 {
-                    new Entity.CategoryEntity {Name = "Політика", Url = "policy"},
-                    //new Entity.CategoryEntity {Name = "Соціум", Url = "social"},
+                    new Entity.CategoryEntity {Name = "Політика", Url = "policy"},                   
                     new Entity.CategoryEntity {Name = "Культура", Url = "culture"},
                     new Entity.CategoryEntity {Name = "Економіка", Url = "economy"},
                     new Entity.CategoryEntity {Name = "ІТ технології", Url = "it" },
+                    new Entity.CategoryEntity {Name = "Соціум", Url = "socium"}
                 };
                 context.Categories.AddRange(categories);
                 context.SaveChanges();
@@ -690,8 +690,137 @@ namespace Investor.Web
                         PublishedOn = DateTime.Now,
                         Image = "news-politic-2.jpg"
 
-                    }
-
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "Актори \"гри престолів\" розповіли про \"божевільне\" засекречення фіналу серіалу",
+                        Article = context.Articles.ToList()[4],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[4],
+                        IsOnMainPage = true,
+                        IsImportant = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "social-img-1.jpg"
+                    },
+                    new Entity.PostEntity
+                    {
+                        Title = "У Москві шукають аноніма, який за один вечір повідомив про 20 замінувань",
+                        Article = context.Articles.ToList()[3],
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[4],
+                        IsOnMainPage = true,
+                        IsImportant = false,
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "social-img-2.jpg"
+                    },
+                     new Entity.PostEntity
+                     {
+                         Title = "У Харкові Lexus влетів у натовп людей: Геращенко розповів, хто був за кермом",
+                         Article = context.Articles.ToList()[3],
+                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                         Category = context.Categories.ToList()[4],
+                         IsOnMainPage = true,
+                         IsImportant = true,
+                         CreatedOn = DateTime.Now,
+                         ModifiedOn = DateTime.Now,
+                         PublishedOn = DateTime.Now,
+                         Image = "social-img-3.jpg"
+                     },
+                     new Entity.PostEntity
+                     {
+                         Title = "У США придумали намет, який плаває",
+                         Article = context.Articles.ToList()[3],
+                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                         Category = context.Categories.ToList()[4],
+                         IsOnMainPage = true,
+                         IsImportant = false,
+                         CreatedOn = DateTime.Now,
+                         ModifiedOn = DateTime.Now,
+                         PublishedOn = DateTime.Now,
+                         Image = "social-img-3.jpg"
+                     },
+                     new Entity.PostEntity
+                     {
+                         Title = "Жінка бореться проти \"ідеального світу\" в Instagram дотепними фото з подорожей",
+                         Article = context.Articles.ToList()[3],
+                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                         Category = context.Categories.ToList()[4],
+                         IsOnMainPage = true,
+                         IsImportant = false,
+                         CreatedOn = DateTime.Now,
+                         ModifiedOn = DateTime.Now,
+                         PublishedOn = DateTime.Now,
+                         Image = "social-img-3.jpg"
+                     },
+                     new Entity.PostEntity
+                     {
+                         Title = "Дизайнер створює крихітні світи за допомогою звичайних речей",
+                         Article = context.Articles.ToList()[3],
+                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                         Category = context.Categories.ToList()[4],
+                         IsOnMainPage = true,
+                         IsImportant = false,
+                         CreatedOn = DateTime.Now,
+                         ModifiedOn = DateTime.Now,
+                         PublishedOn = DateTime.Now,
+                         Image = "social-img-3.jpg"
+                     },
+                      new Entity.PostEntity
+                      {
+                          Title = "Бред Пітт закрутив роман із 21-річною актрисою",
+                          Article = context.Articles.ToList()[3],
+                          Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                          Category = context.Categories.ToList()[4],
+                          IsOnMainPage = true,
+                          IsImportant = false,
+                          CreatedOn = DateTime.Now,
+                          ModifiedOn = DateTime.Now,
+                          PublishedOn = DateTime.Now,
+                          Image = "social-img-3.jpg"
+                      },
+                       new Entity.PostEntity
+                       {
+                           Title = "Професор пояснив, чому не варто поступатися старшим місцем у транспорті",
+                           Article = context.Articles.ToList()[3],
+                           Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                           Category = context.Categories.ToList()[4],
+                           IsOnMainPage = true,
+                           IsImportant = false,
+                           CreatedOn = DateTime.Now,
+                           ModifiedOn = DateTime.Now,
+                           PublishedOn = DateTime.Now,
+                           Image = "social-img-3.jpg"
+                       },
+                       new Entity.PostEntity
+                       {
+                           Title = "Три погані звички, через які ви виглядаєте старше",
+                           Article = context.Articles.ToList()[3],
+                           Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                           Category = context.Categories.ToList()[4],
+                           IsOnMainPage = true,
+                           IsImportant = false,
+                           CreatedOn = DateTime.Now,
+                           ModifiedOn = DateTime.Now,
+                           PublishedOn = DateTime.Now,
+                           Image = "social-img-3.jpg"
+                       },
+                       new Entity.PostEntity
+                       {
+                           Title = "Чому українська медицина не завжди може допомогти психічно хворим людям",
+                           Article = context.Articles.ToList()[3],
+                           Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                           Category = context.Categories.ToList()[4],
+                           IsOnMainPage = true,
+                           IsImportant = false,
+                           CreatedOn = DateTime.Now,
+                           ModifiedOn = DateTime.Now,
+                           PublishedOn = DateTime.Now,
+                           Image = "social-img-3.jpg"
+                       }
                     );
                 context.SaveChanges();
             }
