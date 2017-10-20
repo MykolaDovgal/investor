@@ -1,12 +1,16 @@
-﻿
+﻿@using Investor.Model
+@model SortedDictionary<string, List<User>>
 <div class="wrapper-all-bloggers grid">
-    @for (int i = 0; i < 10; i++)
+    @foreach (var blogers in Model)
     {
         <div class="item-blogger grid-item col-6 col-md-4 mb-4">
-            <p class="letter">А</p>
+            <p class="letter">@blogers.Key.ToUpper()</p>
+            @foreach (User bloger in blogers.Value)
+            {
             <ul class="wrapper-name-blogger">
-                <li><a href="#" class="name-blogger">Мила Дівчинка</a></li>
+                <li><a href="#" class="name-blogger">@(bloger.Surname + " " + bloger.Name)</a></li>
             </ul>
+            }
         </div>
     }
 </div>

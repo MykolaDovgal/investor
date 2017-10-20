@@ -34,6 +34,16 @@ namespace Investor.Service
             return tags.Select(Mapper.Map<TagEntity, Tag>);
         }
 
+        public async Task<IEnumerable<Tag>> GetPopularTagsAsync(int number)
+        {
+            return (await _tagRepository
+                .GetAllTagsAsync())
+                .ToList()
+                .OrderByDescending(t => t.PostTags.Count)
+                .Take(number)
+                .Select(Mapper.Map<TagEntity, Tag>);
+        }
+
         public async Task<Tag> GetTagByIdAsync(int id)
         {
             return Mapper.Map<TagEntity, Tag>(await _tagRepository.GetTagByIdAsync(id));

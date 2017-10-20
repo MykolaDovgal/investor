@@ -7,6 +7,7 @@ using Investor.Entity;
 using Investor.Model;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
 
 namespace Investor.Service
 {
@@ -64,6 +65,20 @@ namespace Investor.Service
         {
             await _signInManager.SignOutAsync();
         }
-
+        public async Task<SortedDictionary<string, List<User>>> GetDictionaryOfBlogersAsync()
+        {
+            SortedDictionary<string, List<User>> blogers = new SortedDictionary<string, List<User>>();
+            List<UserEntity> users = (await _userManager.GetUsersInRoleAsync("bloger")).ToList();
+            users.ForEach(u => {
+                    if(blogers.ContainsKey(u.Surname[0].ToString())) {
+                        blogers[u.Surname.Substring(0, 1)].Add(Mapper.Map<UserEntity, User>(u));
+                    }
+                    else {
+                        blogers.Add(u.Surname[0].ToString(), new List<User>() { Mapper.Map<UserEntity, User>(u)});
+                    }
+            }
+            );
+            return blogers;
+        }
     }
 }

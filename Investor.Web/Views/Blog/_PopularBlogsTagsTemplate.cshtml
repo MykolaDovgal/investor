@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Investor.Model.Tag>
+
+<div class="wrapper-tag-news">
+    @foreach (var tag in Model)
+    {
+        <a href="#" class="tag-item">@tag.Name</a>
+    }
+</div>

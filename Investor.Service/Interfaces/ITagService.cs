@@ -16,5 +16,6 @@ namespace Investor.Service.Interfaces
         Task RemoveTagAsync(int id);
         Task<Tag> GetTagByNameAsync(string name);
         Task<IEnumerable<AdminTag>> GetAllTagsWithPostCountAsync();
+        Task<IEnumerable<Tag>> GetPopularTagsAsync(int number);
     }
 }
