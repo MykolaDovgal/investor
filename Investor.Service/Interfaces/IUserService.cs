@@ -14,5 +14,6 @@ namespace Investor.Service.Interfaces
         Task SignInUserAsync(User user, bool isLongTime);
         Task<SignInResult> PasswordSignInUserAsync(string email, string password, bool rememberMe, bool isLongTime);
         Task SignOutUserAsync();
+        Task<SortedDictionary<string, List<User>>> GetDictionaryOfBlogersAsync();
     }
 }

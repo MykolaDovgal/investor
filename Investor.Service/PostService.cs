@@ -13,10 +13,12 @@ namespace Investor.Service
     public class PostService : IPostService
     {
         private readonly IPostRepository _postRepository;
+        private readonly ITagService _tagService;
 
-        public PostService(IPostRepository postRepository)
+        public PostService(IPostRepository postRepository, ITagService tagService)
         {
             _postRepository = postRepository;
+            _tagService = tagService;
         }
 
         public async Task<Post> AddPostAsync(Post map)
@@ -116,7 +118,12 @@ namespace Investor.Service
 
         public async Task AddTagToPostAsync(int postId, string tagName)
         {
-            await _postRepository.AddTagToPostAsync(postId, tagName);
+            var tag = await _tagService.GetTagByNameAsync(tagName);
+            if (tag == null)
+            { 
+                tag = await _tagService.AddTagAsync(new Tag { Name = tagName });
+            }
+            await _postRepository.AddTagToPostAsync(postId, Mapper.Map < Tag, TagEntity > (tag));
         }
 
         public async Task<IEnumerable<Tag>> GetAllTagsByPostId(int id)

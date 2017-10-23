@@ -51,13 +51,53 @@ namespace Investor.Web
                     UserName = "user1",
                     Surname = "user1"
                 };
-                var bloger = new UserEntity
+                var bloger1 = new UserEntity
                 {
                     Name = "bloger",
                     Description = "bloger",
-                    Email = "bloger@gmail.com",
-                    UserName = "bloger",
+                    Email = "bloger1@gmail.com",
+                    UserName = "bloger1",
                     Surname = "bloger"
+                };
+                var bloger2 = new UserEntity
+                {
+                    Name = "Анна",
+                    Description = "bloger",
+                    Email = "bloger2@gmail.com",
+                    UserName = "bloger2",
+                    Surname = "Волицька"
+                };
+                var bloger3 = new UserEntity
+                {
+                    Name = "Влад",
+                    Description = "bloger",
+                    Email = "bloger@gmail.com",
+                    UserName = "bloger3",
+                    Surname = "Ковальчук"
+                };
+                var bloger4 = new UserEntity
+                {
+                    Name = "Роман",
+                    Description = "bloger",
+                    Email = "bloger@gmail.com",
+                    UserName = "bloger4",
+                    Surname = "Захарків"
+                };
+                var bloger5 = new UserEntity
+                {
+                    Name = "Оксана",
+                    Description = "bloger",
+                    Email = "bloger@gmail.com",
+                    UserName = "bloge5r",
+                    Surname = "Зеленська"
+                };
+                var bloger6 = new UserEntity
+                {
+                    Name = "Діана",
+                    Description = "bloger",
+                    Email = "bloger@gmail.com",
+                    UserName = "bloger6",
+                    Surname = "Яворська"
                 };
                 var admin = new UserEntity
                 {
@@ -80,18 +120,39 @@ namespace Investor.Web
                     var x1 = userManager.AddToRoleAsync(user1, "admin").Result;
                 }
 
-                var identityResult2 = userManager.CreateAsync(bloger, "bloger123123").Result;
+                var identityResult1 = userManager.CreateAsync(bloger1, "bloger123123").Result;
+                if (identityResult1.Succeeded)
+                {
+                    var x2 = userManager.AddToRoleAsync(bloger1, "bloger").Result;
+                }
+                var identityResult2 = userManager.CreateAsync(bloger2, "bloger123123").Result;
                 if (identityResult2.Succeeded)
                 {
-                    var x2 = userManager.AddToRoleAsync(bloger, "bloger").Result;
+                    var x3 = userManager.AddToRoleAsync(bloger2, "bloger").Result;
                 }
 
-                var identityResult3 = userManager.CreateAsync(admin, "admin123123").Result;
+                var identityResult3 = userManager.CreateAsync(bloger3, "bloger123123").Result;
                 if (identityResult3.Succeeded)
                 {
-                    var x3 = userManager.AddToRoleAsync(admin, "user").Result;
+                    var x4 = userManager.AddToRoleAsync(bloger3, "bloger").Result;
                 }
 
+                var identityResult4 = userManager.CreateAsync(bloger4, "bloger123123").Result;
+                if (identityResult4.Succeeded)
+                {
+                    var x5 = userManager.AddToRoleAsync(bloger4, "bloger").Result;
+                }
+
+                var identityResult5 = userManager.CreateAsync(bloger5, "bloger123123").Result;
+                if (identityResult5.Succeeded)
+                {
+                    var x6 = userManager.AddToRoleAsync(bloger5, "bloger").Result;
+                }
+                var identityResult6 = userManager.CreateAsync(bloger6, "bloger123123").Result;
+                if (identityResult6.Succeeded)
+                {
+                    var x7 = userManager.AddToRoleAsync(bloger6, "bloger").Result;
+                }
 
                 context.SaveChanges();
             }

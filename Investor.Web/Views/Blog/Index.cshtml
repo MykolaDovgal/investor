@@ -30,7 +30,7 @@
 
                 <div class="body-category-news block-border-top blog-border-color mb-4">
                     <h2 class="title-block">Всі блогери</h2>
-                    @Html.Partial("_AllBlogersTemplate")
+                    @Html.Partial("_AllBlogersTemplate", ViewBag.Blogers as SortedDictionary<string, List<User>>)
                 </div>
                 <!--end recent recent-->
             </div>
@@ -38,15 +38,10 @@
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
 
                 <div class="block-border-top blog-border-color last-news blog-tags mb-3">
-                    <h2 class="title-block">Категорії</h2>
-                    @Html.Partial("_BlogsCategoryTemplate",ViewBag.Categories as IEnumerable<Category>)
+                    <h2 class="title-block">Популярні теги</h2>
+                    @Html.Partial("_PopularBlogsTagsTemplate", ViewBag.PopularTags as IEnumerable<Tag>)
                 </div>
-
-                
-
                    @Html.Partial("_LastNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
-
-
             </div>
 
         </div>

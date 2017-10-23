@@ -42,7 +42,8 @@
 			if (isvalidate) {
 				let formData = new FormData(document.getElementById('updateForm'));
 				formData.append("Image", $("input[name='Image']").get(0).files);
-				formData.append("Article", $("textarea[name='Article']").text);
+				formData.append("Article", tinyMCE.get('Article').getContent());
+				console.log(tinyMCE.get('Article').getContent());
 				var var1 = $("input[name='IsOnMainPage']").val;
 				//console.log(var1);
 
@@ -56,9 +57,10 @@
 				}
 
 				e.preventDefault();
+				
 				$.ajax({
 					type: "POST",
-					url: "/api/Content/UpdatePost",
+					url: "/api/Content/" + $(this).data("action"),
 					data: formData,
 					cache: false,
 					contentType: false,

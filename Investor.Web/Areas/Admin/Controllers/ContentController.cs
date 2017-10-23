@@ -38,6 +38,14 @@ namespace Investor.Web.Areas.Admin.Controllers
             return PartialView("SinglePost", post);
         }
 
+
+        public IActionResult Create()
+        {
+            ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
+            Post post = new Post();
+            return PartialView("SinglePost", post);
+        }
+
         public IActionResult Blogs()
         {
             return PartialView("_Blogs");
