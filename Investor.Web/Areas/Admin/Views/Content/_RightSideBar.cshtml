@@ -2,7 +2,7 @@
 @using Investor.Model
 <div class="sidebar-right">
     <button type="button" class="btn green-meadow" style="width: 100%">Перейти до поста</button>
-    <button type="submit" class="btn blue-madison" style="width: 100%" form="updateForm" id="updateFormSubmit">Зберегти</button>
+    <button type="submit" class="btn blue-madison" style="width: 100%" form="updateForm" id="updateFormSubmit" data-action="" >Зберегти</button>
     <button type="button" class="btn grey-cascade" style="width: 100%">Відмінити</button>
 
     <div class="newpost-widget">
@@ -10,18 +10,20 @@
 
 
         <select class="bs-select form-control" tabindex="-98" name="Category">
-            @for (int i = 0; i < ViewBag.Categories.Count; i++)
+            @foreach(var category in ViewBag.Categories)
             {
-                <option @(Model.Category.Name == ViewBag.Categories[i].Name ? "selected" : "") value="@ViewBag.Categories[i].Url">@ViewBag.Categories[i].Name</option>
+                <option @(Model.Category != null ? (Model.Category.Name == category.Name ? "selected" : "") : "") value="@category.Url">@category.Name</option>
             }
         </select>
 
     @{
         string tags = "";
-        foreach (Tag tag in ViewBag.Tags)
-        {
-            tags += tag.Name + ",";
+        if (ViewData.ContainsKey("Tags")) {
+            foreach (Tag tag in ViewBag.Tags)
+            {
+                tags += tag.Name + ",";
 
+            }
         }
     }
     </div>
@@ -40,12 +42,12 @@
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На боковій панелі слайдера
-        <input type="checkbox" value="true" name="IsOnSide" @(ViewBag.IsOnSide ? "checked" : "") />
+        <input type="checkbox" value="true" name="IsOnSide" @(ViewData.ContainsKey("IsOnSide") ? (ViewBag.IsOnSide ? "checked" : "") : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На слайдері
-        <input type="checkbox" value="true" name="IsOnSlider" @(ViewBag.IsOnSlider ? "checked" : "") />
+        <input type="checkbox" value="true" name="IsOnSlider" @(ViewData.ContainsKey("IsOnSlider") ?(ViewBag.IsOnSlider ? "checked" : "") : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline color-white">

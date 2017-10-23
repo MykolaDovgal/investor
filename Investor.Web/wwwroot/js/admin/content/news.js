@@ -28,7 +28,10 @@ $(document).on("click", "a.nav-link", function (e) {
         getPartialView(`admin${url}`, initialTable, "#newsTable");
     }
 	if (type && type === "singlepost") {
-		getPartialView(`admin${url}`, initTypeahead);
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost"); console.log($("#updateFormSubmit").data("action")) });
+	}
+	if (type && type === "create") {
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost"); console.log($("#updateFormSubmit").data("action")) });
 	}
 	
 });

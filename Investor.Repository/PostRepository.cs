@@ -197,12 +197,8 @@ namespace Investor.Repository
                 .ToListAsync();
         }
 
-        public async Task<TagEntity> AddTagToPostAsync(int postId, string tagName)
+        public async Task<TagEntity> AddTagToPostAsync(int postId, TagEntity tag)
         {
-            var tag = _newsContext
-                .Tags
-                .FirstOrDefault(t => t.Name == tagName);
-
             var post = _newsContext
                  .Posts
                  .Include(t => t.PostTags)
@@ -210,9 +206,7 @@ namespace Investor.Repository
 
             var newTag = new PostTagEntity() { Post = post, Tag = tag };
             post.PostTags.Add(newTag);
-
             await _newsContext.SaveChangesAsync();
-
             return newTag.Tag;
         }
 
@@ -220,7 +214,6 @@ namespace Investor.Repository
         {
             var post = await _newsContext.Posts.Include(p => p.PostTags).ThenInclude(p => p.Tag).FirstOrDefaultAsync(p => p.PostId == id);
             return post.PostTags.Select(p => p.Tag).ToList();
-
         }
 
         public async Task<IEnumerable<PostEntity>> GetQueriedPost(PostSearchQuery query)

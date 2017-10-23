@@ -32,9 +32,9 @@
 
         </div>*@
     <div class="cropper">
-        <input type="file" name="Image" value="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")">
+        <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + Model.Image))">
     </div>
     <div class="img-preview"></div>
 
-    <textarea class="text-editor" required="required" name="Article">@Model.Article.Content</textarea>
+    <textarea class="text-editor" id="Article">@(Model.Article == null ? "" : Model.Article.Content)</textarea>
 </div>
