@@ -1,23 +1,34 @@
-﻿let tables = { };
+﻿let tables = {};
+let tablesUpdetedData = {};
 
 $(document).ready(function () {
 
-    
+
 
 });
 
 
-$(document).on('change', 'tbody td:not(:first-child)', function (e) {
+$(document).on('change',
+    'tbody td:not(:first-child)',
+    function (e) {
 
-    const tableId = "#" + $(this).closest('table').prop("id");
-    const idx = tables[tableId].cell(this).index().column;
-    const tableDataObj = tables[tableId].row(idx).data();
+        const tableId = "#" + $(this).closest('table').prop("id");
+        const idx = tables[tableId].cell(this).index().column;
 
-	console.log(e.target);
-    console.log(this);
-    console.log(tableDataObj);
+        const tableDataObj = tables[tableId].row($(this).parents('tr')).data();
+        const propertyName = tables[tableId].settings().init().columns[idx].data;
+        const properyValue = $(e.target).prop("checked");
 
-});
+        if (tablesUpdetedData[tableDataObj.postId]) {
+            tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;
+        } else {
+            tablesUpdetedData[tableDataObj.postId] = tableDataObj;
+            tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;
+        }
+
+        console.log(tablesUpdetedData);
+
+    });
 
 $(document).on("click", "a.nav-link", function (e) {
 
@@ -27,15 +38,77 @@ $(document).on("click", "a.nav-link", function (e) {
     if (type && type === "news") {
         getPartialView(`admin${url}`, initialTable, "#newsTable");
     }
-	if (type && type === "singlepost") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost"); console.log($("#updateFormSubmit").data("action")) });
-	}
-	if (type && type === "create") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost"); console.log($("#updateFormSubmit").data("action")) });
-	}
-	
+    if (type && type === "singlepost") {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost"); console.log($("#updateFormSubmit").data("action")) });
+    }
+    if (type && type === "create") {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost"); console.log($("#updateFormSubmit").data("action")) });
+    }
+    if (type && type == "update") {
+
+        let tempArray = [];
+        const keys = Object.keys(tablesUpdetedData);
+
+        for (let i = 0; i < keys.length; i += 1) {
+            if (keys.hasOwnProperty(keys[i])) {
+                tempArray.push(tablesUpdetedData[keys[i]]);
+            }
+        }
+        updetePosts.call(this, url, tempArray);
+    }
 });
 
+
+let normalizeObjectKeys = function (sourceObjectArray) {
+
+    let newArr = {}
+
+    for (let i = 0; i < sourceObjectArray.length; i++) {
+        let obj = sourceObjectArray[i];
+
+    }
+
+
+    const keys = Object.keys(sourceObjectArray);
+    let normalizedObject = {};
+
+    for (let i = 0; i < keys.length; i += 1) {
+        if (keys.hasOwnProperty(keys[i])) {
+            tempArray.push(tablesUpdetedData[keys[i]]);
+        }
+    }
+
+
+    //for (var i = 0; i < obj.length; i++) {
+
+    //    var a = obj[i];
+    //    for (var key in a) {
+    //        var temp;
+    //        if (a.hasOwnProperty(key)) {
+    //            temp = a[key];
+    //            delete a[key];
+    //            a[key.charAt(0).toUpperCase() + key.substring(1)] = temp;
+    //        }
+    //    }
+    //    obj[i] = a;
+
+    //}
+}
+
+let updetePosts = function (url, postData) {
+    console.log(postData);
+
+    $.ajax({
+        url: url,
+        contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+        dataType: 'json',
+        type: "POST",
+        data: { tablePosts: postData},
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
 
 let initialTable = function (tableId) {
 
