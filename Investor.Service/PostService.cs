@@ -49,14 +49,14 @@ namespace Investor.Service
         public async Task<IEnumerable<PostPreview>> GetLatestPostsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false, int limit = 10)
         {
             return (await _postRepository
-                .GetLatestPostsByCategoryUrlAsync(categoryUrl,onMainPage,limit))
+                .GetLatestPostsByCategoryUrlAsync(categoryUrl, onMainPage, limit))
                 .Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetPagedLatestPostsByCategoryUrlAsync(string categoryUrl, int limit = 10, int page = 1)
         {
             return (await _postRepository
-                .GetPagedLatestPostsByCategoryUrlAsync(categoryUrl,limit,page))
+                .GetPagedLatestPostsByCategoryUrlAsync(categoryUrl, limit, page))
                 .Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
@@ -89,13 +89,19 @@ namespace Investor.Service
         public async Task<IEnumerable<PostPreview>> GetLatestPostsAsync(int limit)
         {
             var posts = await _postRepository.GetLatestPostsAsync(limit);
-            
+
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task<Post> UpdatePostAsync(Post post)
         {
-            return Mapper.Map <PostEntity,Post> (await _postRepository.UpdatePostAsync(Mapper.Map<Post, PostEntity>(post)));
+            return Mapper.Map<PostEntity, Post>(await _postRepository.UpdatePostAsync(Mapper.Map<Post, PostEntity>(post)));
+        }
+        public async Task<IEnumerable<Post>> UpdatePostAsync(IEnumerable<Post> posts)
+        {
+            var searchedPosts = await _postRepository.GetPostsBasedOnIdCollectionAsync(posts.Select(x => x.PostId));
+            var updatePost = await _postRepository.UpdatePostAsync(Mapper.Map(posts, searchedPosts));
+            return updatePost.Select(Mapper.Map<PostEntity, Post>);
         }
 
         public async Task RemovePostAsync(int id)
@@ -120,10 +126,10 @@ namespace Investor.Service
         {
             var tag = await _tagService.GetTagByNameAsync(tagName);
             if (tag == null)
-            { 
+            {
                 tag = await _tagService.AddTagAsync(new Tag { Name = tagName });
             }
-            await _postRepository.AddTagToPostAsync(postId, Mapper.Map < Tag, TagEntity > (tag));
+            await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
         }
 
         public async Task<IEnumerable<Tag>> GetAllTagsByPostId(int id)

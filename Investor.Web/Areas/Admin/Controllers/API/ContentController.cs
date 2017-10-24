@@ -122,5 +122,13 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         {
             await _tagService.RemoveTagAsync(TagId);
         }
+
+        [Route("UpdateTablePost")]
+        [HttpPost]
+        public async Task UpdateTablePost(List<Post> tablePosts)
+        {
+            var t = Request.Form;
+            await _postService.UpdatePostAsync(tablePosts);
+        }
     }
 }

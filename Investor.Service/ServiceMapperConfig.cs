@@ -18,7 +18,7 @@ namespace Investor.Service
                 cfg.CreateMap<User, UserEntity>()
                     .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)));
                 cfg.CreateMap<UserEntity, User>()
-                    .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';',StringSplitOptions.RemoveEmptyEntries)));
+                    .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';', StringSplitOptions.RemoveEmptyEntries)));
                 cfg.CreateMap<Article, ArticleEntity>().ReverseMap();
                 cfg.CreateMap<RegisterViewModel, User>().ReverseMap();
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();
@@ -38,13 +38,14 @@ namespace Investor.Service
 
                 cfg.CreateMap<PostEntity, TablePostPreview>();
                 cfg.CreateMap<Post, PostPreview>();
-                cfg.CreateMap<Post, PostEntity>();
+                cfg.CreateMap<Post, PostEntity>()
+                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null))); ;
 
                 cfg.CreateMap<Post, Post>()
-                .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
+                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
                 cfg.CreateMap<SliderItem, SliderItem>()
-                .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
+                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
                 cfg.CreateMap<PostEntity, Blog>()
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));

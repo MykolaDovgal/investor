@@ -114,15 +114,10 @@ namespace Investor.Repository
                 .FirstOrDefaultAsync(p => p.PostId == id);
         }
 
-        public async Task<IEnumerable<PostEntity>> GetPostsBasedOnIdCollectionAsync(List<int> postIds)
+        public async Task<IEnumerable<PostEntity>> GetPostsBasedOnIdCollectionAsync(IEnumerable<int> postIds)
         {
             return await _newsContext.Posts
                 .Where(p => postIds.Contains(p.PostId))
-                .Include(p => p.Category)
-                .Include(p => p.Comments)
-                .Include(p => p.Article)
-                .Include(p => p.Author)
-                .Include(p => p.PostTags)
                 .ToListAsync();
         }
 
@@ -173,6 +168,16 @@ namespace Investor.Repository
             
             await _newsContext.SaveChangesAsync();
             return post;
+        }
+
+        public async Task<IEnumerable<PostEntity>> UpdatePostAsync(IEnumerable<PostEntity> posts)
+        {
+            foreach (var post in posts)
+            {
+                _newsContext.Entry(post).State = EntityState.Modified;
+            }
+            await _newsContext.SaveChangesAsync();
+            return posts;
         }
 
         public async Task<IEnumerable<PostEntity>> GetLatestPostsAsync(int limit)
