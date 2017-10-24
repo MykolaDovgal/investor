@@ -1,0 +1,30 @@
+﻿@model Investor.Model.Blog
+@using Investor.Model
+<div class="sidebar-right">
+    <button type="button" class="btn green-meadow" style="width: 100%">Перейти до поста</button>
+    <button type="submit" class="btn blue-madison" style="width: 100%" form="updateFormBlog" id="updateFormBlogSubmit" data-action="">Зберегти</button>
+    <button type="button" class="btn grey-cascade" style="width: 100%">Відмінити</button>
+
+    <div class="newpost-widget">
+        <label class="newpost-widget-title ng-binding">Метки</label>
+        @{
+            string tags = "";
+            if (ViewData.ContainsKey("Tags"))
+            {
+                foreach (Tag tag in ViewBag.Tags)
+                {
+                    tags += tag.Name + ",";
+
+                }
+            }
+        }
+    </div>
+    <div id="the-basics">
+        <input id="tagTypeahead" class="typeahead" type="text" placeholder="States of USA " data-role="tagsinput" name="tagsName" value="@tags" />
+    </div>
+    <label class="mt-checkbox mt-checkbox-outline">
+        Опубліковано
+        <input type="checkbox" value="true" name="Published" @(Model.Published ? "checked" : "") />
+        <span></span>
+    </label>
+</div>

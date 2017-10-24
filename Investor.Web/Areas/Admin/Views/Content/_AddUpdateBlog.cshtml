@@ -1,4 +1,4 @@
-﻿@model Investor.Model.Post
+﻿@model Investor.Model.Blog
 
 <input type="hidden" value="@Model.PostId" name="PostId" />
 
@@ -10,7 +10,7 @@
     </div>
 
     <div class="form-group form-md-line-input form-md-floating-label has-info">
-        <textarea class="form-control @(String.IsNullOrEmpty(Model.Title) ? "" : "edited")" id="description" name="Description" required="required">@Model.Description</textarea>
+        <textarea class="form-control @(String.IsNullOrEmpty(Model.Description) ? "" : "edited")" id="description" name="Description" required="required">@Model.Description</textarea>
         <label for="description">Опис</label>
     </div>
 
@@ -34,7 +34,7 @@
     <div class="cropper">
         <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + Model.Image))">
     </div>
-    <div class="img-preview" ></div>
+    <div class="img-preview"></div>
 
     <textarea class="text-editor" id="Article">@(Model.Article == null ? "" : Model.Article.Content)</textarea>
 </div>

@@ -44,5 +44,13 @@ namespace Investor.Repository
                 .Include(p => p.Author)
                 .ToListAsync();
         }
+
+        public async Task<PostEntity> GetPostByIdAsync(int id)
+        {
+            return await _newsContext.Posts
+                .Where(p => p.IsBlogPost ?? false)
+                .Include(p => p.Author)
+                .FirstOrDefaultAsync(p => p.PostId == id);
+        }
     }
 }

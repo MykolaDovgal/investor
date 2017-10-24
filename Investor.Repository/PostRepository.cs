@@ -19,6 +19,11 @@ namespace Investor.Repository
         }
         public async Task<PostEntity> AddPostAsync(PostEntity post)
         {
+            post.CreatedOn = DateTime.Now;
+            post.ModifiedOn = DateTime.Now;
+            if(post.IsPublished.HasValue)
+                post.PublishedOn = post.IsPublished.Value ? DateTime.Now : new DateTime();
+
             await _newsContext.Posts.AddAsync(post);
             await _newsContext.SaveChangesAsync();
             return post;
@@ -162,8 +167,10 @@ namespace Investor.Repository
 
         public async Task<PostEntity> UpdatePostAsync(PostEntity post)
         {
-            _newsContext.Entry(post).State = EntityState.Modified;
-
+            post.ModifiedOn = DateTime.Now;
+            PostEntity prevPost = _newsContext.Posts.FirstOrDefault(p => p.PostId == post.PostId);
+            post.PublishedOn = prevPost.IsPublished == false && post.IsPublished == true ? DateTime.Now : post.PublishedOn;
+            
             await _newsContext.SaveChangesAsync();
             return post;
         }

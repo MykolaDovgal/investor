@@ -36,6 +36,12 @@ namespace Investor.Service
             var posts = await _blogRepository.GetAllBlogsAsync();
             return posts.Select(Mapper.Map<PostEntity, T>);
         }
+
+        public async Task<Blog> GetPostByIdAsync(int id)
+        {
+            var post = await _blogRepository.GetPostByIdAsync(id);
+            return Mapper.Map<PostEntity, Blog>(post);
+        }
         //public async Task<Dictionary<string, string>> GetBlogersNameDictionaryAsync()
         //{
         //    var blogers = await _

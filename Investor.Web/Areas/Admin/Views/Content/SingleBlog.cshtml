@@ -1,0 +1,10 @@
+﻿@using Investor.Model
+@model Investor.Model.Blog
+<form method="post" id="updateFormBlog" enctype="multipart/form-data">
+    <fieldset>
+        <div class="page-content-wrapper">
+            @Html.Partial("_AddUpdateBlog", Model as Blog)
+        </div>
+        @Html.Partial("_RightSideBarBlog", Model as Blog)
+    </fieldset>
+</form>
