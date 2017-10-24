@@ -59,6 +59,7 @@ namespace Investor.Web
             services.AddTransient<ThemeService>();
 
             // Services
+            services.AddTransient<IImageService, ImageService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IBlogService, BlogService>();
             services.AddTransient<ISearchService, SearchService>();
