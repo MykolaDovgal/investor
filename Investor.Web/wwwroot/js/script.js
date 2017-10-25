@@ -10,28 +10,9 @@ weekday[5] = "П'ятниця";
 weekday[6] = "Субота";
 var day = weekday[data.getDay()];
 
-
-$(document).ready(function () {
-    $.fn.datepicker.language['ua'] = {
-        days: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота"],
-        daysShort: ["Нед", "Пон", "Вів", "Сер", "Чет", "П'ят", "Суб"],
-        daysMin: ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-        months: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень', 'Серпень', 'Вересень', 'Жовтень', 'Листопад', 'Грудень'],
-        monthsShort: ['Січ', 'Лют', 'Бер', 'Квіт', 'Трав', 'Чер', 'Лип', 'Серп', 'Вер', 'Жов', 'Лсит', 'Гру'],
-        today: 'Сьогодні',
-        clear: 'Очистити',
-        dateFormat: 'DD dd.mm.yyyy',
-        timeFormat: 'hh:ii',
-        firstDay: 1
-    }
-});
-
-
-
-
 var currentDate = data.toLocaleDateString();
 
-$("#data").html('<span class="day color-white-70">' + day + '</span><span class="current-date color-white-70">' + currentDate + '</span>');
+$("#data").html('<span class="day">' + day + '</span><span class="current-date">' + currentDate + '</span>');
 
 $("#my-datepicker").val(day + ' ' + currentDate);
 /***/
@@ -43,7 +24,6 @@ $(".carousel-popular-theme").owlCarousel({
     dots: true,
     nav: true,
     slideBy: 3,
-    // items:3,
     responsiveClass: true,
     responsive: {
         0: {
@@ -77,10 +57,6 @@ $(".carousel-editorial-choice").owlCarousel({
             items: 3
         }
     }
-});
-
-$('.grid').masonry({
-    itemSelector: '.grid-item'
 });
 
 $(".carousel-top-blog").owlCarousel({
@@ -152,21 +128,20 @@ $('.input-value').keyup(function () {
         $('.' + $this.attr('id') + '').prev('i').addClass('d-none');
     }
 
-
-    var name = $('#input-value2').val();
+    var name = $('#input-value-name').val();
     if (name.length < 1) {
-        $('.input-value2').html('Ім’я');
+        $('.input-value-name').html('Ім’я');
     }
 
 
-    var lastname = $('#input-value3').val();
+    var lastname = $('#input-value-lastname').val();
     if (lastname.length < 1) {
-        $('.input-value3').html('Прізвище');
+        $('.input-value-lastname').html('Прізвище');
     }
 
-    var autobiography = $('#input-value4').val();
+    var autobiography = $('#input-value-autobiography').val();
     if (autobiography.length < 1) {
-        $('.input-value4').html('Ваша біографія');
+        $('.input-value-autobiography').html('Ваша біографія');
     }
 });
 /***end preview registration***/
@@ -176,67 +151,97 @@ $('.item-blog-news').each(function () {
     var blog = $(this);
     var heightTitle = blog.find('.title-news').height();
 
-    if (heightTitle < 19) {
+    if (heightTitle < 23) {
         blog.find('.text-news').removeClass('brief-description');
     }
 });
 /***end number of description lines***/
 
-   /*    var myLanguage = {
-        errorTitle: 'Не вдалося надіслати форму!',
-        requiredFields: 'Ви не заповнили всі обов’язкові поля',
-        badTime: 'Введено некоректний час',
-        badEmail: 'Введено некоректний email',
-        badTelephone: 'Введено неправильний номер телефону',
-        badSecurityAnswer: 'Ви ввели неправильну відповідь на секретне запитання',
-        badDate: 'Введено некоректну дату',
-        lengthBadStart: 'Введене значення повинне бути між ',
-        lengthBadEnd: ' символи',
-        lengthTooLongStart: 'Введене значення більше ніж ',
-        lengthTooShortStart: 'Введене значення менше ніж ',
-        notConfirmed: 'Введені значення не можуть бути підтверджені',
-        badDomain: 'Некоректне ім’я домену',
-        badUrl: 'Некоректне URL значення',
-        badCustomVal: 'Введено некоректне значення',
-        andSpaces: ' і пробіли ',
-        badInt: 'Введене значення не є коректним числом',
-        badSecurityNumber: 'Your social security number was incorrect',
-        badUKVatAnswer: 'Incorrect UK VAT Number',
-        badStrength: 'Пароль є занадто слабким',
-        badNumberOfSelectedOptionsStart: 'Виберіть принаймні ',
-        badNumberOfSelectedOptionsEnd: ' відповіді',
-        badAlphaNumeric: 'Введені значення мають бути лише алфавітними символами ',
-        badAlphaNumericExtra: ' і ',
-        wrongFileSize: 'Файл, який ви намагаєтесь завантажити занадто великий (макс. %s)',
-        wrongFileType: 'Тільки файли типу %s  є дозволеними',
-        groupCheckedRangeStart: 'Будь ласка, виберіть між ',
-        groupCheckedTooFewStart: 'Будь ласка, виберіть принаймні ',
-        groupCheckedTooManyStart: 'Будь ласка, виберіть максимум з ',
-        groupCheckedEnd: ' item(s)',
-        badCreditCard: 'Номер кредитної карти є некоректним',
-        badCVV: 'The CVV number was not correct',
-        wrongFileDim : 'Некоретне розширення зображення,',
-        imageTooTall : 'зображення не може бути вище, ніж',
-        imageTooWide : 'зображення не може бути ширше, ніж',
-        imageTooSmall : 'зображення занадто мале',
-        min : 'мін',
-        max : 'макс',
-        imageRatioNotAccepted : 'Співвідношення зображення не є прийнятним'
-    };
+/***blog number of description lines***/
+$('.item-all-news').each(function () {
+    var blog = $(this);
+    var heightTitle = blog.find('.title-news').height();
 
-      $.validate({
-            language : myLanguage,
-            modules : 'security',
-            onModulesLoaded : function() {
-               var optionalConfig = {
-                  fontSize: '12pt',
-                  padding: '7px',
-                  bad : '',
-                  weak : '',
-                  good : '',
-                  strong : ''
-               };
+    if (heightTitle < 23) {
+        blog.find('.text-news').removeClass('brief-description');
+    }
+});
+/***end number of description lines***/
 
-           $('input[name="pass_confirmation"]').displayPasswordStrength(optionalConfig);
-            }
-      });*/
+/***remove disable class***/
+$('.btn-edit').click(function () {
+    var nameData = $(this).parents('.block-edit').data('edit');
+    var findForm = $('.edit-' + nameData).find('.form-control');
+
+    $('.edit-' + nameData).find('button[type="button"]').attr('hidden', 'hidden');
+    $('.edit-' + nameData).find('button[type="submit"]').removeAttr('hidden');
+
+
+    if ($(findForm).hasClass("disabled")) {
+        findForm.removeClass('disabled');
+        findForm.removeAttr('disabled readonly');
+    }
+
+});
+/*******************/
+
+var myLanguage = {
+    errorTitle: 'Не вдалося надіслати форму!',
+    requiredFields: 'Ви не заповнили всі обов’язкові поля',
+    badTime: 'Введено некоректний час',
+    badEmail: 'Введено некоректний email',
+    badTelephone: 'Введено неправильний номер телефону',
+    badSecurityAnswer: 'Ви ввели неправильну відповідь на секретне запитання',
+    badDate: 'Введено некоректну дату',
+    lengthBadStart: 'Введене значення повинне бути між ',
+    lengthBadEnd: ' символи',
+    lengthTooLongStart: 'Введене значення більше ніж ',
+    lengthTooShortStart: 'Введене значення менше ніж ',
+    notConfirmed: 'Введені значення не можуть бути підтверджені',
+    badDomain: 'Некоректне ім’я домену',
+    badUrl: 'Некоректне URL значення',
+    badCustomVal: 'Введено некоректне значення',
+    andSpaces: ' і пробіли ',
+    badInt: 'Введене значення не є коректним числом',
+    badSecurityNumber: 'Your social security number was incorrect',
+    badUKVatAnswer: 'Incorrect UK VAT Number',
+    badStrength: 'Пароль є занадто слабким',
+    badNumberOfSelectedOptionsStart: 'Виберіть принаймні ',
+    badNumberOfSelectedOptionsEnd: ' відповіді',
+    badAlphaNumeric: 'Введені значення мають бути лише алфавітними символами ',
+    badAlphaNumericExtra: ' і ',
+    wrongFileSize: 'Файл, який ви намагаєтесь завантажити занадто великий (макс. %s)',
+    wrongFileType: 'Тільки файли типу %s  є дозволеними',
+    groupCheckedRangeStart: 'Будь ласка, виберіть між ',
+    groupCheckedTooFewStart: 'Будь ласка, виберіть принаймні ',
+    groupCheckedTooManyStart: 'Будь ласка, виберіть максимум з ',
+    groupCheckedEnd: ' item(s)',
+    badCreditCard: 'Номер кредитної карти є некоректним',
+    badCVV: 'The CVV number was not correct',
+    wrongFileDim: 'Некоретне розширення зображення,',
+    imageTooTall: 'зображення не може бути вище, ніж',
+    imageTooWide: 'зображення не може бути ширше, ніж',
+    imageTooSmall: 'зображення занадто мале',
+    min: 'мін',
+    max: 'макс',
+    imageRatioNotAccepted: 'Співвідношення зображення не є прийнятним'
+};
+
+$.validate({
+    language: myLanguage,
+    modules: 'security',
+    onModulesLoaded: function () {
+        var optionalConfig = {
+            fontSize: '12pt',
+            padding: '7px',
+            bad: '',
+            weak: '',
+            good: '',
+            strong: ''
+        };
+
+        $('input[name="pass_confirmation"]').displayPasswordStrength(optionalConfig);
+    }
+});
+
+

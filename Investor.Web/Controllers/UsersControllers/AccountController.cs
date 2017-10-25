@@ -10,10 +10,24 @@ namespace Investor.Web.Controllers.UsersControllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
+        private readonly IBlogService _postService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserService userService,IBlogService postService)
         {
             _userService = userService;
+            _postService = postService;
+        }
+
+        public IActionResult MyProfile()
+        {
+            ViewBag.Header = "_AccountHeaderSection";
+            return View();
+        }
+        public IActionResult MyAccount()
+        {
+            ViewBag.Header = "_AccountHeaderSection";
+
+            return View(_postService.GetLatestBlogsAsync(5).Result);
         }
 
         [HttpGet]

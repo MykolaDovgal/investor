@@ -51,7 +51,6 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             return Json(new { data = "ok" });
         }
 
-
         [Route("UpdatePost")]
         [HttpPost]
         public void UpdatePost([Bind("PostId, Title, Description, IsOnMainPage, IsImportant, Published")]Post post, [FromForm]string Article, [FromForm] string[] Tags, [FromForm] bool IsOnSlider, [FromForm] bool IsOnSide)

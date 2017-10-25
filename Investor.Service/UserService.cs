@@ -8,6 +8,8 @@ using Investor.Model;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace Investor.Service
 {
@@ -16,9 +18,11 @@ namespace Investor.Service
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IHttpContextAccessor _context;
 
-        public UserService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, RoleManager<IdentityRole> roleManager)
+        public UserService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, RoleManager<IdentityRole> roleManager, IHttpContextAccessor context)
         {
+            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
@@ -80,5 +84,11 @@ namespace Investor.Service
             );
             return blogers;
         }
+
+        public ClaimsPrincipal GetCurrentUser()
+        {
+            return _context.HttpContext.User;
+        }
+
     }
 }
