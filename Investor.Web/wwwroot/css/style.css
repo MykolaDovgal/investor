@@ -1731,23 +1731,19 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   -webkit-border-radius: .2rem;
           border-radius: .2rem; }
 
-.was-validated .form-control:valid, .form-control.is-valid, .was-validated
-.custom-select:valid,
+.was-validated .form-control:valid, .form-control.is-valid, .was-validated .custom-select:valid,
 .custom-select.is-valid {
   border-color: #28a745; }
 
-.was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated
-.custom-select:valid:focus,
+.was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated .custom-select:valid:focus,
 .custom-select.is-valid:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
           box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
 
 .was-validated .form-control:valid ~ .invalid-feedback,
 .was-validated .form-control:valid ~ .invalid-tooltip, .form-control.is-valid ~ .invalid-feedback,
-.form-control.is-valid ~ .invalid-tooltip, .was-validated
-.custom-select:valid ~ .invalid-feedback,
-.was-validated
-.custom-select:valid ~ .invalid-tooltip,
+.form-control.is-valid ~ .invalid-tooltip, .was-validated .custom-select:valid ~ .invalid-feedback,
+.was-validated .custom-select:valid ~ .invalid-tooltip,
 .custom-select.is-valid ~ .invalid-feedback,
 .custom-select.is-valid ~ .invalid-tooltip {
   display: block; }
@@ -1771,23 +1767,19 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   -webkit-box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
           box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25); }
 
-.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated
-.custom-select:invalid,
+.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated .custom-select:invalid,
 .custom-select.is-invalid {
   border-color: #dc3545; }
 
-.was-validated .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated
-.custom-select:invalid:focus,
+.was-validated .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated .custom-select:invalid:focus,
 .custom-select.is-invalid:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
           box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25); }
 
 .was-validated .form-control:invalid ~ .invalid-feedback,
 .was-validated .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
-.form-control.is-invalid ~ .invalid-tooltip, .was-validated
-.custom-select:invalid ~ .invalid-feedback,
-.was-validated
-.custom-select:invalid ~ .invalid-tooltip,
+.form-control.is-invalid ~ .invalid-tooltip, .was-validated .custom-select:invalid ~ .invalid-feedback,
+.was-validated .custom-select:invalid ~ .invalid-tooltip,
 .custom-select.is-invalid ~ .invalid-feedback,
 .custom-select.is-invalid ~ .invalid-tooltip {
   display: block; }
@@ -7465,6 +7457,12 @@ a.text-dark:focus, a.text-dark:hover {
   .form-control:focus {
     border-color: #ff9600; }
 
+.disabled:disabled, .disabled[readonly] {
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding-left: 0; }
+
 /**
  * Owl Carousel v2.2.1
  * Copyright 2013-2017 David Deutsch
@@ -10827,6 +10825,17 @@ h1, h2, h3, h4, h5, h6, p, ul, ol {
   src: url("../fonts/Circe/Circe-Bold.otf"); }
 
 /***color border category***/
+.btn {
+  cursor: pointer;
+  -webkit-border-radius: 0;
+          border-radius: 0; }
+  .btn:focus, .btn:focus:active {
+    outline: none; }
+
+.bnt-width, .btn-second, .btn-delete {
+  min-width: 165px;
+  padding: 6px; }
+
 .btn-search {
   background: none;
   border: none;
@@ -10971,9 +10980,53 @@ h1, h2, h3, h4, h5, h6, p, ul, ol {
     color: #fff;
     text-decoration: none;
     -webkit-transition: opacity 0.25s;
-    /* Safari */
     -o-transition: opacity 0.25s;
     transition: opacity 0.25s; }
+
+.btn-second {
+  background: #ff9600;
+  color: #fff;
+  -webkit-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s; }
+  .btn-second:hover {
+    color: #fff;
+    background: rgba(255, 150, 0, 0.8);
+    -webkit-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s; }
+
+.btn-delete {
+  background: transparent;
+  border: 1px solid #e5e5e5;
+  -webkit-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s; }
+  .btn-delete:hover {
+    background: rgba(167, 167, 167, 0.2);
+    -webkit-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s; }
+
+.btn-edit {
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  background: none;
+  padding: 5px 27px; }
+  .btn-edit:focus {
+    -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+  .btn-edit .icons {
+    margin-left: 6px;
+    top: 2px; }
+
+.btn-edit-default {
+  color: #ff9600;
+  font-size: 14px; }
+
+.btn-edit-second {
+  color: #00a9c2;
+  font-size: 14px; }
 
 /***color border category***/
 .icons {
@@ -11015,8 +11068,20 @@ h1, h2, h3, h4, h5, h6, p, ul, ol {
   height: 7px;
   background: url(../img/icon-plus.png) no-repeat; }
 
+.icon-pencil-default {
+  width: 12px;
+  height: 12px;
+  background: url(../img/icon-pencil.png) no-repeat; }
+
+.icon-pencil-second {
+  width: 12px;
+  height: 12px;
+  background: url(../img/icon-pencil-second.png) no-repeat; }
+
 header {
   margin-bottom: 65px; }
+  header #data span {
+    color: #fff; }
 
 .header-top {
   background: #ff9600;
@@ -11174,6 +11239,43 @@ nav {
 
 .separation {
   color: #fff; }
+
+/***style header account***/
+.header-account .header-top {
+  background: #fff; }
+
+.header-account .exchange-rate {
+  color: #ff9600; }
+
+.header-account #data span {
+  color: #ff9600; }
+
+.header-account .social .fa {
+  color: #ff9600; }
+
+.header-account .user-logout a {
+  color: #ff9600; }
+
+.header-account .separation {
+  color: #ff9600; }
+
+.header-account .nav-item .nav-link {
+  color: rgba(255, 255, 255, 0.8); }
+  .header-account .nav-item .nav-link:hover {
+    color: rgba(255, 255, 255, 0.8) !important; }
+    .header-account .nav-item .nav-link:hover:after {
+      background: #fff; }
+
+.header-account .navbar .collapse {
+  margin-top: 8px; }
+
+.header-account .navbar-nav .nav-item.active .nav-link {
+  color: rgba(255, 255, 255, 0.8) !important; }
+  .header-account .navbar-nav .nav-item.active .nav-link:after {
+    background: #fff; }
+
+.bg-orange {
+  background-color: #ff9600; }
 
 footer {
   margin-top: 55px; }
@@ -11425,7 +11527,7 @@ body {
 .block-border-top {
   border-top: 4px solid; }
 
-.body-category-news {
+.body-block {
   background: #fff;
   padding: 30px 45px 30px 30px;
   -webkit-box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.07);
@@ -11990,6 +12092,10 @@ body {
   .body-register .form-group label {
     font: 16px 'Circe-Light', sans-serif; }
 
+.form-group label {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8); }
+
 .focus-input {
   -webkit-transition: border-left 0.5s;
   -o-transition: border-left 0.5s;
@@ -12307,6 +12413,114 @@ input.my-datepicker {
 .activity-level {
   font-size: 12px; }
 
+.wrapper-all-post {
+  width: 82%;
+  margin: 0 auto; }
+
+.item-my-post {
+  display: table;
+  width: 100%; }
+  .item-my-post:not(:last-child) {
+    margin-bottom: 40px; }
+  .item-my-post .title-news {
+    font-size: 20px;
+    line-height: 25px;
+    -webkit-transition: all .25s;
+    -o-transition: all .25s;
+    transition: all .25s;
+    margin-bottom: 5px; }
+    .item-my-post .title-news:hover {
+      color: #ff9600;
+      -webkit-transition: all .25s;
+      -o-transition: all .25s;
+      transition: all .25s; }
+  .item-my-post .img-news {
+    width: 14%;
+    float: left; }
+  .item-my-post .body-all-news {
+    width: 86%;
+    float: left;
+    padding-left: 25px; }
+  .item-my-post .text-news {
+    -webkit-line-clamp: 2;
+    height: 3em;
+    margin-bottom: 0; }
+  .item-my-post .body-all-news span {
+    font-size: 12px; }
+
+.section-create-post .input-file .btn-file {
+  min-width: auto; }
+
+.section-create-post .input-file .form-control {
+  height: 32px; }
+
+.bootstrap-tagsinput input {
+  -webkit-border-radius: 0;
+          border-radius: 0;
+  -webkit-box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.07);
+  border: none;
+  border-left: 4px solid #fff;
+  display: block;
+  width: 100%;
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  line-height: 1.25;
+  color: #495057;
+  background-color: #fff;
+  background-image: none;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  -webkit-transition: border-left .5s;
+  -o-transition: border-left .5s;
+  transition: border-left .5s;
+  margin-top: 5px; }
+  .bootstrap-tagsinput input:focus {
+    border-left: 4px solid #ff9600;
+    -webkit-transition: border-left .5s;
+    -o-transition: border-left .5s;
+    transition: border-left .5s;
+    outline: none; }
+
+.tag {
+  font-size: 13px;
+  color: #000;
+  display: inline-block;
+  padding: 5px 7px;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  -webkit-transition: all .25s;
+  -o-transition: all .25s;
+  transition: all .25s; }
+  .tag:not(:last-child) {
+    margin-right: 5px; }
+  .tag:before {
+    content: '#'; }
+  .tag span {
+    float: right;
+    position: relative;
+    top: 7px;
+    margin-left: 5px; }
+    .tag span:before {
+      width: 6px;
+      height: 6px;
+      display: block;
+      content: "";
+      background: url(../img/icon-remove-tags.png) no-repeat 50%;
+      -webkit-background-size: cover;
+              background-size: cover; }
+
+@media (min-width: 385px) and (max-width: 767px) {
+  .item-my-post .img-news {
+    width: 30%; }
+  .item-my-post .body-all-news {
+    width: 70%; } }
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .item-my-post .img-news {
+    width: 20%; }
+  .item-my-post .body-all-news {
+    width: 80%; } }
+
 @media (max-width: 1200px) {
   .navbar-brand {
     margin: 0; }
@@ -12440,7 +12654,9 @@ input.my-datepicker {
   .item-blog-news .img-news {
     width: 25%; }
   .item-blog-news .body-all-news {
-    width: 75%; } }
+    width: 75%; }
+  .wrapper-all-post {
+    width: 100%; } }
 
 @media (max-width: 575px) {
   .navbar {
@@ -12489,4 +12705,13 @@ input.my-datepicker {
       display: block; }
   .item-blog-news .body-all-news {
     width: 100%;
-    padding-left: 0; } }
+    padding-left: 0; }
+  .item-my-post .img-news, .item-my-post .body-all-news {
+    width: 100%; }
+  .item-my-post .img-news img {
+    display: block;
+    margin: 0 auto; }
+  .item-my-post .body-all-news {
+    padding: 0; }
+  .btn-edit {
+    width: 100%; } }

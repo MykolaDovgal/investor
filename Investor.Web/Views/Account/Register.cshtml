@@ -6,7 +6,7 @@
             <div class="col-lg-8 pl-0 p-0 pr-lg-2">
                 <form method="post" asp-controller="Account" asp-action="Register">
                     
-                    <div class="block-border-top default-border-color body-register body-registration-data">
+                    <div class="block-border-top default-border-color body-block body-registration-data">
                         <h1 class="title-block">Дані</h1>
 
                         <div class="row inline-form">
@@ -23,11 +23,11 @@
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Name">Ваше ім’я</label>
-                                <input asp-for="Name" id="input-value2" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"/>
+                                <input asp-for="Name" id="input-value-name" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"/>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Surname">Ваше прізвище</label>
-                                <input asp-for="Surname" id="input-value3" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
+                                <input asp-for="Surname" id="input-value-last-name" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
                             </div>
                         </div>
 
@@ -50,7 +50,7 @@
                         <div class="form-group inline-form">
                             
                             <label asp-for="Description">Розкажіть про себе</label>
-                            <textarea asp-for="Description" id="input-value4"  class="form-control focus-input focus-color-turquoise input-value"  rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"></textarea>
+                            <textarea asp-for="Description" id="input-value-autobiography"  class="form-control focus-input focus-color-turquoise input-value"  rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"></textarea>
                         </div>
                         
                         <div class="form-group inline-form">
@@ -69,15 +69,15 @@
                             <p>Вкажіть посилання на ваші профілі</p>
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-facebook fa-1_3x color-fb" aria-hidden="true"></i></span>
-                                <input asp-for="@Model.Socials[0]" id="input-value5" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                                <input asp-for="@Model.Socials[0]" id="input-value-fb" type="text" class="form-control focus-input focus-color-turquoise input-value">
                             </div>
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-twitter fa-1_3x color-tw" aria-hidden="true"></i></span>
-                                <input asp-for="@Model.Socials[1]" id="input-value6" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                                <input asp-for="@Model.Socials[1]" id="input-value-tw" type="text" class="form-control focus-input focus-color-turquoise input-value">
                             </div>
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-google-plus fa-1_3x color-g" aria-hidden="true"></i></span>
-                                <input asp-for="@Model.Socials[2]" id="input-value7" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                                <input asp-for="@Model.Socials[2]" id="input-value-google" type="text" class="form-control focus-input focus-color-turquoise input-value">
                             </div>
                         </div>
                     </div>
@@ -93,25 +93,25 @@
                     <div id='img-upload' class="img-fluid preview-img rounded-circle mx-auto" style="background-image: url(img/user-no-image.png)"/>
                 </div>
 
-                <h4 class="preview-name text-center"> <span class="input-value2">Ім'я</span> <span class="input-value3">Прізвище</span></h4>
+                <h4 class="preview-name text-center"> <span class="input-value-name">Ім'я</span> <span class="input-value-last-name">Прізвище</span></h4>
 
-                <p class="input-value4 text-center preview-description">Ваша біографія</p>
+                <p class="input-value-autobiography text-center preview-description">Ваша біографія</p>
 
                 <div class="link-social">
 
                     <div class="item-link-social link-fb">
                         <i class="fa fa-facebook fa-1_3x text-center d-none" aria-hidden="true"></i>
-                        <p class="input-value5 text-center"></p>
+                        <p class="input-value-fb text-center"></p>
                     </div>
 
                     <div class="item-link-social link-tw">
                         <i class="fa fa-twitter fa-1_3x text-center d-none" aria-hidden="true"></i>
-                        <p class="input-value6 text-center"></p>
+                        <p class="input-value-tw text-center"></p>
                     </div>
 
                     <div class="item-link-social link-g">
                         <i class="fa fa-google-plus fa-1_3x text-center d-none" aria-hidden="true"></i>
-                        <p class="input-value7 text-center"></p>
+                        <p class="input-value-google text-center"></p>
                     </div>
                 </div>
             </div>

@@ -50,6 +50,7 @@ $(document).on("click", "a.nav-link", function (e) {
             }
         }
         updetePosts.call(this, url, tempArray);
+
     }
 	if (type && type === "singlepost") {
 		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost"); console.log($("#updateFormSubmit").data("action")) });
@@ -66,8 +67,6 @@ $(document).on("click", "a.nav-link", function (e) {
 	
 });
 
-});
-
 
 let updetePosts = function (url, postData) {
     console.log(postData);
@@ -77,7 +76,8 @@ let updetePosts = function (url, postData) {
         dataType: 'json',
         type: "POST",
         data: { tablePosts: postData},
-        success: function (data) {
+		success: function (data) {
+			tablesUpdatedData = {};
             console.log(data);
         }
     });
