@@ -66,7 +66,6 @@ $(document).on("click", "a.nav-link", function (e) {
 	
 });
 
-
 let updetePosts = function (url, postData) {
     $.ajax({
         url: url,
