@@ -97,11 +97,9 @@ namespace Investor.Service
         {
             return Mapper.Map<PostEntity, Post>(await _postRepository.UpdatePostAsync(Mapper.Map<Post, PostEntity>(post)));
         }
-        public async Task<IEnumerable<Post>> UpdatePostAsync(IEnumerable<Post> posts)
+        public async Task UpdatePostAsync(IEnumerable<Post> posts)
         {
-            var searchedPosts = await _postRepository.GetPostsBasedOnIdCollectionAsync(posts.Select(x => x.PostId));
-            var updatePost = await _postRepository.UpdatePostAsync(Mapper.Map(posts, searchedPosts));
-            return updatePost.Select(Mapper.Map<PostEntity, Post>);
+            await _postRepository.UpdatePostAsync(posts.Select(Mapper.Map<Post, PostEntity>));
         }
 
         public async Task RemovePostAsync(int id)

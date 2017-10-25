@@ -127,7 +127,6 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpPost]
         public async Task UpdateTablePost(List<Post> tablePosts)
         {
-            var t = Request.Form;
             await _postService.UpdatePostAsync(tablePosts);
         }
     }

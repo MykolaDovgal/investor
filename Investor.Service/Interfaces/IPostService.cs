@@ -23,7 +23,7 @@ namespace Investor.Service.Interfaces
         Task<IEnumerable<Tag>> GetAllTagsByPostId(int id);
         Task<Post> AddPostAsync(Post map);
         Task<Post> UpdatePostAsync(Post post);
-        Task<IEnumerable<Post>> UpdatePostAsync(IEnumerable<Post> post);
+        Task UpdatePostAsync(IEnumerable<Post> post);
         Task RemovePostAsync(int id);
     }
 }

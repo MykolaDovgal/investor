@@ -24,7 +24,7 @@ namespace Investor.Repository.Interfaces
         Task<IEnumerable<PostEntity>> GetPostsBasedOnIdCollectionAsync(IEnumerable<int> postIds);
         Task<PostEntity> AddPostAsync(PostEntity map);
         Task<PostEntity> UpdatePostAsync(PostEntity post);
-        Task<IEnumerable<PostEntity>> UpdatePostAsync(IEnumerable<PostEntity> post);
+        Task UpdatePostAsync(IEnumerable<PostEntity> post);
         Task RemovePostAsync(int id);
         Task<TagEntity> AddTagToPostAsync(int postId, TagEntity tag);
         Task<List<TagEntity>> GetAllTagsByPostIdAsync(int id);
