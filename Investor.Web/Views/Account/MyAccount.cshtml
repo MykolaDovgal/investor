@@ -1,0 +1,14 @@
+﻿@using Investor.Model
+@model IEnumerable<BlogPreview>
+
+<section class="section-all-post">
+    <div class="container">
+        <div class="wrapper-all-post">
+            <div class="d-inline-block w-100 mb-3"><a href="create-post.html" class="btn btn-second float-right">Створити запис</a></div>
+            @foreach (var post in Model)
+            {
+                @Html.Partial("_AccountBlogPreviewTemplate", post)
+            }                      
+        </div>
+    </div>
+</section>
