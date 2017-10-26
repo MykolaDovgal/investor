@@ -38,7 +38,7 @@ $(document).on("click", "a.nav-link", function (e) {
     if (type && type === "news") {
         getPartialView(`admin${url}`, initialTable, "#newsTable");
     }
-    
+
     if (type && type === "update") {
 
         let tempArray = [];
@@ -51,19 +51,19 @@ $(document).on("click", "a.nav-link", function (e) {
         }
         updetePosts.call(this, url, tempArray);
     }
-	if (type && type === "singlepost") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost"); console.log($("#updateFormSubmit").data("action")) });
-	}
-	if (type && type === "create") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost"); console.log($("#updateFormSubmit").data("action")) });
-	}
-	if (type && type === "singleblog") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdateBlog"); console.log($("#updateFormBlogSubmit").data("action")) });
-	}
-	if (type && type === "createblog") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreateBlog"); console.log($("#updateFormBlogSubmit").data("action")) });
-	}
-	
+    if (type && type === "singlepost") {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost"); console.log($("#updateFormSubmit").data("action")) });
+    }
+    if (type && type === "create") {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost"); console.log($("#updateFormSubmit").data("action")) });
+    }
+    if (type && type === "singleblog") {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdateBlog"); console.log($("#updateFormBlogSubmit").data("action")) });
+    }
+    if (type && type === "createblog") {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreateBlog"); console.log($("#updateFormBlogSubmit").data("action")) });
+    }
+
 });
 
 let updetePosts = function (url, postData) {
@@ -72,7 +72,7 @@ let updetePosts = function (url, postData) {
         contentType: 'application/x-www-form-urlencoded; charset=utf-8',
         dataType: 'json',
         type: "POST",
-        data: { tablePosts: postData},
+        data: { tablePosts: postData },
         success: function (data) {
             console.log(data);
         }

@@ -39,6 +39,17 @@ namespace Investor.Web.Controllers.UsersControllers
             return View(_postService.GetLatestBlogsAsync(5).Result);
         }
 
+        public IActionResult CreatePost(string id)
+        {
+            ViewBag.Header = "_AccountHeaderSection";
+            var currentUser = _userService.GetCurrentUserAsync().Result;
+            ViewBag.User = currentUser;
+            ViewBag.IsOwner = currentUser != null && (String.IsNullOrWhiteSpace(id) && String.IsNullOrWhiteSpace(currentUser.Id) &&
+                                                      id == currentUser.Id);
+
+            return View();
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -79,7 +90,6 @@ namespace Investor.Web.Controllers.UsersControllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {
             // удаляем аутентификационные куки
