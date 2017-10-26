@@ -85,9 +85,9 @@ namespace Investor.Service
             return blogers;
         }
 
-        public ClaimsPrincipal GetCurrentUser()
+        public async Task<User> GetCurrentUserAsync()
         {
-            return _context.HttpContext.User;
+            return  Mapper.Map<UserEntity,User>(await _userManager.GetUserAsync(_context.HttpContext.User));
         }
 
     }

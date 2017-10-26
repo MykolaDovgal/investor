@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Investor.Entity;
@@ -15,5 +16,6 @@ namespace Investor.Service.Interfaces
         Task<SignInResult> PasswordSignInUserAsync(string email, string password, bool rememberMe, bool isLongTime);
         Task SignOutUserAsync();
         Task<SortedDictionary<string, List<User>>> GetDictionaryOfBlogersAsync();
+        Task<User> GetCurrentUserAsync();
     }
 }

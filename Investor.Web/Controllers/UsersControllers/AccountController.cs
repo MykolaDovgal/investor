@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Model;
 using Investor.Model.Views;
@@ -18,15 +19,23 @@ namespace Investor.Web.Controllers.UsersControllers
             _postService = postService;
         }
 
-        public IActionResult MyProfile()
+        public IActionResult Profile(string id)
         {
             ViewBag.Header = "_AccountHeaderSection";
+            var currentUser = _userService.GetCurrentUserAsync().Result;
+            ViewBag.User = currentUser;
+
+            ViewBag.IsOwner = currentUser != null && (String.IsNullOrWhiteSpace(id) && String.IsNullOrWhiteSpace(currentUser.Id) &&
+                                                      id == currentUser.Id);
             return View();
         }
-        public IActionResult MyAccount()
+        public IActionResult Account(string id)
         {
             ViewBag.Header = "_AccountHeaderSection";
-
+            var currentUser = _userService.GetCurrentUserAsync().Result;
+            ViewBag.User = currentUser;
+            ViewBag.IsOwner = currentUser != null && (String.IsNullOrWhiteSpace(id) && String.IsNullOrWhiteSpace(currentUser.Id) &&
+                                                      id == currentUser.Id);
             return View(_postService.GetLatestBlogsAsync(5).Result);
         }
 

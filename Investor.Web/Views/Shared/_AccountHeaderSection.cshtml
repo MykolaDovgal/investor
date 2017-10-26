@@ -1,4 +1,9 @@
-﻿<header class="header-account">
+﻿@using Investor.Model
+@{
+    User user = ViewBag.User as User;
+}
+
+<header class="header-account">
     <div class="header-top">
         <div class="container">
             <div class="row">
@@ -22,11 +27,22 @@
                         </li>
                     </ul>
                     <div class="user-account float-right mr-4">
-                        <div class="user-logout">
-                            <a href="#" class="btn-account">Макс Труняк</a>
-                            <span class="separation">/</span>
-                            <a href="#" class="btn-account">Вийти</a>
-                        </div>
+                        @if (user == null)
+                        {
+                            <div class="user-logout">
+                                <a href="/register" class="btn-account">Зареєструватись</a>
+                                <span class="separation">/</span>
+                                <a href="/login" class="btn-account">Увійти</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="user-logout">
+                                <a href="#" class="btn-account">@(user.Name + " " + user.Surname)</a>
+                                <span class="separation">/</span>
+                                <a href="/account/logoff" class="btn-account">Вийти</a>
+                            </div>
+                        }            
                     </div>
                 </div>
             </div>
@@ -43,13 +59,13 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="index.html">Головна Investor</a>
+                                <a class="nav-link" href="/">Головна Investor</a>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link" href="news.html">Мій блог</a>
+                                <a class="nav-link" href="/account/account">Мій блог</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="news.html">Мій профіль</a>
+                                <a class="nav-link" href="/account/profile">Мій профіль</a>
                             </li>
                         </ul>
                     </div>
