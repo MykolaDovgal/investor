@@ -1,4 +1,5 @@
 ﻿let initTypeahead = function () {
+
 	var tags = [];
 	tinymce.init({
 		mode: "specific_textareas",
@@ -79,13 +80,17 @@
 				});
 			}
 			else $("#createForm").submit();
-		});
-		$(document).on('submit', '#updateForm', function (e) {
-			//prevent the form from doing a submit
-			e.preventDefault();
-			return false;
-		})
+        }) ;
+
+	    $(document).on('submit',
+	        '#updateForm',
+	        function(e) {
+	            //prevent the form from doing a submit
+	            e.preventDefault();
+	            return false;
+	        });
 	});
+
 	var substringMatcher = function (strs) {
 		return function findMatches(q, cb) {
 			var matches, substringRegex;
@@ -105,7 +110,8 @@
 
 			cb(matches);
 		};
-	};
+    };
+
 	$("#tagTypeahead").tagsinput({
 		typeaheadjs: {
 			name: 'tags',
