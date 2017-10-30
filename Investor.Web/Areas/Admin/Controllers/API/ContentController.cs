@@ -67,7 +67,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
             Post newPost = _postService.GetPostByIdAsync(post.PostId).Result;
             newPost = Mapper.Map<Post, Post>(post, newPost);
-            newPost.PublishedOn = !newPost.Published && post.Published ? DateTime.Now : post.PublishedOn;
+            newPost.PublishedOn = !newPost.IsPublished && post.IsPublished ? DateTime.Now : post.PublishedOn;
             var tmp =_postService.UpdatePostAsync(newPost).Result;
             var newSliderItem = _sliderItemService.GetSliderItemByPostIdAsync(post.PostId).Result;
             if (newSliderItem != null)
@@ -90,7 +90,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
                 post.Image = image.FileName;
                 _imageService.SaveImage(image);
             }
-            if (post.Published)
+            if (post.IsPublished)
             {
                 post.PublishedOn = DateTime.Now;
             }
@@ -129,7 +129,6 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpPost]
         public async Task UpdateTablePost(List<Post> tablePosts)
         {
-            var t = Request.Form;
             await _postService.UpdatePostAsync(tablePosts);
         }
     }

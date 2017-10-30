@@ -13,7 +13,7 @@ namespace Investor.Model
         public DateTime CreatedOn { set; get; }
         public DateTime ModifiedOn { set; get; }
         public DateTime PublishedOn { set; get; }
-        public bool Published { set; get; }
+        public bool IsPublished { set; get; }
         public bool IsOnMainPage { set; get; }
         public bool IsImportant { set; get; }
         public Category Category { set; get; }
@@ -21,6 +21,5 @@ namespace Investor.Model
         public User Author { set; get; }
         public List<Tag> Tags { get; set; }
         public IList<Comment> Comments { set; get; }
-
     }
 }

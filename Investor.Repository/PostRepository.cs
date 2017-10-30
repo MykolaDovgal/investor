@@ -170,14 +170,21 @@ namespace Investor.Repository
             return post;
         }
 
-        public async Task<IEnumerable<PostEntity>> UpdatePostAsync(IEnumerable<PostEntity> posts)
+        public async Task UpdatePostAsync(IEnumerable<PostEntity> posts)
         {
-            foreach (var post in posts)
+            List<PostEntity> newPosts = posts as List<PostEntity> ?? posts.ToList();
+            var postsId = newPosts.Select(x => x.PostId);
+            var oldPosts = await GetPostsBasedOnIdCollectionAsync(postsId);
+
+            foreach (PostEntity postEntity in oldPosts)
             {
-                _newsContext.Entry(post).State = EntityState.Modified;
+                postEntity.IsImportant = newPosts.Find(x => x.PostId == postEntity.PostId).IsImportant;
+                postEntity.IsPublished = newPosts.Find(x => x.PostId == postEntity.PostId).IsPublished;
+                postEntity.IsOnMainPage = newPosts.Find(x => x.PostId == postEntity.PostId).IsOnMainPage;
+                postEntity.ModifiedOn = DateTime.Now;
             }
+
             await _newsContext.SaveChangesAsync();
-            return posts;
         }
 
         public async Task<IEnumerable<PostEntity>> GetLatestPostsAsync(int limit)
