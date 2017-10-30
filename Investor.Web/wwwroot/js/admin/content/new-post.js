@@ -1,4 +1,5 @@
 ﻿let initTypeahead = function () {
+
 	var tags = [];
 	tinymce.init({
 		mode: "specific_textareas",
@@ -119,6 +120,7 @@
 			return false;
 		})
 	});
+
 	var substringMatcher = function (strs) {
 		return function findMatches(q, cb) {
 			var matches, substringRegex;
@@ -138,7 +140,8 @@
 
 			cb(matches);
 		};
-	};
+    };
+
 	$("#tagTypeahead").tagsinput({
 		typeaheadjs: {
 			name: 'tags',

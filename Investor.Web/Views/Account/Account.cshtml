@@ -1,0 +1,19 @@
+﻿@using Investor.Model
+@model IEnumerable<BlogPreview>
+
+<section class="section-all-post">
+    <div class="container">
+        <div class="wrapper-all-post">
+            @if (true)//TODO set as (bool)ViewBag.IsOwner
+            {
+                <div class="d-inline-block w-100 mb-3">
+                    <a href="/account/createpost" class="btn btn-second float-right">Створити запис</a>
+                </div>
+            }
+            @foreach (var post in Model)
+            {
+                @Html.Partial("_AccountBlogPreviewTemplate", post)
+            }
+        </div>
+    </div>
+</section>

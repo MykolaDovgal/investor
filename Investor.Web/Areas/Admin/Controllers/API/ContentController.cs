@@ -53,7 +53,6 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             return Json(new { data = "ok" });
         }
 
-
         [Route("UpdatePost")]
         [HttpPost]
         public void UpdatePost([FromForm]Post post, [FromForm]SliderItem sliderItem, [FromForm]IFormFile image)
