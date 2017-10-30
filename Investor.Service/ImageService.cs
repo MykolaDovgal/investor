@@ -23,8 +23,7 @@ namespace Investor.Service
             string imageExtension = Path.GetExtension(image.FileName);
             string originFileName = CreateMD5(image.FileName + image.Length);
             string fullOriginalFileName = originFileName + imageExtension;
-            string imageFolderPath = Path.Combine(_env.WebRootPath, "img", originFileName);
-            
+            string imageFolderPath = Path.Combine(_env.WebRootPath, "img", originFileName);            
 
             if (Directory.Exists(imageFolderPath))
             {
@@ -44,7 +43,7 @@ namespace Investor.Service
             }
 
             ResizeImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104,104));
-            ResizeImage(imageFolderPath, fullOriginalFileName, "medium-", new Size(324, 182));
+            ResizeImage(imageFolderPath, fullOriginalFileName, "medium-", new Size(382, 208));
             ResizeImage(imageFolderPath, fullOriginalFileName, "large-", new Size(751, 423));
 
             return fullOriginalFileName;

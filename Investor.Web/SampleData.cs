@@ -208,7 +208,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[0].Id
 
@@ -268,7 +268,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "5F18619AC74A43065C98941313647F07.jpg",
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[3].Id
                     },
@@ -296,7 +296,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "5F18619AC74A43065C98941313647F07.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -323,7 +323,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -374,7 +374,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -414,7 +414,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "904E420568BDB9D329F914D562E091AE.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -470,7 +470,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -509,7 +509,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -535,7 +535,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -561,7 +561,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -601,7 +601,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -641,7 +641,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -668,7 +668,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -748,7 +748,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -775,7 +775,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
+                        Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
                      new Entity.PostEntity
                      {
@@ -801,7 +801,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
-                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
+                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                      },
                      new Entity.PostEntity
                      {
@@ -827,7 +827,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
-                         Image = "5F18619AC74A43065C98941313647F07.jpg"
+                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                      },
                       new Entity.PostEntity
                       {
@@ -853,7 +853,7 @@ namespace Investor.Web
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
-                           Image = "5F18619AC74A43065C98941313647F07.jpg"
+                           Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                        },
                        new Entity.PostEntity
                        {
@@ -879,7 +879,7 @@ namespace Investor.Web
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
-                           Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
+                           Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                        }
                     );
                 context.SaveChanges();

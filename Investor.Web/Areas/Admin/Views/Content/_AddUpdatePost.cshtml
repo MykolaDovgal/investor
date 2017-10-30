@@ -32,7 +32,7 @@
         </div>*@
 
     <div class="cropper">
-        <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + Model.Image))">
+        <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/" + Model.Image))">
     </div>
     <div class="img-preview" ></div>
     <textarea class="text-editor" id="Article">@(Model.Article)</textarea>
