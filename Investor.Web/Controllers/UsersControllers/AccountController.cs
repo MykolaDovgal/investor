@@ -90,11 +90,10 @@ namespace Investor.Web.Controllers.UsersControllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {
             await _userService.SignOutUserAsync();
-            return RedirectToAction("Index", "Home");
+            return Json(Url.Action("Index", "Home"));
         }
     }
 }

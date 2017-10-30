@@ -1,11 +1,15 @@
 ﻿let userPostTags = [];
 
 $(document).ready(function () {
+
     $("#logoff").click(function(e) {
         e.preventDefault();
         $.ajax({
             url: "/account/logoff",
-            type: "POST"
+            type: "POST",
+            success: function(data) {
+                window.location.href = data;
+            }
         });
     });
 
@@ -14,6 +18,10 @@ $(document).ready(function () {
 
 });
 
+let getCreatePostFormData = function() {
+    let formData = new FormData(document.getElementById("createUserPostForm"));
+
+}
 
 let getAllTags = function () {
     $.ajax({
