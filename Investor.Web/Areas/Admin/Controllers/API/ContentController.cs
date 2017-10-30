@@ -67,11 +67,18 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             Post newPost = _postService.GetPostByIdAsync(post.PostId).Result;
             newPost = Mapper.Map<Post, Post>(post, newPost);
             newPost.PublishedOn = !newPost.IsPublished && post.IsPublished ? DateTime.Now : post.PublishedOn;
-            var tmp =_postService.UpdatePostAsync(newPost).Result;
+            _postService.UpdatePostAsync(newPost);
             var newSliderItem = _sliderItemService.GetSliderItemByPostIdAsync(post.PostId).Result;
             if (newSliderItem != null)
-            { 
-                _sliderItemService.UpdateSliderItemAsync(Mapper.Map<SliderItem, SliderItem>(sliderItem, newSliderItem));
+            {
+                if (!(sliderItem.IsOnSlider && sliderItem.IsOnSide))
+                { 
+                    _sliderItemService.RemoveSliderItemAsync(newSliderItem.SliderItemId);
+                }
+                else
+                { 
+                    _sliderItemService.UpdateSliderItemAsync(Mapper.Map<SliderItem, SliderItem>(sliderItem, newSliderItem));
+                }
             }
             else if(sliderItem.IsOnSlider || sliderItem.IsOnSide)
             {

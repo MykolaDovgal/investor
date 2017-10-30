@@ -95,7 +95,6 @@ namespace Investor.Service
         public async Task<Post> UpdatePostAsync(Post post)
         {
             PostEntity newPost = Mapper.Map<Post, PostEntity>(post);
-            newPost.ArticleId = newPost.Article != null ? newPost.Article.ArticleId : 0;
             newPost.CategoryId = newPost.Category.CategoryId;
             var result = await _postRepository.UpdatePostAsync(newPost);
             return Mapper.Map<PostEntity, Post>(result);

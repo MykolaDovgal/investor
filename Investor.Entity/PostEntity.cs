@@ -25,6 +25,10 @@ namespace Investor.Entity
         [StringLength(250)]
         public string Image { set; get; }
 
+        [MaxLength(20000)]
+        [StringLength(20000)]
+        public string Article { set; get; }
+
         [DataType(DataType.DateTime)]
         public DateTime CreatedOn { set; get; }
         [DataType(DataType.DateTime)]
@@ -40,20 +44,14 @@ namespace Investor.Entity
         public int CategoryId { set; get; }
         public CategoryEntity Category { set; get; }
 
-        public int ArticleId { set; get; }
-        public ArticleEntity Article { set; get; }
-
         public string AuthorId { set; get; }
         [ForeignKey("AuthorId")]
         public UserEntity Author { set; get; }
 
         public List<PostTagEntity> PostTags { get; set; }
-        public IList<CommentEntity> Comments { set; get; }
-
         public PostEntity()
         {
             PostTags = new List<PostTagEntity>();
-            Comments = new List<CommentEntity>();
         }
     }
 }
