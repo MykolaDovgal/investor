@@ -9,7 +9,7 @@
         <label class="newpost-widget-title ng-binding">Метки</label>
 
 
-        <select class="bs-select form-control" tabindex="-98" name="Category">
+        <select class="bs-select form-control" tabindex="-98" name="Category.Url">
             @foreach(var category in ViewBag.Categories)
             {
                 <option @(Model.Category != null ? (Model.Category.Name == category.Name ? "selected" : "") : "") value="@category.Url">@category.Name</option>

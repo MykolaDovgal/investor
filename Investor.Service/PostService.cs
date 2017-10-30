@@ -23,7 +23,6 @@ namespace Investor.Service
 
         public async Task<Post> AddPostAsync(Post map)
         {
-
             if (map.Title == null)
             {
                 map.Title = Guid.NewGuid().ToString();
@@ -95,7 +94,11 @@ namespace Investor.Service
 
         public async Task<Post> UpdatePostAsync(Post post)
         {
-            return Mapper.Map<PostEntity, Post>(await _postRepository.UpdatePostAsync(Mapper.Map<Post, PostEntity>(post)));
+            PostEntity newPost = Mapper.Map<Post, PostEntity>(post);
+            newPost.ArticleId = newPost.Article != null ? newPost.Article.ArticleId : 0;
+            newPost.CategoryId = newPost.Category.CategoryId;
+            var result = await _postRepository.UpdatePostAsync(newPost);
+            return Mapper.Map<PostEntity, Post>(result);
         }
         public async Task<IEnumerable<Post>> UpdatePostAsync(IEnumerable<Post> posts)
         {
@@ -124,12 +127,28 @@ namespace Investor.Service
 
         public async Task AddTagToPostAsync(int postId, string tagName)
         {
-            var tag = await _tagService.GetTagByNameAsync(tagName);
-            if (tag == null)
+            var postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
+            var tag = await _tagService.GetTagByNameAsync(tagName) ?? await _tagService.AddTagAsync(new Tag { Name = tagName });
+            if (!postTags.Select(s => s.Name).Contains(tagName))
             {
-                tag = await _tagService.AddTagAsync(new Tag { Name = tagName });
+                await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
             }
-            await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
+        }
+
+        public async Task AddTagsToPostAsync(int postId, IEnumerable<string> tags)
+        {
+            if (tags != null)
+            {
+                var postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
+                foreach(var t in tags)
+                {
+                    var tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
+                    if (!postTags.Select(s => s.Name).Contains(t))
+                    {
+                        await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
+                    }
+                }
+            }
         }
 
         public async Task<IEnumerable<Tag>> GetAllTagsByPostId(int id)

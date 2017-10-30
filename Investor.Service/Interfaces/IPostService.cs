@@ -20,6 +20,7 @@ namespace Investor.Service.Interfaces
         Task<IEnumerable<PostPreview>> GetPagedLatestPostsByCategoryUrlAsync(string categoryUrl, int limit, int page);
         Task<IEnumerable<PostPreview>> GetAllPostsByTagNameAsync(string tagName);
         Task AddTagToPostAsync(int postId, string tagName);
+        Task AddTagsToPostAsync(int postId, IEnumerable<string> tags);
         Task<IEnumerable<Tag>> GetAllTagsByPostId(int id);
         Task<Post> AddPostAsync(Post map);
         Task<Post> UpdatePostAsync(Post post);

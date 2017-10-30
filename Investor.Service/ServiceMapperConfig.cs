@@ -39,9 +39,21 @@ namespace Investor.Service
                 cfg.CreateMap<PostEntity, TablePostPreview>();
                 cfg.CreateMap<Post, PostPreview>();
                 cfg.CreateMap<Post, PostEntity>()
-                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null))); ;
+                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
+
+                cfg.CreateMap<PostEntity, PostEntity>()
+                .ForMember(x => x.CreatedOn, opt => opt.Ignore())
+                .ForMember(x => x.PostTags, opt => opt.Ignore())
+                .ForMember(x => x.IsBlogPost, opt => opt.Ignore())
+                .ForMember(x => x.Author, opt => opt.Ignore())
+                .ForMember(x => x.AuthorId, opt => opt.Ignore())
+                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
                 cfg.CreateMap<Post, Post>()
+                    .ForMember(x => x.CreatedOn, opt => opt.Ignore())
+                    .ForMember(x => x.Tags, opt => opt.Ignore())
+                    .ForMember(x => x.ModifiedOn, opt => opt.Ignore())
+                    .ForMember(x => x.PublishedOn, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
                 cfg.CreateMap<SliderItem, SliderItem>()
