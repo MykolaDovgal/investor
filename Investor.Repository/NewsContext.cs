@@ -9,9 +9,7 @@ namespace Investor.Repository
 {
     public class NewsContext : IdentityDbContext<UserEntity> 
     {
-        public DbSet<ArticleEntity> Articles { get; set; }
         public DbSet<CategoryEntity> Categories { get; set; }
-        public DbSet<CommentEntity> Comments { get; set; }
         public DbSet<PostEntity> Posts { get; set; }
         public DbSet<SliderItemEntity> SliderItems { get; set; }
         public DbSet<TagEntity> Tags { get; set; }

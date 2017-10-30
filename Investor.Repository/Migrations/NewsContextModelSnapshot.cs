@@ -20,18 +20,6 @@ namespace Investor.Repository.Migrations
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Investor.Entity.ArticleEntity", b =>
-                {
-                    b.Property<int>("ArticleId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Content");
-
-                    b.HasKey("ArticleId");
-
-                    b.ToTable("Articles");
-                });
-
             modelBuilder.Entity("Investor.Entity.CategoryEntity", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -48,42 +36,13 @@ namespace Investor.Repository.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Investor.Entity.CommentEntity", b =>
-                {
-                    b.Property<int>("CommentId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<int>("PostId");
-
-                    b.Property<bool>("Pubished");
-
-                    b.Property<DateTime>("PublishedOn");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasMaxLength(10000);
-
-                    b.Property<int>("UserId");
-
-                    b.Property<string>("UserId1");
-
-                    b.HasKey("CommentId");
-
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Comments");
-                });
-
             modelBuilder.Entity("Investor.Entity.PostEntity", b =>
                 {
                     b.Property<int>("PostId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("ArticleId");
+                    b.Property<string>("Article")
+                        .HasMaxLength(20000);
 
                     b.Property<string>("AuthorId");
 
@@ -113,8 +72,6 @@ namespace Investor.Repository.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("PostId");
-
-                    b.HasIndex("ArticleId");
 
                     b.HasIndex("AuthorId");
 
@@ -339,25 +296,8 @@ namespace Investor.Repository.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Investor.Entity.CommentEntity", b =>
-                {
-                    b.HasOne("Investor.Entity.PostEntity", "Post")
-                        .WithMany("Comments")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Investor.Entity.UserEntity", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
-                });
-
             modelBuilder.Entity("Investor.Entity.PostEntity", b =>
                 {
-                    b.HasOne("Investor.Entity.ArticleEntity", "Article")
-                        .WithMany()
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Investor.Entity.UserEntity", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");

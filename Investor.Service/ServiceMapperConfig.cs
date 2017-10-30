@@ -19,10 +19,8 @@ namespace Investor.Service
                     .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)));
                 cfg.CreateMap<UserEntity, User>()
                     .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';', StringSplitOptions.RemoveEmptyEntries)));
-                cfg.CreateMap<Article, ArticleEntity>().ReverseMap();
                 cfg.CreateMap<RegisterViewModel, User>().ReverseMap();
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();
-                cfg.CreateMap<Comment, CommentEntity>().ReverseMap();
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();
                 cfg.CreateMap<AdminTag, TagEntity>().ReverseMap();
                 cfg.CreateMap<SliderItem, SliderItemEntity>().ReverseMap();

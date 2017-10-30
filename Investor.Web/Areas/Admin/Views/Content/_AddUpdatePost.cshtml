@@ -35,6 +35,5 @@
         <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + Model.Image))">
     </div>
     <div class="img-preview" ></div>
-    <input type="text" hidden value="@(Model.Article == null ? 0 : Model.Article.ArticleId)" name="Article.ArticleId" />
-    <textarea class="text-editor" id="Article">@(Model.Article == null ? "" : Model.Article.Content)</textarea>
+    <textarea class="text-editor" id="Article">@(Model.Article)</textarea>
 </div>

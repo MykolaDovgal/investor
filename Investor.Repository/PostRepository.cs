@@ -38,8 +38,6 @@ namespace Investor.Repository
         {
             return _newsContext.Posts
                 .Include(p => p.Category)
-                .Include(p => p.Comments)
-                .Include(p => p.Article)
                 .Include(p => p.Author)
                 .Include(p => p.PostTags)
                 .ToList();
@@ -105,8 +103,6 @@ namespace Investor.Repository
             return await _newsContext.Posts
                 .AsNoTracking()
                 .Include(p => p.Category)
-                .Include(p => p.Comments)
-                .Include(p => p.Article)
                 .Include(p => p.Author)
                 .Include(p => p.PostTags)
                 .FirstOrDefaultAsync(p => p.PostId == id);
@@ -163,8 +159,6 @@ namespace Investor.Repository
             PostEntity oldPost = _newsContext.Posts.FindAsync(post.PostId).Result;
             oldPost = Mapper.Map<PostEntity, PostEntity>(post, oldPost);
             oldPost.Category = _newsContext.Categories.Find(oldPost.Category.CategoryId);
-            _newsContext.Articles.Update(post.Article);
-            oldPost.Article = _newsContext.Articles.Find(oldPost.ArticleId);
             _newsContext.Posts.Update(oldPost);            
             await _newsContext.SaveChangesAsync();
             return post;

@@ -33,7 +33,7 @@
     <img src="~/img/@Model.Image" class="img-fluid" />
 </div>
 <div class="card-news-desc mb-5">
-    @Html.Raw(Model.Article.Content)
+    @Html.Raw(Model.Article)
 </div>
 <ul class="wrapper-hashtag  mb-4">
     @foreach (Tag tag in ViewBag.Tags)
