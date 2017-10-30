@@ -2,6 +2,7 @@
 @model IEnumerable<PostPreview>
 
 <div class="wrapper-search-result">
+    <input type="text" hidden class="numberOfPosts" value="@Model.Count()" />
     @foreach (PostPreview post in Model)
     {
         @Html.Partial("_SearchPostPreviewTemplate", post)

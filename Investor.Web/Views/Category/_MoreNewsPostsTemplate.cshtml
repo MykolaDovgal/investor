@@ -1,6 +1,7 @@
 @model IEnumerable<Investor.Model.PostPreview>
 @using Investor.Model
 
+<input type ="text" hidden class = "numberOfPosts" value="@Model.Count()"/>
 @foreach(var post in Model)
 {
     @Html.Partial("~/Views/Category/_PostPreviewTemplate.cshtml", post)
