@@ -45,10 +45,9 @@ $(document).on("click", "a.nav-link", function (e) {
         const keys = Object.keys(tablesUpdetedData);
 
         for (let i = 0; i < keys.length; i += 1) {
-            if (keys.hasOwnProperty(keys[i])) {
-                tempArray.push(tablesUpdetedData[keys[i]]);
-            }
+            tempArray.push(tablesUpdetedData[keys[i]]);
         }
+        console.log(tempArray);
         updetePosts.call(this, url, tempArray);
     }
     if (type && type === "singlepost") {
@@ -67,6 +66,7 @@ $(document).on("click", "a.nav-link", function (e) {
 });
 
 let updetePosts = function (url, postData) {
+    console.log(postData);
     $.ajax({
         url: url,
         contentType: 'application/x-www-form-urlencoded; charset=utf-8',

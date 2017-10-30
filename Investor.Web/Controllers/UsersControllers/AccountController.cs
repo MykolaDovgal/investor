@@ -90,9 +90,9 @@ namespace Investor.Web.Controllers.UsersControllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()
         {
-            // удаляем аутентификационные куки
             await _userService.SignOutUserAsync();
             return RedirectToAction("Index", "Home");
         }

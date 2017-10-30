@@ -50,7 +50,7 @@ $(document).on("click", "#tag-delete-submit", function (e) {
 		processData: false,
 
 		success: function (data) {
-			$("#tagsTable").dataTable().fnDestroy(); // ВИПРАВИТИ!!!!!!!!
+			$("#tagsTable").dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
 			initialTagsTable("#tagsTable");
 		}
 	});
