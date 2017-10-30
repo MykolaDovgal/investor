@@ -31,7 +31,7 @@ namespace Investor.Service
                     .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image));
 
                 cfg.CreateMap<PostEntity, BlogPreview>()
-                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image));
+                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-blog.png" : s.Image));
 
 
                 cfg.CreateMap<PostEntity, TablePostPreview>();
@@ -59,6 +59,8 @@ namespace Investor.Service
 
                 cfg.CreateMap<PostEntity, Blog>()
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));
+
+                cfg.CreateMap<Blog, PostEntity>();
 
                 cfg.CreateMap<PostEntity, Post>()
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)))

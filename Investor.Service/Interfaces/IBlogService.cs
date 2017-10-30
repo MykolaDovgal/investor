@@ -13,6 +13,7 @@ namespace Investor.Service.Interfaces
         Task<Blog> GetPostByIdAsync(int id);
         Task<IEnumerable<BlogPreview>> GetLatestBlogsAsync(int limit = 10);
         Task<IEnumerable<BlogPreview>> GetPopularBlogsAsync(int limit = 3);
+        Task<IEnumerable<BlogPreview>> GetBlogsByUserIdAsync(string userId);
         Task<IEnumerable<T>> GetAllPostsAsync<T>();
     }
 }

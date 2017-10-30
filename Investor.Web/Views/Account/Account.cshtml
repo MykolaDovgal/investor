@@ -10,9 +10,12 @@
                     <a href="/account/createpost" class="btn btn-second float-right">Створити запис</a>
                 </div>
             }
-            @foreach (var post in Model)
+            @if (Model != null)
             {
-                @Html.Partial("_AccountBlogPreviewTemplate", post)
+                foreach (var post in Model)
+                 {
+                     @Html.Partial("_AccountBlogPreviewTemplate", post)
+                 }
             }
         </div>
     </div>

@@ -41,7 +41,7 @@ namespace Investor.Entity
         public bool? IsImportant { set; get; }
         public bool? IsBlogPost { get; set; }
 
-        public int CategoryId { set; get; }
+        public int? CategoryId { set; get; }
         public CategoryEntity Category { set; get; }
 
         public string AuthorId { set; get; }

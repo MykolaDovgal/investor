@@ -1,6 +1,8 @@
 ﻿@using Investor.Model
+@inject Investor.Service.Interfaces.IUserService UserService
+
 @{
-    User user = ViewBag.User as User;
+    User user = UserService.GetCurrentUserAsync().Result;
 }
 
 <header class="header-account">
@@ -38,7 +40,7 @@
                         else
                         {
                             <div class="user-logout">
-                                <a href="#" class="btn-account">@(user.Name + " " + user.Surname)</a>
+                                <a href="/account/account/" class="btn-account">@(user.Name + " " + user.Surname)</a>
                                 <span class="separation">/</span>
                                 <a id="logoff" href="/account/logoff" class="btn-account">Вийти</a>
                             </div>

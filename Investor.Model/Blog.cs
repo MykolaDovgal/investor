@@ -11,6 +11,7 @@ namespace Investor.Model
         public string Description { set; get; }
         public string Image { set; get; }
         public string Article { set; get; }
+        public Category Category { set; get; }
         public DateTime CreatedOn { set; get; }
         public DateTime ModifiedOn { set; get; }
         public DateTime PublishedOn { set; get; }

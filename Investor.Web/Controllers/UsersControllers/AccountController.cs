@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Model;
@@ -12,12 +13,16 @@ namespace Investor.Web.Controllers.UsersControllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
-        private readonly IBlogService _postService;
+        private readonly IBlogService _blogService;
+        private readonly IPostService _postService;
+        private readonly IImageService _imageService;
 
-        public AccountController(IUserService userService,IBlogService postService)
+        public AccountController(IUserService userService,IBlogService blogService, IImageService imageService, IPostService postService)
         {
             _userService = userService;
             _postService = postService;
+            _imageService = imageService;
+            _blogService = blogService;
         }
 
         public IActionResult Profile(string id)
@@ -37,7 +42,8 @@ namespace Investor.Web.Controllers.UsersControllers
             ViewBag.User = currentUser;
             ViewBag.IsOwner = currentUser != null && (String.IsNullOrWhiteSpace(id) && String.IsNullOrWhiteSpace(currentUser.Id) &&
                                                       id == currentUser.Id);
-            return View(_postService.GetLatestBlogsAsync(5).Result);
+            var res = _blogService.GetBlogsByUserIdAsync(currentUser?.Id).Result;
+            return View(res);
         }
 
         public IActionResult CreatePost(string id)
@@ -51,11 +57,14 @@ namespace Investor.Web.Controllers.UsersControllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult CreatePost([FromForm] Blog blog, [FromForm]IFormFile image)
-        //{
-
-        //}
+        [HttpPost]
+        public IActionResult CreatePost([FromForm] Blog blog, [FromForm]IFormFile image)
+        {
+            blog.Image = image != null ? _imageService.SaveImage(image) : null;
+            var tmp = _blogService.AddBlogAsync(blog).Result;
+            _postService.AddTagsToPostAsync(blog.PostId, blog.Tags?.Select(s => s.Name));
+            return Json(Url.Action("Account", "Account"));
+        }
 
         [HttpGet]
         public IActionResult Register()

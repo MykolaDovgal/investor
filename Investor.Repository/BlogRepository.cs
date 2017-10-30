@@ -20,6 +20,9 @@ namespace Investor.Repository
 
         public async Task<PostEntity> AddBlogAsync(PostEntity blog)
         {
+            blog.ModifiedOn = DateTime.Now;
+            blog.CreatedOn = DateTime.Now;
+            blog.IsBlogPost = true;
             await _newsContext.Posts.AddAsync(blog);
             await _newsContext.SaveChangesAsync();
             return blog;
@@ -59,6 +62,14 @@ namespace Investor.Repository
                 .Where(p => p.IsBlogPost ?? false)
                 .Include(p => p.Author)
                 .FirstOrDefaultAsync(p => p.PostId == id);
+        }
+
+        public async Task<IEnumerable<PostEntity>> GetBlogsByUserIdAsync(string userId)
+        {
+            return await _newsContext.Posts
+                .Include(p => p.Author)
+                .Where(p => (p.IsBlogPost ?? false) && (p.AuthorId == userId))
+                .ToListAsync();
         }
     }
 }
