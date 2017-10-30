@@ -58,16 +58,12 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         public void UpdatePost([FromForm]Post post, [FromForm]SliderItem sliderItem, [FromForm]IFormFile image)
         {
             post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
-            if (image != null)
-            {
-                post.Image = image.FileName;
-                _imageService.SaveImage(image);
-            }
+            post.Image = image != null ? _imageService.SaveImage(image) : null;
             _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
             Post newPost = _postService.GetPostByIdAsync(post.PostId).Result;
             newPost = Mapper.Map<Post, Post>(post, newPost);
             newPost.PublishedOn = !newPost.IsPublished && post.IsPublished ? DateTime.Now : post.PublishedOn;
-            _postService.UpdatePostAsync(newPost);
+            _postService.UpdatePostAsync(newPost).Wait();
             var newSliderItem = _sliderItemService.GetSliderItemByPostIdAsync(post.PostId).Result;
             if (newSliderItem != null)
             {
@@ -84,6 +80,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             {
                 _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(post), IsOnSide = sliderItem.IsOnSide, IsOnSlider = sliderItem.IsOnSlider });
             }
+  
         }
 
         [Route("CreatePost")]
@@ -91,11 +88,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         public void CreatePost([FromForm]Post post, [FromForm]SliderItem sliderItem, [FromForm]IFormFile image)
         {
             post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
-            if (image != null)
-            {
-                post.Image = image.FileName;
-                _imageService.SaveImage(image);
-            }
+            post.Image = image != null ? _imageService.SaveImage(image) : null;
             if (post.IsPublished)
             {
                 post.PublishedOn = DateTime.Now;
