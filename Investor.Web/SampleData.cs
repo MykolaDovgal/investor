@@ -208,7 +208,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg",
+                        Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[0].Id
 
@@ -223,7 +223,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg",
+                        Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[1].Id
 
@@ -239,7 +239,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg",
+                        Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[2].Id
                     },
@@ -253,7 +253,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg",
+                        Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
                         AuthorId = myUsers[0].Id
 
                     },
@@ -268,7 +268,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg",
+                        Image = "5F18619AC74A43065C98941313647F07.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[3].Id
                     },
@@ -282,7 +282,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg",
+                        Image = "5F18619AC74A43065C98941313647F07.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[2].Id
                     },
@@ -296,7 +296,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        Image = "5F18619AC74A43065C98941313647F07.jpg"
 
                     },
                     new Entity.PostEntity
@@ -310,7 +310,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        Image = "5F18619AC74A43065C98941313647F07.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -323,7 +323,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -336,7 +336,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -348,7 +348,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg",
+                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[1].Id
                     },
@@ -362,7 +362,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "img-slider.jpg"
+                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -374,7 +374,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg"
+                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -387,7 +387,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg",
+                        Image = "904E420568BDB9D329F914D562E091AE.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[1].Id
                     },
@@ -401,7 +401,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg"
+                        Image = "904E420568BDB9D329F914D562E091AE.jpg"
 
                     },
                     new Entity.PostEntity
@@ -414,7 +414,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg"
+                        Image = "904E420568BDB9D329F914D562E091AE.jpg"
 
                     },
                     new Entity.PostEntity
@@ -428,7 +428,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg"
+                        Image = "904E420568BDB9D329F914D562E091AE.jpg"
 
                     },
                     new Entity.PostEntity
@@ -441,7 +441,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg",
+                        Image = "904E420568BDB9D329F914D562E091AE.jpg",
                         IsBlogPost = true,
                         AuthorId = myUsers[1].Id
 
@@ -457,7 +457,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-1.jpg"
+                        Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
 
                     },
                     new Entity.PostEntity
@@ -470,7 +470,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
 
                     },
                     new Entity.PostEntity
@@ -483,7 +483,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
 
                     },
                     new Entity.PostEntity
@@ -497,8 +497,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
-
+                        Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -510,7 +509,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
 
                     },
                     new Entity.PostEntity
@@ -523,7 +522,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -536,7 +535,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -549,7 +548,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -562,7 +561,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -575,7 +574,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -588,7 +587,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
                     new Entity.PostEntity
@@ -602,7 +601,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
                     new Entity.PostEntity
@@ -615,7 +614,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
                     new Entity.PostEntity
@@ -628,7 +627,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
                     new Entity.PostEntity
@@ -642,7 +641,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
                     new Entity.PostEntity
@@ -656,7 +655,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
                     new Entity.PostEntity
@@ -669,7 +668,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
                     new Entity.PostEntity
@@ -682,7 +681,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
                     new Entity.PostEntity
@@ -695,7 +694,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
                     new Entity.PostEntity
@@ -708,7 +707,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
                     new Entity.PostEntity
@@ -722,7 +721,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
                     new Entity.PostEntity
@@ -735,7 +734,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
                     new Entity.PostEntity
@@ -749,7 +748,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "news-politic-2.jpg"
+                        Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
                     new Entity.PostEntity
@@ -763,7 +762,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "social-img-1.jpg"
+                        Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
                     },
                     new Entity.PostEntity
                     {
@@ -776,7 +775,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
-                        Image = "social-img-2.jpg"
+                        Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
                     },
                      new Entity.PostEntity
                      {
@@ -789,7 +788,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
-                         Image = "social-img-3.jpg"
+                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
                      },
                      new Entity.PostEntity
                      {
@@ -802,7 +801,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
-                         Image = "social-img-3.jpg"
+                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
                      },
                      new Entity.PostEntity
                      {
@@ -815,7 +814,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
-                         Image = "social-img-3.jpg"
+                         Image = "5F18619AC74A43065C98941313647F07.jpg"
                      },
                      new Entity.PostEntity
                      {
@@ -828,7 +827,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
-                         Image = "social-img-3.jpg"
+                         Image = "5F18619AC74A43065C98941313647F07.jpg"
                      },
                       new Entity.PostEntity
                       {
@@ -841,7 +840,7 @@ namespace Investor.Web
                           CreatedOn = DateTime.Now,
                           ModifiedOn = DateTime.Now,
                           PublishedOn = DateTime.Now,
-                          Image = "social-img-3.jpg"
+                          Image = "5F18619AC74A43065C98941313647F07.jpg"
                       },
                        new Entity.PostEntity
                        {
@@ -854,7 +853,7 @@ namespace Investor.Web
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
-                           Image = "social-img-3.jpg"
+                           Image = "5F18619AC74A43065C98941313647F07.jpg"
                        },
                        new Entity.PostEntity
                        {
@@ -867,7 +866,7 @@ namespace Investor.Web
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
-                           Image = "social-img-3.jpg"
+                           Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                        },
                        new Entity.PostEntity
                        {
@@ -880,7 +879,7 @@ namespace Investor.Web
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
-                           Image = "social-img-3.jpg"
+                           Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                        }
                     );
                 context.SaveChanges();
