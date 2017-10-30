@@ -14,8 +14,12 @@ let getMoreNews = function (categoryName,page,limit) {
     $.ajax({
         url: `/api/post/more${params}`,
         type: "GET",
-        success: function (data) {
-            $(".category-news-body").append(data);
+		success: function (data) {
+			
+			$(".category-news-body").append(data);
+			if ($(".numberOfPosts").last().val() < moreNewsLimit) {
+				$(".wrapper-btn-more").attr("hidden", "true");
+			}
             moreNewsPage += 1;
         }
     });

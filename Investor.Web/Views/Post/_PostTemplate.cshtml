@@ -30,7 +30,7 @@
 </div>
 
 <div class="card-news-img mt-4 mb-5">
-    <img src="~/img/@Model.Image" class="img-fluid" />
+    <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/large-" + Model.Image)" class="img-fluid" />
 </div>
 <div class="card-news-desc mb-5">
     @Html.Raw(Model.Article)

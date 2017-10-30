@@ -4,7 +4,7 @@
 
 <div class="item-blog-news col-12">
     <div class="img-news">
-        <img src="img/@Model.Image" class="img-fluid rounded-circle">
+        <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/small-" + Model.Image)" class="img-fluid rounded-circle">
     </div>
     <div class="body-all-news">
         <a href="/post/@Model.PostId" class="title-news">@Model.Title</a>

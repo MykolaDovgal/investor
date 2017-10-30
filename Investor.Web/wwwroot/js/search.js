@@ -66,7 +66,11 @@ let getMoreSearchResult = function (categoryUrl, queryText, date, page, count) {
         url: `/api/search/posts${params}`,
         type: "GET",
         success: function (data) {
-            $("#searchResultContainer").append(data);           
+			$("#searchResultContainer").append(data);
+			console.log($(".numberOfPosts").last().val());
+			if ($(".numberOfPosts").last().val() < searchMoreResultCount) {
+				$(".wrapper-btn-more").attr("hidden", "true");
+			}
         }
     });
 };
@@ -78,10 +82,15 @@ let getSearchResult = function (categoryUrl, queryText, date, page, count) {
     $.ajax({
         url: `/api/search/posts${params}`,
         type: "GET",
-        success: function (data) {
+		success: function (data) {
+			$(".wrapper-btn-more").removeAttr("hidden");
             $("#searchResultContainer").empty();
-            $("#searchResultContainer").append(data);
-            $(".title-page-search").text(`Результати пошуку за запитом "${queryText}"`);
+			$("#searchResultContainer").append(data);
+			console.log($(".numberOfPosts").last().val());
+			$(".title-page-search").text(`Результати пошуку за запитом "${queryText}"`);
+			if ($(".numberOfPosts").last().val() < searchMoreResultCount) {
+				$(".wrapper-btn-more").attr("hidden", "true");
+			}
         }
     });
 };
