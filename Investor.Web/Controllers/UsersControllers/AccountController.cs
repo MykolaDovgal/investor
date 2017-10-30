@@ -4,6 +4,7 @@ using AutoMapper;
 using Investor.Model;
 using Investor.Model.Views;
 using Investor.Service.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Investor.Web.Controllers.UsersControllers
@@ -49,6 +50,12 @@ namespace Investor.Web.Controllers.UsersControllers
 
             return View();
         }
+
+        //[HttpPost]
+        //public IActionResult CreatePost([FromForm] Blog blog, [FromForm]IFormFile image)
+        //{
+
+        //}
 
         [HttpGet]
         public IActionResult Register()

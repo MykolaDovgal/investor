@@ -13,8 +13,8 @@ namespace Investor.Service
 {
     public class SliderItemService : ISliderItemService
     {
-        private ISliderItemRepository _sliderItemRepository;
-        private IPostRepository _postRepository;
+        private readonly ISliderItemRepository _sliderItemRepository;
+        private readonly IPostRepository _postRepository;
         private int _sideSliderItemsCount = 2;
         private int _centralSliderItemsCount = 2;
         public SliderItemService(ISliderItemRepository sliderItemRepository, IPostRepository postRepository)

@@ -4,13 +4,12 @@ $(document).ready(function () {
 
     $("#logoff").click(function(e) {
         e.preventDefault();
-        $.ajax({
-            url: "/account/logoff",
-            type: "POST",
-            success: function(data) {
-                window.location.href = data;
-            }
-        });
+        logOff();
+    });
+
+    $("#createUserPostForm").submit(function(e) {
+        e.preventDefault();
+
     });
 
     initUserTinyMCE();
@@ -18,8 +17,17 @@ $(document).ready(function () {
 
 });
 
+let createNewBlogPost = function() {
+    
+}
+
 let getCreatePostFormData = function() {
-    let formData = new FormData(document.getElementById("createUserPostForm"));
+    const formData = new FormData(document.getElementById("createUserPostForm"));
+    let tagsArray = $("input[Name='tagsName']").tagsinput('items');
+
+    formData.append('Article', tinyMCE.get('Article').getContent());    
+    for (let i = 0; i < tagsArray.length; i++)
+        formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
 
 }
 
@@ -82,6 +90,16 @@ let initUserTagsInput = function () {
         typeaheadjs: {
             name: 'userPostTags',
             source: substringMatcher(userPostTags)
+        }
+    });
+}
+
+let logOff = function() {
+    $.ajax({
+        url: "/account/logoff",
+        type: "POST",
+        success: function (data) {
+            window.location.href = data;
         }
     });
 }

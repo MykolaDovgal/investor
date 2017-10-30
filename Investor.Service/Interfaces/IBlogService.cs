@@ -9,6 +9,7 @@ namespace Investor.Service.Interfaces
 {
     public interface IBlogService
     {
+        Task<Blog> AddBlogAsync(Blog map);
         Task<Blog> GetPostByIdAsync(int id);
         Task<IEnumerable<BlogPreview>> GetLatestBlogsAsync(int limit = 10);
         Task<IEnumerable<BlogPreview>> GetPopularBlogsAsync(int limit = 3);

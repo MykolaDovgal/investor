@@ -17,6 +17,14 @@ namespace Investor.Repository
         {
             _newsContext = context;
         }
+
+        public async Task<PostEntity> AddBlogAsync(PostEntity blog)
+        {
+            await _newsContext.Posts.AddAsync(blog);
+            await _newsContext.SaveChangesAsync();
+            return blog;
+        }
+
         public async Task<IEnumerable<PostEntity>> GetLatestBlogsAsync(int limit)
         {
             return await _newsContext.Posts

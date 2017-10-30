@@ -8,6 +8,7 @@ namespace Investor.Repository.Interfaces
 {
     public interface IBlogRepository
     {
+        Task<PostEntity> AddBlogAsync(PostEntity blog);
         Task<PostEntity> GetPostByIdAsync(int id);
         Task<IEnumerable<PostEntity>> GetAllBlogsAsync();
         Task<IEnumerable<PostEntity>> GetLatestBlogsAsync(int limit);

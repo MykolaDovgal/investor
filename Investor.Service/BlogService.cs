@@ -15,6 +15,15 @@ namespace Investor.Service
     {
         private readonly IBlogRepository _blogRepository;
 
+        public async Task<Blog> AddBlogAsync(Blog map)
+        {
+            map.ModifiedOn = DateTime.Now;
+            map.CreatedOn = DateTime.Now;
+            var response = await _blogRepository.AddBlogAsync(Mapper.Map<Blog, PostEntity>(map));
+            map.PostId = response.PostId;
+            return map;
+        }
+
         public BlogService(IBlogRepository blogRepository)
         {
             _blogRepository = blogRepository;
@@ -42,9 +51,5 @@ namespace Investor.Service
             var post = await _blogRepository.GetPostByIdAsync(id);
             return Mapper.Map<PostEntity, Blog>(post);
         }
-        //public async Task<Dictionary<string, string>> GetBlogersNameDictionaryAsync()
-        //{
-        //    var blogers = await _
-        //}
     }
 }
