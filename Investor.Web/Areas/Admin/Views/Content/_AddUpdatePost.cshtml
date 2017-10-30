@@ -1,6 +1,6 @@
 ﻿@model Investor.Model.Post
 
-<input type="hidden" value="@Model.PostId" name="PostId" />
+<input type="text" hidden value="@Model.PostId" name="PostId" />
 
 <div class="page-content page-post">
 
@@ -15,7 +15,6 @@
     </div>
 
     @*<div class="fileinput fileinput-new" data-provides="fileinput">
-
             <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
                 <img class="cropper" src="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")" alt="" required="required" />
 
@@ -31,10 +30,11 @@
             </div>
 
         </div>*@
+
     <div class="cropper">
         <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + Model.Image))">
     </div>
     <div class="img-preview" ></div>
-
+    <input type="text" hidden value="@(Model.Article == null ? 0 : Model.Article.ArticleId)" name="Article.ArticleId" />
     <textarea class="text-editor" id="Article">@(Model.Article == null ? "" : Model.Article.Content)</textarea>
 </div>

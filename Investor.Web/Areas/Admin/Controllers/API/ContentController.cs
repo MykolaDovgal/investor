@@ -19,14 +19,16 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         private readonly ICategoryService _categoryService;
         private readonly ISliderItemService _sliderItemService;
         private readonly IBlogService _blogService;
+        private readonly IImageService _imageService;
 
-        public ContentController(IPostService postService, ITagService tagService, IBlogService blogService, ISliderItemService sliderItemService, ICategoryService categoryService)
+        public ContentController(IPostService postService, ITagService tagService, IBlogService blogService, ISliderItemService sliderItemService, ICategoryService categoryService, IImageService imageService)
         {
             _postService = postService;
             _tagService = tagService;
             _blogService = blogService;
             _categoryService = categoryService;
             _sliderItemService = sliderItemService;
+            _imageService = imageService;
         }
 
         [Route("GetAllNews")]
@@ -53,49 +55,49 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdatePost")]
         [HttpPost]
-        public void UpdatePost([Bind("PostId, Title, Description, IsOnMainPage, IsImportant, Published")]Post post, [FromForm]string Article, [FromForm] string[] Tags, [FromForm] bool IsOnSlider, [FromForm] bool IsOnSide)
+        public void UpdatePost([FromForm]Post post, [FromForm]SliderItem sliderItem, [FromForm]IFormFile image)
         {
-            Post newPost = Mapper.Map<Post, Post>(post, _postService.GetPostByIdAsync(post.PostId).Result);
-            if (Request.Form.Files[0].FileName != String.Empty)
-                newPost.Image = Request.Form.Files[0].FileName;
-            newPost.Category = _categoryService.GetCategoryByUrlAsync(Request.Form["Category"].First()).Result;
-            newPost.Article.Content = Article;
-
-            List<Tag> postTags = _postService.GetAllTagsByPostId(newPost.PostId).Result.ToList();
-            Tags.ToList().ForEach (t => 
+            post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
+            if (image != null)
             {
-                if ((postTags.Find(tg => tg.Name == t) == null))
-                {
-                    _postService.AddTagToPostAsync(newPost.PostId, t);
-                }
-            });
-
-            var sliderItem = _sliderItemService.GetSliderItemByPostIdAsync(newPost.PostId).Result;
-            if (_sliderItemService.GetSliderItemByPostIdAsync(newPost.PostId).Result != null)
-            {
-                _sliderItemService.UpdateSliderItemAsync(Mapper.Map<SliderItem, SliderItem>(new SliderItem { IsOnSide = IsOnSide, IsOnSlider = IsOnSlider }, sliderItem));
+                post.Image = image.FileName;
+                _imageService.SaveImage(image);
             }
-            else if (IsOnSlider || IsOnSide)
-            {
-                _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(newPost), IsOnSide = IsOnSide, IsOnSlider = IsOnSlider });
+            _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
+            Post newPost = _postService.GetPostByIdAsync(post.PostId).Result;
+            newPost = Mapper.Map<Post, Post>(post, newPost);
+            newPost.PublishedOn = !newPost.IsPublished && post.IsPublished ? DateTime.Now : post.PublishedOn;
+            var tmp =_postService.UpdatePostAsync(newPost).Result;
+            var newSliderItem = _sliderItemService.GetSliderItemByPostIdAsync(post.PostId).Result;
+            if (newSliderItem != null)
+            { 
+                _sliderItemService.UpdateSliderItemAsync(Mapper.Map<SliderItem, SliderItem>(sliderItem, newSliderItem));
             }
-
-            _postService.UpdatePostAsync(newPost);
+            else if(sliderItem.IsOnSlider || sliderItem.IsOnSide)
+            {
+                _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(post), IsOnSide = sliderItem.IsOnSide, IsOnSlider = sliderItem.IsOnSlider });
+            }
         }
 
         [Route("CreatePost")]
         [HttpPost]
-        public void CreatePost([Bind("PostId, Title, Description, IsOnMainPage, IsImportant, Published")]Post post, [FromForm]string Article, [FromForm] string[] Tags, [FromForm] bool IsOnSlider, [FromForm] bool IsOnSide)
+        public void CreatePost([FromForm]Post post, [FromForm]SliderItem sliderItem, [FromForm]IFormFile image)
         {
-            post.Image = Request.Form.Files[0].FileName;
-            post.Category = _categoryService.GetCategoryByUrlAsync(Request.Form["Category"].First()).Result;
-            post.Article = new Article() { Content = Article };
-            Tags.ToList().ForEach(t => {
-                _postService.AddTagToPostAsync(post.PostId, t);
-            });
-            post = _postService.AddPostAsync(post).Result;
-            if (IsOnSlider || IsOnSide){
-                _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(post), IsOnSide = IsOnSide, IsOnSlider = IsOnSlider });
+            post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
+            if (image != null)
+            {
+                post.Image = image.FileName;
+                _imageService.SaveImage(image);
+            }
+            if (post.IsPublished)
+            {
+                post.PublishedOn = DateTime.Now;
+            }
+            var tmp = _postService.AddPostAsync(post).Result;
+            _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
+            if (sliderItem.IsOnSlider || sliderItem.IsOnSide)
+            {
+                _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(post), IsOnSide = sliderItem.IsOnSide, IsOnSlider = sliderItem.IsOnSlider });
             }
         }
 

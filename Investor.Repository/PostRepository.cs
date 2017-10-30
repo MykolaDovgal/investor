@@ -7,6 +7,7 @@ using Investor.Model;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Investor.Repository
 {
@@ -19,11 +20,6 @@ namespace Investor.Repository
         }
         public async Task<PostEntity> AddPostAsync(PostEntity post)
         {
-            post.CreatedOn = DateTime.Now;
-            post.ModifiedOn = DateTime.Now;
-            if(post.IsPublished.HasValue)
-                post.PublishedOn = post.IsPublished.Value ? DateTime.Now : new DateTime();
-
             await _newsContext.Posts.AddAsync(post);
             await _newsContext.SaveChangesAsync();
             return post;
@@ -34,6 +30,7 @@ namespace Investor.Repository
             return await _newsContext.Posts
                 .Include(p => p.Category)
                 .Include(p => p.Author)
+                .Where(p=>p.IsBlogPost.HasValue == false)
                 .ToListAsync();
         }
 
@@ -106,6 +103,7 @@ namespace Investor.Repository
         public async Task<PostEntity> GetPostByIdAsync(int id)
         {
             return await _newsContext.Posts
+                .AsNoTracking()
                 .Include(p => p.Category)
                 .Include(p => p.Comments)
                 .Include(p => p.Article)
@@ -162,10 +160,12 @@ namespace Investor.Repository
 
         public async Task<PostEntity> UpdatePostAsync(PostEntity post)
         {
-            post.ModifiedOn = DateTime.Now;
-            PostEntity prevPost = _newsContext.Posts.FirstOrDefault(p => p.PostId == post.PostId);
-            post.PublishedOn = prevPost.IsPublished == false && post.IsPublished == true ? DateTime.Now : post.PublishedOn;
-            
+            PostEntity oldPost = _newsContext.Posts.FindAsync(post.PostId).Result;
+            oldPost = Mapper.Map<PostEntity, PostEntity>(post, oldPost);
+            oldPost.Category = _newsContext.Categories.Find(oldPost.Category.CategoryId);
+            _newsContext.Articles.Update(post.Article);
+            oldPost.Article = _newsContext.Articles.Find(oldPost.ArticleId);
+            _newsContext.Posts.Update(oldPost);            
             await _newsContext.SaveChangesAsync();
             return post;
         }

@@ -49,6 +49,7 @@ $(document).on("click", "a.nav-link", function (e) {
         }
         console.log(tempArray);
         updetePosts.call(this, url, tempArray);
+
     }
     if (type && type === "singlepost") {
         getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost"); console.log($("#updateFormSubmit").data("action")) });
