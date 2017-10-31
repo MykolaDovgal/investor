@@ -1,40 +1,10 @@
 ﻿let tables = {};
 let tablesUpdetedData = {};
-let chosenPostsIds = [];
+//let chosenPostsIds = [];
 
 $(document).ready(function () {
 
 });
-
-$(document).on('click',
-	".delete",
-	function (e) {
-		$('#question').html( "Ви дійсно хочете видалити " + $('tbody td:first-child :checked').length + " постів?");
-	});
-
-$(document).on('change',
-	'tbody td:first-child',
-	function (e) {
-		console.log(($('tbody td:first-child :checked').length));
-		if ($('tbody td:first-child :checked').length > 0) {
-			$(".delete").removeAttr('disabled');
-		}
-		else {
-			$(".delete").attr('disabled', 'true');
-		}
-		const tableId = "#" + $(this).closest('table').prop("id");
-		const tableDataObj = tables[tableId].row($(this).parents('tr')).data();
-		const propertyValue = $(e.target).prop("checked");
-		if (propertyValue) {
-			console.log(tableDataObj.postId);
-			chosenPostsIds.push(tableDataObj.postId);
-		}
-		else {
-			delete chosenPostsIds[chosenPostsIds.indexOf(tableDataObj.postId)];
-		}
-		console.log(chosenPostsIds);
-
-	});
 
 $(document).on('change',
 	'tbody td:not(:first-child)',
@@ -65,8 +35,6 @@ $(document).on("click", "a.nav-link", function (e) {
 	const type = $(e.target).data("type");
 
 	if (type && type === "news") {
-
-		let chosenPostsIds = [];
 		tablesUpdetedData = {};
 		getPartialView(`admin${url}`, initialTable, "#newsTable");
 	}
@@ -94,12 +62,6 @@ $(document).on("click", "a.nav-link", function (e) {
 	}
 	if (type && type === "createblog") {
 		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreateBlog"); console.log($("#updateFormBlogSubmit").data("action")) });
-	}
-	if (type && type === "delete") {
-		updetePosts.call(this, url, chosenPostsIds);
-		chosenPostsIds = [];
-		$("#newsTable").dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
-		initialTable("#newsTable");
 	}
 
 });
@@ -182,7 +144,7 @@ let getPartialView = function (url, callback = undefined, tableId = undefined) {
 		success: function (data) {
 			$("#container").empty();
 			$("#container").append(data);
-
+			chosenPostsIds = [];
 			if (callback) {
 				callback(tableId);
 			}

@@ -33,7 +33,6 @@ let initialTableBlogs = function (tableId) {
             {
                 "data": "title",
                 render: function (data, type, full) {
-                    console.log(full);
                     return `<a href="#" data-type="singleblog" class="nav-link" data-href="/content/singleblog/${full.postId}">${data}</a>`
                 }
 
