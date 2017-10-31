@@ -26,6 +26,7 @@ namespace Investor.Repository.Interfaces
         Task<PostEntity> UpdatePostAsync(PostEntity post);
         Task UpdatePostAsync(IEnumerable<PostEntity> post);
         Task RemovePostAsync(int id);
+        Task RemovePostAsync(IEnumerable<int> id);
         Task<TagEntity> AddTagToPostAsync(int postId, TagEntity tag);
         Task<List<TagEntity>> GetAllTagsByPostIdAsync(int id);
         Task<IEnumerable<PostEntity>> GetQueriedPost(PostSearchQuery query);

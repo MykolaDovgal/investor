@@ -130,5 +130,12 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         {
             await _postService.UpdatePostAsync(tablePosts);
         }
+
+        [Route("DeletePosts")]
+        [HttpPost]
+        public async Task DeletePosts(List<int> tablePosts)
+        {
+            await _postService.RemovePostAsync(tablePosts);
+        }
     }
 }

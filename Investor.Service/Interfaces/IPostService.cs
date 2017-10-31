@@ -26,5 +26,6 @@ namespace Investor.Service.Interfaces
         Task<Post> UpdatePostAsync(Post post);
         Task UpdatePostAsync(IEnumerable<Post> post);
         Task RemovePostAsync(int id);
+        Task RemovePostAsync(IEnumerable<int> posts);
     }
 }

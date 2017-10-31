@@ -89,7 +89,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Posts
                 .Include(p => p.PostTags)
-                .Where(p => p.PostTags.Find(pt => pt.Tag.Name == tagName) != null)
+                .Where(p => p.PostTags.Select(posttag=>posttag.Tag.Name).Contains(tagName))
                 .ToListAsync();
         }
 
@@ -151,6 +151,16 @@ namespace Investor.Repository
                 .Posts
                 .Remove(postToRemove);
 
+            await _newsContext.SaveChangesAsync();
+        }
+
+        public async Task RemovePostAsync(IEnumerable<int> id)
+        {
+            var postsToRemove = _newsContext
+                .Posts
+                .Where(p => id.Contains(p.PostId));
+
+            _newsContext.Posts.RemoveRange(postsToRemove);
             await _newsContext.SaveChangesAsync();
         }
 
@@ -231,6 +241,7 @@ namespace Investor.Repository
 
         public async Task<IEnumerable<PostEntity>> GetQueriedPost(PostSearchQuery query)
         {
+
             DateTime? dtStart = null;
             DateTime? dtEnd = null;
 
@@ -245,6 +256,30 @@ namespace Investor.Repository
                 .Where(post => (string.IsNullOrEmpty(query.CategoryUrl) || post.Category.Url == query.CategoryUrl) &&
                                (string.IsNullOrEmpty(query.Query) || post.Description.ToLower().Contains(query.Query.ToLower()) ||
                                 post.Title.ToLower().Contains(query.Query.ToLower())) &&
+                               (!query.Date.HasValue || post.PublishedOn.HasValue && (post.PublishedOn.Value > dtStart && post.PublishedOn.Value < dtEnd)) &&
+                               (post.IsPublished ?? true))//TODO change true to false
+                .OrderByDescending(x => x.PublishedOn)
+                .Skip((query.Page - 1) * query.Count)
+                .Take(query.Count);
+            return await posts.ToListAsync();
+        }
+
+        public async Task<IEnumerable<PostEntity>> GetQueriedPostByTag(PostSearchQuery query)
+        {
+            DateTime? dtStart = null;
+            DateTime? dtEnd = null;
+
+            if (query.Date.HasValue)
+            {
+                dtStart = new DateTime(query.Date.Value.Year, query.Date.Value.Month, query.Date.Value.Day);
+                dtEnd = new DateTime(query.Date.Value.Year, query.Date.Value.Month, query.Date.Value.Day + 1);
+            }
+            IQueryable<PostEntity> posts = _newsContext
+                .Posts
+                .Include(post=>post.PostTags)
+                .Include(post=>post.Category)
+                .Where(post => (string.IsNullOrEmpty(query.CategoryUrl) || post.Category.Url == query.CategoryUrl) &&
+                               (string.IsNullOrEmpty(query.Query) || post.PostTags.FirstOrDefault(posttag => posttag.Tag.Name.ToLower().Contains(query.Query.ToLower())) != null) &&
                                (!query.Date.HasValue || post.PublishedOn.HasValue && (post.PublishedOn.Value > dtStart && post.PublishedOn.Value < dtEnd)) &&
                                (post.IsPublished ?? true))//TODO change true to false
                 .OrderByDescending(x => x.PublishedOn)

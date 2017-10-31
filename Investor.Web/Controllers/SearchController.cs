@@ -21,5 +21,13 @@ namespace Investor.Web.Controllers
             var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
             return View("Index", searchResult);
         }
+
+        //[HttpGet]
+        //public IActionResult PostsByTagName(string tag)
+        //{
+        //    ViewBag.TextQuery = tag;
+        //    var postQuery = new PostSearchQuery { Query = tag };
+        //    var searchResult = _searchService.SearchPosts
+        //}
     }
 }

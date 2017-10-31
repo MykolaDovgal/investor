@@ -1,5 +1,5 @@
 ﻿@model Investor.Model.Blog
-@using System.IO 
+@using System.IO
 
 <input type="hidden" value="@Model.PostId" name="PostId" />
 
@@ -15,28 +15,21 @@
         <label for="description">Опис</label>
     </div>
 
-    @*<div class="fileinput fileinput-new" data-provides="fileinput">
+    <div class="fileinput fileinput-new" data-provides="fileinput">
+        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+            <img class="cropper" src="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/" + Model.Image))" alt="" required="required" />
 
-            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
-                <img class="cropper" src="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")" alt="" required="required" />
-
-            </div>
-
-            <div>
-                <span class="btn red btn-outline btn-file">
-                    <span class="fileinput-new"> Вибрати світлину </span>
-                    <span class="fileinput-exists"> Змніити </span>
-                    <input type="file" name="Image" value="@(Model.Image!=String.Empty ? ("~/../../../../img/" + Model.Image) : "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image")">
-                </span>
-                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Видалити </a>
-            </div>
-
-        </div>*@
-    <div></div>
-    <div class="cropper">
-        <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/" + Model.Image))">
+        </div>
+        <div>
+            <span class="btn red btn-outline btn-file">
+                <span class="fileinput-new"> Вибрати світлину </span>
+                <span class="fileinput-exists"> Змніити </span>
+                <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/" + Model.Image))">
+            </span>
+            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Видалити </a>
+        </div>
     </div>
-    <div class="img-preview"></div>
+
 
     <textarea class="text-editor" id="Article">@(Model.Article)</textarea>
 </div>

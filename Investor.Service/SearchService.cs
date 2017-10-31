@@ -25,5 +25,10 @@ namespace Investor.Service
             var posts = await _postRepository.GetQueriedPost(query);
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
+
+        //public async Task<IEnumerable<PostPreview>> SearchPostsByTag(PostSearchQuery query)
+        //{
+        //    var posts = await _postRepository.GetQueriedPostByTag(query);
+        //}
     }
 }

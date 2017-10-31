@@ -109,6 +109,11 @@ namespace Investor.Service
             await _postRepository.RemovePostAsync(id);
         }
 
+        public async Task RemovePostAsync(IEnumerable<int> id)
+        {
+            await _postRepository.RemovePostAsync(id);
+        }
+
         public async Task<IEnumerable<PostPreview>> GetPopularPostByCategoryUrlAsync(string categoryUrl, int limit)
         {
             var posts = await _postRepository.GetPopularPostByCategoryUrlAsync(categoryUrl, limit);

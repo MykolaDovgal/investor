@@ -12,7 +12,7 @@ $(document).on("click", "a.tag-submit", function (e) {
 
 	const tableId = "#" + $(this).closest('table').prop("id");
 	const row = $(this).closest('tr').index();
-	const tableDataObj = tables[tableId].row(row).data();
+	const tableDataObj = tables[tableId].row($(this).parents('tr')).data();
 
 	$("input[name='TagId']").val(tableDataObj.tagId);
 	$("input[name='Url']").val(tableDataObj.url);
@@ -94,7 +94,6 @@ let initialTagsTable = function (tableId) {
 				data: null,
 				orderable: false,
 				render: function () {
-	
 					return `<a class="btn btn-circle btn-icon-only btn-default tag-submit" data-toggle="modal" href="#deleteTag"><i class="icon-trash"></i></a>`;
 				}
 			},
