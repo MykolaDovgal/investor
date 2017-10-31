@@ -60,7 +60,7 @@ let initialTagsTable = function (tableId) {
 
 	tables[tableId] = $(tableId).DataTable({
 
-		"ajax": "/api/Content/GetAllTags",
+        "ajax": "/api/Content/GetAllTags",
 		"columns": [
 			{
 				data: null,
@@ -91,13 +91,6 @@ let initialTagsTable = function (tableId) {
 				}
 			},
 			{
-				data: null,
-				orderable: false,
-				render: function () {
-					return `<a class="btn btn-circle btn-icon-only btn-default tag-submit" data-toggle="modal" href="#deleteTag"><i class="icon-trash"></i></a>`;
-				}
-			},
-			{
 				data: "url",
 				"visible": false,
 				render: function (data) {
@@ -105,5 +98,5 @@ let initialTagsTable = function (tableId) {
 				}
 			}
 		]
-	});
+    });
 }
