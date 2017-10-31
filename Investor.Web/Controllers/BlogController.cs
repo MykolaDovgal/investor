@@ -27,7 +27,7 @@ namespace Investor.Web.Controllers
             _tagService = tagService;
         }
 
-        public IActionResult Index(string[] arr)
+        public IActionResult Index()
         {
             ViewBag.IsBlog = true;
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result.ToList();
@@ -36,6 +36,15 @@ namespace Investor.Web.Controllers
             ViewBag.PopularBlogs = _blogService.GetPopularBlogsAsync().Result.ToList();
             ViewBag.Blogers = _userService.GetDictionaryOfBlogersAsync().Result;
             return View();
+        }
+
+        public IActionResult Page(int id)
+        {
+            ViewBag.PathBase = Request.Host.Value;
+            ViewBag.Post = _blogService.GetPostByIdAsync(id).Result; ;
+            ViewBag.LatestPosts = _postService.GetLatestPostsAsync(10).Result.ToList();           
+            ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
+            return View("Single/BlogPage");
         }
     }
 }

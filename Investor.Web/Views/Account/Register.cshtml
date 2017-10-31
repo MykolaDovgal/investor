@@ -27,19 +27,19 @@
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Surname">Ваше прізвище</label>
-                                <input asp-for="Surname" id="input-value-last-name" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
+                                <input asp-for="Surname" id="input-value-lastname" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
                             </div>
                         </div>
 
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Password">Придумайте пароль</label>
-                                <input asp-for="Password" type="password" class="form-control focus-input focus-color-default"  data-validation="length custom strength" data-validation-length="min8" data-validation-regexp="^([a-z, A-Z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]+)$"/>
+                                <input asp-for="Password" type="password" class="form-control focus-input focus-color-default"/>
                                 <label class="reliability">Надійність</label>
                             </div>
                             <div class="col form-group">
                                 <label asp-for="PasswordConfirm">Повторіть ваш пароль</label>
-                                <input asp-for="PasswordConfirm" type="password" class="form-control focus-input focus-color-default" data-validation="confirmation"/>
+                                <input asp-for="PasswordConfirm" type="password" class="form-control focus-input focus-color-default" />
                             </div>
                         </div>
                     </div>

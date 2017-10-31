@@ -12,6 +12,8 @@ var day = weekday[data.getDay()];
 
 var currentDate = data.toLocaleDateString();
 
+{ lang: 'uk' }
+
 $("#data").html('<span class="day">' + day + '</span><span class="current-date">' + currentDate + '</span>');
 
 $("#my-datepicker").val(day + ' ' + currentDate);
@@ -240,7 +242,7 @@ $.validate({
             strong: ''
         };
 
-        $('input[name="pass_confirmation"]').displayPasswordStrength(optionalConfig);
+        $('input[name="Password"]').displayPasswordStrength(optionalConfig);
     }
 });
 

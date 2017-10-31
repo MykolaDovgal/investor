@@ -32,9 +32,10 @@ namespace Investor.Service
         {
             if (!_roleManager.RoleExistsAsync(role).Result)
             {
-                return await _roleManager.CreateAsync(new IdentityRole(role));
+                await _roleManager.CreateAsync(new IdentityRole(role));                
             }
-            return IdentityResult.Success;
+            return IdentityResult.Success; 
+
         }
 
         public async Task<IdentityResult> CreateUserAsync(User user,string userRole = "user")
@@ -45,6 +46,7 @@ namespace Investor.Service
             if (userRegisterResult.Succeeded && CreateRoleAsync(userRole).Result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(userEntity, userRole);
+                return IdentityResult.Success;
             }
             return IdentityResult.Failed();
         }

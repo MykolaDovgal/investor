@@ -76,10 +76,10 @@ namespace Investor.Web.Controllers.UsersControllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             var user = Mapper.Map<RegisterViewModel, User>(model);
-            var result = await _userService.CreateUserAsync(user);
-            if (result.Succeeded)
+
+            if ((await _userService.CreateUserAsync(user)).Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return View("Login");
             }
 
             return View(model);
