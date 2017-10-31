@@ -240,7 +240,7 @@ $.validate({
             strong: ''
         };
 
-        $('input[name="pass_confirmation"]').displayPasswordStrength(optionalConfig);
+        $('input[name="Password"]').displayPasswordStrength(optionalConfig);
     }
 });
 
