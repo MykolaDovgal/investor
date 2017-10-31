@@ -1,0 +1,48 @@
+﻿@model Investor.Model.Blog
+@inject Investor.Service.TimeService PostPublicationDate
+@using Investor.Model
+
+<h1 class="title-card-page">
+    @Model.Title
+</h1>
+<div class="info-news">
+    <span class="data-post">@Model.Author.Surname @Model.Author.Name</span>
+    <span class="data-post"><i class="icons icon-clock"></i> @PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+    <span class="reviews-post"><i class="icons icon-reviews"></i>154</span>
+</div>
+
+<div class="wrapper-social-share">
+    <a onClick="openWinFb()" class="socail-share facebook-share">
+        <i class="fa fa-facebook" aria-hidden="true"></i><span>Поширити</span>
+    </a>
+    <div class="twitter-share">
+        <a class="twitter-share-button"
+           href="https://twitter.com/intent/tweet?text=Hello%20world"
+           data-size="large">
+            Tweet
+        </a>
+    </div>
+
+    <div class="share-g">
+        <div class="share-g-hidden"><div class="g-plus" data-action="share" data-height="24"></div></div>
+        <div class="btn-g-plus"><i class="fa fa-google-plus" aria-hidden="true"></i><span>Поширити</span></div>
+    </div> 
+
+</div>
+
+<div class="card-news-img mt-4 mb-5">
+    <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/large-" + Model.Image)" class="img-fluid" />
+</div>
+<div class="card-news-desc mb-5">
+    @Html.Raw(Model.Article)
+</div>
+<ul class="wrapper-hashtag  mb-4">
+    @foreach (Tag tag in ViewBag.Tags)
+    {
+        <li><a href="#" class="item-hashtag">@tag.Name</a></li>
+    }
+</ul>
+<div class="post-comment">
+    <span class="title-block">Коментарі</span>
+    <div class='fb-comments' data-href="http://@{@ViewBag.PathBase;}/post/@{@ViewBag.Post.PostId;}" data-num-posts='2' data-width='470'></div>
+</div>

@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-lg-8 p-sm-0 pr-lg-2">
 
-                @Html.Partial("_PostTemplate", ViewBag.Post as Post)
+                @Html.Partial("Single/_BlogTemplate", ViewBag.Post as Blog)
 
             </div>
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
@@ -34,16 +34,7 @@
 
                 @Html.Partial("_LastNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
             </div>
-            <div class="col-sm-12 p-0 mt-3">
-                <span class="title-block d-block title-block-border-b pb-2 mb-3">Популярне по темі</span>
-                @Html.Partial("_SliderPostsTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
-            </div>
-
-            <div class="col-sm-12 p-0 mt-3">
-                <span class="title-block d-block title-block-border-b pb-2 mb-3">Вибір редакції</span>
-                @Html.Partial("_SliderPostsTemplate", ViewBag.ImportantPosts as IEnumerable<PostPreview>)
-
-            </div>
+           
         </div>
     </div>
 </section>
