@@ -67,6 +67,19 @@ namespace Investor.Repository
             await _newsContext.SaveChangesAsync();
         }
 
+        public async Task RemoveTagAsync(IEnumerable<int> id)
+        {
+            IQueryable<TagEntity> tagsToRemove = _newsContext
+                .Tags
+                .Where(t => id.Contains(t.TagId));
+
+            _newsContext
+                .Tags
+                .RemoveRange(tagsToRemove);
+
+            await _newsContext.SaveChangesAsync();
+        }
+
         public async Task<TagEntity> UpdateTagAsync(TagEntity tag)
         {
             tag.Url = tag.Name.Unidecode();

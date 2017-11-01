@@ -119,9 +119,9 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("RemoveTag")]
         [HttpPost]
-        public async Task RemoveTag(int TagId)
+        public async Task RemoveTag(List<int> id)
         {
-            await _tagService.RemoveTagAsync(TagId);
+            await _tagService.RemoveTagAsync(id);
         }
 
         [Route("UpdateTablePost")]
@@ -133,9 +133,9 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("DeletePosts")]
         [HttpPost]
-        public async Task DeletePosts(List<int> tablePosts)
+        public async Task DeletePosts(List<int> id)
         {
-            await _postService.RemovePostAsync(tablePosts);
+            await _postService.RemovePostAsync(id);
         }
     }
 }
