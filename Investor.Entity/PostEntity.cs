@@ -39,7 +39,6 @@ namespace Investor.Entity
         public bool? IsPublished { set; get; }
         public bool? IsOnMainPage { set; get; }
         public bool? IsImportant { set; get; }
-        public bool? IsBlogPost { get; set; }
 
         public int? CategoryId { set; get; }
         public CategoryEntity Category { set; get; }

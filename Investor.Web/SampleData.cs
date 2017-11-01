@@ -189,7 +189,7 @@ namespace Investor.Web
                     new Entity.CategoryEntity {Name = "Економіка", Url = "economy"},
                     new Entity.CategoryEntity {Name = "ІТ технології", Url = "it" },
                     new Entity.CategoryEntity {Name = "Соціум", Url = "socium"},
-                    //new Entity.CategoryEntity {Name = "Блог", Url = "blog"},
+                    new Entity.CategoryEntity {Name = "Блог", Url = "blog"},
                 };
                 context.Categories.AddRange(categories);
                 context.SaveChanges();
@@ -203,29 +203,26 @@ namespace Investor.Web
                         Title = "В The Economist вибачилися за фразу «громадянська війна на Донбасі»",
                         Article = "В РНБО України заявляють, що реальна кількість учасників навчань - до чверті мільйона військовослужбовців. У НАТО стурбовані активністю російських і білоруських військ і переконані, що навчання спрямовані на провокування країн-членів Альянсу.",
                         Description = "The Economist Intelligence Unit, дослідницька організація The Economist Group, вибачилася за фразу «громадянська війна”,",
-                        Category = context.Categories.ToList()[0],
+                        Category = context.Categories.ToList()[5],
                         IsOnMainPage = true,
                         IsImportant = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg",
-                        IsBlogPost = true,
                         AuthorId = myUsers[0].Id
-
                     },
                     new Entity.PostEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі",
                         Article = "<h1>Hello, everybody</h1>",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
-                        Category = context.Categories.ToList()[0],
+                        Category = context.Categories.ToList()[5],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
-                        IsBlogPost = true,
                         AuthorId = myUsers[1].Id
 
                     },
@@ -234,14 +231,13 @@ namespace Investor.Web
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 2",
                         Article = "<p>Крім України,  реальною загрозою війни ці навчання вважають у Литві та Польщі. Про це йдеться в сюжеті Сніданку з 1 + 1",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
-                        Category = context.Categories.ToList()[0],
+                        Category = context.Categories.ToList()[5],
                         IsOnMainPage = false,
                         IsImportant = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
-                        IsBlogPost = true,
                         AuthorId = myUsers[2].Id
                     },
                     new Entity.PostEntity
@@ -263,14 +259,13 @@ namespace Investor.Web
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 4",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
-                        Category = context.Categories.ToList()[0],
+                        Category = context.Categories.ToList()[5],
                         IsOnMainPage = true,
                         IsImportant = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg",
-                        IsBlogPost = true,
                         AuthorId = myUsers[3].Id
                     },
                     new Entity.PostEntity
@@ -278,13 +273,12 @@ namespace Investor.Web
                         Title = "Чому Україна програла від «журналістського розслідування»",
                         Article = "<p>ілвоипличдсшамрвап діовал</p>",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
-                        Category = context.Categories.ToList()[0],
+                        Category = context.Categories.ToList()[5],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "5F18619AC74A43065C98941313647F07.jpg",
-                        IsBlogPost = true,
                         AuthorId = myUsers[2].Id
                     },
                     new Entity.PostEntity
@@ -344,13 +338,12 @@ namespace Investor.Web
                         Title = "Фонд держмайна продав «Західерго» за ціною на 20 % вищою за стартову",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
-                        Category = context.Categories.ToList()[0],
+                        Category = context.Categories.ToList()[5],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg",
-                        IsBlogPost = true,
                         AuthorId = myUsers[1].Id
                     },
                     new Entity.PostEntity
@@ -382,14 +375,13 @@ namespace Investor.Web
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
-                        Category = context.Categories.ToList()[1],
+                        Category = context.Categories.ToList()[5],
                         IsOnMainPage = false,
                         IsImportant = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "904E420568BDB9D329F914D562E091AE.jpg",
-                        IsBlogPost = true,
                         AuthorId = myUsers[1].Id
                     },
                     new Entity.PostEntity
@@ -437,13 +429,12 @@ namespace Investor.Web
                         Title = "LvivMozArt: Що відвідати і послухати 22 серпня",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
-                        Category = context.Categories.ToList()[1],
+                        Category = context.Categories.ToList()[5],
                         IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "904E420568BDB9D329F914D562E091AE.jpg",
-                        IsBlogPost = true,
                         AuthorId = myUsers[1].Id
 
                     },

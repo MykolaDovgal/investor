@@ -42,7 +42,6 @@ namespace Investor.Service
                 cfg.CreateMap<PostEntity, PostEntity>()
                 .ForMember(x => x.CreatedOn, opt => opt.Ignore())
                 .ForMember(x => x.PostTags, opt => opt.Ignore())
-                .ForMember(x => x.IsBlogPost, opt => opt.Ignore())
                 .ForMember(x => x.Author, opt => opt.Ignore())
                 .ForMember(x => x.AuthorId, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));

@@ -14,9 +14,14 @@ namespace Investor.Repository
     public class PostRepository : IPostRepository
     {
         private readonly NewsContext _newsContext;
+        private readonly int categoryBlogId;
         public PostRepository(NewsContext context)
         {
             _newsContext = context;
+            categoryBlogId = _newsContext
+                .Categories
+                .FirstOrDefault(c => c.Url == "blog")
+                .CategoryId;
         }
         public async Task<PostEntity> AddPostAsync(PostEntity post)
         {
@@ -30,7 +35,7 @@ namespace Investor.Repository
             return await _newsContext.Posts
                 .Include(p => p.Category)
                 .Include(p => p.Author)
-                .Where(p=>p.IsBlogPost.HasValue == false)
+                .Where(p=>p.CategoryId != categoryBlogId)
                 .ToListAsync();
         }
 
@@ -40,6 +45,7 @@ namespace Investor.Repository
                 .Include(p => p.Category)
                 .Include(p => p.Author)
                 .Include(p => p.PostTags)
+                .Where(p => p.CategoryId != categoryBlogId)
                 .ToList();
 
 
