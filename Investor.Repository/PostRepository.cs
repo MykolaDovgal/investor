@@ -30,12 +30,12 @@ namespace Investor.Repository
             return post;
         }
 
-        public async Task<IEnumerable<PostEntity>> GetAllPostsAsync()
+        public async Task<IEnumerable<PostEntity>> GetAllPostsAsync(bool withBlogs = false)
         {
             return await _newsContext.Posts
                 .Include(p => p.Category)
                 .Include(p => p.Author)
-                .Where(p=>p.CategoryId != categoryBlogId)
+                .Where(p=>(p.CategoryId == categoryBlogId) == withBlogs)
                 .ToListAsync();
         }
 
