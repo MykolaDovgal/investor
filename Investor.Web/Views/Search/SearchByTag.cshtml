@@ -5,25 +5,11 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-lg-8 p-3 p-md-0">
-                <form id="searchForm" action="/" method="post">
-                    <div class="input-group form-search-2">
-                        <input id="postTextQuery" type="text" class="form-control" placeholder="Пошук">
-                        <span class="input-group-btn">
-                            <button class="btn" type="submit"><i class="icons icon-search"></i></button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-
-
-
-            <h1 class="title-page-search p-3 p-md-0" data-category-url="" data-query="@ViewBag.TextQuery" data-tag="">Результати пошуку за запитом "@ViewBag.TextQuery"</h1>
-
+            <h1 class="title-page-search p-3 p-md-0" data-category-url="@(ViewBag.IsBlog ? "blog" : "")" data-tag="@ViewBag.TagQuery">Результати пошуку за запитом #@ViewBag.TagQuery</h1>
             <div class="search-filter">
                 <div class="dropdown filter-dropdown float-left">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Категорія
+                        @(ViewBag.IsBlog ? "Блог" : "Категорія") 
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item" type="button" data-category-url="">Все</button>
@@ -49,7 +35,7 @@
             </div>
 
             <div class="wrapper-btn-more bnt-more-search">
-                <a id="moreSearchResult" href="/search/posts" class="btn-more text-center">
+                <a id="moreSearchResult" class="btn-more text-center">
                     <span class="circle circle-default-color">
                         <i class="icons icon-arrow-down"></i>
                     </span>Більше новин

@@ -11,6 +11,7 @@ namespace Investor.Model
         public DateTime? Date { get; set; }
         public int Page { get; set; }
         public int Count { get; set; }
+        public string Tag { get; set; }
 
         public PostSearchQuery()
         {
@@ -19,6 +20,7 @@ namespace Investor.Model
             Date = null;
             Page = 1;
             Count = 10;
+            Tag = string.Empty;
         }
 
     }

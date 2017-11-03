@@ -3,9 +3,14 @@ const searchMoreResultCount = 5;
 let searchCategoryUrlQuery = "";
 let searchDateQuery = "";
 let searchTextQuery = "";
+let searchTagQuery = "";
 
 
 $(document).ready(function () {
+	searchTagQuery = $('.title-page-search').data('tag');
+	searchCategoryUrlQuery = $('.title-page-search').data('category-url');
+	searchTextQuery = $('.title-page-search').data('query');
+
     $('.my-datepicker').datepicker({
         language: 'ua',
         onSelect: function (formattedDate, date, inst) {
@@ -16,23 +21,25 @@ $(document).ready(function () {
                 searchTextQuery,
                 searchDateQuery,
                 searchMoreResultPage,
-                searchMoreResultCount);
+				searchMoreResultCount,
+				searchTagQuery);
         }
     });
 
     $("#postTextQuery").blur(function () {
-        searchTextQuery = $(this).val();
+		searchTextQuery = $(this).val();
     });
 
     $("#searchForm").submit(function (e) {
-        e.preventDefault();
+		e.preventDefault();
         searchMoreResultPage = 1;
         getSearchResult(
             searchCategoryUrlQuery,
             $("#postTextQuery").val(),
             searchDateQuery,
             searchMoreResultPage,
-            searchMoreResultCount);
+			searchMoreResultCount,
+			searchTagQuery);
     });
 
     $(".dropdown-item").click(function (e) {
@@ -44,24 +51,26 @@ $(document).ready(function () {
             searchTextQuery,
             searchDateQuery,
             searchMoreResultPage,
-            searchMoreResultCount);
+			searchMoreResultCount,
+			searchTagQuery);
     });
 
     $("#moreSearchResult").click(function (e) {
-        e.preventDefault();
+		e.preventDefault();
         searchMoreResultPage += 1;
         getMoreSearchResult.apply(this, [searchCategoryUrlQuery,
             searchTextQuery,
             searchDateQuery,
             searchMoreResultPage,
-            searchMoreResultCount]);
+			searchMoreResultCount,
+			searchTagQuery]);
     });
 });
 
 
-let getMoreSearchResult = function (categoryUrl, queryText, date, page, count) {
-
-    const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}`;
+let getMoreSearchResult = function (categoryUrl, queryText, date, page, count, tag) {
+	console.log(queryText);
+    const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}&tag=${tag}`;
     $.ajax({
         url: `/api/search/posts${params}`,
         type: "GET",
@@ -75,10 +84,10 @@ let getMoreSearchResult = function (categoryUrl, queryText, date, page, count) {
     });
 };
 
-let getSearchResult = function (categoryUrl, queryText, date, page, count) {
+let getSearchResult = function (categoryUrl, queryText, date, page, count, tag) {
 
     console.log(` ${categoryUrl}  ${queryText}   ${date}   ${page}   ${count}`);
-    const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}`;
+	const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}&tag=${tag}`;
     $.ajax({
         url: `/api/search/posts${params}`,
         type: "GET",
@@ -87,7 +96,7 @@ let getSearchResult = function (categoryUrl, queryText, date, page, count) {
             $("#searchResultContainer").empty();
 			$("#searchResultContainer").append(data);
 			console.log($(".numberOfPosts").last().val());
-			$(".title-page-search").text(`Результати пошуку за запитом "${queryText}"`);
+			$(".title-page-search").text(`Результати пошуку за запитом ${searchTagQuery != "" ? `#${tag}` : `"${queryText}"`}`);
 			if ($(".numberOfPosts").last().val() < searchMoreResultCount) {
 				$(".wrapper-btn-more").attr("hidden", "true");
 			}

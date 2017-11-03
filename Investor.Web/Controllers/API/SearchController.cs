@@ -18,7 +18,7 @@ namespace Investor.Web.Controllers.API
 
         [Route("posts")]
         [HttpGet]
-        public async Task<IActionResult> SearchPosts(int page, int count, string categoryUrl = null, string query = null, string date = null)
+        public async Task<IActionResult> SearchPosts(int page,  int count, string tag = null, string categoryUrl = null, string query = null, string date = null)
         {
             DateTime? dt = null;
             if (!String.IsNullOrEmpty(date))
@@ -31,7 +31,8 @@ namespace Investor.Web.Controllers.API
                 Count = count,
                 Date = dt,
                 Page = page,
-                Query = query
+                Query = query,
+                Tag = tag
             };
 
             var posts = await _searchService.SearchPosts(postQuery);

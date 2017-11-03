@@ -22,12 +22,13 @@ namespace Investor.Web.Controllers
             return View("Index", searchResult);
         }
 
-        //[HttpGet]
-        //public IActionResult PostsByTagName(string tag)
-        //{
-        //    ViewBag.TextQuery = tag;
-        //    var postQuery = new PostSearchQuery { Query = tag };
-        //    var searchResult = _searchService.SearchPosts
-        //}
+        public IActionResult SearchByTag(string tag, bool IsBlog)
+        {
+            ViewBag.TagQuery = tag;
+            ViewBag.IsBlog = IsBlog;
+            var postQuery = new PostSearchQuery { Tag = tag, CategoryUrl = IsBlog ? "blog": ""};
+            var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
+            return View(searchResult);
+        }
     }
 }
