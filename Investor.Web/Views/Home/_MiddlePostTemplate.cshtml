@@ -7,7 +7,9 @@
 
 <div class="item-news col-sm-6 col-md-4">
     <div class="img-news">
-        <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/medium-" + Model.Image)" class="img-fluid" />
+        <a href="/post/@Model.PostId">
+            <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/medium-" + Model.Image)" class="img-fluid" />
+        </a>
     </div>
     <a href="/post/@Model.PostId" class="title-news">@Model.Title</a>
     <span class="today-item-news  @Model.Category.Url-today-color">@publishedTime</span>

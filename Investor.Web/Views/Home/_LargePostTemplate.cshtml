@@ -7,7 +7,9 @@
 
 <div class="item-news col-md-6">
     <div class="img-news">
-        <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/large-" + Model.Image)" class="img-fluid" />
+        <a href="/post/@Model.PostId">
+            <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/large-" + Model.Image)" class="img-fluid" />
+        </a>
     </div>
     <a href="/post/@Model.PostId" class="title-news">
         @Model.Title

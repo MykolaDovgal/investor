@@ -7,7 +7,9 @@
             <div id="carouselExampleIndicators" class="carousel slide carousel-main" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.SliderItems[0].Post.Image) + "/large-" + Model.SliderItems[0].Post.Image)" alt="First slide">
+                        <a href="/post/@Model.SliderItems[0].Post.PostId">
+                            <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.SliderItems[0].Post.Image) + "/large-" + Model.SliderItems[0].Post.Image)" alt="First slide">
+                        </a>
                         <div class="carousel-caption d-none d-sm-block">
                             <a href="#" class="text-left color-white">@Model.SliderItems[0].Post.Title</a>
                             <p class="text-left">@Model.SliderItems[0].Post.Description</p>
@@ -17,7 +19,9 @@
                     {
                         <div class="carousel-item">
                             <div class="img-eclipse">
-                                <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.SliderItems[0].Post.Image) + "/large-" + Model.SliderItems[0].Post.Image)" alt="Second slide">
+                                <a href="/post/@Model.SliderItems[i].Post.PostId">
+                                    <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.SliderItems[i].Post.Image) + "/large-" + Model.SliderItems[i].Post.Image)" alt="Second slide">
+                                </a>
                                 <div class="carousel-caption d-none d-sm-block">
                                     <a href="/post/@Model.SliderItems[i].Post.PostId" class="text-left color-white">@Model.SliderItems[i].Post.Title</a>
                                     <p class="text-left">@Model.SliderItems[i].Post.Description</p>
