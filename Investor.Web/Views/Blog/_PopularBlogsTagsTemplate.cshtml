@@ -3,6 +3,6 @@
 <div class="wrapper-tag-news">
     @foreach (var tag in Model)
     {
-        <a asp-controller="Search" asp-action="SearchByTag" asp-route-tag="@tag.Name" asp-route-isBlog=true class="tag-item">@tag.Name</a>
+        <a asp-controller="Search" asp-action="SearchByTag" asp-route-tag="@tag.Name" class="tag-item">@tag.Name</a>
     }
 </div>

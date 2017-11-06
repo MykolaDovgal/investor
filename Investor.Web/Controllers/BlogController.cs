@@ -41,9 +41,9 @@ namespace Investor.Web.Controllers
         public IActionResult Page(int id)
         {
             ViewBag.PathBase = Request.Host.Value;
-            ViewBag.Post = _blogService.GetPostByIdAsync(id).Result; ;
+            ViewBag.Post = _blogService.GetPostByIdAsync(id).Result;
             ViewBag.LatestPosts = _postService.GetLatestPostsAsync(10).Result.ToList();           
-            ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
+            ViewBag.Tags = _tagService.GetPopularTagsAsync(5).Result.ToList();
             return View("Single/BlogPage");
         }
     }
