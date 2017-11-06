@@ -7,12 +7,12 @@ let searchTagQuery = "";
 
 
 $(document).ready(function () {
-	searchTagQuery = $('.title-page-search').data('tag');
-	searchCategoryUrlQuery = $('.title-page-search').data('category-url');
-	searchTextQuery = $('.title-page-search').data('query');
+	searchTagQuery = $(".title-page-search").data("tag");
+	searchCategoryUrlQuery = $(".title-page-search").data("category-url");
+	searchTextQuery = $(".title-page-search").data("query");
 
-    $('.my-datepicker').datepicker({
-        language: 'ua',
+    $(".my-datepicker").datepicker({
+        language: "ua",
         onSelect: function (formattedDate, date, inst) {
             searchMoreResultPage = 1;
             searchDateQuery = date && date !== "null" ? date.toUTCString() : "";
@@ -86,20 +86,27 @@ let getMoreSearchResult = function (categoryUrl, queryText, date, page, count, t
 
 let getSearchResult = function (categoryUrl, queryText, date, page, count, tag) {
 
-    console.log(` ${categoryUrl}  ${queryText}   ${date}   ${page}   ${count}`);
-	const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}&tag=${tag}`;
-    $.ajax({
-        url: `/api/search/posts${params}`,
-        type: "GET",
-		success: function (data) {
-			$(".wrapper-btn-more").removeAttr("hidden");
-            $("#searchResultContainer").empty();
-			$("#searchResultContainer").append(data);
-			console.log($(".numberOfPosts").last().val());
-			$(".title-page-search").text(`Результати пошуку за запитом ${searchTagQuery != "" ? `#${tag}` : `"${queryText}"`}`);
-			if ($(".numberOfPosts").last().val() < searchMoreResultCount) {
-				$(".wrapper-btn-more").attr("hidden", "true");
-			}
-        }
-    });
+    if (tag) {
+        window.location.href = `/search/searchbytag?tag=${tag}&categoryUrl=${categoryUrl}`;
+    } else {
+        window.location.href = `/search/posts?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}`;
+    }
+    
+
+    // $.ajax({
+    //     url: `/api/search/posts${params}`,
+    //     type: "GET",
+    //     success: function (data) {
+
+    //         window.href
+    ////$(".wrapper-btn-more").removeAttr("hidden");
+    ////         $("#searchResultContainer").empty();
+    ////$("#searchResultContainer").append(data);
+    ////console.log($(".numberOfPosts").last().val());
+    ////$(".title-page-search").text(`Результати пошуку за запитом ${searchTagQuery !== "" ? `#$ {tag}` : `"${queryText}"`}`);
+    ////if ($(".numberOfPosts").last().val() < searchMoreResultCount) {
+    ////	$(".wrapper-btn-more").attr("hidden", "true");
+    ////}
+    //     }
+    // });
 };

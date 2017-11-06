@@ -1,15 +1,19 @@
 ﻿@using Investor.Model
 @model IEnumerable<PostPreview>
+@{
+    var query = ViewBag.Query as PostSearchQuery;
+    var categoryName = ViewBag?.CategoryName?.Name;
+}
 <section class="page-search">
 
     <div class="container">
         <div class="row">
 
-            <h1 class="title-page-search p-3 p-md-0" data-category-url="@(ViewBag.IsBlog ? "blog" : "")" data-tag="@ViewBag.TagQuery">Результати пошуку за запитом #@ViewBag.TagQuery</h1>
+            <h1 class="title-page-search p-3 p-md-0" data-category-url="@query?.CategoryUrl" data-tag="@query?.Tag">Результати пошуку за запитом #@query?.Tag</h1>
             <div class="search-filter">
                 <div class="dropdown filter-dropdown float-left">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @(ViewBag.IsBlog ? "Блог" : "Категорія") 
+                        @(categoryName != null ? categoryName : Html.Raw("Все")) 
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item" type="button" data-category-url="">Все</button>
@@ -25,13 +29,13 @@
                         <span class="input-group-btn">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                         </span>
-                        <input type="text" id="my-datepicker" class='my-datepicker' />
+                        <input type="text" id="my-datepicker" class="my-datepicker" />
                     </div>
                 </div>
             </div>
 
             <div id="searchResultContainer">
-                @Html.Partial("_SearchResultTemplate", Model as IEnumerable<PostPreview>)
+                @Html.Partial("_SearchResultTemplate", Model)
             </div>
 
             <div class="wrapper-btn-more bnt-more-search">
