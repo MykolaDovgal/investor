@@ -25,6 +25,8 @@ namespace Investor.Repository
         }
         public async Task<PostEntity> AddPostAsync(PostEntity post)
         {
+            if (post.IsPublished.Value)
+                post.PublishedOn = DateTime.Now;
             await _newsContext.Posts.AddAsync(post);
             await _newsContext.SaveChangesAsync();
             return post;
@@ -173,6 +175,7 @@ namespace Investor.Repository
         public async Task<PostEntity> UpdatePostAsync(PostEntity post)
         {
             PostEntity oldPost = _newsContext.Posts.FindAsync(post.PostId).Result;
+            oldPost.PublishedOn = post.IsPublished.Value && !(oldPost.IsPublished.HasValue ? oldPost.IsPublished.Value : false) ? DateTime.Now : oldPost.PublishedOn;
             oldPost = Mapper.Map<PostEntity, PostEntity>(post, oldPost);
             oldPost.Category = _newsContext.Categories.Find(oldPost.Category.CategoryId);
             _newsContext.Posts.Update(oldPost);            
@@ -182,12 +185,14 @@ namespace Investor.Repository
 
         public async Task UpdatePostAsync(IEnumerable<PostEntity> posts)
         {
+
             List<PostEntity> newPosts = posts as List<PostEntity> ?? posts.ToList();
             var postsId = newPosts.Select(x => x.PostId);
             var oldPosts = await GetPostsBasedOnIdCollectionAsync(postsId);
 
             foreach (PostEntity postEntity in oldPosts)
             {
+                postEntity.PublishedOn = newPosts.Find(x => x.PostId == postEntity.PostId).IsPublished.Value && !(postEntity.IsPublished.HasValue ? postEntity.IsPublished.Value : false) ? DateTime.Now : postEntity.PublishedOn;
                 postEntity.IsImportant = newPosts.Find(x => x.PostId == postEntity.PostId).IsImportant;
                 postEntity.IsPublished = newPosts.Find(x => x.PostId == postEntity.PostId).IsPublished;
                 postEntity.IsOnMainPage = newPosts.Find(x => x.PostId == postEntity.PostId).IsOnMainPage;

@@ -63,7 +63,6 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
             Post newPost = _postService.GetPostByIdAsync(post.PostId).Result;
             newPost = Mapper.Map<Post, Post>(post, newPost);
-            newPost.PublishedOn = !newPost.IsPublished && post.IsPublished ? DateTime.Now : post.PublishedOn;
             _postService.UpdatePostAsync(newPost).Wait();
             var newSliderItem = _sliderItemService.GetSliderItemByPostIdAsync(post.PostId).Result;
             if (newSliderItem != null)
@@ -101,10 +100,6 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         {
             post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
             post.Image = image != null ? _imageService.SaveImage(image) : null;
-            if (post.IsPublished)
-            {
-                post.PublishedOn = DateTime.Now;
-            }
             var tmp = _postService.AddPostAsync(post).Result;
             _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
             if (sliderItem.IsOnSlider || sliderItem.IsOnSide)

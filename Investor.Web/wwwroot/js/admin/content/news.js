@@ -49,16 +49,16 @@ $(document).on("click", "a.nav-link", function (e) {
 
 	}
 	if (type && type === "singlepost") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost"); console.log($("#updateFormSubmit").data("action")) });
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost");});
 	}
 	if (type && type === "create") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost"); console.log($("#updateFormSubmit").data("action")) });
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost");});
 	}
 	if (type && type === "singleblog") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdatePost"); console.log($("#updateFormBlogSubmit").data("action")) });
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdatePost"); });
 	}
 	if (type && type === "createblog") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreatePost"); console.log($("#updateFormBlogSubmit").data("action")) });
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreatePost");});
 	}
 
 });
