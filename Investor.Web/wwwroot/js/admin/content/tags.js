@@ -11,29 +11,35 @@ $(document).on("click", "a.nav-link", function (e) {
 $(document).on("click", "a.tag-submit", function (e) {
 
 	const tableId = "#" + $(this).closest('table').prop("id");
+	console.log(tableId);
 	const row = $(this).closest('tr').index();
 	const tableDataObj = tables[tableId].row($(this).parents('tr')).data();
 
-	$("input[name='TagId']").val(tableDataObj.tagId);
-	$("input[name='Url']").val(tableDataObj.url);
-	$("input[name='Name']").val(tableDataObj.name);
+	$(`${$(this).attr('href')} input[name='TagId']`).val(tableDataObj.tagId);
+	$(`${$(this).attr('href')} input[name='Url']`).val(tableDataObj.url);
+	$(`${$(this).attr('href')} input[name='Name']`).val(tableDataObj.name);
 
 });
 
-$(document).on("click", "#tag-update-submit", function (e) {
-	let formData = new FormData(document.getElementById('tag-update'));
+//create + update
+$(document).on("click", ".tag-update", function (e) {
+	var url = $(this).data('href');
+	console.log($(this).attr('form'));
+	let formData = new FormData(document.getElementById($(this).attr('form')));
 	e.preventDefault();
 	$.ajax({
 		type: "POST",
-		url: "/api/Content/UpdateTag",
+		url: url,
 		data: formData,
 		cache: false,
 		contentType: false,
 		processData: false,
 
 		success: function (data) {
-			$("#tagsTable").dataTable().fnDestroy();
-			initialTagsTable("#tagsTable");
+			const tableId = "#" + $('.table').attr('id');
+			console.log(tableId);
+			$(tableId).dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
+			initialTagsTable(tableId);
 		}
 	});
 });

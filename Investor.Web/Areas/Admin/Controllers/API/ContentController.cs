@@ -7,6 +7,7 @@ using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using System.Net.Http;
 
 namespace Investor.Web.Areas.Admin.Controllers.API
 {
@@ -117,11 +118,21 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             return newTag;
         }
 
+        [Route("CreateTag")]
+        [HttpPost]
+        public async Task<Tag> CreateTag(string name)
+        {
+            Tag newTag = await _tagService.AddTagAsync(new Tag { Name = name});
+            return newTag;
+        }
+
         [Route("RemoveTag")]
         [HttpPost]
-        public async Task RemoveTag(List<int> id)
+        public async Task<JsonResult> RemoveTag(List<int> id)
         {
             await _tagService.RemoveTagAsync(id);
+            return Json(new { success = true });
+
         }
 
         [Route("UpdateTablePost")]
@@ -133,9 +144,10 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("DeletePosts")]
         [HttpPost]
-        public async Task DeletePosts(List<int> id)
+        public async Task<JsonResult> DeletePosts(List<int> id)
         {
             await _postService.RemovePostAsync(id);
+            return Json(new { success = true });
         }
     }
 }

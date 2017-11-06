@@ -53,15 +53,10 @@ $(document).on("click", "a.nav-link", function (e) {
 	if (type && type === "delete") {
 		deleteObj.call(this, url, chosenPostsIds);
 		chosenPostsIds = [];
-		const tableId = $('.table').attr('id');
-		console.log(tableId);
-		$(tableId).dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
-		initialTable(tableId);
 	}
 });
 
 let deleteObj = function (url, data) {
-	//console.log(postData);
 	$.ajax({
 		url: url,
 		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
@@ -69,7 +64,18 @@ let deleteObj = function (url, data) {
 		type: "POST",
 		data: { id: data },
 		success: function (data) {
-			console.log(data);
+			const tableId = "#" + $('.table').attr('id');
+			console.log(tableId);
+			$(tableId).dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
+			if ($("a.nav-link").hasClass('tags')) {
+				initialTagsTable(tableId);
+			}
+			else if ($("a.nav-link").hasClass('news')) {
+				initialTable(tableId);
+			}
+			else if ($("a.nav-link").hasClass('blogs')) {
+				initialTableBlogs(tableId);
+			}
 		}
 	});
 }
