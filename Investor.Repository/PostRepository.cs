@@ -201,6 +201,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Posts
                 .Include(p => p.Category)
+                .Where(p=>p.Category.CategoryId != categoryBlogId)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
                 .ToListAsync();
@@ -251,20 +252,21 @@ namespace Investor.Repository
             DateTime? dtStart = null;
             DateTime? dtEnd = null;
 
+            query.Tag = query.Tag ?? string.Empty;
+
             if (query.Date.HasValue)
             {
                 dtStart = new DateTime(query.Date.Value.Year, query.Date.Value.Month, query.Date.Value.Day);
                 dtEnd = new DateTime(query.Date.Value.Year, query.Date.Value.Month, query.Date.Value.Day + 1);
             }
-            //string.IsNullOrEmpty(query.Tag) && (string.IsNullOrEmpty(query.Query) || post.Description.ToLower().Contains(query.Query.ToLower()) ||
-            //                    post.Title.ToLower().Contains(query.Query.ToLower()) || post.PostTags.Count > 0 ? post.PostTags.Select(posttag => posttag.Tag).Any(c => c.Name.ToLower().Contains(query.Query.ToLower())) : false)
-            //                   || !string.IsNullOrEmpty(query.Tag) && post.PostTags.Count > 0 ? post.PostTags.Select(posttag => posttag.Tag.Name.ToLower()).Contains(query.Tag.ToLower()) : false) &&
             IQueryable<PostEntity> posts = _newsContext.Posts
                 .Include(post => post.Category)
+                .Include(post => post.PostTags)
+                .ThenInclude(post => post.Tag)
                 .Where(post => (string.IsNullOrEmpty(query.CategoryUrl) || post.Category.Url == query.CategoryUrl) &&
                                (string.IsNullOrEmpty(query.Tag) && (string.IsNullOrEmpty(query.Query) || post.Description.ToLower().Contains(query.Query.ToLower()) ||
-                                post.Title.ToLower().Contains(query.Query.ToLower()) || (post.PostTags.Count > 0 ? post.PostTags.Select(posttag => posttag.Tag).Any(c => c.Name.ToLower().Contains(query.Query.ToLower())) : false))
-                                || (!string.IsNullOrEmpty(query.Tag) && post.PostTags.Count > 0 ? post.PostTags.Select(posttag => posttag.Tag.Name.ToLower()).Contains(query.Tag.ToLower()) : false)) &&
+                                post.Title.ToLower().Contains(query.Query.ToLower()) || (post.PostTags != null ? post.PostTags.Select(posttag => posttag.Tag).Any(c => c.Name.ToLower().Contains(query.Query.ToLower())) : false))
+                                || (!string.IsNullOrEmpty(query.Tag) && post.PostTags != null ? post.PostTags.Select(posttag => posttag.Tag.Name.ToLower()).Contains(query.Tag.ToLower()) : false)) &&
                                (!query.Date.HasValue || post.PublishedOn.HasValue && (post.PublishedOn.Value > dtStart && post.PublishedOn.Value < dtEnd)) &&
                                (post.IsPublished ?? true))//TODO change true to false
                 .OrderByDescending(x => x.PublishedOn)
