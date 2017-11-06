@@ -3,7 +3,6 @@ let tablesUpdetedData = {};
 //let chosenPostsIds = [];
 
 $(document).ready(function () {
-
 });
 
 $(document).on('change',
@@ -24,16 +23,14 @@ $(document).on('change',
 			tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;
 		}
 		console.log(tableDataObj.postId);
-
 		console.log(tablesUpdetedData);
 
 	});
 
 $(document).on("click", "a.nav-link", function (e) {
-
+	
 	const url = $(this).data("href");
-	const type = $(e.target).data("type");
-
+	const type = $(this).data("type");
 	if (type && type === "news") {
 		tablesUpdetedData = {};
 		getPartialView(`admin${url}`, initialTable, "#newsTable");
@@ -148,7 +145,6 @@ let getPartialView = function (url, callback = undefined, tableId = undefined) {
 			if (callback) {
 				callback(tableId);
 			}
-
 		}
 	});
 };

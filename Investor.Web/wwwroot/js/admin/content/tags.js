@@ -1,7 +1,7 @@
 ﻿
 $(document).on("click", "a.nav-link", function (e) {
 	const url = $(this).data("href");
-	const type = $(e.target).data("type");
+	const type = $(this).data("type");
 
 	if (type && type === "tags") {
 		getPartialView(`admin${url}`, initialTagsTable, "#tagsTable")

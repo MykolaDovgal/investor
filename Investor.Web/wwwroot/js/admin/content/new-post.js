@@ -52,7 +52,7 @@
 			formData.set('IsPublished', $(`#${formId} input[name='IsPublished']`).prop("checked"));
 			formData.set('IsImportant', $(`#${formId} input[name='IsImportant']`).prop("checked"));
 
-			console.log($(`#${formId} input[name='IsPublished']`).prop("checked"))
+			console.log($(`#${formId} input[name='IsPublished']`).prop("checked"));
 
 			formData.set('IsOnSide', $(`#${formId} input[name='IsOnSide']`).prop("checked"));
 			formData.set('IsOnSlider', $(`#${formId} input[name='IsOnSlider']`).prop("checked"));
@@ -92,9 +92,7 @@
 	var substringMatcher = function (strs) {
 		return function findMatches(q, cb) {
 			var matches, substringRegex;
-
 			matches = [];
-
 			// regex used to determine if a string contains the substring `q`
 			substrRegex = new RegExp(q, 'i');
 
@@ -105,7 +103,6 @@
 					matches.push(str);
 				}
 			});
-
 			cb(matches);
 		};
     };
