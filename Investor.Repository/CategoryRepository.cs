@@ -33,7 +33,7 @@ namespace Investor.Repository
         {
             return await _newsContext
                 .Categories
-                .Where(c=>c.Url!="blog")
+                .Where(c => c.Url != "blog")
                 .ToListAsync();
         }
 

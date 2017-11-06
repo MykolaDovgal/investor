@@ -27,6 +27,10 @@ namespace Investor.Service
 
         public async Task<Category> GetCategoryByUrlAsync(string url)
         {
+            if (String.IsNullOrWhiteSpace(url))
+            {
+                return null;
+            }
             var category = await _categoryRepository.GetCategoryByUrlAsync(url);
             return Mapper.Map<CategoryEntity, Category>(category);
         }
