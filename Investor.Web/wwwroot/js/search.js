@@ -91,22 +91,5 @@ let getSearchResult = function (categoryUrl, queryText, date, page, count, tag) 
     } else {
         window.location.href = `/search/posts?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}`;
     }
-    
 
-    // $.ajax({
-    //     url: `/api/search/posts${params}`,
-    //     type: "GET",
-    //     success: function (data) {
-
-    //         window.href
-    ////$(".wrapper-btn-more").removeAttr("hidden");
-    ////         $("#searchResultContainer").empty();
-    ////$("#searchResultContainer").append(data);
-    ////console.log($(".numberOfPosts").last().val());
-    ////$(".title-page-search").text(`Результати пошуку за запитом ${searchTagQuery !== "" ? `#$ {tag}` : `"${queryText}"`}`);
-    ////if ($(".numberOfPosts").last().val() < searchMoreResultCount) {
-    ////	$(".wrapper-btn-more").attr("hidden", "true");
-    ////}
-    //     }
-    // });
 };

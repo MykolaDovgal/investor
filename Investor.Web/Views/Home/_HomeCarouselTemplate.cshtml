@@ -11,7 +11,7 @@
                             <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.SliderItems[0].Post.Image) + "/large-" + Model.SliderItems[0].Post.Image)" alt="First slide">
                         </a>
                         <div class="carousel-caption d-none d-sm-block">
-                            <a href="#" class="text-left color-white">@Model.SliderItems[0].Post.Title</a>
+                            <a href="/post/@Model.SliderItems[0].Post.PostId" class="text-left color-white">@Model.SliderItems[0].Post.Title</a>
                             <p class="text-left">@Model.SliderItems[0].Post.Description</p>
                         </div>
                     </div>
