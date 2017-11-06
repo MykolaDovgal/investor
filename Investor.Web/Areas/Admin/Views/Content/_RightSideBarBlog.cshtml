@@ -2,7 +2,7 @@
 @using Investor.Model
 <div class="sidebar-right">
     <button type="button" class="btn green-meadow" style="width: 100%">Перейти до поста</button>
-    <button type="submit" class="btn blue-madison" style="width: 100%" form="updateFormBlog" id="updateFormBlogSubmit" data-action="">Зберегти</button>
+    <button type="submit" class="btn blue-madison" style="width: 100%" form="updateForm" id="updateFormSubmit" data-action="UpdateBlog">Зберегти</button>
     <button type="button" class="btn grey-cascade" style="width: 100%">Відмінити</button>
 
     <div class="newpost-widget">
@@ -24,7 +24,7 @@
     </div>
     <label class="mt-checkbox mt-checkbox-outline">
         Опубліковано
-        <input type="checkbox" value="true" name="Published" @(Model.Published ? "checked" : "") />
+        <input type="checkbox" value="true" name="IsPublished" @(Model.IsPublished ? "checked" : "") />
         <span></span>
     </label>
 </div>

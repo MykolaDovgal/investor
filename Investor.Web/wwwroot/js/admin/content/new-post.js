@@ -45,20 +45,24 @@
 		});
 
 		$('#updateFormSubmit').on("click", function (e) {
-			
-			var formData = new FormData(document.getElementById('updateForm'));
+			var formId = $('.updateForm').attr('id');
+			var formData = new FormData(document.getElementById(formId));
 			console.log(formData.get("Category.Url"));
-			formData.set('IsOnMainPage', $("input[name='IsOnMainPage']").prop("checked"));
-			formData.set('IsImportant',$("input[name='IsImportant']").prop("checked"));
-			formData.set('IsOnSide', $("input[name='IsOnSide']").prop("checked"));
-			formData.set('IsOnSlider', $("input[name='IsOnSlider']").prop("checked"));
+			formData.set('IsOnMainPage', $(`#${formId} input[name='IsOnMainPage']`).prop("checked"));
+			formData.set('IsPublished', $(`#${formId} input[name='IsPublished']`).prop("checked"));
+			formData.set('IsImportant', $(`#${formId} input[name='IsImportant']`).prop("checked"));
+
+			console.log($(`#${formId} input[name='IsPublished']`).prop("checked"))
+
+			formData.set('IsOnSide', $(`#${formId} input[name='IsOnSide']`).prop("checked"));
+			formData.set('IsOnSlider', $(`#${formId} input[name='IsOnSlider']`).prop("checked"));
 			formData.append('Article',tinyMCE.get('Article').getContent());
-			var tagsArray = $("input[Name='tagsName']").tagsinput('items');
+			var tagsArray = $(`#${formId} input[Name='tagsName']`).tagsinput('items');
 
 			for (let i = 0; i < tagsArray.length; i++)
 				formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
-			var file = $("input[name='Image']").get(0).files;
-			formData.append("Image", $("input[name='Image']").get(0).files[0]);
+			var file = $(`#${formId} input[name='Image']`).get(0).files;
+			formData.append("Image", $(`#${formId} input[name='Image']`).get(0).files[0]);
 
 			$.ajax({
 				type: "POST",
@@ -78,7 +82,7 @@
 				
 		});
 
-		$(document).on('submit', '#updateForm', function (e) {
+		$(document).on('submit', '.updateForm', function (e) {
 			//prevent the form from doing a submit
 			e.preventDefault();
 			return false;

@@ -58,10 +58,10 @@ $(document).on("click", "a.nav-link", function (e) {
 		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost"); console.log($("#updateFormSubmit").data("action")) });
 	}
 	if (type && type === "singleblog") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdateBlog"); console.log($("#updateFormBlogSubmit").data("action")) });
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdatePost"); console.log($("#updateFormBlogSubmit").data("action")) });
 	}
 	if (type && type === "createblog") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreateBlog"); console.log($("#updateFormBlogSubmit").data("action")) });
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreatePost"); console.log($("#updateFormBlogSubmit").data("action")) });
 	}
 
 });

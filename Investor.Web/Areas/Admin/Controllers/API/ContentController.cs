@@ -81,7 +81,18 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             {
                 _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(post), IsOnSide = sliderItem.IsOnSide, IsOnSlider = sliderItem.IsOnSlider });
             }
-  
+        }
+
+        [Route("UpdateBLog")]
+        [HttpPost]
+        public void UpdateBlog([FromForm]Post post, [FromForm]IFormFile image)
+        {
+            post.Image = image != null ? _imageService.SaveImage(image) : null;
+            _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
+            Post newPost = _postService.GetPostByIdAsync(post.PostId).Result;
+            newPost = Mapper.Map<Post, Post>(post, newPost);
+            newPost.PublishedOn = !newPost.IsPublished && post.IsPublished ? DateTime.Now : post.PublishedOn;
+            _postService.UpdatePostAsync(newPost).Wait();
         }
 
         [Route("CreatePost")]

@@ -10,6 +10,7 @@ namespace Investor.Model
         public string Title { set; get; }
         public string Description { set; get; }
         public string Image { set; get; }
+        public bool IsPublished { set; get; }
         public DateTime PublishedOn { set; get; }
         public User Author { set; get; }
 

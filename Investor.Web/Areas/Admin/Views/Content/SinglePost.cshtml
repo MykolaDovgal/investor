@@ -1,6 +1,6 @@
 ﻿@using Investor.Model
 @model Investor.Model.Post
-<form method="post" id="updateForm" enctype="multipart/form-data">
+<form method="post" id="updateForm" class = "updateForm" enctype="multipart/form-data">
     <fieldset>
         <div class="page-content-wrapper">
             @Html.Partial("_AddUpdatePost", Model as Post)
