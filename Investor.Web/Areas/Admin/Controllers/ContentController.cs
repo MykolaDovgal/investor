@@ -13,16 +13,14 @@ namespace Investor.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class ContentController : Controller
     {
-        private readonly IPostService _postService;
-        private readonly ISliderItemService _sliderItemService;
+        private readonly INewsService _postService;
         private readonly ICategoryService _categoryService;
         private readonly ITagService _tagService;
         private readonly IBlogService _blogService;
 
-        public ContentController(IPostService postService, ISliderItemService sliderItemService, ICategoryService categoryService, ITagService tagService, IBlogService blogService)
+        public ContentController(INewsService postService,  ICategoryService categoryService, ITagService tagService, IBlogService blogService)
         {
             _postService = postService;
-            _sliderItemService = sliderItemService;
             _categoryService = categoryService;
             _tagService = tagService;
             _blogService = blogService;
@@ -30,28 +28,28 @@ namespace Investor.Web.Areas.Admin.Controllers
 
         public IActionResult SinglePost(int id)
         {
-            Post post = _postService.GetPostByIdAsync(id).Result;
+            News post = _postService.GetNewsByIdAsync(id).Result;
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
-            List<SliderItem> sliderItems = _sliderItemService.GetAllSliderItemsAsync().Result.ToList();
-            SliderItem sliderItem = sliderItems.FirstOrDefault(s => s.Post.PostId == id);
-            ViewBag.IsOnSlider = sliderItem != null ? sliderItem.IsOnSlider : false;
-            ViewBag.IsOnSide = sliderItem != null ? sliderItem.IsOnSide : false;
-            ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
+            //List<SliderItem> sliderItems = _sliderItemService.GetAllSliderItemsAsync().Result.ToList();
+            //SliderItem sliderItem = sliderItems.FirstOrDefault(s => s.Post.PostId == id);
+            //ViewBag.IsOnSlider = sliderItem != null ? sliderItem.IsOnSlider : false;
+            //ViewBag.IsOnSide = sliderItem != null ? sliderItem.IsOnSide : false;
+            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result.ToList();
             return PartialView("SinglePost", post);
         }
 
         public IActionResult SingleBlog(int id)
         {
-            Blog blog = _blogService.GetPostByIdAsync(id).Result;
+            Blog blog = _blogService.GetBlogByIdAsync<Blog>(id).Result;
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
-            ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
+            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result.ToList();
             return PartialView("SingleBlog", blog);
         }
 
         public IActionResult Create()
         {
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
-            Post post = new Post();
+            News post = new News();
             return PartialView("SinglePost", post);
         }
 

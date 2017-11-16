@@ -12,9 +12,10 @@ using System;
 namespace Investor.Repository.Migrations
 {
     [DbContext(typeof(NewsContext))]
-    partial class NewsContextModelSnapshot : ModelSnapshot
+    [Migration("20171113093019_news&blogsChanged")]
+    partial class newsblogsChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +46,7 @@ namespace Investor.Repository.Migrations
                     b.Property<string>("Article")
                         .HasMaxLength(20000);
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<int?>("CategoryEntityCategoryId");
 
                     b.Property<DateTime>("CreatedOn");
 
@@ -69,9 +70,9 @@ namespace Investor.Repository.Migrations
 
                     b.HasKey("PostId");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("CategoryEntityCategoryId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("PostEntity");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("PostEntity");
                 });
@@ -82,7 +83,11 @@ namespace Investor.Repository.Migrations
 
                     b.Property<int>("TagId");
 
+                    b.Property<int?>("BlogEntityPostId");
+
                     b.HasKey("PostId", "TagId");
+
+                    b.HasIndex("BlogEntityPostId");
 
                     b.HasIndex("TagId");
 
@@ -291,6 +296,8 @@ namespace Investor.Repository.Migrations
                 {
                     b.HasBaseType("Investor.Entity.PostEntity");
 
+                    b.Property<int?>("CategoryId");
+
                     b.Property<bool?>("IsImportant");
 
                     b.Property<bool?>("IsOnMainPage");
@@ -299,6 +306,8 @@ namespace Investor.Repository.Migrations
 
                     b.Property<bool?>("IsOnSlider");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("NewsEntity");
 
                     b.HasDiscriminator().HasValue("NewsEntity");
@@ -306,14 +315,18 @@ namespace Investor.Repository.Migrations
 
             modelBuilder.Entity("Investor.Entity.PostEntity", b =>
                 {
-                    b.HasOne("Investor.Entity.CategoryEntity", "Category")
+                    b.HasOne("Investor.Entity.CategoryEntity")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryEntityCategoryId");
                 });
 
             modelBuilder.Entity("Investor.Entity.PostTagEntity", b =>
                 {
-                    b.HasOne("Investor.Entity.PostEntity", "Post")
+                    b.HasOne("Investor.Entity.BlogEntity")
+                        .WithMany("PostTags")
+                        .HasForeignKey("BlogEntityPostId");
+
+                    b.HasOne("Investor.Entity.NewsEntity", "Post")
                         .WithMany("PostTags")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -372,8 +385,15 @@ namespace Investor.Repository.Migrations
             modelBuilder.Entity("Investor.Entity.BlogEntity", b =>
                 {
                     b.HasOne("Investor.Entity.UserEntity", "Author")
-                        .WithMany("Blogs")
+                        .WithMany()
                         .HasForeignKey("AuthorId");
+                });
+
+            modelBuilder.Entity("Investor.Entity.NewsEntity", b =>
+                {
+                    b.HasOne("Investor.Entity.CategoryEntity", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }

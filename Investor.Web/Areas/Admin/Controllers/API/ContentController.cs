@@ -15,20 +15,18 @@ namespace Investor.Web.Areas.Admin.Controllers.API
     [Route("api/[controller]")]
     public class ContentController : Controller
     {
-        private readonly IPostService _postService;
+        private readonly INewsService _postService;
         private readonly ITagService _tagService;
         private readonly ICategoryService _categoryService;
-        private readonly ISliderItemService _sliderItemService;
         private readonly IBlogService _blogService;
         private readonly IImageService _imageService;
 
-        public ContentController(IPostService postService, ITagService tagService, IBlogService blogService, ISliderItemService sliderItemService, ICategoryService categoryService, IImageService imageService)
+        public ContentController(INewsService postService, ITagService tagService, IBlogService blogService, ICategoryService categoryService, IImageService imageService)
         {
             _postService = postService;
             _tagService = tagService;
             _blogService = blogService;
             _categoryService = categoryService;
-            _sliderItemService = sliderItemService;
             _imageService = imageService;
         }
 
@@ -36,7 +34,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpGet]
         public async Task<IActionResult> GetAllNews()
         {
-            var result = await _postService.GetAllPostsAsync<TablePostPreview>();
+            var result = await _postService.GetAllNewsAsync<TablePostPreview>();
             return Json(new { data = result });
         }
         [Route("GetAllBlogs")]
@@ -56,56 +54,36 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdatePost")]
         [HttpPost]
-        public void UpdatePost([FromForm]Post post, [FromForm]SliderItem sliderItem, [FromForm]IFormFile image)
+        public void UpdatePost([FromForm]News post, [FromForm]IFormFile image)
         {
             post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
             post.Image = image != null ? _imageService.SaveImage(image) : null;
-            _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
-            Post newPost = _postService.GetPostByIdAsync(post.PostId).Result;
-            newPost = Mapper.Map<Post, Post>(post, newPost);
-            _postService.UpdatePostAsync(newPost).Wait();
-            var newSliderItem = _sliderItemService.GetSliderItemByPostIdAsync(post.PostId).Result;
-            if (newSliderItem != null)
-            {
-                if (!(sliderItem.IsOnSlider && sliderItem.IsOnSide))
-                { 
-                    _sliderItemService.RemoveSliderItemAsync(newSliderItem.SliderItemId);
-                }
-                else
-                { 
-                    _sliderItemService.UpdateSliderItemAsync(Mapper.Map<SliderItem, SliderItem>(sliderItem, newSliderItem));
-                }
-            }
-            else if(sliderItem.IsOnSlider || sliderItem.IsOnSide)
-            {
-                _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(post), IsOnSide = sliderItem.IsOnSide, IsOnSlider = sliderItem.IsOnSlider });
-            }
+            _postService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
+            News newPost = _postService.GetNewsByIdAsync(post.PostId).Result;
+            newPost = Mapper.Map(post, newPost);
+            _postService.UpdateNewsAsync(newPost).Wait();
         }
 
         [Route("UpdateBLog")]
         [HttpPost]
-        public void UpdateBlog([FromForm]Post post, [FromForm]IFormFile image)
+        public void UpdateBlog([FromForm]News post, [FromForm]IFormFile image)
         {
             post.Image = image != null ? _imageService.SaveImage(image) : null;
-            _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
-            Post newPost = _postService.GetPostByIdAsync(post.PostId).Result;
-            newPost = Mapper.Map<Post, Post>(post, newPost);
+            _postService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
+            News newPost = _postService.GetNewsByIdAsync(post.PostId).Result;
+            newPost = Mapper.Map<News, News>(post, newPost);
             newPost.PublishedOn = !newPost.IsPublished && post.IsPublished ? DateTime.Now : post.PublishedOn;
-            _postService.UpdatePostAsync(newPost).Wait();
+            _postService.UpdateNewsAsync(newPost).Wait();
         }
 
         [Route("CreatePost")]
         [HttpPost]
-        public void CreatePost([FromForm]Post post, [FromForm]SliderItem sliderItem, [FromForm]IFormFile image)
+        public void CreatePost([FromForm]News post, [FromForm]IFormFile image)
         {
             post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
             post.Image = image != null ? _imageService.SaveImage(image) : null;
-            var tmp = _postService.AddPostAsync(post).Result;
-            _postService.AddTagsToPostAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
-            if (sliderItem.IsOnSlider || sliderItem.IsOnSide)
-            {
-                _sliderItemService.AddSliderItemAsync(new SliderItem { Post = Mapper.Map<Post, PostPreview>(post), IsOnSide = sliderItem.IsOnSide, IsOnSlider = sliderItem.IsOnSlider });
-            }
+            var tmp = _postService.AddNewsAsync(post).Result;
+            _postService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
         }
 
         [Route("GetAllTags")]
@@ -143,16 +121,16 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdateTablePost")]
         [HttpPost]
-        public async Task UpdateTablePost(List<Post> tablePosts)
+        public async Task UpdateTablePost(List<News> tablePosts)
         {
-            await _postService.UpdatePostAsync(tablePosts);
+            await _postService.UpdateNewsAsync(tablePosts);
         }
 
         [Route("DeletePosts")]
         [HttpPost]
         public async Task<JsonResult> DeletePosts(List<int> id)
         {
-            await _postService.RemovePostAsync(id);
+            await _postService.RemoveNewsAsync(id);
             return Json(new { success = true });
         }
     }

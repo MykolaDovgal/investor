@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Investor.Model
 {
-    public class Post
+    public class News
     {
         public int PostId { set; get; }
         public string Title { set; get; }
@@ -18,7 +18,6 @@ namespace Investor.Model
         public bool IsOnMainPage { set; get; }
         public bool IsImportant { set; get; }
         public Category Category { set; get; }
-        public User Author { set; get; }
         public List<Tag> Tags { get; set; }
     }
 }

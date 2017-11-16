@@ -11,9 +11,9 @@ namespace Investor.Web.Controllers
 {
     public class PostController : Controller
     {
-        private readonly IPostService _postService;
+        private readonly INewsService _postService;
         private readonly ITagService _tagService;
-        public PostController(IPostService postService, ITagService tagService)
+        public PostController(INewsService postService, ITagService tagService)
         {
             _postService = postService;
             _tagService = tagService;
@@ -21,10 +21,10 @@ namespace Investor.Web.Controllers
         public IActionResult Index(int id)
         {
             ViewBag.PathBase = Request.Host.Value;
-            ViewBag.Post = _postService.GetPostByIdAsync(id).Result; ;
-            ViewBag.LatestPosts = _postService.GetLatestPostsAsync(10).Result.ToList();
-            ViewBag.ImportantPosts = _postService.GetImportantPostsAsync(10).Result.ToList(); ;
-            ViewBag.Tags = _postService.GetAllTagsByPostId(id).Result.ToList();
+            ViewBag.Post = _postService.GetNewsByIdAsync(id).Result; ;
+            ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result.ToList();
+            ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result.ToList(); ;
+            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result;
             return View("Index");
         }

@@ -12,9 +12,10 @@ using System;
 namespace Investor.Repository.Migrations
 {
     [DbContext(typeof(NewsContext))]
-    partial class NewsContextModelSnapshot : ModelSnapshot
+    [Migration("20171113144111_addCategoryToPost")]
+    partial class addCategoryToPost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,7 +83,11 @@ namespace Investor.Repository.Migrations
 
                     b.Property<int>("TagId");
 
+                    b.Property<int?>("BlogEntityPostId");
+
                     b.HasKey("PostId", "TagId");
+
+                    b.HasIndex("BlogEntityPostId");
 
                     b.HasIndex("TagId");
 
@@ -313,7 +318,11 @@ namespace Investor.Repository.Migrations
 
             modelBuilder.Entity("Investor.Entity.PostTagEntity", b =>
                 {
-                    b.HasOne("Investor.Entity.PostEntity", "Post")
+                    b.HasOne("Investor.Entity.BlogEntity")
+                        .WithMany("PostTags")
+                        .HasForeignKey("BlogEntityPostId");
+
+                    b.HasOne("Investor.Entity.NewsEntity", "Post")
                         .WithMany("PostTags")
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -372,7 +381,7 @@ namespace Investor.Repository.Migrations
             modelBuilder.Entity("Investor.Entity.BlogEntity", b =>
                 {
                     b.HasOne("Investor.Entity.UserEntity", "Author")
-                        .WithMany("Blogs")
+                        .WithMany()
                         .HasForeignKey("AuthorId");
                 });
 #pragma warning restore 612, 618

@@ -1,5 +1,5 @@
-﻿@model Investor.Model.Views.SliderViewModel
-@inject Investor.Service.TimeService PostPublicationDate
+﻿@inject Investor.Service.TimeService PostPublicationDate
+@using Investor.Model
 
 <section class="section-carousel">
     <div class="container">
@@ -7,24 +7,24 @@
             <div id="carouselExampleIndicators" class="carousel slide carousel-main" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="/post/@Model.SliderItems[0].Post.PostId">
-                            <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.SliderItems[0].Post.Image) + "/large-" + Model.SliderItems[0].Post.Image)" alt="First slide">
+                        <a href="/post/@(ViewBag.SliderNews)[0].PostId">
+                            <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(ViewBag.SliderNews[0].Image) + "/large-" + ViewBag.SliderNews[0].Image)" alt="First slide">
                         </a>
                         <div class="carousel-caption d-none d-sm-block">
-                            <a href="/post/@Model.SliderItems[0].Post.PostId" class="text-left color-white">@Model.SliderItems[0].Post.Title</a>
-                            <p class="text-left">@Model.SliderItems[0].Post.Description</p>
+                            <a href="/post/@ViewBag.SliderNews[0].PostId" class="text-left color-white">@ViewBag.SliderNews[0].Title</a>
+                            <p class="text-left">@ViewBag.SliderNews[0].Description</p>
                         </div>
                     </div>
-                    @for (int i = 1; i < Model.SliderItems.Count; i++)
+                    @for (int i = 1; i < ViewBag.SliderNews.Count; i++)
                     {
                         <div class="carousel-item">
                             <div class="img-eclipse">
-                                <a href="/post/@Model.SliderItems[i].Post.PostId">
-                                    <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.SliderItems[i].Post.Image) + "/large-" + Model.SliderItems[i].Post.Image)" alt="Second slide">
+                                <a href="/post/@ViewBag.SliderNews[i].PostId">
+                                    <img class="d-block img-fluid" src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(ViewBag.SliderNews[i].Image) + "/large-" + ViewBag.SliderNews[i].Image)" alt="Second slide">
                                 </a>
                                 <div class="carousel-caption d-none d-sm-block">
-                                    <a href="/post/@Model.SliderItems[i].Post.PostId" class="text-left color-white">@Model.SliderItems[i].Post.Title</a>
-                                    <p class="text-left">@Model.SliderItems[i].Post.Description</p>
+                                    <a href="/post/@ViewBag.SliderNews[i].PostId" class="text-left color-white">@ViewBag.SliderNews[i].Title</a>
+                                    <p class="text-left">@ViewBag.SliderNews[i].Description</p>
                                 </div>
                             </div>
                         </div>
@@ -33,17 +33,17 @@
                 </div>
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    @for (int i = 1; i < Model.SliderItems.Count; i++)
+                    @for (int i = 1; i < ViewBag.SliderNews.Count; i++)
                     {
                         <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
                     }
                 </ol>
             </div>
             <div class="wrapper-popular">
-                @for (int i = 0; i < Model.SideItems.Count; i++)
+                @for (int i = 0; i < ViewBag.SideNews.Count; i++)
                 {
-                    string publishedTime = PostPublicationDate.GetFormattedDate(Model.SliderItems[i].Post.PublishedOn);
-                    @Html.Partial("_PopularPostPreviewTemplate", Model.SideItems[i].Post)
+                    string publishedTime = PostPublicationDate.GetFormattedDate(ViewBag.SideNews[i].PublishedOn);
+                    @Html.Partial("_PopularPostPreviewTemplate", ViewBag.SideNews[i] as PostPreview)
                 }
             </div>
         </div>

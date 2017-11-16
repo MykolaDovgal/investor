@@ -184,7 +184,7 @@ namespace Investor.Web
             {
                 Entity.CategoryEntity[] categories =
                 {
-                    new Entity.CategoryEntity {Name = "Політика", Url = "policy"},                   
+                    new Entity.CategoryEntity {Name = "Політика", Url = "policy"},
                     new Entity.CategoryEntity {Name = "Культура", Url = "culture"},
                     new Entity.CategoryEntity {Name = "Економіка", Url = "economy"},
                     new Entity.CategoryEntity {Name = "ІТ технології", Url = "it" },
@@ -194,31 +194,28 @@ namespace Investor.Web
                 context.Categories.AddRange(categories);
                 context.SaveChanges();
             }
-            if (!context.Posts.Any())
+            if (!context.Blogs.Any())
             {
                 var myUsers = context.Users.ToList<UserEntity>();
-                context.Posts.AddRange(
-                    new Entity.PostEntity
+                context.Blogs.AddRange(
+                    new Entity.BlogEntity
                     {
                         Title = "В The Economist вибачилися за фразу «громадянська війна на Донбасі»",
                         Article = "В РНБО України заявляють, що реальна кількість учасників навчань - до чверті мільйона військовослужбовців. У НАТО стурбовані активністю російських і білоруських військ і переконані, що навчання спрямовані на провокування країн-членів Альянсу.",
                         Description = "The Economist Intelligence Unit, дослідницька організація The Economist Group, вибачилася за фразу «громадянська війна”,",
                         Category = context.Categories.ToList()[5],
-                        IsOnMainPage = true,
-                        IsImportant = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg",
                         AuthorId = myUsers[0].Id
                     },
-                    new Entity.PostEntity
+                    new Entity.BlogEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі",
                         Article = "<h1>Hello, everybody</h1>",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
                         Category = context.Categories.ToList()[5],
-                        IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
@@ -226,27 +223,24 @@ namespace Investor.Web
                         AuthorId = myUsers[1].Id
 
                     },
-                    new Entity.PostEntity
+                    new Entity.BlogEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 2",
                         Article = "<p>Крім України,  реальною загрозою війни ці навчання вважають у Литві та Польщі. Про це йдеться в сюжеті Сніданку з 1 + 1",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
                         Category = context.Categories.ToList()[5],
-                        IsOnMainPage = false,
-                        IsImportant = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
                         AuthorId = myUsers[2].Id
                     },
-                    new Entity.PostEntity
+                    new Entity.BlogEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 3",
                         Article = "<p>Відповідно до міжнародних вимог, у таких масштабних навчаннях, без спостерігачів, можуть брати участь не більше 13 тисяч вояків. Якщо більше - міжнародне спостереження обов'язкове. </p>",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
-                        Category = context.Categories.ToList()[0],
-                        IsOnMainPage = false,
+                        Category = context.Categories.ToList()[5],
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
@@ -254,34 +248,86 @@ namespace Investor.Web
                         AuthorId = myUsers[0].Id
 
                     },
-                    new Entity.PostEntity
+                    new Entity.BlogEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 4",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
                         Category = context.Categories.ToList()[5],
-                        IsOnMainPage = true,
-                        IsImportant = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg",
                         AuthorId = myUsers[3].Id
                     },
-                    new Entity.PostEntity
+                    new Entity.BlogEntity
                     {
                         Title = "Чому Україна програла від «журналістського розслідування»",
                         Article = "<p>ілвоипличдсшамрвап діовал</p>",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[5],
-                        IsOnMainPage = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "5F18619AC74A43065C98941313647F07.jpg",
                         AuthorId = myUsers[2].Id
                     },
-                    new Entity.PostEntity
+                     new Entity.BlogEntity
+                     {
+                         Title = "Фонд держмайна продав «Західерго» за ціною на 20 % вищою за стартову",
+                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                         Category = context.Categories.ToList()[5],
+                         CreatedOn = DateTime.Now,
+                         ModifiedOn = DateTime.Now,
+                         PublishedOn = DateTime.Now,
+                         Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg",
+                         AuthorId = myUsers[1].Id
+                     },
+                    new Entity.BlogEntity
+                    {
+                        Title = "Українських завод обслуговуватиме світових лідерів авіабудування",
+                        Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[5],
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg",
+                        AuthorId = myUsers[1].Id
+                    },
+                    new Entity.BlogEntity
+                    {
+                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
+                        Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[5],
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "904E420568BDB9D329F914D562E091AE.jpg",
+                        AuthorId = myUsers[1].Id
+                    },
+                    new Entity.BlogEntity
+                    {
+                        Title = "LvivMozArt: Що відвідати і послухати 22 серпня",
+                        Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
+                        Category = context.Categories.ToList()[5],
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now,
+                        PublishedOn = DateTime.Now,
+                        Image = "904E420568BDB9D329F914D562E091AE.jpg",
+                        AuthorId = myUsers[1].Id
+                    }
+                    );
+            }
+            if (!context.News.Any())
+            {
+                var myUsers = context.Users.ToList<UserEntity>();
+                context.News.AddRange(
+
+                    new Entity.NewsEntity
                     {
                         Title = "Вижити тут можуть хіба ті, хто тут народився, – українка про життя у Конго(фото)",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -294,7 +340,7 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Перші «совєти» в Галичині: коли і хто такі ?",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -307,7 +353,7 @@ namespace Investor.Web
                         PublishedOn = DateTime.Now,
                         Image = "5F18619AC74A43065C98941313647F07.jpg"
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "У «Борисполі» хочуть збудувати ще одну злітну смугу.",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -320,7 +366,7 @@ namespace Investor.Web
                         PublishedOn = DateTime.Now,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "У «Борисполі» хочуть збудувати ще одну злітну смугу 2.",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -333,32 +379,7 @@ namespace Investor.Web
                         PublishedOn = DateTime.Now,
                         Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                     },
-                    new Entity.PostEntity
-                    {
-                        Title = "Фонд держмайна продав «Західерго» за ціною на 20 % вищою за стартову",
-                        Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
-                        Category = context.Categories.ToList()[5],
-                        IsOnMainPage = true,
-                        CreatedOn = DateTime.Now,
-                        ModifiedOn = DateTime.Now,
-                        PublishedOn = DateTime.Now,
-                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg",
-                        AuthorId = myUsers[1].Id
-                    },
-                    new Entity.PostEntity
-                    {
-                        Title = "Українських завод обслуговуватиме світових лідерів авіабудування",
-                        Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
-                        Category = context.Categories.ToList()[0],
-                        IsOnMainPage = true,
-                        CreatedOn = DateTime.Now,
-                        ModifiedOn = DateTime.Now,
-                        PublishedOn = DateTime.Now,
-                        Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
-                    },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -370,21 +391,7 @@ namespace Investor.Web
                         PublishedOn = DateTime.Now,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
-                    new Entity.PostEntity
-                    {
-                        Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
-                        Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
-                        Category = context.Categories.ToList()[5],
-                        IsOnMainPage = false,
-                        IsImportant = true,
-                        CreatedOn = DateTime.Now,
-                        ModifiedOn = DateTime.Now,
-                        PublishedOn = DateTime.Now,
-                        Image = "904E420568BDB9D329F914D562E091AE.jpg",
-                        AuthorId = myUsers[1].Id
-                    },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "На вихідних у Львівській опері стартує новий театральний сезон",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -397,7 +404,7 @@ namespace Investor.Web
                         Image = "904E420568BDB9D329F914D562E091AE.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "На вихідних у Львівській опері стартує новий театральний сезон",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -410,7 +417,7 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "LvivMozArt: Що відвідати і послухати 22 серпня",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -424,21 +431,8 @@ namespace Investor.Web
                         Image = "904E420568BDB9D329F914D562E091AE.jpg"
 
                     },
-                    new Entity.PostEntity
-                    {
-                        Title = "LvivMozArt: Що відвідати і послухати 22 серпня",
-                        Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                        Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
-                        Category = context.Categories.ToList()[5],
-                        IsOnMainPage = true,
-                        CreatedOn = DateTime.Now,
-                        ModifiedOn = DateTime.Now,
-                        PublishedOn = DateTime.Now,
-                        Image = "904E420568BDB9D329F914D562E091AE.jpg",
-                        AuthorId = myUsers[1].Id
 
-                    },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Львів’ян запрошують на виставку моделей найбільш знакових будівель світу",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -452,7 +446,7 @@ namespace Investor.Web
                         Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Як Львів відсвяткує День Незалежності: програма заходів",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -465,7 +459,7 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Новий роман частково буде про пошук ідентичності, – Вікторія Амеліна",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -478,7 +472,7 @@ namespace Investor.Web
                         Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Чому у Львові виник скандал навколо фільму про батярів",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -491,7 +485,7 @@ namespace Investor.Web
                         PublishedOn = DateTime.Now,
                         Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Чому у Львові виник скандал навколо фільму про батярів 2",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -504,7 +498,7 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "На «Арені Львів» відбудеться фінал проекту «Українська пісня»: чого очікувати ?",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -517,7 +511,7 @@ namespace Investor.Web
                         Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -530,7 +524,7 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -543,7 +537,7 @@ namespace Investor.Web
                         Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -556,7 +550,7 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -569,7 +563,7 @@ namespace Investor.Web
                         Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -582,7 +576,7 @@ namespace Investor.Web
                         Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "На «Арені Львів» відбудеться фінал проекту «Українська пісня»: чого очікувати ?",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -596,7 +590,7 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Чому у Львові виник скандал навколо фільму про батярів",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -609,7 +603,7 @@ namespace Investor.Web
                         Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Як Львів відсвяткує День Незалежності: програма заходів",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -622,7 +616,7 @@ namespace Investor.Web
                         Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Як Львів відсвяткує День Незалежності: програма заходів",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -636,7 +630,7 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Як Львів відсвяткує День Незалежності: програма заходів 2",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -650,7 +644,7 @@ namespace Investor.Web
                         Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "В Україні почалась нова хакерська атака",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -663,46 +657,52 @@ namespace Investor.Web
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Google випустив нову Android — Oreo",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "У новій операційній системі з’явилася можливість працювати в режимі «картинка в картинці». Наприклад, можна продовжувати...",
                         Category = context.Categories.ToList()[3],
                         IsOnMainPage = true,
+                        IsOnSide = false,
+                        IsOnSlider = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Відомий львівський журналіст розповів, чому Садовому...",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
                         IsOnMainPage = true,
+                        IsOnSide = false,
+                        IsOnSlider = false,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Відомий львівський журналіст розповів, чому Садовому... 2",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
                         IsOnMainPage = false,
+                        IsOnSide = true,
+                        IsOnSlider = false,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -710,26 +710,30 @@ namespace Investor.Web
                         Category = context.Categories.ToList()[3],
                         IsOnMainPage = true,
                         IsImportant = true,
+                        IsOnSide = false,
+                        IsOnSlider = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку 2",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
                         IsOnMainPage = false,
+                        IsOnSide = false,
+                        IsOnSlider = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -737,13 +741,15 @@ namespace Investor.Web
                         Category = context.Categories.ToList()[3],
                         IsOnMainPage = true,
                         IsImportant = true,
+                        IsOnSide = false,
+                        IsOnSlider = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "Актори \"гри престолів\" розповіли про \"божевільне\" засекречення фіналу серіалу",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -751,12 +757,14 @@ namespace Investor.Web
                         Category = context.Categories.ToList()[4],
                         IsOnMainPage = true,
                         IsImportant = false,
+                        IsOnSide = false,
+                        IsOnSlider = true,
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
                     },
-                    new Entity.PostEntity
+                    new Entity.NewsEntity
                     {
                         Title = "У Москві шукають аноніма, який за один вечір повідомив про 20 замінувань",
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -769,7 +777,7 @@ namespace Investor.Web
                         PublishedOn = DateTime.Now,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
-                     new Entity.PostEntity
+                     new Entity.NewsEntity
                      {
                          Title = "У Харкові Lexus влетів у натовп людей: Геращенко розповів, хто був за кермом",
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -777,12 +785,14 @@ namespace Investor.Web
                          Category = context.Categories.ToList()[4],
                          IsOnMainPage = true,
                          IsImportant = true,
+                         IsOnSide = false,
+                         IsOnSlider = true,
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
                          Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
                      },
-                     new Entity.PostEntity
+                     new Entity.NewsEntity
                      {
                          Title = "У США придумали намет, який плаває",
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -795,7 +805,7 @@ namespace Investor.Web
                          PublishedOn = DateTime.Now,
                          Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                      },
-                     new Entity.PostEntity
+                     new Entity.NewsEntity
                      {
                          Title = "Жінка бореться проти \"ідеального світу\" в Instagram дотепними фото з подорожей",
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -808,7 +818,7 @@ namespace Investor.Web
                          PublishedOn = DateTime.Now,
                          Image = "5F18619AC74A43065C98941313647F07.jpg"
                      },
-                     new Entity.PostEntity
+                     new Entity.NewsEntity
                      {
                          Title = "Дизайнер створює крихітні світи за допомогою звичайних речей",
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -816,12 +826,14 @@ namespace Investor.Web
                          Category = context.Categories.ToList()[4],
                          IsOnMainPage = true,
                          IsImportant = false,
+                         IsOnSide = false,
+                         IsOnSlider = false,
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
                          Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                      },
-                      new Entity.PostEntity
+                      new Entity.NewsEntity
                       {
                           Title = "Бред Пітт закрутив роман із 21-річною актрисою",
                           Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -829,12 +841,14 @@ namespace Investor.Web
                           Category = context.Categories.ToList()[4],
                           IsOnMainPage = true,
                           IsImportant = false,
+                          IsOnSide = true,
+                          IsOnSlider = true,
                           CreatedOn = DateTime.Now,
                           ModifiedOn = DateTime.Now,
                           PublishedOn = DateTime.Now,
                           Image = "5F18619AC74A43065C98941313647F07.jpg"
                       },
-                       new Entity.PostEntity
+                       new Entity.NewsEntity
                        {
                            Title = "Професор пояснив, чому не варто поступатися старшим місцем у транспорті",
                            Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -842,12 +856,14 @@ namespace Investor.Web
                            Category = context.Categories.ToList()[4],
                            IsOnMainPage = true,
                            IsImportant = false,
+                           IsOnSide = true,
+                           IsOnSlider = false,
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
                            Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                        },
-                       new Entity.PostEntity
+                       new Entity.NewsEntity
                        {
                            Title = "Три погані звички, через які ви виглядаєте старше",
                            Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -855,12 +871,14 @@ namespace Investor.Web
                            Category = context.Categories.ToList()[4],
                            IsOnMainPage = true,
                            IsImportant = false,
+                           IsOnSide = false,
+                           IsOnSlider = false,
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
                            Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                        },
-                       new Entity.PostEntity
+                       new Entity.NewsEntity
                        {
                            Title = "Чому українська медицина не завжди може допомогти психічно хворим людям",
                            Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -868,6 +886,8 @@ namespace Investor.Web
                            Category = context.Categories.ToList()[4],
                            IsOnMainPage = true,
                            IsImportant = false,
+                           IsOnSide = false,
+                           IsOnSlider = true,
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
@@ -876,53 +896,7 @@ namespace Investor.Web
                     );
                 context.SaveChanges();
             }
-            if (!context.SliderItems.Any())
-            {
-                context.SliderItems.AddRange(
-                    new SliderItemEntity()
-                    {
-                        Post = context.Posts.ToList()[0],
-                        IsOnSlider = true
-                    },
-                    new SliderItemEntity()
-                    {
-                        Post = context.Posts.ToList()[22],
-                        IsOnSlider = true
-                    },
-                    new SliderItemEntity()
-                    {
-                        Post = context.Posts.ToList()[23],
-                        IsOnSlider = true
-                    },
-                    new SliderItemEntity()
-                    {
-                        Post = context.Posts.ToList()[24],
-                        IsOnSlider = true
-                    },
-                    new SliderItemEntity()
-                    {
-                        Post = context.Posts.ToList()[25],
-                        IsOnSlider = true
-                    },
-                    new SliderItemEntity()
-                    {
-                        Post = context.Posts.ToList()[26],
-                        IsOnSide = true
-                    },
-                    new SliderItemEntity()
-                    {
-                        Post = context.Posts.ToList()[27],
-                        IsOnSide = true
-                    },
-                    new SliderItemEntity()
-                    {
-                        Post = context.Posts.ToList()[28],
-                        IsOnSide = false
-                    }
 
-                    );
-                context.SaveChanges();
-            }
             if (!context.Tags.Any())
             {
                 context.Tags.AddRange(
@@ -954,40 +928,71 @@ namespace Investor.Web
                     );
                 context.SaveChanges();
             }
-            if (context.Posts.ToList()[0].PostTags.Count == 0)
+            if (context.News.ToList()[0].PostTags.Count == 0)
             {
-                PostEntity post = context.Posts.ToList()[0];
+                NewsEntity post = context.News.ToList()[0];
                 post.PostTags.AddRange(
                new List<PostTagEntity>
                {
                     new PostTagEntity()
                     {
-                        PostId = context.Posts.ToList()[0].PostId,
+                        PostId = context.News.ToList()[0].PostId,
                         TagId = context.Tags.ToList()[0].TagId
                     },
                     new PostTagEntity()
                     {
-                        PostId = context.Posts.ToList()[0].PostId,
+                        PostId = context.News.ToList()[0].PostId,
                         TagId = context.Tags.ToList()[1].TagId
                     },
                     new PostTagEntity()
                     {
-                        PostId = context.Posts.ToList()[0].PostId,
+                        PostId = context.News.ToList()[0].PostId,
                         TagId = context.Tags.ToList()[2].TagId
                     },
                     new PostTagEntity()
                     {
-                        PostId = context.Posts.ToList()[0].PostId,
+                        PostId = context.News.ToList()[0].PostId,
                         TagId = context.Tags.ToList()[3].TagId
                     }
                }
 
                );
-                context.Posts.Update(post);
-
+                context.News.Update(post);
                 context.SaveChanges();
             }
-            
+            if (context.Blogs.ToList()[0].PostTags.Count == 0)
+            {
+                BlogEntity post = context.Blogs.ToList()[0];
+                post.PostTags.AddRange(
+               new List<PostTagEntity>
+               {
+                    new PostTagEntity()
+                    {
+                        PostId = context.Blogs.ToList()[0].PostId,
+                        TagId = context.Tags.ToList()[0].TagId
+                    },
+                    new PostTagEntity()
+                    {
+                        PostId = context.Blogs.ToList()[0].PostId,
+                        TagId = context.Tags.ToList()[1].TagId
+                    },
+                    new PostTagEntity()
+                    {
+                        PostId = context.Blogs.ToList()[0].PostId,
+                        TagId = context.Tags.ToList()[2].TagId
+                    },
+                    new PostTagEntity()
+                    {
+                        PostId = context.Blogs.ToList()[0].PostId,
+                        TagId = context.Tags.ToList()[3].TagId
+                    }
+               }
+
+               );
+                context.Blogs.Update(post);
+                context.SaveChanges();
+            }
+
         }
     }
 }

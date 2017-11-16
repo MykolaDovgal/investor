@@ -10,18 +10,17 @@ namespace Investor.Repository
     public class NewsContext : IdentityDbContext<UserEntity> 
     {
         public DbSet<CategoryEntity> Categories { get; set; }
+        public DbSet<BlogEntity> Blogs { get; set; }
         public DbSet<PostEntity> Posts { get; set; }
-        public DbSet<SliderItemEntity> SliderItems { get; set; }
+        public DbSet<NewsEntity> News { get; set; }
         public DbSet<TagEntity> Tags { get; set; }
-        //public DbSet<PostTagEntity> PostTags { get; set; }
-
 
         public NewsContext(DbContextOptions<NewsContext> options) 
             : base(options)
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        {  
             modelBuilder.Entity<PostTagEntity>()
              .HasKey(t => new { t.PostId, t.TagId });
 

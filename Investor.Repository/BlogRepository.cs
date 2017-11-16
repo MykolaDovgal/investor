@@ -12,68 +12,41 @@ namespace Investor.Repository
     public class BlogRepository : IBlogRepository
     {
         private readonly NewsContext _newsContext;
-        private readonly int categoryBlogId;
 
         public BlogRepository(NewsContext context)
         {
             _newsContext = context;
-            categoryBlogId = _newsContext
-                .Categories
-                .FirstOrDefault(c => c.Url == "blog")
-                .CategoryId;
         }
-
-        public async Task<PostEntity> AddBlogAsync(PostEntity blog)
+        public async Task<IEnumerable<BlogEntity>> GetLatestBlogsAsync(int limit)
         {
-            blog.ModifiedOn = DateTime.Now;
-            blog.CreatedOn = DateTime.Now;
-            blog.CategoryId = 5;
-            await _newsContext.Posts.AddAsync(blog);
-            await _newsContext.SaveChangesAsync();
-            return blog;
-        }
-
-        public async Task<IEnumerable<PostEntity>> GetLatestBlogsAsync(int limit)
-        {
-            return await _newsContext.Posts
-                .Where(p => p.CategoryId == categoryBlogId)
+            return await _newsContext.Blogs
                 .Include(p => p.Author)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<PostEntity>> GetPopularBlogsAsync(int limit)
+        public async Task<IEnumerable<BlogEntity>> GetPopularBlogsAsync(int limit)
         {
-            return await _newsContext.Posts
-                .Where(p => p.CategoryId == categoryBlogId)
+            return await _newsContext.Blogs
                 .Include(p => p.Author)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<PostEntity>> GetAllBlogsAsync()
+        public async Task<IEnumerable<BlogEntity>> GetAllBlogsAsync()
         {
-            return await _newsContext.Posts
-                .Where(p => p.CategoryId == categoryBlogId)
+            return await _newsContext.Blogs
                 .Include(p => p.Author)
                 .ToListAsync();
         }
 
-        public async Task<PostEntity> GetPostByIdAsync(int id)
+        public async Task<IEnumerable<BlogEntity>> GetBlogsByUserIdAsync(string userId)
         {
-            return await _newsContext.Posts
-                .Where(p => p.CategoryId == categoryBlogId)
+            return await _newsContext.Blogs
                 .Include(p => p.Author)
-                .FirstOrDefaultAsync(p => p.PostId == id);
-        }
-
-        public async Task<IEnumerable<PostEntity>> GetBlogsByUserIdAsync(string userId)
-        {
-            return await _newsContext.Posts
-                .Include(p => p.Author)
-                .Where(p => (p.CategoryId == categoryBlogId) && (p.AuthorId == userId))
+                .Where(p => p.AuthorId == userId)
                 .ToListAsync();
         }
     }

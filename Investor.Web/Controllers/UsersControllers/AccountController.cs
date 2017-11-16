@@ -14,10 +14,10 @@ namespace Investor.Web.Controllers.UsersControllers
     {
         private readonly IUserService _userService;
         private readonly IBlogService _blogService;
-        private readonly IPostService _postService;
+        private readonly INewsService _postService;
         private readonly IImageService _imageService;
 
-        public AccountController(IUserService userService,IBlogService blogService, IImageService imageService, IPostService postService)
+        public AccountController(IUserService userService,IBlogService blogService, IImageService imageService, INewsService postService)
         {
             _userService = userService;
             _postService = postService;
@@ -62,7 +62,7 @@ namespace Investor.Web.Controllers.UsersControllers
         {
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
             var tmp = _blogService.AddBlogAsync(blog).Result;
-            _postService.AddTagsToPostAsync(blog.PostId, blog.Tags?.Select(s => s.Name));
+            _postService.AddTagsToNewsAsync(blog.PostId, blog.Tags?.Select(s => s.Name));
             return Json(Url.Action("Account", "Account"));
         }
 

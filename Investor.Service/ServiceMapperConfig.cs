@@ -23,49 +23,45 @@ namespace Investor.Service
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();
                 cfg.CreateMap<AdminTag, TagEntity>().ReverseMap();
-                cfg.CreateMap<SliderItem, SliderItemEntity>().ReverseMap();
                 cfg.CreateMap<TableBlogPreview, PostEntity>().ReverseMap();
 
-                cfg.CreateMap<PostPreview, PostEntity>();
-                cfg.CreateMap<PostEntity, PostPreview>()
-                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image));
+                cfg.CreateMap<PostPreview, PostEntity>().ReverseMap();
+                cfg.CreateMap<NewsEntity, PostPreview>()
+                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image))
+                    .ReverseMap();
 
-                cfg.CreateMap<PostEntity, BlogPreview>()
+                cfg.CreateMap<BlogEntity, BlogPreview>()
                     .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-blog.png" : s.Image));
 
 
                 cfg.CreateMap<PostEntity, TablePostPreview>();
-                cfg.CreateMap<Post, PostPreview>();
-                cfg.CreateMap<Post, PostEntity>()
+                cfg.CreateMap<News, PostPreview>();
+                cfg.CreateMap<News, PostEntity>()
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
-                cfg.CreateMap<PostEntity, PostEntity>()
+                cfg.CreateMap<NewsEntity, NewsEntity>()
                 .ForMember(x => x.CreatedOn, opt => opt.Ignore())
                 .ForMember(x => x.PostTags, opt => opt.Ignore())
-                .ForMember(x => x.Author, opt => opt.Ignore())
-                .ForMember(x => x.AuthorId, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
-                cfg.CreateMap<Post, Post>()
+                cfg.CreateMap<News, News>()
                     .ForMember(x => x.CreatedOn, opt => opt.Ignore())
                     .ForMember(x => x.Tags, opt => opt.Ignore())
                     .ForMember(x => x.ModifiedOn, opt => opt.Ignore())
                     .ForMember(x => x.PublishedOn, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
-                cfg.CreateMap<SliderItem, SliderItem>()
-                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-
-                cfg.CreateMap<PostEntity, Blog>()
+                cfg.CreateMap<BlogEntity, Blog>()
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));
 
                 cfg.CreateMap<Blog, PostEntity>();
 
-                cfg.CreateMap<PostEntity, Post>()
+                cfg.CreateMap<NewsEntity, News>()
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)))
-                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image));
+                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image))
+                    .ReverseMap();
 
-                cfg.CreateMap<IList<PostEntity>, IList<Post>>().ReverseMap();
+                cfg.CreateMap<IList<PostEntity>, IList<News>>().ReverseMap();
             });
 
         }

@@ -11,9 +11,9 @@ namespace Investor.Web.Controllers
     public class CategoryController : Controller
     {
 
-        private readonly IPostService _postService;
+        private readonly INewsService _postService;
         private readonly ICategoryService _categoryService;
-        public CategoryController(IPostService postService, ICategoryService categoryService)
+        public CategoryController(INewsService postService, ICategoryService categoryService)
         {
             _postService = postService;
             _categoryService = categoryService;
@@ -21,9 +21,9 @@ namespace Investor.Web.Controllers
         public IActionResult Index(string url)
         {
             ViewBag.CategoryName = _categoryService.GetCategoryByUrlAsync(url).Result.Name;
-            ViewBag.CategoryPopularPosts = _postService.GetPopularPostByCategoryUrlAsync(url, 5).Result.ToList();
-            ViewBag.CategoryPosts = _postService.GetLatestPostsByCategoryUrlAsync(url).Result.ToList();
-            ViewBag.LatestPosts = _postService.GetLatestPostsAsync(20).Result.ToList();
+            ViewBag.CategoryPopularPosts = _postService.GetPopularNewsByCategoryUrlAsync(url, 5).Result.ToList();
+            ViewBag.CategoryPosts = _postService.GetLatestNewsByCategoryUrlAsync(url).Result.ToList();
+            ViewBag.LatestPosts = _postService.GetLatestNewsAsync(20).Result.ToList();
 
             return View();
         }

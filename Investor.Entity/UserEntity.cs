@@ -11,5 +11,11 @@ namespace Investor.Entity
         public string Description { get; set; }
         public string Photo { get; set; }
         public string SerializedSocials { get; set; }
+        public List<BlogEntity> Blogs { get; set; }
+
+        public UserEntity()
+        {
+            Blogs = new List<BlogEntity>();
+        }
     }
 }

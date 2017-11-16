@@ -48,6 +48,11 @@
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="wwwroot\fonts\Circe\.DS_Store" />
+    <None Include="wwwroot\fonts\Circe\Circe-Light\.DS_Store" />
+    <None Include="wwwroot\fonts\Circe\Circe-Light\Circe-Light.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
     <None Include="wwwroot\lib\air-datepicker\dist\js\datepicker.js" />
     <None Include="wwwroot\lib\air-datepicker\dist\js\datepicker.min.js" />
     <None Include="wwwroot\lib\air-datepicker\dist\js\i18n\datepicker.cs.js" />

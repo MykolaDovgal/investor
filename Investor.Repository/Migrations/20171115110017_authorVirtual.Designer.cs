@@ -12,9 +12,10 @@ using System;
 namespace Investor.Repository.Migrations
 {
     [DbContext(typeof(NewsContext))]
-    partial class NewsContextModelSnapshot : ModelSnapshot
+    [Migration("20171115110017_authorVirtual")]
+    partial class authorVirtual
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -372,7 +373,7 @@ namespace Investor.Repository.Migrations
             modelBuilder.Entity("Investor.Entity.BlogEntity", b =>
                 {
                     b.HasOne("Investor.Entity.UserEntity", "Author")
-                        .WithMany("Blogs")
+                        .WithMany()
                         .HasForeignKey("AuthorId");
                 });
 #pragma warning restore 612, 618

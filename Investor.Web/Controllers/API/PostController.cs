@@ -8,9 +8,9 @@ namespace Investor.Web.Controllers.API
     public class PostController : Controller
     {
 
-        private readonly IPostService _postService;
+        private readonly INewsService _postService;
 
-        public PostController(IPostService postService)
+        public PostController(INewsService postService)
         {
             _postService = postService;
         }
@@ -19,7 +19,7 @@ namespace Investor.Web.Controllers.API
         [HttpGet]
         public async Task<IActionResult> GetMoreNews(string categoryUrl, int page, int limit)
         {
-            var posts = await _postService.GetPagedLatestPostsByCategoryUrlAsync(categoryUrl, limit, page);
+            var posts = await _postService.GetPagedLatestNewsByCategoryUrlAsync(categoryUrl, limit, page);
             return PartialView("~/Views/Category/_MoreNewsPostsTemplate.cshtml", posts); 
         }
     }
