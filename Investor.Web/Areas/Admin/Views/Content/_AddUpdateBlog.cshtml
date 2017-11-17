@@ -18,7 +18,6 @@
     <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
             <img class="cropper" src="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/" + System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/" + Model.Image))" alt="" required="required" />
-
         </div>
         <div>
             <span class="btn red btn-outline btn-file">

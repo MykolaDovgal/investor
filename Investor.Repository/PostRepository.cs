@@ -117,6 +117,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Posts
                 .OfType<T>()
+                .AsNoTracking()
                 .Where(p => postIds.Contains(p.PostId))
                 .ToListAsync();
         }
@@ -164,16 +165,16 @@ namespace Investor.Repository
         {
             List<T> newPosts = posts as List<T> ?? posts.ToList();
             var postsId = newPosts.Select(x => x.PostId);
-            var oldPosts = await GetPostsBasedOnIdCollectionAsync<T>(postsId);
+            var oldPosts = (await GetPostsBasedOnIdCollectionAsync<T>(postsId)).ToList();
 
-            foreach (PostEntity postEntity in oldPosts)
+            for (int i=0; i < oldPosts.Count(); i++)
             {
-                PostEntity newPost = newPosts.Find(x => x.PostId == postEntity.PostId);
-                Mapper.Map(newPost, postEntity);  //TODO ??
-                postEntity.PublishedOn = (newPost.IsPublished ?? false) && (postEntity.IsPublished ?? false) ? DateTime.Now : postEntity.PublishedOn;
-                postEntity.ModifiedOn = DateTime.Now;
+                T newPost = newPosts.Find(x => x.PostId == oldPosts[i].PostId);
+                oldPosts[i] = Mapper.Map<T, T>(oldPosts[i], newPost);  //TODO ??
+                oldPosts[i].PublishedOn = (newPost.IsPublished ?? false) && (oldPosts[i].IsPublished ?? false) ? DateTime.Now : oldPosts[i].PublishedOn;
+                oldPosts[i].ModifiedOn = DateTime.Now;
             }
-            _newsContext.Set<T>().UpdateRange(oldPosts);
+            _newsContext.News.UpdateRange((IEnumerable<NewsEntity>)oldPosts);
             await _newsContext.SaveChangesAsync();
         }
 
@@ -209,7 +210,9 @@ namespace Investor.Repository
         {
             if (typeof(T) == typeof(BlogEntity))
                 _newsContext.Users.Where(b => b.Blogs.Count > 0).Load();
-            return _newsContext.Set<T>();
+            return _newsContext
+                .Set<T>()
+                .Include(c=>c.Category);
         }
     }
 }

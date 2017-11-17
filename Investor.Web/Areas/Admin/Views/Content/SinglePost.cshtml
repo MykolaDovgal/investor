@@ -1,10 +1,10 @@
 ﻿@using Investor.Model
-@model Investor.Model.Post
+@model Investor.Model.News
 <form method="post" id="updateForm" class = "updateForm" enctype="multipart/form-data">
     <fieldset>
         <div class="page-content-wrapper">
-            @Html.Partial("_AddUpdatePost", Model as Post)
+            @Html.Partial("_AddUpdatePost", Model as News)
         </div>
-        @Html.Partial("_RightSideBar", Model as Post)
+        @Html.Partial("_RightSideBar", Model as News)
     </fieldset>
 </form>

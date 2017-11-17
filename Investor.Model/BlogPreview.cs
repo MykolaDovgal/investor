@@ -13,6 +13,5 @@ namespace Investor.Model
         public bool IsPublished { set; get; }
         public DateTime PublishedOn { set; get; }
         public User Author { set; get; }
-
     }
 }

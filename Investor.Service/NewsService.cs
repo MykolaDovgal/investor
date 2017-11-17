@@ -44,7 +44,7 @@ namespace Investor.Service
         public async Task<IEnumerable<T>> GetAllNewsAsync<T>()
         {
             var posts = _postRepository.GetAllPosts<NewsEntity>();
-            return posts.Select(Mapper.Map<PostEntity, T>);
+            return posts.Select(Mapper.Map<NewsEntity, T>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetLatestNewsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false, int limit = 10)
