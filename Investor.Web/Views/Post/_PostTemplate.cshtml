@@ -38,7 +38,7 @@
 <ul class="wrapper-hashtag  mb-4">
     @foreach (Tag tag in ViewBag.Tags)
     {
-        <li><a href="#" class="item-hashtag">@tag.Name</a></li>
+        <li><a asp-controller="Search" asp-action="SearchByTag" asp-route-tag="@tag.Name" class="item-hashtag">@tag.Name</a></li>
     }
 </ul>
 <div class="post-comment">

@@ -126,6 +126,13 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             await _postService.UpdateNewsAsync(tablePosts);
         }
 
+        [Route("UpdateTableBlogs")]
+        [HttpPost]
+        public async Task UpdateTableBlogs(List<Blog> tablePosts)
+        {
+            await _blogService.UpdateBlogAsync<Blog>(tablePosts);
+        }
+
         [Route("DeletePosts")]
         [HttpPost]
         public async Task<JsonResult> DeletePosts(List<int> id)

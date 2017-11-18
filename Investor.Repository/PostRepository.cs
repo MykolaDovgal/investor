@@ -117,6 +117,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Posts
                 .OfType<T>()
+                .Include(c=>c.Category)
                 .AsNoTracking()
                 .Where(p => postIds.Contains(p.PostId))
                 .ToListAsync();
@@ -170,11 +171,11 @@ namespace Investor.Repository
             for (int i=0; i < oldPosts.Count(); i++)
             {
                 T newPost = newPosts.Find(x => x.PostId == oldPosts[i].PostId);
-                oldPosts[i] = Mapper.Map<T, T>(oldPosts[i], newPost);  //TODO ??
+                oldPosts[i] = Mapper.Map<T, T>(newPost, oldPosts[i]);  //TODO ??
                 oldPosts[i].PublishedOn = (newPost.IsPublished ?? false) && (oldPosts[i].IsPublished ?? false) ? DateTime.Now : oldPosts[i].PublishedOn;
                 oldPosts[i].ModifiedOn = DateTime.Now;
             }
-            _newsContext.News.UpdateRange((IEnumerable<NewsEntity>)oldPosts);
+            _newsContext.Set<T>().UpdateRange(oldPosts);
             await _newsContext.SaveChangesAsync();
         }
 
