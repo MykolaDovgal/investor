@@ -42,6 +42,18 @@ namespace Investor.Repository
             await _newsContext.SaveChangesAsync();
             return newTag.Tag;
         }
+        public async Task RemoveTagFromPostAsync (int postId, TagEntity tag)
+        {
+            var post = _newsContext
+                 .Posts
+                 .Include(t => t.PostTags)
+                 .FirstOrDefault(p => p.PostId == postId);
+
+            var postTag = post.PostTags.FirstOrDefault(pt => pt.PostId == postId && pt.TagId == tag.TagId);
+            post.PostTags.Remove(postTag);
+            _newsContext.Update(post);
+            await _newsContext.SaveChangesAsync();
+        }
 
         public async Task<IEnumerable<T>> GetAllPostsByTagNameAsync<T>(string tagName) where T : PostEntity
         {
@@ -71,8 +83,8 @@ namespace Investor.Repository
                 .Posts
                 .OfType<T>()
                 .Include(p => p.Category)
-                .OrderByDescending(p => p.PublishedOn)
-                .Where(p => p.Category.Url == categoryUrl.ToLower());
+                .Where(p => p.Category.Url == categoryUrl.ToLower())
+                .OrderByDescending(p => p.PublishedOn);
             return await posts.Take(limit).ToListAsync();
         }
 
@@ -81,7 +93,7 @@ namespace Investor.Repository
             return await _newsContext.Posts
                 .Include(p => p.Category)
                 .OfType<T>()
-                .Where(p => p.Category.Url == categoryUrl.ToLower())
+                .Where(p => p.Category.Url.Contains(categoryUrl.ToLower()))
                 .OrderByDescending(p => p.PublishedOn)
                 .Skip(limit * (page - 1))
                 .Take(limit)
@@ -106,6 +118,7 @@ namespace Investor.Repository
                 .OfType<T>()
                 .Include(p => p.Category)
                 .Include(p => p.PostTags)
+                .ThenInclude(p=>p.Tag)
                 .FirstOrDefaultAsync(p => p.PostId == id);
             if (blog is BlogEntity)
                 _newsContext.Entry(blog as BlogEntity).Reference(c => c.Author).Load();
@@ -151,10 +164,11 @@ namespace Investor.Repository
             T oldPost = _newsContext
                 .Posts
                 .OfType<T>()
+                .Include(c=>c.Category)
                 .FirstOrDefaultAsync(p => p.PostId == post.PostId)
                 .Result;
 
-            oldPost.PublishedOn = (post.IsPublished ?? false) && (oldPost.IsPublished ?? false) ? DateTime.Now : oldPost.PublishedOn;
+            oldPost.PublishedOn = (post.IsPublished ?? false) && !(oldPost.IsPublished ?? false) ? DateTime.Now : oldPost.PublishedOn;
             oldPost = Mapper.Map(post, oldPost);
             oldPost.Category = _newsContext.Categories.Find(post.CategoryId ?? oldPost.Category.CategoryId);
             _newsContext.Set<T>().Update(oldPost);
@@ -171,8 +185,8 @@ namespace Investor.Repository
             for (int i=0; i < oldPosts.Count(); i++)
             {
                 T newPost = newPosts.Find(x => x.PostId == oldPosts[i].PostId);
+                oldPosts[i].PublishedOn = (newPost.IsPublished ?? false) && !(oldPosts[i].IsPublished ?? false) ? DateTime.Now : oldPosts[i].PublishedOn;
                 oldPosts[i] = Mapper.Map<T, T>(newPost, oldPosts[i]);  //TODO ??
-                oldPosts[i].PublishedOn = (newPost.IsPublished ?? false) && (oldPosts[i].IsPublished ?? false) ? DateTime.Now : oldPosts[i].PublishedOn;
                 oldPosts[i].ModifiedOn = DateTime.Now;
             }
             _newsContext.Set<T>().UpdateRange(oldPosts);

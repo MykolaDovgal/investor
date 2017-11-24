@@ -5,12 +5,14 @@
 <div class="item-my-post body-block block-border-top default-border-color">
     <div class="col-12">
         <div class="img-news">
-            <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/small-" + Model.Image)" class="img-fluid rounded-circle">
+            <img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/small-" + Model.Image)" class="img-fluid rounded-circle">
         </div>
         <div class="body-all-news">
             <a href="/blog/page/@Model.PostId" class="title-news">@Model.Title</a>
             <p class="text-news">@Model.Description</p>
             <span class="default-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
         </div>
+        <a href="/Account/UpdatePost/@Model.PostId" class="btn btn-edit btn-edit-default pull-right">Редагувати<i class="icons icon-pencil-default"></i></a>
     </div>
 </div>
+

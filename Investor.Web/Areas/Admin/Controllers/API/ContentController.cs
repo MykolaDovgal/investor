@@ -41,7 +41,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpGet]
         public async Task<IActionResult> GetAllBlogs()
         {
-            var result = await _blogService.GetLatestBlogsAsync();
+            var result = await _blogService.GetLatestBlogsAsync<TableBlogPreview>();
             return Json(new { data = result });
         }
 
@@ -66,14 +66,12 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdateBLog")]
         [HttpPost]
-        public void UpdateBlog([FromForm]News post, [FromForm]IFormFile image)
+        public void UpdateBlog([FromForm]Blog post, [FromForm]IFormFile image)
         {
             post.Image = image != null ? _imageService.SaveImage(image) : null;
             _postService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
-            News newPost = _postService.GetNewsByIdAsync(post.PostId).Result;
-            newPost = Mapper.Map<News, News>(post, newPost);
-            newPost.PublishedOn = !newPost.IsPublished && post.IsPublished ? DateTime.Now : post.PublishedOn;
-            _postService.UpdateNewsAsync(newPost).Wait();
+            post.Category = _categoryService.GetCategoryByUrlAsync("blog").Result;
+            _blogService.UpdateBlogAsync(post).Wait();
         }
 
         [Route("CreatePost")]

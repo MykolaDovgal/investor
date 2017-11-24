@@ -6,7 +6,7 @@ namespace Investor.Model
 {
     public class TableBlogPreview
     {
-        public int BlogId { set; get; }
+        public int PostId { set; get; }
         public string Title { set; get; }
         public DateTime CreatedOn { set; get; }
         public User Author { set; get; }

@@ -20,15 +20,18 @@ namespace Investor.Web.Controllers
         private readonly INewsService _postService;
         private readonly ICategoryService _categoryService;
         private readonly ThemeService _themeService;
+        private readonly IBlogService _blogService;
 
 
         public HomeController(INewsService postService, 
             ICategoryService categoryService, 
-             ThemeService themeService)
+             ThemeService themeService,
+             IBlogService blogService)
         {
             _postService = postService;
             _categoryService = categoryService;
             _themeService = themeService;
+            _blogService = blogService;
         }
 
         public IActionResult Index()
@@ -49,9 +52,10 @@ namespace Investor.Web.Controllers
             });
             ViewBag.SideNews = _postService.GetSideNewsAsync(2).Result.ToList();
             ViewBag.SliderNews = _postService.GetSliderNewsAsync(7).Result.ToList();
-
             ViewBag.News = news;        
             ViewBag.LatestPosts = _postService.GetLatestNewsAsync(20).Result.ToList();
+            var blogs = _blogService.GetLatestBlogsAsync<BlogPreview>(7).Result.ToList();
+            ViewBag.Blogs = blogs;
             return View();
   
         }

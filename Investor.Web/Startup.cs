@@ -100,6 +100,8 @@ namespace Investor.Web
                     defaults: new { controller = "Account", action = "Login" });
                 routes.MapRoute("register", "register",
                     defaults: new { controller = "Account", action = "Register" });
+                routes.MapRoute("lastnews", "lastnews",
+                    defaults: new { controller = "Post", action = "LastNews" });
                 routes.MapRoute("post", "post/{id}",
                     defaults: new { controller = "Post", action = "Index" });
                 routes.MapRoute("blog", "blog/page/{id}",

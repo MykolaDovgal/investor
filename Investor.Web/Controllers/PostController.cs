@@ -21,12 +21,18 @@ namespace Investor.Web.Controllers
         public IActionResult Index(int id)
         {
             ViewBag.PathBase = Request.Host.Value;
-            ViewBag.Post = _postService.GetNewsByIdAsync(id).Result; ;
-            ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result.ToList();
-            ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result.ToList(); ;
-            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result.ToList();
-            ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result;
+            ViewBag.Post = _postService.GetNewsByIdAsync(id).Result; 
+            ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result?.ToList();
+            ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList(); 
+            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
+            ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
             return View("Index");
+        }
+
+        public IActionResult LastNews()
+        {
+            IEnumerable<PostPreview> lastNews = _postService.GetLatestNewsAsync(10).Result.ToList();
+            return View(lastNews);
         }
 
         

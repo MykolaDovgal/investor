@@ -1,13 +1,14 @@
-﻿<div class="sidebar-item-blog vertical">
-    <img src="img/blog-img-1.png" alt="" class="rounded-circle align-top" />
+﻿@model Investor.Model.BlogPreview
+@inject Investor.Service.TimeService PostPublicationDate
+<div class="sidebar-item-blog vertical">
+    <img src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Author.Photo) + "/small-" + Model.Author.Photo)" alt="" class="rounded-circle align-top" />
     <div class="sidebar-item-blog-body align-top">
-        <span class="author-blog">
-            Тарас Матвіїв
-        </span>
-        <h4 class="title-blog">
-            Якась тема
-        </h4>
-
-        <span class="today-item-news default-today-color">Сьогодні, 14.09.2017</span>
+        <a class="author-blog" href="/blog/blogerpage/@Model.Author.UserName">
+            @Model.Author.Name @Model.Author.Surname
+        </a>
+        <a class="title-blog" href="/blog/page/@Model.PostId">
+            @Model.Title
+        </a>
+        <span class="today-item-news default-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
     </div>
 </div>

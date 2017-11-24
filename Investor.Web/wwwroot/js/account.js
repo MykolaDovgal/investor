@@ -8,9 +8,14 @@ $(document).ready(function () {
     });
 
     $("#createUserPostForm").submit(function(e) {
-        e.preventDefault();
-        createPostAJAX(getCreatePostFormData());
+		e.preventDefault();
+		createPostAJAX(getCreatePostFormData(this), $(this).attr('action'));
     });
+
+	$("#registerUserForm").submit(function (e) {
+		e.preventDefault();
+		createRegisterAJAX(getRegistrationFormData(this));
+	});
 
     initUserTinyMCE();
     getAllTags();
@@ -22,14 +27,23 @@ let getCreatePostFormData = function() {
     const formData = new FormData(document.getElementById("createUserPostForm"));
 
     let tagsArray = $("#userPostTags").tagsinput('items');
-    console.log(tinyMCE.get('createUserPost').getContent());
-
-    formData.append('Article', tinyMCE.get('createUserPost').getContent());    
+	console.log(tinyMCE.get('createUserPost').getContent());
+	formData.set('Article', tinyMCE.get('createUserPost').getContent());    
     for (let i = 0; i < tagsArray.length; i++)
         formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
-
     return formData;
+}
 
+let getRegistrationFormData = function () {
+	const formData = new FormData(document.getElementById("registerUserForm"));
+	formData.append("Photo", $(`#upload`).get(0).files[0]);
+	//formData.append("Points", $('#upload-demo').croppie('get').points);
+	formData.append("Password", $("input[name='pass_confirmation']").val());
+	var points = $('#upload-demo').croppie('get').points;
+	console.log(points[0]);
+	for (let i = 0; i < points.length; i++)
+		formData.append(`Points[` + i + `]`, points[i]);
+	return formData;
 }
 
 let getAllTags = function () {
@@ -105,9 +119,9 @@ let logOff = function() {
     });
 }
 
-let createPostAJAX = function(fData) {
+let createPostAJAX = function(fData, url) {
     $.ajax({
-        url: "/account/createpost",
+		url: url,
         type: "POST",
         data: fData,
         cache: false,
@@ -117,4 +131,18 @@ let createPostAJAX = function(fData) {
             window.location.href = data;
         }
     });
+}
+
+let createRegisterAJAX = function (fData) {
+	$.ajax({
+		url: "/account/register",
+		type: "POST",
+		data: fData,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function (data) {
+			window.location.href = data;
+		}
+	});
 }

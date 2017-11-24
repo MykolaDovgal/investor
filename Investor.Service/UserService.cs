@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Investor.Model.Views;
 
 namespace Investor.Service
 {
@@ -92,5 +93,13 @@ namespace Investor.Service
             return  Mapper.Map<UserEntity,User>(await _userManager.GetUserAsync(_context.HttpContext.User));
         }
 
+        public async Task<User> GetUserById(string id)
+        {
+            return Mapper.Map<UserEntity, User>(await _userManager.FindByIdAsync(id));
+        }
+        public async Task<User> GetUserByNickName(string nickName)
+        {
+            return Mapper.Map<UserEntity, User>(await _userManager.FindByNameAsync(nickName));
+        }
     }
 }

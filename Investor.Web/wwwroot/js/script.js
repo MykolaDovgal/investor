@@ -191,7 +191,8 @@ $('.input-value').keyup(function(){
 
     if( text.length  > 1){
       $('.'+$this.attr('id')+'').prev('i').removeClass('d-none'); 
-    }else if(text.length  < 1){
+	}
+	else if (text.length < 1) {
       $('.'+$this.attr('id')+'').prev('i').addClass('d-none');
   }
 
@@ -199,7 +200,6 @@ $('.input-value').keyup(function(){
   if(name.length  < 1){
       $('.input-value-name').html('Ім’я');
   }
-
 
   var lastname = $('#input-value-lastname').val();
   if(lastname.length  < 1){
@@ -243,11 +243,8 @@ $('.input-value').keyup(function(){
           var btnUpload = $('.edit-'+nameData).find('.upload-result');
           var fileUpload = $('.edit-'+nameData).find('#upload');
 
-
-
         $('.edit-'+nameData).find('button.btn-edit').attr('hidden', 'hidden');
         $('.edit-'+nameData).find('button[type="submit"]').removeAttr('hidden');
-
 
         if($(findForm).hasClass("disabled")){
           findForm.removeClass('disabled');
@@ -273,4 +270,4 @@ if($("div").is(".grid")){
     $('.grid').masonry({
         itemSelector: '.grid-item'
     });
-};
+	};

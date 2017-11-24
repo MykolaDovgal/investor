@@ -22,5 +22,13 @@ namespace Investor.Web.Controllers.API
             var posts = await _postService.GetPagedLatestNewsByCategoryUrlAsync(categoryUrl, limit, page);
             return PartialView("~/Views/Category/_MoreNewsPostsTemplate.cshtml", posts); 
         }
+
+        [Route("morelastnews")]
+        [HttpGet]
+        public async Task<IActionResult> GetMoreLastNews(int page, int limit)
+        {
+            var posts = await _postService.GetPagedLatestNewsByCategoryUrlAsync("", limit, page);
+            return PartialView("~/Views/Search/_SearchResultTemplate.cshtml", posts);
+        }
     }
 }

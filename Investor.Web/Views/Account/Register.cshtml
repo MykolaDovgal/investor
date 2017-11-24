@@ -4,26 +4,26 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 pl-0 p-0 pr-lg-2">
-                <form method="post" asp-controller="Account" asp-action="Register">
-                    
+                <form method="post" asp-controller="Account" asp-action="Register" id="registerUserForm">
+
                     <div class="block-border-top default-border-color body-block body-registration-data">
                         <h1 class="title-block">Дані</h1>
 
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label asp-for="UserName">Ваш nickname</label>
-                                <input asp-for="UserName" id="input-value1" type="text" class="form-control focus-input focus-color-default input-value" data-validation="length" data-validation-length="min4" data-validation="custom" data-validation-regexp="^([a-z]+)$"/>
+                                <input asp-for="UserName" id="input-value1" type="text" class="form-control focus-input focus-color-default input-value" data-validation="length" data-validation-length="min4" data-validation="custom" data-validation-regexp="^([a-z]+)$" />
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Email">Електронна адреса</label>
-                                <input asp-for="Email" type="text" class="form-control focus-input focus-color-default" data-validation="email"/>
+                                <input asp-for="Email" type="text" class="form-control focus-input focus-color-default" data-validation="email" name="email" />
                             </div>
                         </div>
 
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Name">Ваше ім’я</label>
-                                <input asp-for="Name" id="input-value-name" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"/>
+                                <input asp-for="Name" id="input-value-name" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Surname">Ваше прізвище</label>
@@ -34,12 +34,12 @@
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Password">Придумайте пароль</label>
-                                <input asp-for="Password" type="password" class="form-control focus-input focus-color-default"/>
+                                <input asp-for="Password" type="password" class="form-control focus-input focus-color-default" name="pass_confirmation" data-validation="length custom strength" data-validation-length="min8" data-validation-regexp="^([a-z, A-Z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]+)$" />
                                 <label class="reliability">Надійність</label>
                             </div>
                             <div class="col form-group">
                                 <label asp-for="PasswordConfirm">Повторіть ваш пароль</label>
-                                <input asp-for="PasswordConfirm" type="password" class="form-control focus-input focus-color-default" />
+                                <input asp-for="PasswordConfirm" type="password" class="form-control focus-input focus-color-default" name="pass" data-validation="confirmation" />
                             </div>
                         </div>
                     </div>
@@ -48,21 +48,31 @@
                         <h2 class="title-block">Біографія</h2>
 
                         <div class="form-group inline-form">
-                            
+
                             <label asp-for="Description">Розкажіть про себе</label>
-                            <textarea asp-for="Description" id="input-value-autobiography"  class="form-control focus-input focus-color-turquoise input-value"  rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"></textarea>
+                            <textarea asp-for="Description" id="input-value-autobiography" class="form-control focus-input focus-color-turquoise input-value" rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"></textarea>
                         </div>
-                        
+
                         <div class="form-group inline-form">
                             <label>Завантажте фотографію</label>
                             <div class="input-group input-file">
                                 <span class="input-group-btn">
                                     <span class="btn btn-turquoise btn-file">
-                                        Вибрати файл <input asp-for="Photo" type="file" id="imgInp" name="Photo">
+                                        Вибрати файл <input type="file" id="upload" accept="image/*" />
+                                        <input type="file" hidden id="cropped" accept="image/*" />
                                     </span>
                                 </span>
                                 <input type="text" class="form-control" readonly>
                             </div>
+                        </div>
+                        <div class="col-1-2">
+                            <div class="upload-msg">
+                                Вибреріть область
+                            </div>
+                            <div class="upload-demo-wrap">
+                                <div id="upload-demo"></div>
+                            </div>
+                            <button type="button" class="upload-result btn btn-edit btn-save btn-edit-second">Зафіксувати</button>
                         </div>
 
                         <div class="social-form">
@@ -88,34 +98,25 @@
             </div>
 
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
-                
                 <div class="block-border-top default-border-color body-preview">
-                    <div id='img-upload' class="img-fluid preview-img rounded-circle mx-auto" style="background-image: url(img/user-no-image.png)"/>
-                </div>
-
-                <h4 class="preview-name text-center"> <span class="input-value-name">Ім'я</span> <span class="input-value-last-name">Прізвище</span></h4>
-
+                    <div id='img-upload' class="img-fluid preview-img rounded-circle mx-auto" style="background-image: url(img/user-no-image.png)"/></div>
+                <h4 class="preview-name text-center"> <span class="input-value-name">Ім'я</span> <span class="input-value-lastname">Прізвище</span></h4>
                 <p class="input-value-autobiography text-center preview-description">Ваша біографія</p>
-
                 <div class="link-social">
-
                     <div class="item-link-social link-fb">
                         <i class="fa fa-facebook fa-1_3x text-center d-none" aria-hidden="true"></i>
                         <p class="input-value-fb text-center"></p>
                     </div>
-
                     <div class="item-link-social link-tw">
                         <i class="fa fa-twitter fa-1_3x text-center d-none" aria-hidden="true"></i>
                         <p class="input-value-tw text-center"></p>
                     </div>
-
                     <div class="item-link-social link-g">
                         <i class="fa fa-google-plus fa-1_3x text-center d-none" aria-hidden="true"></i>
                         <p class="input-value-google text-center"></p>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>

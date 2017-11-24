@@ -6,7 +6,7 @@
     @Model.Title
 </h1>
 <div class="info-news">
-    <span class="data-post">@Model.Author.Surname @Model.Author.Name</span>
+    <a href="/blog/blogerpage/@Model.Author.UserName" class="data-post">@Model.Author.Surname @Model.Author.Name</a>
     <span class="data-post"><i class="icons icon-clock"></i> @PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
     <span class="reviews-post"><i class="icons icon-reviews"></i>154</span>
 </div>
@@ -31,13 +31,13 @@
 </div>
 
 <div class="card-news-img mt-4 mb-5">
-    <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/large-" + Model.Image)" class="img-fluid" />
+    <img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/large-" + Model.Image)" class="img-fluid" />
 </div>
 <div class="card-news-desc mb-5">
     @Html.Raw(Model.Article)
 </div>
 <ul class="wrapper-hashtag  mb-4">
-    @foreach (Tag tag in ViewBag.Tags)
+    @foreach (Tag tag in Model.Tags)
     {
         <li><a asp-controller="Search" asp-action="SearchByTag" asp-route-tag="@tag.Name" class="item-hashtag">@tag.Name</a></li>
     }

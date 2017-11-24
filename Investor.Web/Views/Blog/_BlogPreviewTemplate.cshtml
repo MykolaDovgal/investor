@@ -5,13 +5,15 @@
 <div class="item-blog-news col-12">
     <div class="img-news">
         <a href="/blog/page/@Model.PostId">
-            <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/small-" + Model.Image)" class="img-fluid rounded-circle">
+            <img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/small-" + Model.Image)" class="img-fluid rounded-circle">
         </a>
     </div>
     <div class="body-all-news">
         <a href="/blog/page/@Model.PostId" class="title-news">@Model.Title</a>
         <p class="text-news brief-description">@Model.Description</p>
         <span class="blog-today-color data-blog">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
-        <a href="#" class="user-publish ml-3"><img src="img/blog-img-3.png" class="photo-img rounded-circle" />@Model.Author.Name</a>
+        <a href="/blog/blogerpage/@Model.Author.UserName" class="user-publish ml-3">
+            <img src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Author.Photo) + "/small-" + Model.Author.Photo)" class="photo-img rounded-circle" />@Model.Author.Name
+        </a>
     </div>
 </div>

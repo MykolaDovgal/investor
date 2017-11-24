@@ -31,8 +31,9 @@ namespace Investor.Web.Controllers
         {
             ViewBag.IsBlog = true;
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result.ToList();
-            ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(20).Result.ToList(); ;
-            ViewBag.LatestBlogs = _blogService.GetLatestBlogsAsync().Result.ToList();
+            ViewBag.PopularBlogers = _blogService.GetPopularUsers(10).Result.ToList(); ;
+            ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(20).Result.ToList(); 
+            ViewBag.LatestBlogs = _blogService.GetLatestBlogsAsync<BlogPreview>().Result.ToList();
             ViewBag.PopularBlogs = _blogService.GetPopularBlogsAsync().Result.ToList();
             ViewBag.Blogers = _userService.GetDictionaryOfBlogersAsync().Result;
             return View();
@@ -46,6 +47,15 @@ namespace Investor.Web.Controllers
             ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(10).Result.ToList();           
             ViewBag.Tags = _tagService.GetPopularTagsAsync(5).Result.ToList();
             return View("Single/BlogPage");
+        }
+
+        public IActionResult BlogerPage(string id)
+        {
+            User bloger = _userService.GetUserByNickName(id).Result;
+            ViewBag.Blogs = _blogService.GetBlogsByUserIdAsync(bloger.Id).Result.ToList();
+            ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(5).Result.ToList();
+            ViewBag.IsBlog = true;
+            return View("Bloger/BlogerPage", bloger);
         }
     }
 }

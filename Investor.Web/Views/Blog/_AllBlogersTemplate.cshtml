@@ -8,7 +8,7 @@
             @foreach (User bloger in blogers.Value)
             {
             <ul class="wrapper-name-blogger">
-                <li><a href="#" class="name-blogger">@(bloger.Surname + " " + bloger.Name)</a></li>
+                <li><a href="/blog/blogerpage/@bloger.UserName" class="name-blogger">@(bloger.Surname + " " + bloger.Name)</a></li>
             </ul>
             }
         </div>

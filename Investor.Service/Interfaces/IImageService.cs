@@ -9,5 +9,6 @@ namespace Investor.Service.Interfaces
     public interface IImageService
     {
         string SaveImage(IFormFile file);
+        string SaveAccountImage(IFormFile file, List<int> points);
     }
 }

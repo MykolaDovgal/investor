@@ -1,0 +1,38 @@
+﻿@model Investor.Model.User
+@using Investor.Model
+<section class="section-author">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 pl-0 p-0 pr-lg-2">
+                <div class="wrapper-author mb-3">
+                    <div class="img-author"><img src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Photo) + "/small-" + Model.Photo)" alt="" class="rounded-circle align-top img-fluid"></div>
+                    <div class="body-author">
+                        <div class="header-author mb-2">
+                            <h2 class="pull-left">@Model.Name @Model.Surname</h2>
+                            <ul class="author-social">
+                                <li><a href="#"><i class="fa fa-facebook fa-lg color-fb" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter fa-lg color-tw" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus fa-lg color-g" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="desc-author">
+                            <p>@Model.Description</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-block block-border-top blog-border-color">
+                    <h2 class="title-block">Записи</h2>
+                    @{ 
+                        foreach(BlogPreview blog in ViewBag.Blogs)
+                        {
+                            @Html.Partial("Bloger/_BlogerPageBlogPreviewTemplate", blog)
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-lg-4 pl-lg-2  p-0 pr-0">
+                @Html.Partial("_LastNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
+            </div>
+        </div>
+    </div>
+</section>

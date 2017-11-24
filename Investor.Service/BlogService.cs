@@ -8,6 +8,7 @@ using Investor.Entity;
 using Investor.Model;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
+using Investor.Model.Views;
 
 namespace Investor.Service
 {
@@ -16,20 +17,44 @@ namespace Investor.Service
         private readonly IBlogRepository _blogRepository;
         private readonly IPostRepository _postRepository;
         private readonly IUserService _userService;
+        private readonly ITagService _tagService;
+        private readonly ICategoryService _categoryService;
 
-        public BlogService(IBlogRepository blogRepository, IUserService userService, IPostRepository postRepository)
+
+        public BlogService(IBlogRepository blogRepository, IUserService userService, IPostRepository postRepository, ITagService tagService, ICategoryService categoryService)
         {
             _blogRepository = blogRepository;
             _userService = userService;
             _postRepository = postRepository;
+            _tagService = tagService;
+            _categoryService = categoryService;
         }
 
         public async Task<Blog> AddBlogAsync(Blog map)
         {
             map.Author = _userService.GetCurrentUserAsync().Result;
+            map.Category = await _categoryService.GetCategoryByUrlAsync("blog");
             var response = await _postRepository.AddPostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(map));
+            await AddTagsToBlogAsync(response.PostId, map.Tags.Select(c=>c.Name));
             map.PostId = response.PostId;
             return map;
+        }
+
+        private async Task AddTagsToBlogAsync(int postId, IEnumerable<string> tags) // TODO rename method
+        {
+            if (tags != null)
+            {
+                var postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
+                foreach (var t in tags)
+                {
+                    var tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
+                    if (!postTags.Select(s => s.Name).Contains(t))
+                    {
+                        await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
+                    }
+                }
+                postTags.Where(pt => !tags.Contains(pt.Name)).ToList().ForEach(async pt => await _postRepository.RemoveTagFromPostAsync(postId, pt)); //!!!!!!!!!!!!!!!!!
+            }
         }
 
         public async Task<Tag> AddTagToBlogAsync(int postId, Tag tag)
@@ -46,7 +71,7 @@ namespace Investor.Service
 
         public async Task<List<Tag>> GetAllTagsByBlogIdAsync(int id)
         {
-            var tags = await _postRepository.GetAllTagsByPostIdAsync(id);
+            var tags = await _postRepository.GetAllTagsByPostIdAsync(id) ?? new List<TagEntity>();
             return tags.Select(Mapper.Map<TagEntity, Tag>).ToList();
         }
 
@@ -62,10 +87,10 @@ namespace Investor.Service
             return blogs.Select(Mapper.Map<BlogEntity, BlogPreview>);
         }
 
-        public async Task<IEnumerable<BlogPreview>> GetLatestBlogsAsync(int limit = 10)
+        public async Task<IEnumerable<T>> GetLatestBlogsAsync<T>(int limit = 10)
         {
             var blogs = await _blogRepository.GetLatestBlogsAsync(limit);
-            return blogs.Select(Mapper.Map<BlogEntity, BlogPreview>);
+            return blogs.Select(Mapper.Map<BlogEntity, T>);
         }
 
         public async Task<IEnumerable<BlogPreview>> GetPopularBlogsAsync(int limit = 3)
@@ -90,15 +115,32 @@ namespace Investor.Service
             await _postRepository.RemovePostAsync(id);
         }
 
-        public async Task<T> UpdateBlogAsync<T>(T post)
+        public async Task<Blog> UpdateBlogAsync(Blog post)
         {
-            var blog = await _postRepository.UpdatePostAsync<BlogEntity>(Mapper.Map<T, BlogEntity>(post));
-            return Mapper.Map<BlogEntity, T>(blog);
+            post.Author = _userService.GetCurrentUserAsync().Result;
+            var blog = await _postRepository.UpdatePostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(post));
+            await AddTagsToBlogAsync(blog.PostId, post.Tags?.Select(c => c.Name));
+            return Mapper.Map<BlogEntity, Blog>(blog);
         }
 
         public async Task UpdateBlogAsync<T>(IEnumerable<T> post)
         {
             await _postRepository.UpdatePostAsync<BlogEntity>(post.Select(Mapper.Map<T, BlogEntity>));
         }
+
+        public async Task<IEnumerable<PopularUserViewModel>> GetPopularUsers(int limit)
+        {
+            List<UserEntity> users = (await _blogRepository.GetPopularUsers(limit)).ToList();
+
+            List<PopularUserViewModel> popUsers = new List<PopularUserViewModel>();
+            users.ForEach(u =>
+            {
+                BlogEntity blog = u.Blogs.OrderBy(b => b.PublishedOn)?.FirstOrDefault();
+                popUsers.Add(new PopularUserViewModel { User = Mapper.Map<UserEntity, User>(u), NumberOfPosts = u.Blogs.Count, PostId = blog?.PostId ?? 0, Title = blog?.Title ?? String.Empty });
+            });
+            return popUsers;
+        }
+
+
     }
 }

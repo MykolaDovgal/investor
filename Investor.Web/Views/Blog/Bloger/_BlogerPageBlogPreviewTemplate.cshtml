@@ -1,0 +1,17 @@
+﻿@using Investor.Model
+@model BlogPreview
+@inject Investor.Service.TimeService PostPublicationDate
+
+
+<div class="item-my-post col-12">
+    <div class="img-news">
+        <a href="/blog/page/@Model.PostId">
+            <img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/medium-" + Model.Image)" class="img-fluid rounded-circle">
+        </a>
+    </div>
+    <div class="body-all-news">
+        <a href="/blog/page/@Model.PostId" class="title-news">@Model.Title</a>
+        <p class="text-news">@Model.Description</p>
+        <span class="blog-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+    </div>
+</div>

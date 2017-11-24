@@ -75,8 +75,7 @@ let getMoreSearchResult = function (categoryUrl, queryText, date, page, count, t
         url: `/api/search/posts${params}`,
         type: "GET",
         success: function (data) {
-			$("#searchResultContainer").append(data);
-			console.log($(".numberOfPosts").last().val());
+			console.log('last');
 			if ($(".numberOfPosts").last().val() < searchMoreResultCount) {
 				$(".wrapper-btn-more").attr("hidden", "true");
 			}

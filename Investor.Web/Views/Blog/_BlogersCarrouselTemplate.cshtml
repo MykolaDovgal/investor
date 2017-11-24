@@ -1,23 +1,24 @@
-﻿<div class="owl-carousel owl-theme carousel-top-blog">
-    @for (int i = 0; i < 6; i++)
+﻿@model List<Investor.Model.Views.PopularUserViewModel>
+<div class="carousel-top-blog slick-carousel">
+    @for (int i = 0; i < Model.Count()/3 +(Model.Count()%3 > 0 ? 1 : 0); i++)
     {
         <div class="colum-slider">
-            @for (int jIndex = 0; jIndex < 3; jIndex++)
+            @for (int jIndex = i*3; jIndex < i*3 + 3 && jIndex < Model.Count(); jIndex++)
             {
                 <div class="sidebar-item-blog vertical">
-                    <img src="img/blog-img-4.png" alt="" class="rounded-circle align-top">
+                    <img src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model[jIndex].User.Photo) + "/small-" + Model[jIndex].User.Photo)" alt="" class="rounded-circle align-top">
                     <div class="sidebar-item-blog-body align-top">
                         <span class="author-blog">
-                            Тарас Баранецький
+                            @Model[jIndex].User.Name  @Model[jIndex].User.Surname
                         </span>
-                        <a href="#" class="title-blog">
-                            Соціальний захист:
-                            тонучий і бритви вхопиться
+                        <a href="/blog/page/@Model[jIndex].PostId" class="title-blog">
+                            @Model[jIndex].Title
                         </a>
-                        <span class="activity-level blog-today-color">Рівень активності 32</span>
+                        <span class="activity-level blog-today-color">Рівень активності @Model[jIndex].NumberOfPosts</span>
                     </div>
                 </div>
             }
         </div>
     }
 </div>
+<span class="paging-info paging-blog"></span>

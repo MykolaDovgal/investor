@@ -7,7 +7,7 @@
 <div class="item-news inline-item-news">
     <div class="img-news min-img-news">
         <a href="/post/@Model.PostId">
-            <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/medium-" + Model.Image)" class="img-fluid" />
+            <img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/medium-" + Model.Image)" class="img-fluid" />
         </a>
     </div>
     <a href="/post/@Model.PostId" class="title-news">@Model.Title</a>

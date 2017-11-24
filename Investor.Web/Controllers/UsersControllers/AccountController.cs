@@ -7,6 +7,7 @@ using Investor.Model.Views;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Investor.Web.Controllers.UsersControllers
 {
@@ -57,12 +58,27 @@ namespace Investor.Web.Controllers.UsersControllers
             return View();
         }
 
+        public IActionResult UpdatePost(int id)
+        {
+            ViewBag.Header = "_AccountHeaderSection";
+            ViewBag.Tags = _blogService.GetAllTagsByBlogIdAsync(id).Result.ToList();
+            var blog = _blogService.GetBlogByIdAsync<Blog>(id).Result;
+            return View("CreatePost", blog);
+        }
+
         [HttpPost]
         public IActionResult CreatePost([FromForm] Blog blog, [FromForm]IFormFile image)
         {
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
             var tmp = _blogService.AddBlogAsync(blog).Result;
-            _postService.AddTagsToNewsAsync(blog.PostId, blog.Tags?.Select(s => s.Name));
+            return Json(Url.Action("Account", "Account"));
+        }
+
+        [HttpPost]
+        public IActionResult UpdatePost([FromForm] Blog blog, [FromForm]IFormFile image)
+        {
+            blog.Image = image != null ? _imageService.SaveImage(image) : null;
+            var tmp = _blogService.UpdateBlogAsync(blog).Result;
             return Json(Url.Action("Account", "Account"));
         }
 
@@ -73,9 +89,10 @@ namespace Investor.Web.Controllers.UsersControllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model, [FromForm]IFormFile Photo, [FromForm]List<int> Points)
         {
             var user = Mapper.Map<RegisterViewModel, User>(model);
+            user.Photo = _imageService.SaveAccountImage(Photo, Points);
 
             if ((await _userService.CreateUserAsync(user)).Succeeded)
             {

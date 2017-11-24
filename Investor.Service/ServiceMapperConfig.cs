@@ -52,17 +52,22 @@ namespace Investor.Service
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
                 cfg.CreateMap<BlogEntity, Blog>()
-                    .ForMember(x => x.CreatedOn, opt => opt.Ignore())
-                    .ForMember(x => x.Tags, opt => opt.Ignore())
-                    .ForMember(x => x.ModifiedOn, opt => opt.Ignore())
-                    .ForMember(x => x.PublishedOn, opt => opt.Ignore())
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));
 
                 cfg.CreateMap<Blog, BlogEntity>()
+                    .ForMember(x => x.CreatedOn, opt => opt.Ignore())
+                    .ForMember(x => x.PostTags, opt => opt.Ignore())
+                    .ForMember(x => x.ModifiedOn, opt => opt.Ignore())
+                    .ForMember(x => x.PublishedOn, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
+                
+                    
 
                 cfg.CreateMap<BlogEntity, BlogEntity>()
                     .ForMember(x=>x.Author, opt=>opt.Ignore())
+                    .ForMember(x => x.CreatedOn, opt => opt.Ignore())
+                    .ForMember(x => x.PublishedOn, opt => opt.Ignore())
+                    .ForMember(x => x.PostTags, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 
                 cfg.CreateMap<NewsEntity, News>()

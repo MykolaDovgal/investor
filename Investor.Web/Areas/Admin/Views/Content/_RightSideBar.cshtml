@@ -42,12 +42,12 @@
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На боковій панелі слайдера
-        <input type="checkbox" value="true" name="IsOnSide" @(ViewData.ContainsKey("IsOnSide") ? (ViewBag.IsOnSide ? "checked" : "") : "") />
+        <input type="checkbox" value="true" name="IsOnSide" @(Model.IsOnSide ? "checked" : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На слайдері
-        <input type="checkbox" value="true" name="IsOnSlider" @(ViewData.ContainsKey("IsOnSlider") ?(ViewBag.IsOnSlider ? "checked" : "") : "") />
+        <input type="checkbox" value="true" name="IsOnSlider" @(Model.IsOnSlider ? "checked" : "") />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline color-white">

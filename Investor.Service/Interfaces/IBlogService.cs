@@ -4,12 +4,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Model;
+using Investor.Model.Views;
 
 namespace Investor.Service.Interfaces
 {
     public interface IBlogService
     {
-        Task<IEnumerable<BlogPreview>> GetLatestBlogsAsync(int limit = 10);
+        Task<IEnumerable<T>> GetLatestBlogsAsync<T>(int limit = 10);
         Task<IEnumerable<BlogPreview>> GetPopularBlogsAsync(int limit = 3);
         Task<IEnumerable<BlogPreview>> GetBlogsByUserIdAsync(string userId);
 
@@ -17,11 +18,13 @@ namespace Investor.Service.Interfaces
         Task<IEnumerable<T>> GetAllBlogsByTagNameAsync<T>(string tagName);
         Task<IEnumerable<Blog>> GetBlogsBasedOnIdCollectionAsync(IEnumerable<int> postIds);
         Task<Blog> AddBlogAsync(Blog map);
-        Task<T> UpdateBlogAsync<T>(T post);
+        Task<Blog> UpdateBlogAsync(Blog post);
         Task UpdateBlogAsync<T>(IEnumerable<T> post);
         Task RemoveBlogAsync(int id);
         Task RemoveBlogAsync(IEnumerable<int> id);
         Task<Tag> AddTagToBlogAsync(int postId, Tag tag);
         Task<List<Tag>> GetAllTagsByBlogIdAsync(int id);
+        Task<IEnumerable<PopularUserViewModel>> GetPopularUsers(int limit);
+        //Task<int> GetNumberOfBlogsByUserId(string userId);
     }
 }

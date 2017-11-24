@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.Primitives;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Investor.Service
 {
@@ -23,7 +25,7 @@ namespace Investor.Service
             string imageExtension = Path.GetExtension(image.FileName);
             string originFileName = CreateMD5(image.FileName + image.Length);
             string fullOriginalFileName = originFileName + imageExtension;
-            string imageFolderPath = Path.Combine(_env.WebRootPath, "img", originFileName);            
+            string imageFolderPath = Path.Combine("posts/" + _env.WebRootPath, "img", originFileName);            
 
             if (Directory.Exists(imageFolderPath))
             {
@@ -41,11 +43,37 @@ namespace Investor.Service
             {
                  image.CopyTo(stream);
             }
-
-            ResizeImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104,104));
+            List<int> points = new List<int>() { 1, 50, 100, 100 };
+            ResizeAccountImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104,104), points);
             ResizeImage(imageFolderPath, fullOriginalFileName, "medium-", new Size(382, 208));
             ResizeImage(imageFolderPath, fullOriginalFileName, "large-", new Size(751, 423));
 
+            return fullOriginalFileName;
+        }
+        public string SaveAccountImage(IFormFile image, List<int> points)
+        {
+            string imageExtension = Path.GetExtension(image.FileName);
+            string originFileName = CreateMD5(image.FileName + image.Length);
+            string fullOriginalFileName = originFileName + imageExtension;
+            string imageFolderPath = Path.Combine("accounts/",_env.WebRootPath, "img", originFileName);
+
+            if (Directory.Exists(imageFolderPath))
+            {
+                foreach (string filePath in Directory.GetFiles(imageFolderPath))
+                {
+                    File.Delete(filePath);
+                }
+            }
+            else
+            {
+                Directory.CreateDirectory(imageFolderPath);
+            }
+
+            using (var stream = new FileStream(Path.Combine(imageFolderPath, fullOriginalFileName), FileMode.Create))
+            {
+                image.CopyTo(stream);
+            }
+            ResizeAccountImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104, 104), points);
             return fullOriginalFileName;
         }
 
@@ -60,6 +88,20 @@ namespace Investor.Service
                 }));
 
                 img.Save(Path.Combine(imageFolderPath,prefix + originalImageName));
+            }
+        }
+        private void ResizeAccountImage(string imageFolderPath, string originalImageName, string prefix, Size size, List<int> points)
+        {
+            using (var img = Image.Load(Path.Combine(imageFolderPath, originalImageName)))
+            {
+                img.Mutate(x => x
+                .Crop(new Rectangle(points[0], points[1], points[2] - points[0], points[3] - points[1]))
+                .Resize(new ResizeOptions
+                 {
+                     Size = size,
+                 }));
+
+                img.Save(Path.Combine(imageFolderPath, prefix + originalImageName));
             }
         }
 

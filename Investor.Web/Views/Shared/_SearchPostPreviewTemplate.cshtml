@@ -7,7 +7,9 @@
     <div class="row">
         
         <div class="col-md-4 img-result">
-            <img src="~/img/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/medium-" + Model.Image)" class="img-fluid"/>
+            <a href="/@(Model.Category.Url == "blog" ? "blog/page" : "post" )/@Model.PostId">
+                <img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/medium-" + Model.Image)" class="img-fluid" />
+            </a>
         </div>
 
         <div class="col-md-8">

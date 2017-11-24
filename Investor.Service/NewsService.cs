@@ -98,7 +98,7 @@ namespace Investor.Service
             NewsEntity newPost = Mapper.Map<News, NewsEntity>(post);
             newPost.CategoryId = newPost.Category.CategoryId;
             var result = await _postRepository.UpdatePostAsync<NewsEntity>(newPost);
-            return Mapper.Map<PostEntity, News>(result);
+            return Mapper.Map<NewsEntity, News>(result);
         }
         public async Task UpdateNewsAsync(IEnumerable<News> posts)
         {
@@ -156,7 +156,7 @@ namespace Investor.Service
 
         public async Task<IEnumerable<Tag>> GetAllTagsByNewsIdAsync(int id)
         {
-            List<TagEntity> tags = await _postRepository.GetAllTagsByPostIdAsync(id);
+            List<TagEntity> tags = await _postRepository.GetAllTagsByPostIdAsync(id) ?? new List<TagEntity>();
             return tags.Select(Mapper.Map<TagEntity, Tag>);
         }
 
