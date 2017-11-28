@@ -4,116 +4,137 @@
 <section class="page-my-profile pb-5">
     <div class="container">
         <div class="row">
-            
             <div class="col-lg-8 pl-0 p-0 pr-lg-2">
-                
-                <form>
+                <form id="updateUserDataForm" action="/Account/UpdateUser">
                     <div class="block-border-top default-border-color body-block block-edit edit-data" data-edit="data">
-                        <h1 class="title-block">Мої дані
+                        <h2 class="title-block">
+                            Мої дані
                             <button type="button" class="btn btn-edit btn-edit-default pull-right">Редагувати<i class="icons icon-pencil-default"></i></button>
-                            <button type="submit" class="btn btn-edit btn-save btn-edit-default pull-right" hidden>Зберегти</button>
-                        </h1>
+                            <button type="submit" class="btn btn-save btn-edit-default pull-right" hidden>Зберегти</button>
+                        </h2>
+                        <input hidden asp-for="Id"/>
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label>Ваш nickname</label>
-                                <input type="text" value="mak7ka" class="form-control focus-input focus-color-default input-value disabled" data-validation="length" data-validation-length="min4" data-validation="custom" data-validation-regexp="^([a-z]+)$" disabled readonly>
+                                <input type="text" asp-for="UserName" class="form-control focus-input focus-color-default input-value disabled" data-validation="length" data-validation-length="min4" data-validation="custom" data-validation-regexp="^([a-z]+)$" disabled readonly>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Електронна адреса</label>
-                                <input type="text" value="maks-935@ukr.net" class="form-control focus-input focus-color-default disabled" name="email" data-validation="email" disabled readonly>
+                                <input type="text" asp-for="Email" class="form-control focus-input focus-color-default disabled" name="email" data-validation="email" disabled readonly>
                             </div>
                         </div>
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label>Ваше ім’я</label>
-                                <input type="text" value="Макс" id="input-value-name" class="form-control focus-input focus-color-default input-value disabled" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly>
+                                <input type="text" asp-for="Name" id="input-value-name" class="form-control focus-input focus-color-default input-value disabled" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label>Ваше прізвище</label>
-                                <input type="text" value="Труняк" id="input-value-lastname" class="form-control focus-input focus-color-default input-value disabled" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly>
+                                <input type="text" asp-for="Surname" id="input-value-lastname" class="form-control focus-input focus-color-default input-value disabled" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly>
                             </div>
                         </div>
+                    </div>
+                </form>
+                <form id="updateUserPasswordForm"  action="/Account/ChangePassword">
+                    <div class="block-border-top default-border-color body-block block-edit edit-data">
+                        <div class="d-inline-block w-100"><button type="submit" class="btn btn-edit btn-save btn-edit-default pull-right">Зберегти</button></div>
                         <div class="row inline-form">
-                            <div class="col-sm-6 form-group">
+                            <input hidden asp-for="Id" />
+                            <div class="col-sm-4 form-group">
+                                <label>Введіть старий пароль</label>
+                                <input type="password" class="form-control focus-input focus-color-default" name="pass_old">
+                            </div>
+                            <div class="col-sm-4 form-group">
                                 <label>Бажаєте змінити пароль?</label>
                                 <input type="password" class="form-control focus-input focus-color-default" name="pass_confirmation" data-validation="length custom strength" data-validation-length="min8" data-validation-regexp="^([a-z, A-Z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]+)$">
                                 <label class="reliability">Надійність</label>
                             </div>
-                            <div class="col form-group">
+                            <div class="col-sm-4 form-group">
                                 <label>Повторіть ваш пароль</label>
                                 <input type="password" class="form-control focus-input focus-color-default" name="pass" data-validation="confirmation">
                             </div>
                         </div>
                     </div>
                 </form>
-
-                <form>
+                <form id="updateUserBiographyForm"  action="/Account/UpdateUser">
                     <div class="block-border-top turquoise-border-top body-block mb-3 block-edit edit-biography" data-edit="biography">
-                        <h2 class="title-block">Біографія
-                            <button type="button" class="btn btn-edit btn-edit-second pull-right">Редашувати<i class="icons icon-pencil-second"></i></button>
-                            <button type="submit" class="btn btn-edit btn-save btn-edit-second pull-right" hidden>Зберегти</button>
+                        <input hidden asp-for="Id"/>
+                        <h2 class="title-block">
+                            Біографія
+                            <button type="button" class="btn btn-edit btn-edit-second pull-right">Редагувати<i class="icons icon-pencil-second"></i></button>
+                            <button type="submit" class="btn btn-save btn-edit-second pull-right" hidden>Зберегти</button>
                         </h2>
                         <div class="form-group inline-form">
                             <label>Розкажіть про себе</label>
-                            <textarea id="input-value-autobiography" class="form-control focus-input focus-color-turquoise input-value disabled"  rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla audantium, totam rem aperiam, eaque ipsa quae
- ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit as
-pernatur aut odit aut fugit</textarea>
+                            <textarea asp-for="Description" id="input-value-autobiography" class="form-control focus-input focus-color-turquoise input-value disabled" rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly></textarea>
                         </div>
                         <div class="form-group inline-form">
                             <label>Змінити фотографію</label>
                             <div class="input-group input-file">
                                 <span class="input-group-btn">
                                     <span class="btn btn-turquoise btn-file">
-                                        Вибрати файл <input type="file" id="imgInp">
+                                        Вибрати файл <input type="file" id="upload" accept="image/*" disabled>
                                     </span>
                                 </span>
                                 <input type="text" class="form-control" readonly>
                             </div>
+                            <img hidden id="userPhoto" src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Photo) + "/" + Model.Photo)"/>
+                            <input hidden name="CropPoints" value="[@Model.CropPoints[0], @Model.CropPoints[1], @Model.CropPoints[2], @Model.CropPoints[3]]">
+                        </div>
+                        <div class="col-1-2">
+                            <div class="upload-msg">
+                                Вибреріть область
+                            </div>
+                            <div class="upload-demo-wrap">
+                                <div id="upload-demo"></div>
+                            </div>
+                            <button type="button" class="upload-result btn btn-save btn-edit-second" disabled>Зафіксувати</button>
                         </div>
                         <div class="social-form">
                             <p>Редагувати посилання на профілі</p>
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-facebook fa-1_3x color-fb" aria-hidden="true"></i></span>
-                                <input id="input-value-fb" value="https://www.facebook.com/" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
+                                <input id="input-value-fb" value="@Model.Socials?[0]" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
                             </div>
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-twitter fa-1_3x color-tw" aria-hidden="true"></i></span>
-                                <input id="input-value-tw" value="https://twitter.com" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
+                                <input id="input-value-tw" value="@Model.Socials?[1]" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
                             </div>
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-google-plus fa-1_3x color-g" aria-hidden="true"></i></span>
-                                <input id="input-value-google" value="https://plus.google.com" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
+                                <input id="input-value-google" value="@Model.Socials?[2]" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-            
-
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
                 <div class="block-border-top default-border-color body-preview">
-                    <div id='img-upload' class="img-fluid preview-img rounded-circle mx-auto" style="background-image: url(img/user-no-image.png)"/>
+                    <div id='img-upload' class="img-fluid preview-img rounded-circle mx-auto" style="background-image: url(/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Photo) + "/small-" + Model.Photo))" />
                 </div>
-                <h4 class="preview-name text-center"> <span class="input-value-name">Макс</span> <span class="input-value-lastname">Труняк</span></h4>
-                <p class="input-value-autobiography text-center preview-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla audantium, totam rem aperiam, eaque ipsa quae
-                    ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit as
-                    pernatur aut odit aut fugit</p>
+                <h4 class="preview-name text-center"> <span class="input-value-name">@Model.Name</span> <span class="input-value-lastname">@Model.Surname</span></h4>
+                <p class="input-value-autobiography text-center preview-description">
+                    @Model.Description
+                </p>
                 <div class="link-social">
                     <div class="item-link-social link-fb">
                         <i class="fa fa-facebook fa-1_3x text-center" aria-hidden="true"></i>
-                        <p class="input-value-fb text-center">https://www.facebook.com/</p>
+                        <p class="input-value-fb text-center">@Model.Socials[0]</p>
                     </div>
                     <div class="item-link-social link-tw">
                         <i class="fa fa-twitter fa-1_3x text-center" aria-hidden="true"></i>
-                        <p class="input-value-tw text-center">https://twitter.com/</p>
+                        <p class="input-value-tw text-center">@Model.Socials[1]</p>
                     </div>
                     <div class="item-link-social link-g">
                         <i class="fa fa-google-plus fa-1_3x text-center" aria-hidden="true"></i>
-                        <p class="input-value-google text-center">https://plus.google.com/</p>
+                        <p class="input-value-google text-center">@Model.Socials[2]</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+<script>
+    
+</script>
+

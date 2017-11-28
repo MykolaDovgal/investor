@@ -39,6 +39,28 @@ namespace Investor.Service
 
         }
 
+        public async Task<IdentityResult> UpdateUserAsync(User user)
+        {
+            var userEntity = Mapper.Map<User, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
+            var userUpdateResult = await _userManager.UpdateAsync(userEntity);
+            if (userUpdateResult.Succeeded)
+            {
+                return IdentityResult.Success;
+            }
+            return IdentityResult.Failed();
+        }
+
+        public async Task<IdentityResult> ChangePasswordAsync(User user, string newPassword)
+        {
+            var userEntity = await _userManager.FindByIdAsync(user.Id);
+            var result = await _userManager.ChangePasswordAsync(userEntity, user.Password, newPassword);
+            if (result.Succeeded)
+            {
+                return IdentityResult.Success;
+            }
+            return IdentityResult.Failed();
+        }
+
         public async Task<IdentityResult> CreateUserAsync(User user,string userRole = "user")
         {
             var userEntity = Mapper.Map<User, UserEntity>(user);

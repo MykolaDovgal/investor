@@ -1,7 +1,9 @@
 ﻿@model Investor.Model.BlogPreview
 @inject Investor.Service.TimeService PostPublicationDate
 <div class="sidebar-item-blog vertical">
-    <img src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Author.Photo) + "/small-" + Model.Author.Photo)" alt="" class="rounded-circle align-top" />
+    <a class="author-blog" href="/blog/blogerpage/@Model.Author.UserName">
+        <img src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Author.Photo) + "/small-" + Model.Author.Photo)" alt="" class="rounded-circle align-top" />
+    </a>
     <div class="sidebar-item-blog-body align-top">
         <a class="author-blog" href="/blog/blogerpage/@Model.Author.UserName">
             @Model.Author.Name @Model.Author.Surname

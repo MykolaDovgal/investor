@@ -3,5 +3,6 @@
 
 @foreach (var blog in Model)
 {
-    @Html.Partial("_BlogPreviewTemplate", blog)
+    <input hidden class="numberOfPosts" value="@Model.Count()"/>
+    @Html.Partial("~/Views/Blog/_LatestBlogPreviewTemplate.cshtml", blog)
 }

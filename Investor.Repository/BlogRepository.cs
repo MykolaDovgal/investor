@@ -72,5 +72,16 @@ namespace Investor.Repository
             users = users.OrderByDescending(u => u.Blogs.Where(b => b.IsPublished ?? false).Count()).Take(limit).ToList();
             return users;
         }
+
+        public async Task<IEnumerable<BlogEntity>> GetPagedLatestBlogsAsync(int page, int limit)
+        {
+            var r = await _newsContext.Blogs
+                .Include(p => p.Author)
+                .OrderByDescending(p => p.PublishedOn)
+                .Skip(limit * (page - 1))
+                .Take(limit)
+                .ToListAsync();
+            return r;
+        }
     }
 }

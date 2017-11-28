@@ -12,7 +12,7 @@ namespace Investor.Entity
         public string Photo { get; set; }
         public string SerializedSocials { get; set; }
         public List<BlogEntity> Blogs { get; set; }
-
+        public string SerializedCropPoints { get; set; }
         public UserEntity()
         {
             Blogs = new List<BlogEntity>();

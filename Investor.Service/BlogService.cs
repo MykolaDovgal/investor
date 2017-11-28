@@ -141,6 +141,12 @@ namespace Investor.Service
             return popUsers;
         }
 
-
+        public async Task<IEnumerable<BlogPreview>> GetPagedLatestBlogsAsync(int page, int limit)
+        {
+            var posts = (await _blogRepository
+                .GetPagedLatestBlogsAsync(page, limit))
+                .Select(Mapper.Map<BlogEntity, BlogPreview>);
+            return posts;
+        }
     }
 }

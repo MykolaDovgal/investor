@@ -15,5 +15,6 @@ namespace Investor.Model.Views
         public string Description { get; set; }
         public string Photo { get; set; }
         public List<string> Socials { get; set; }
+        public List<int> CropPoints { get; set; }
     }
 }

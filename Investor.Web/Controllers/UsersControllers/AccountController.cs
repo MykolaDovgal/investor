@@ -8,9 +8,12 @@ using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Investor.Web.Controllers.UsersControllers
 {
+    [Authorize(Roles = "bloger")]
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
@@ -34,7 +37,7 @@ namespace Investor.Web.Controllers.UsersControllers
 
             ViewBag.IsOwner = currentUser != null && (String.IsNullOrWhiteSpace(id) && String.IsNullOrWhiteSpace(currentUser.Id) &&
                                                       id == currentUser.Id);
-            return View();
+            return View(currentUser);
         }
         public IActionResult Account(string id)
         {
@@ -82,27 +85,28 @@ namespace Investor.Web.Controllers.UsersControllers
             return Json(Url.Action("Account", "Account"));
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-
+        [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model, [FromForm]IFormFile Photo, [FromForm]List<int> Points)
+        public async Task<IActionResult> Register(RegisterViewModel model, [FromForm]IFormFile Photo)
         {
             var user = Mapper.Map<RegisterViewModel, User>(model);
-            user.Photo = _imageService.SaveAccountImage(Photo, Points);
+            user.Photo = _imageService.SaveAccountImage(Photo,model.CropPoints);
 
             if ((await _userService.CreateUserAsync(user)).Succeeded)
             {
-                return View("Login");
+                return Redirect("/Account/Login");
             }
 
             return View(model);
         }
 
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
@@ -111,6 +115,7 @@ namespace Investor.Web.Controllers.UsersControllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             var result =
@@ -127,6 +132,28 @@ namespace Investor.Web.Controllers.UsersControllers
         {
             await _userService.SignOutUserAsync();
             return Json(Url.Action("Index", "Home"));
+        }
+
+        [HttpPost]
+        public async Task UpdateUser(User model, [FromForm]IFormFile Image, [FromForm]List<int> Points)
+        {
+            //if (!model.CropPoints.SequenceEqual(Points))
+            //{
+                model.CropPoints = Points;
+                model.Photo = Image != null ? _imageService.SaveAccountImage(Image, Points) : _imageService.CropExistingImage(Path.GetFileName(model.Photo), Points);
+            //}
+            //else
+            //{
+            //    model.Photo = Path.GetFileName(model.Photo);
+            //}
+            await _userService.UpdateUserAsync(model);
+
+        }
+
+        [HttpPost]
+        public async Task ChangePassword(User model, string newPassword)
+        {
+            await _userService.ChangePasswordAsync(model, newPassword);
         }
     }
 }

@@ -16,9 +16,14 @@ namespace Investor.Service
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<User, UserEntity>()
-                    .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)));
+                    .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)))
+                    .ForMember(x => x.SerializedCropPoints, opt => opt.MapFrom(src => string.Join(";", src.CropPoints)))
+                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
+           
+
                 cfg.CreateMap<UserEntity, User>()
-                    .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';', StringSplitOptions.RemoveEmptyEntries)));
+                    .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';',StringSplitOptions.None)))
+                    .ForMember(x=>x.CropPoints, opt => opt.MapFrom(src=>src.SerializedCropPoints.Split(';', StringSplitOptions.None).Select(c=>int.Parse(c))));
                 cfg.CreateMap<RegisterViewModel, User>().ReverseMap();
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();

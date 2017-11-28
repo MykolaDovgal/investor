@@ -30,10 +30,6 @@ namespace Investor.Web.Areas.Admin.Controllers
         {
             News post = _postService.GetNewsByIdAsync(id).Result;
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
-            //List<SliderItem> sliderItems = _sliderItemService.GetAllSliderItemsAsync().Result.ToList();
-            //SliderItem sliderItem = sliderItems.FirstOrDefault(s => s.Post.PostId == id);
-            //ViewBag.IsOnSlider = sliderItem != null ? sliderItem.IsOnSlider : false;
-            //ViewBag.IsOnSide = sliderItem != null ? sliderItem.IsOnSide : false;
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result.ToList();
             return PartialView("SinglePost", post);
         }

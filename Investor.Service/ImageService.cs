@@ -25,7 +25,7 @@ namespace Investor.Service
             string imageExtension = Path.GetExtension(image.FileName);
             string originFileName = CreateMD5(image.FileName + image.Length);
             string fullOriginalFileName = originFileName + imageExtension;
-            string imageFolderPath = Path.Combine("posts/" + _env.WebRootPath, "img", originFileName);            
+            string imageFolderPath = Path.Combine(_env.WebRootPath, "img", "posts", originFileName);            
 
             if (Directory.Exists(imageFolderPath))
             {
@@ -43,8 +43,7 @@ namespace Investor.Service
             {
                  image.CopyTo(stream);
             }
-            List<int> points = new List<int>() { 1, 50, 100, 100 };
-            ResizeAccountImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104,104), points);
+            ResizeImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104,104));
             ResizeImage(imageFolderPath, fullOriginalFileName, "medium-", new Size(382, 208));
             ResizeImage(imageFolderPath, fullOriginalFileName, "large-", new Size(751, 423));
 
@@ -55,7 +54,7 @@ namespace Investor.Service
             string imageExtension = Path.GetExtension(image.FileName);
             string originFileName = CreateMD5(image.FileName + image.Length);
             string fullOriginalFileName = originFileName + imageExtension;
-            string imageFolderPath = Path.Combine("accounts/",_env.WebRootPath, "img", originFileName);
+            string imageFolderPath = Path.Combine(_env.WebRootPath, "img", "accounts", originFileName);
 
             if (Directory.Exists(imageFolderPath))
             {
@@ -76,7 +75,22 @@ namespace Investor.Service
             ResizeAccountImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104, 104), points);
             return fullOriginalFileName;
         }
+        public string CropExistingImage(string imageName, List<int> points)
+        {
+            string originFileName = Path.GetFileNameWithoutExtension(imageName);
+            string imageFolderPath = Path.Combine(_env.WebRootPath, "img", "accounts", originFileName);
 
+            if (Directory.Exists(imageFolderPath))
+            {
+                    File.Delete(Path.Combine(imageFolderPath, "small" + imageName));
+            }
+            else
+            {
+                return null;
+            }
+            ResizeAccountImage(imageFolderPath, imageName, "small-", new Size(104, 104), points);
+            return imageName;
+        }
         private void ResizeImage(string imageFolderPath, string originalImageName, string prefix, Size size)
         {
             using (var img = Image.Load(Path.Combine(imageFolderPath, originalImageName)))
@@ -104,7 +118,6 @@ namespace Investor.Service
                 img.Save(Path.Combine(imageFolderPath, prefix + originalImageName));
             }
         }
-
         private string CreateMD5(string input)
         {
             using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())

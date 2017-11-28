@@ -59,19 +59,19 @@ $.validate({
 });
 
 var resultsrc = "";
-var Demo = (function () {
+var Cropper = (function () {
 
 
 	function popupResult(result) {
 		if (result.src) {
+			console.log(result);
 			$('#img-upload').attr('style', 'background-image: url(' + result.src + ');');
 		}
 	}
 
 
-	function demoUpload() {
+	function Upload() {
 		var $uploadCrop;
-
 		function readFile(input) {
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
@@ -80,6 +80,7 @@ var Demo = (function () {
 					$uploadCrop.croppie('bind', {
 						url: e.target.result
 					}).then(function () {
+
 					});
 				}
 				reader.readAsDataURL(input.files[0]);
@@ -98,12 +99,27 @@ var Demo = (function () {
 			enableExif: true
 		});
 
+		$(document).ready(function () {
+			console.log($('input[name="CropPoints"]').val());
+			console.log(JSON.parse($('input[name="CropPoints"]').val()));
+			$uploadCrop.croppie('bind', {
+				url: $('#userPhoto').attr('src'),
+				points: JSON.parse($('input[name="CropPoints"]').val())
+			}).then(function () {
+				console.log($('.form-control').attr('src'));
+				});
+			
+		});
+		
+
 		$('#upload').on('change', function () { readFile(this); });
 		$('.upload-result').on('click', function (ev) {
 			$uploadCrop.croppie('result', {
 				type: 'canvas',
 				size: 'viewport'
 			}).then(function (resp) {
+				console.log(resp);
+				console.log($uploadCrop.files);
 				popupResult({
 					src: resp
 				});
@@ -114,7 +130,7 @@ var Demo = (function () {
 
 
 	function init() {
-		demoUpload();
+		Upload();
 	}
 
 	return {
@@ -124,4 +140,9 @@ var Demo = (function () {
 })();
 
 
-Demo.init();
+Cropper.init();
+
+//$(document).ready(function () {
+//	$('.cr-image').attr('src',);
+//	console.log('hello2');
+//});

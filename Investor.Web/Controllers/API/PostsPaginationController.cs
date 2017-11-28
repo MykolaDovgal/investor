@@ -5,14 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 namespace Investor.Web.Controllers.API
 {
     [Route("api/[controller]")]
-    public class PostController : Controller
+    public class PostsPaginationController : Controller
     {
 
         private readonly INewsService _postService;
+        private readonly IBlogService _blogService;
 
-        public PostController(INewsService postService)
+        public PostsPaginationController(INewsService postService, IBlogService blogService)
         {
             _postService = postService;
+            _blogService = blogService;
         }
 
         [Route("more")]
@@ -29,6 +31,14 @@ namespace Investor.Web.Controllers.API
         {
             var posts = await _postService.GetPagedLatestNewsByCategoryUrlAsync("", limit, page);
             return PartialView("~/Views/Search/_SearchResultTemplate.cshtml", posts);
+        }
+
+        [Route("morelastblogs")]
+        [HttpGet]
+        public async Task<IActionResult> GetMoreLastBlogs(int page, int limit)
+        {
+            var posts = await _blogService.GetPagedLatestBlogsAsync(page, limit);
+            return PartialView("~/Views/Blog/_LastBlogsTemplate.cshtml", posts);
         }
     }
 }

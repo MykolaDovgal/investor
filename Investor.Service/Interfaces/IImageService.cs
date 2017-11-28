@@ -10,5 +10,6 @@ namespace Investor.Service.Interfaces
     {
         string SaveImage(IFormFile file);
         string SaveAccountImage(IFormFile file, List<int> points);
+        string CropExistingImage(string imageName, List<int> points);
     }
 }
