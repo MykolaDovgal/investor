@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Investor.Web.Controllers.API
 {
@@ -37,7 +38,7 @@ namespace Investor.Web.Controllers.API
         [HttpGet]
         public async Task<IActionResult> GetMoreLastBlogs(int page, int limit)
         {
-            var posts = await _blogService.GetPagedLatestBlogsAsync(page, limit);
+            var posts = (await _blogService.GetPagedLatestBlogsAsync(page, limit)).ToList() ;
             return PartialView("~/Views/Blog/_LastBlogsTemplate.cshtml", posts);
         }
     }

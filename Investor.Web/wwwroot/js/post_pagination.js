@@ -30,6 +30,7 @@ let getMoreNews = function (categoryName,page,limit,url,target) {
         type: "GET",
 		success: function (data) {
 			$(target).append(data);
+			console.log($(".numberOfPosts").last().val());
 			if ($(".numberOfPosts").last().val() < moreNewsLimit) {
 				$(".wrapper-btn-more").attr("hidden", "true");
 			}

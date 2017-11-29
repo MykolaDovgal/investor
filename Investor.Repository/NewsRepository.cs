@@ -63,7 +63,7 @@ namespace Investor.Repository
         {
             var news = _newsContext.News;
             var filteredNews = news.Where(n => (n.IsOnSide ?? false));
-            return await news
+            return await filteredNews
                 .OrderByDescending(n => n.PublishedOn)
                 .Take(limit)
                 .ToListAsync();

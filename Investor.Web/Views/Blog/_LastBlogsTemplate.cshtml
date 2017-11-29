@@ -1,8 +1,8 @@
 ﻿@using Investor.Model
 @model IEnumerable<BlogPreview>
 
+<input hidden class="numberOfPosts" value="@Model.Count()" />
 @foreach (var blog in Model)
 {
-    <input hidden class="numberOfPosts" value="@Model.Count()"/>
     @Html.Partial("~/Views/Blog/_LatestBlogPreviewTemplate.cshtml", blog)
 }

@@ -146,6 +146,7 @@ namespace Investor.Service
             var posts = (await _blogRepository
                 .GetPagedLatestBlogsAsync(page, limit))
                 .Select(Mapper.Map<BlogEntity, BlogPreview>);
+            int num = posts.Count();
             return posts;
         }
     }
