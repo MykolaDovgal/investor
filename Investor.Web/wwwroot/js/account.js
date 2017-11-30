@@ -5,7 +5,11 @@ $(document).ready(function () {
     $("#logoff").click(function(e) {
         e.preventDefault();
         logOff();
-    });
+	});
+
+	$("#imgInp").change(function () {
+		readURL(this);
+	});
 
     $("#createUserPostForm").submit(function(e) {
 		e.preventDefault();
@@ -36,6 +40,19 @@ $(document).ready(function () {
     getAllTags();
 
 });
+
+let readURL = function (input) {
+
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function (e) {
+			$('#imgPrev').attr('src', e.target.result);
+		}
+
+		reader.readAsDataURL(input.files[0]);
+	}
+}
 
 
 let getCreatePostFormData = function() {

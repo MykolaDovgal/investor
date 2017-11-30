@@ -1,6 +1,7 @@
 ﻿@using Investor.Model
 @model PostPreview
 @inject Investor.Service.TimeService PostPublicationDate
+@inject Investor.Service.Interfaces.IImagePathService ImagePath
 
 
 <div class="item-search-result p-3 p-md-0">
@@ -8,7 +9,7 @@
         
         <div class="col-md-4 img-result">
             <a href="/@(Model.Category.Url == "blog" ? "blog/page" : "post" )/@Model.PostId">
-                <img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/medium-" + Model.Image)" class="img-fluid" />
+                <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "medium-")" class="img-fluid" />
             </a>
         </div>
 

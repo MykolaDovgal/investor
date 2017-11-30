@@ -1,5 +1,6 @@
 ﻿@model Investor.Model.Blog
 @using Investor.Model
+@inject Investor.Service.Interfaces.IImagePathService ImagePath
 <section class="section-create-post">
     <div class="container">
         <form id="createUserPostForm" action='/Account/@(Model == null ? "CreatePost" : "UpdatePost")'>
@@ -34,12 +35,13 @@
                                 <span class="input-group-btn">
                                     <span class="btn btn-second btn-file">
                                         Вибрати файл <input asp-for="Image" type="file" id="imgInp">
-                                    </span>
+                                    </span>  
                                 </span>
                                 <input type="text" class="form-control" readonly="">
                             </div>
+                            <img id="imgPrev" src="@(Model  == null ? "/img/no-img/no-img-blog.png" : ("/" + ImagePath.GetImagePath(Model.Image, Model.PostId)))" class="w-100">
                         </div>
-
+                        
                         <div class="form-group">
                             <label>Опишіть що тут зображено</label>
                             <input type="text" class="form-control focus-input focus-color-default">

@@ -31,10 +31,6 @@ namespace Investor.Service
             }
             map.ModifiedOn = DateTime.Now;
             map.CreatedOn = DateTime.Now;
-            if (String.IsNullOrWhiteSpace(map.Image))
-            {
-                map.Image = $"no-img/no-img-{map.Category.Url}.png";
-            }
             var response = await _postRepository.AddPostAsync<NewsEntity>(Mapper.Map<News, NewsEntity>(map));
             map.PostId = response.PostId;
 
@@ -151,7 +147,8 @@ namespace Investor.Service
                         await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
                     }
                 }
-            }
+                postTags.Where(pt => !tags.Contains(pt.Name)).ToList().ForEach(async pt => await _postRepository.RemoveTagFromPostAsync(postId, pt));
+            } 
         }
 
         public async Task<IEnumerable<Tag>> GetAllTagsByNewsIdAsync(int id)

@@ -25,6 +25,7 @@ namespace Investor.Repository
                 map.PublishedOn = DateTime.Now;
             map.ModifiedOn = DateTime.Now;
             map.CreatedOn = DateTime.Now;
+            map.PublishedOn = DateTime.Now; /// TODO!
             await _newsContext.Set<T>().AddAsync(map);
             await _newsContext.SaveChangesAsync();
             return map;

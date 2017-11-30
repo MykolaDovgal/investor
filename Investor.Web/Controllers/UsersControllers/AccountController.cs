@@ -21,7 +21,7 @@ namespace Investor.Web.Controllers.UsersControllers
         private readonly INewsService _postService;
         private readonly IImageService _imageService;
 
-        public AccountController(IUserService userService,IBlogService blogService, IImageService imageService, INewsService postService)
+        public AccountController(IUserService userService, IBlogService blogService, IImageService imageService, INewsService postService)
         {
             _userService = userService;
             _postService = postService;
@@ -96,7 +96,7 @@ namespace Investor.Web.Controllers.UsersControllers
         public async Task<IActionResult> Register(RegisterViewModel model, [FromForm]IFormFile Photo)
         {
             var user = Mapper.Map<RegisterViewModel, User>(model);
-            user.Photo = _imageService.SaveAccountImage(Photo,model.CropPoints);
+            user.Photo = _imageService.SaveAccountImage(Photo, model.CropPoints);
 
             if ((await _userService.CreateUserAsync(user)).Succeeded)
             {
@@ -137,15 +137,9 @@ namespace Investor.Web.Controllers.UsersControllers
         [HttpPost]
         public async Task UpdateUser(User model, [FromForm]IFormFile Image, [FromForm]List<int> Points)
         {
-            //if (!model.CropPoints.SequenceEqual(Points))
-            //{
-                model.CropPoints = Points;
-                model.Photo = Image != null ? _imageService.SaveAccountImage(Image, Points) : _imageService.CropExistingImage(Path.GetFileName(model.Photo), Points);
-            //}
-            //else
-            //{
-            //    model.Photo = Path.GetFileName(model.Photo);
-            //}
+
+            model.CropPoints = Points;
+            model.Photo = Image != null ? _imageService.SaveAccountImage(Image, Points) : _imageService.CropExistingImage(Path.GetFileName(model.Photo), Points);
             await _userService.UpdateUserAsync(model);
 
         }

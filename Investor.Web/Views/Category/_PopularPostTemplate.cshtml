@@ -1,11 +1,15 @@
 ﻿@model Investor.Model.PostPreview
 @inject Investor.Service.TimeService PostPublicationDate
+@inject Investor.Service.Interfaces.IImagePathService ImagePath
 @{
     string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
 }
-
-<img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/large-" + Model.Image)" class="img-fluid" />
-<div class="body-popular-news">
-    <a href="/post/@Model.PostId" class="title-popular-news color-white">@Model.Title</a>
-    <span class="data-popular-news other-days">@publishedTime</span>
-</div>
+<a href="/post/@Model.PostId">
+    <div class="img-eclipse">
+        <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "large-")" class="img-fluid" />
+        <div class="body-popular-news">
+            <span href="/post/@Model.PostId" class="title-popular-news color-white">@Model.Title</span>
+            <span class="data-popular-news other-days">@publishedTime</span>
+        </div>
+    </div>
+</a>

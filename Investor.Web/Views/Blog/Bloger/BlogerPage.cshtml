@@ -1,11 +1,12 @@
 ﻿@model Investor.Model.User
 @using Investor.Model
+@inject Investor.Service.Interfaces.IImagePathService ImagePath
 <section class="section-author">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 pl-0 p-0 pr-lg-2">
                 <div class="wrapper-author mb-3">
-                    <div class="img-author"><img src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Photo) + "/small-" + Model.Photo)" alt="" class="rounded-circle align-top img-fluid"></div>
+                    <div class="img-author"><img src="~/@ImagePath.GetAccountImagePath(Model.Photo)" alt="" class="rounded-circle align-top img-fluid"></div>
                     <div class="body-author">
                         <div class="header-author mb-2">
                             <h2 class="pull-left">@Model.Name @Model.Surname</h2>

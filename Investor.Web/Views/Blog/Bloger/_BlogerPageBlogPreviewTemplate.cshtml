@@ -1,12 +1,12 @@
 ﻿@using Investor.Model
 @model BlogPreview
 @inject Investor.Service.TimeService PostPublicationDate
-
+@inject Investor.Service.Interfaces.IImagePathService ImagePath
 
 <div class="item-my-post col-12">
     <div class="img-news">
         <a href="/blog/page/@Model.PostId">
-            <img src="~/img/posts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/small-" + Model.Image)" class="img-fluid rounded-circle">
+            <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "small-")" class="img-fluid rounded-circle">
         </a>
     </div>
     <div class="body-all-news">

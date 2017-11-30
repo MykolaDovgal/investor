@@ -1,8 +1,9 @@
 ﻿@model Investor.Model.BlogPreview
 @inject Investor.Service.TimeService PostPublicationDate
+@inject Investor.Service.Interfaces.IImagePathService ImagePath
 <div class="sidebar-item-blog vertical">
     <a class="author-blog" href="/blog/blogerpage/@Model.Author.UserName">
-        <img src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Author.Photo) + "/small-" + Model.Author.Photo)" alt="" class="rounded-circle align-top" />
+        <img src="~/@ImagePath.GetAccountImagePath(Model.Author.Photo)" alt="" class="rounded-circle align-top" />
     </a>
     <div class="sidebar-item-blog-body align-top">
         <a class="author-blog" href="/blog/blogerpage/@Model.Author.UserName">

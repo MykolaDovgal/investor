@@ -35,7 +35,7 @@ namespace Investor.Service
             map.Author = _userService.GetCurrentUserAsync().Result;
             map.Category = await _categoryService.GetCategoryByUrlAsync("blog");
             var response = await _postRepository.AddPostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(map));
-            await AddTagsToBlogAsync(response.PostId, map.Tags.Select(c=>c.Name));
+            await AddTagsToBlogAsync(response.PostId, map.Tags?.Select(c=>c.Name));
             map.PostId = response.PostId;
             return map;
         }

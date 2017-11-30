@@ -6,10 +6,8 @@
             @for (int i = 0; i < ViewBag.CategoryPopularPosts.Count; i++)
             {
                  string styleClass = i < 2 ? "col-md-6" : "col-md-4";
-                <div class="item-popular-news col-xs-12 @styleClass">
-                    <div class="img-eclipse">
+                <div class="item-popular-news col-xs-12 @styleClass">                    
                         @Html.Partial("_PopularPostTemplate", ViewBag.CategoryPopularPosts[i] as PostPreview)
-                    </div>
                 </div>
             }
         </div>

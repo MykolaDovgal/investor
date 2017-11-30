@@ -1,4 +1,5 @@
 ﻿@using Investor.Model
+@inject Investor.Service.Interfaces.IImagePathService ImagePath
 @model User
 
 <section class="page-my-profile pb-5">
@@ -110,7 +111,7 @@
             </div>
             <div class="col-lg-4 pl-lg-2  p-0 pr-0">
                 <div class="block-border-top default-border-color body-preview">
-                    <div id='img-upload' class="img-fluid preview-img rounded-circle mx-auto" style="background-image: url(/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Photo) + "/small-" + Model.Photo))" />
+                    <div id='img-upload' class="img-fluid preview-img rounded-circle mx-auto" style="background-image: url(/@ImagePath.GetAccountImagePath(Model.Photo))" />
                 </div>
                 <h4 class="preview-name text-center"> <span class="input-value-name">@Model.Name</span> <span class="input-value-lastname">@Model.Surname</span></h4>
                 <p class="input-value-autobiography text-center preview-description">

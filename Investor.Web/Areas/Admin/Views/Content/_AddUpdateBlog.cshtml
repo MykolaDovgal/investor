@@ -1,6 +1,6 @@
 ﻿@model Investor.Model.Blog
 @using System.IO
-
+@inject Investor.Service.ImagePathService ImagePath
 <input type="hidden" value="@Model.PostId" name="PostId" />
 
 <div class="page-content page-post">
@@ -17,13 +17,13 @@
 
     <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
-            <img class="cropper" src="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/posts/" + System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/" + Model.Image))" alt="" required="required" />
+            <img class="cropper" src="@("~/../../../../" + ImagePath.GetImagePath(Model.Image, "large", Model.Category.Url))" alt="" required="required" />
         </div>
         <div>
             <span class="btn red btn-outline btn-file">
                 <span class="fileinput-new"> Вибрати світлину </span>
                 <span class="fileinput-exists"> Змніити </span>
-                <input type="file" name="Image" value="@(String.IsNullOrEmpty(Model.Image) ? "http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" : ("~/../../../../img/posts/" + System.IO.Path.GetFileNameWithoutExtension(Model.Image) + "/" + Model.Image))">
+                <input type="file" name="Image" value="@("~/../../../../" + ImagePath.GetImagePath(Model.Image, "large", Model.Category.Url))">
             </span>
             <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Видалити </a>
         </div>

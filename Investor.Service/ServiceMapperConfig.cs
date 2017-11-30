@@ -31,12 +31,9 @@ namespace Investor.Service
                 cfg.CreateMap<TableBlogPreview, PostEntity>().ReverseMap();
 
                 cfg.CreateMap<PostPreview, PostEntity>().ReverseMap();
-                cfg.CreateMap<NewsEntity, PostPreview>()
-                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image))
-                    .ReverseMap();
+                cfg.CreateMap<NewsEntity, PostPreview>().ReverseMap();
 
-                cfg.CreateMap<BlogEntity, BlogPreview>()
-                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-blog.png" : s.Image));
+                cfg.CreateMap<BlogEntity, BlogPreview>();
 
 
                 cfg.CreateMap<NewsEntity, TablePostPreview>().ReverseMap();
@@ -77,7 +74,6 @@ namespace Investor.Service
 
                 cfg.CreateMap<NewsEntity, News>()
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)))
-                    .ForMember(dto => dto.Image, opt => opt.ResolveUsing(s => String.IsNullOrWhiteSpace(s.Image) ? $"no-img/no-img-{s.Category.Url}.png" : s.Image))
                     .ReverseMap();
 
                 cfg.CreateMap<IList<PostEntity>, IList<News>>().ReverseMap();
