@@ -42,7 +42,7 @@ namespace Investor.Web.Areas.Admin.Controllers
             return PartialView("SingleBlog", blog);
         }
 
-        public IActionResult Create()
+        public IActionResult CreateNews()
         {
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
             News post = new News();

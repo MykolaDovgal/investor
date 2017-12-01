@@ -69,6 +69,7 @@ namespace Investor.Service
                     .ForMember(x=>x.Author, opt=>opt.Ignore())
                     .ForMember(x => x.CreatedOn, opt => opt.Ignore())
                     .ForMember(x => x.PublishedOn, opt => opt.Ignore())
+                    .ForMember(x => x.ModifiedOn, opt => opt.Ignore())
                     .ForMember(x => x.PostTags, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
 

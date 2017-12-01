@@ -21,5 +21,7 @@ namespace Investor.Model
         public bool IsOnSide { set; get; }
         public Category Category { set; get; }
         public List<Tag> Tags { get; set; }
+
+
     }
 }

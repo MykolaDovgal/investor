@@ -44,7 +44,9 @@
 			}
 		});
 
-		$('#updateFormSubmit').on("click", function (e) {
+        $('#updateFormSubmit').on("click", function (e) {
+            const $this = $(this);
+            $this.attr("disabled", "disabled");
 			var formId = $('.updateForm').attr('id');
 			var formData = new FormData(document.getElementById(formId));
 			console.log(formData.get("Category.Url"));
@@ -71,11 +73,13 @@
 				cache: false,
 				contentType: false,
 				processData: false,
-				success: function (data) {
-					console.log('lol', data);
+                success: function (data) {
+                    $("#updateFormSubmit").data("action", "UpdatePost");
+                    $(`#${formId} input[name='PostId']`).val(data["id"]);
+                    $this.removeAttr("disabled");
 				},
 				error: function (data) {
-					console.log(data);
+				    $this.removeAttr("disabled");
 				}
 			});
 			e.preventDefault();

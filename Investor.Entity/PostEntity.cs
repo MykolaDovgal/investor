@@ -45,6 +45,7 @@ namespace Investor.Entity
         public PostEntity()
         {
             PostTags = new List<PostTagEntity>();
+            Category = null;
         }
     }
 }

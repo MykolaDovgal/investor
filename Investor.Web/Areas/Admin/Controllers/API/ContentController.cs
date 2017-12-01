@@ -54,34 +54,35 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdatePost")]
         [HttpPost]
-        public void UpdatePost([FromForm]News post, [FromForm]IFormFile image)
+        public JsonResult UpdatePost([FromForm]News post, [FromForm]IFormFile image)
         {
             post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
             post.Image = image != null ? _imageService.SaveImage(image) : null;
             _postService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
             News newPost = _postService.GetNewsByIdAsync(post.PostId).Result;
             newPost = Mapper.Map(post, newPost);
-            _postService.UpdateNewsAsync(newPost).Wait();
+            return Json(new { id = _postService.UpdateNewsAsync(newPost).Result.PostId });
         }
 
         [Route("UpdateBLog")]
         [HttpPost]
-        public void UpdateBlog([FromForm]Blog post, [FromForm]IFormFile image)
+        public JsonResult UpdateBlog([FromForm]Blog post, [FromForm]IFormFile image)
         {
             post.Image = image != null ? _imageService.SaveImage(image) : null;
             _postService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
             post.Category = _categoryService.GetCategoryByUrlAsync("blog").Result;
-            _blogService.UpdateBlogAsync(post).Wait();
+            return Json(new { id = _blogService.UpdateBlogAsync(post).Result.PostId});
         }
 
         [Route("CreatePost")]
         [HttpPost]
-        public void CreatePost([FromForm]News post, [FromForm]IFormFile image)
+        public JsonResult CreatePost([FromForm]News post, [FromForm]IFormFile image)
         {
             post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
             post.Image = image != null ? _imageService.SaveImage(image) : null;
-            var tmp = _postService.AddNewsAsync(post).Result;
+            News tmp = _postService.AddNewsAsync(post).Result;
             _postService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
+            return Json(new { id = tmp.PostId });
         }
 
         [Route("GetAllTags")]

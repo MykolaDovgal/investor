@@ -180,10 +180,10 @@ namespace Investor.Repository
         public async Task UpdatePostAsync<T>(IEnumerable<T> posts) where T : PostEntity
         {
             List<T> newPosts = posts as List<T> ?? posts.ToList();
-            var postsId = newPosts.Select(x => x.PostId);
-            var oldPosts = (await GetPostsBasedOnIdCollectionAsync<T>(postsId)).ToList();
+            IEnumerable<int> postsId = newPosts.Select(x => x.PostId);
+            List<T> oldPosts = (await GetPostsBasedOnIdCollectionAsync<T>(postsId)).ToList();
 
-            for (int i=0; i < oldPosts.Count(); i++)
+            for (var i=0; i < oldPosts.Count(); i++)
             {
                 T newPost = newPosts.Find(x => x.PostId == oldPosts[i].PostId);
                 oldPosts[i].PublishedOn = (newPost.IsPublished ?? false) && !(oldPosts[i].IsPublished ?? false) ? DateTime.Now : oldPosts[i].PublishedOn;

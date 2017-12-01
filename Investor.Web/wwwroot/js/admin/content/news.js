@@ -47,11 +47,12 @@ $(document).on("click", "a.nav-link", function (e) {
 		console.log(tempArray);
 		updetePosts.call(this, url, tempArray);
 
-	}
+    }
+
 	if (type && type === "singlepost") {
 		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost");});
 	}
-	if (type && type === "create") {
+	if (type && type === "createpost") {
 		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost");});
 	}
 	if (type && type === "singleblog") {

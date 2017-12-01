@@ -13,19 +13,21 @@ namespace Investor.Service
 {
     public class ImagePathService : IImagePathService
     {
-        IPostRepository _postRepository;
+        private readonly IPostRepository _postRepository;
         public ImagePathService(IPostRepository postRepository)
         {
             _postRepository = postRepository;
         }
         public string GetImagePath(string imageName, int id, string prefix = "")
         {
-            if (String.IsNullOrEmpty(imageName))
+            if (!string.IsNullOrEmpty(imageName))
             {
-                var post = _postRepository.GetPostByIdAsync<PostEntity>(id).Result;
-                return $"img/no-img/no-img-{post.Category.Url}.png";
+                return $"img/posts/{Path.GetFileNameWithoutExtension(imageName)}/{prefix}{imageName}";
             }
-            return $"img/posts/{Path.GetFileNameWithoutExtension(imageName)}/{prefix}{imageName}";
+
+            PostEntity post = _postRepository.GetPostByIdAsync<PostEntity>(id).Result;
+            
+            return post == null ? $"img/no-img/no-img.png" : $"img/no-img/no-img-{post.Category.Url}.png";
         }
 
         public string GetAccountImagePath(string imageName, string prefix = "small-")
