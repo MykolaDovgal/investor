@@ -89,6 +89,7 @@ namespace Investor.Web.Controllers.UsersControllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.IsBlog = true;
             return View();
         }
         [AllowAnonymous]
@@ -100,7 +101,7 @@ namespace Investor.Web.Controllers.UsersControllers
 
             if ((await _userService.CreateUserAsync(user)).Succeeded)
             {
-                return Redirect("/Account/Login");
+                return Json(Url.Action("Login", "Account"));
             }
 
             return View(model);
@@ -118,8 +119,7 @@ namespace Investor.Web.Controllers.UsersControllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            var result =
-                await _userService.PasswordSignInUserAsync(model.Email, model.Password, model.RememberMe, false);
+            var result = await _userService.PasswordSignInUserAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
@@ -141,7 +141,6 @@ namespace Investor.Web.Controllers.UsersControllers
             model.CropPoints = Points;
             model.Photo = Image != null ? _imageService.SaveAccountImage(Image, Points) : _imageService.CropExistingImage(Path.GetFileName(model.Photo), Points);
             await _userService.UpdateUserAsync(model);
-
         }
 
         [HttpPost]

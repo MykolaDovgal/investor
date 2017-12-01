@@ -52,29 +52,33 @@ namespace Investor.Service
         }
         public string SaveAccountImage(IFormFile image, List<int> points)
         {
-            string imageExtension = Path.GetExtension(image.FileName);
-            string originFileName = CreateMD5(image.FileName + image.Length);
-            string fullOriginalFileName = originFileName + imageExtension;
-            string imageFolderPath = Path.Combine(_env.WebRootPath, "img", "accounts", originFileName);
-
-            if (Directory.Exists(imageFolderPath))
+            if (image != null && points?.Count != 0)
             {
-                foreach (string filePath in Directory.GetFiles(imageFolderPath))
+                string imageExtension = Path.GetExtension(image.FileName);
+                string originFileName = CreateMD5(image.FileName + image.Length);
+                string fullOriginalFileName = originFileName + imageExtension;
+                string imageFolderPath = Path.Combine(_env.WebRootPath, "img", "accounts", originFileName);
+
+                if (Directory.Exists(imageFolderPath))
                 {
-                    File.Delete(filePath);
+                    foreach (string filePath in Directory.GetFiles(imageFolderPath))
+                    {
+                        File.Delete(filePath);
+                    }
                 }
-            }
-            else
-            {
-                Directory.CreateDirectory(imageFolderPath);
-            }
+                else
+                {
+                    Directory.CreateDirectory(imageFolderPath);
+                }
 
-            using (var stream = new FileStream(Path.Combine(imageFolderPath, fullOriginalFileName), FileMode.Create))
-            {
-                image.CopyTo(stream);
+                using (var stream = new FileStream(Path.Combine(imageFolderPath, fullOriginalFileName), FileMode.Create))
+                {
+                    image.CopyTo(stream);
+                }
+                ResizeAccountImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104, 104), points);
+                return fullOriginalFileName;
             }
-            ResizeAccountImage(imageFolderPath, fullOriginalFileName, "small-", new Size(104, 104), points);
-            return fullOriginalFileName;
+            return null;
         }
         public string CropExistingImage(string imageName, List<int> points)
         {

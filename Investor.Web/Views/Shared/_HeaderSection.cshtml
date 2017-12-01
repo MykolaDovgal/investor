@@ -30,11 +30,14 @@
                 <div class="user-account float-right mr-4">
                     @if (user == null)
                     {
-                        <div class="user-logout">
-                            <a href="/register" class="btn-account">Зареєструватись</a>
-                            <span class="separation">/</span>
-                            <a href="/login" class="btn-account">Увійти</a>
-                        </div>
+                        if (ViewBag.IsBlog != null ? ViewBag.IsBlog : false)
+                        {
+                            <div class="user-logout">
+                                <a href="/register" class="btn-account">Зареєструватись</a>
+                                <span class="separation">/</span>
+                                <a href="/login" class="btn-account">Увійти</a>
+                            </div>
+                        }
                     }
                     else
                     {
