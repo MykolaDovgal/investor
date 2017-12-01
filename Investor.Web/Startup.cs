@@ -22,7 +22,7 @@ namespace Investor.Web
     {
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
+            IConfigurationBuilder builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
@@ -36,7 +36,7 @@ namespace Investor.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<NewsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("TestConnection")));
             // Add framework services.
 
             services.AddIdentity<UserEntity, IdentityRole>(opts =>
