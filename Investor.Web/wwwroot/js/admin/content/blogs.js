@@ -3,7 +3,8 @@
     const url = $(this).data("href");
     const type = $(this).data("type");
 
-    if (type && type === "blogs") {
+	if (type && type === "blogs") {
+		tablesUpdetedData = {};
         getPartialView(`admin${url}`, initialTableBlogs, "#blogsTable");
     }
 });

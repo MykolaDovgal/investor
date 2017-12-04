@@ -19,8 +19,8 @@ namespace Investor.Service
                     .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)))
                     .ForMember(x => x.SerializedCropPoints, opt => opt.MapFrom(src => string.Join(";", src.CropPoints)))
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-           
 
+                cfg.CreateMap<UserEntity, TableUserPreview>().ReverseMap();
                 cfg.CreateMap<UserEntity, User>()
                     .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';',StringSplitOptions.None)))
                     .ForMember(x=>x.CropPoints, opt => opt.MapFrom(src=>src.SerializedCropPoints.Split(';', StringSplitOptions.None).Select(c=>int.Parse(c))));
@@ -76,7 +76,10 @@ namespace Investor.Service
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)))
                     .ReverseMap();
 
+
                 cfg.CreateMap<IList<PostEntity>, IList<News>>().ReverseMap();
+
+                
             });
 
         }

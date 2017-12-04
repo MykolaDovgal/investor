@@ -20,14 +20,17 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         private readonly ICategoryService _categoryService;
         private readonly IBlogService _blogService;
         private readonly IImageService _imageService;
+        private readonly IUserService _userService;
 
-        public ContentController(INewsService postService, ITagService tagService, IBlogService blogService, ICategoryService categoryService, IImageService imageService)
+
+        public ContentController(INewsService postService, ITagService tagService, IBlogService blogService, ICategoryService categoryService, IImageService imageService, IUserService userService)
         {
             _postService = postService;
             _tagService = tagService;
             _blogService = blogService;
             _categoryService = categoryService;
             _imageService = imageService;
+            _userService = userService;
         }
 
         [Route("GetAllNews")]
@@ -92,6 +95,22 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             return Json(new { data = result });
         }
 
+        [Route("GetAllUsers")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var result = (await _userService.GetAllUsersAsync<TableUserPreview>()).ToList();
+            var roles = await _userService.GetAllRolesAsync();
+            for (int i = 0; i < result.Count; i++)
+            {
+                var role = await _userService.GetRoleByUserAsync(result[i].Id);
+                result[i].Role = role;
+                
+            }
+            var x = Json(new { data = new { result = result, roles = roles } });
+            return x;
+        }
+
         [Route("UpdateTag")]
         [HttpPost]
         public async Task<Tag> UpdateTag(Tag tag)
@@ -138,5 +157,25 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             await _postService.RemoveNewsAsync(id);
             return Json(new { success = true });
         }
+
+        [Route("UpdateTableUsers")]
+        [HttpPost]
+        public async Task<JsonResult> UpdateTableUsers(List<TableUserPreview> tableUsers)
+        {
+            for (int i = 0; i < tableUsers.Count; i++)
+            {
+                await _userService.SetUsersRole(tableUsers[i].Id, tableUsers[i].Role);
+            }
+            return Json(new { success = true });
+
+        }
+
+        //[Route("GetAllRoles")]
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllRoles()
+        //{
+        //    var result = ;
+        //    return Json(result);
+        //}
     }
 }
