@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Investor.Service.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Investor.Model;
 
@@ -14,14 +10,12 @@ namespace Investor.Web.Controllers
     { 
         private readonly IBlogService _blogService;
         private readonly INewsService _newsService;
-        private readonly ICategoryService _categoryService;
         private readonly IUserService _userService;
         private readonly ITagService _tagService;
 
-        public BlogController(IBlogService blogService,ICategoryService categoryService, IUserService userService, ITagService tagService, INewsService newsService)
+        public BlogController(IBlogService blogService, IUserService userService, ITagService tagService, INewsService newsService)
         {
             _blogService = blogService;
-            _categoryService = categoryService;
             _userService = userService;
             _tagService = tagService;
             _newsService = newsService;
