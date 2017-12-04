@@ -74,5 +74,9 @@ namespace Investor.Web.Areas.Admin.Controllers
         {
             return PartialView("_Tags");
         }
+        public IActionResult Users()
+        {
+            return PartialView("_Users");
+        }
     }
 }

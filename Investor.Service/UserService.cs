@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Investor.Model.Views;
+using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Service
 {
@@ -33,9 +34,9 @@ namespace Investor.Service
         {
             if (!_roleManager.RoleExistsAsync(role).Result)
             {
-                await _roleManager.CreateAsync(new IdentityRole(role));                
+                await _roleManager.CreateAsync(new IdentityRole(role));
             }
-            return IdentityResult.Success; 
+            return IdentityResult.Success;
 
         }
 
@@ -61,7 +62,7 @@ namespace Investor.Service
             return IdentityResult.Failed();
         }
 
-        public async Task<IdentityResult> CreateUserAsync(User user,string userRole = "user")
+        public async Task<IdentityResult> CreateUserAsync(User user, string userRole = "user")
         {
             var userEntity = Mapper.Map<User, UserEntity>(user);
             var userRegisterResult = await _userManager.CreateAsync(userEntity, user.Password);
@@ -73,7 +74,7 @@ namespace Investor.Service
             }
             return IdentityResult.Failed();
         }
-          
+
         public async Task SignInUserAsync(User user, bool isLongTime)
         {
             var userEntity = Mapper.Map<User, UserEntity>(user);
@@ -98,13 +99,16 @@ namespace Investor.Service
         {
             SortedDictionary<string, List<User>> blogers = new SortedDictionary<string, List<User>>();
             List<UserEntity> users = (await _userManager.GetUsersInRoleAsync("bloger")).ToList();
-            users.ForEach(u => {
-                    if(blogers.ContainsKey(u.Surname[0].ToString())) {
-                        blogers[u.Surname.Substring(0, 1)].Add(Mapper.Map<UserEntity, User>(u));
-                    }
-                    else {
-                        blogers.Add(u.Surname[0].ToString(), new List<User>() { Mapper.Map<UserEntity, User>(u)});
-                    }
+            users.ForEach(u =>
+            {
+                if (blogers.ContainsKey(u.Surname[0].ToString()))
+                {
+                    blogers[u.Surname.Substring(0, 1)].Add(Mapper.Map<UserEntity, User>(u));
+                }
+                else
+                {
+                    blogers.Add(u.Surname[0].ToString(), new List<User>() { Mapper.Map<UserEntity, User>(u) });
+                }
             }
             );
             return blogers;
@@ -112,7 +116,7 @@ namespace Investor.Service
 
         public async Task<User> GetCurrentUserAsync()
         {
-            return  Mapper.Map<UserEntity,User>(await _userManager.GetUserAsync(_context.HttpContext.User));
+            return Mapper.Map<UserEntity, User>(await _userManager.GetUserAsync(_context.HttpContext.User));
         }
 
         public async Task<User> GetUserById(string id)
@@ -122,6 +126,38 @@ namespace Investor.Service
         public async Task<User> GetUserByNickName(string nickName)
         {
             return Mapper.Map<UserEntity, User>(await _userManager.FindByNameAsync(nickName));
+        }
+
+        public async Task<IEnumerable<T>> GetAllUsersAsync<T>()
+        {
+            List<UserEntity> variable = await _userManager
+                .Users
+                .Include(c => c.Blogs)
+                .ToListAsync();
+            return variable
+                .Select(Mapper.Map<UserEntity, T>);
+        }
+        public async Task<IEnumerable<string>> GetAllRolesAsync()
+        {
+            return await _roleManager.Roles.Select(c => c.Name).ToListAsync();
+        }
+
+        public async Task<string> GetRoleByUserAsync(string userId)
+        {
+            string result = (await _userManager.GetRolesAsync(await _userManager.FindByIdAsync(userId))).ToList()[0];
+            return result;
+        }
+
+        public async Task SetUsersRole(string id, string role)
+        {
+            UserEntity user = await _userManager.FindByIdAsync(id);
+            string userRole = (await _userManager.GetRolesAsync(user)).ToList()[0];
+            if (!userRole.Equals(role))
+            {
+                await _userManager.RemoveFromRoleAsync(user, userRole);
+                await _userManager.AddToRoleAsync(user, role);
+            }
+            
         }
     }
 }
