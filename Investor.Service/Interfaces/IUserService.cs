@@ -22,5 +22,9 @@ namespace Investor.Service.Interfaces
         Task<User> GetUserByNickName(string id);
         Task<IdentityResult> UpdateUserAsync(User user);
         Task<IdentityResult> ChangePasswordAsync(User user, string newPassword);
+        Task<IEnumerable<T>> GetAllUsersAsync<T>();
+        Task<IEnumerable<string>> GetAllRolesAsync();
+        Task<string> GetRoleByUserAsync(string userId);
+        Task SetUsersRole(string id, string role);
     }
 }

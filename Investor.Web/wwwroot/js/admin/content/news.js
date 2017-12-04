@@ -14,17 +14,27 @@ $(document).on('change',
 
 		const tableDataObj = tables[tableId].row($(this).parents('tr')).data();
 		const propertyName = tables[tableId].settings().init().columns[idx].data;
-		const properyValue = $(e.target).prop("checked");
-
-		if (tablesUpdetedData[tableDataObj.postId]) {
-			tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;
-		} else {
-			tablesUpdetedData[tableDataObj.postId] = tableDataObj;
-			tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;
+		var properyValue;
+		console.log($(e.target));
+		if ($(e.target).is('input')) {
+			properyValue = $(e.target).prop("checked");
+			if (tablesUpdetedData[tableDataObj.postId]) {
+				tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;
+			} else {
+				tablesUpdetedData[tableDataObj.postId] = tableDataObj;
+				tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;
+			}
 		}
-		console.log(tableDataObj.postId);
+		else if ($(e.target).is('select')){
+			properyValue = $(e.target).val();
+			if (tablesUpdetedData[tableDataObj.id]) {
+				tablesUpdetedData[tableDataObj.id][propertyName] = properyValue;
+			} else {
+				tablesUpdetedData[tableDataObj.id] = tableDataObj;
+				tablesUpdetedData[tableDataObj.id][propertyName] = properyValue;
+			}
+		}
 		console.log(tablesUpdetedData);
-
 	});
 
 $(document).on("click", "a.nav-link", function (e) {
@@ -32,8 +42,8 @@ $(document).on("click", "a.nav-link", function (e) {
 	const url = $(this).data("href");
 	const type = $(this).data("type");
 	if (type && type === "news") {
-		tablesUpdetedData = {};
 		getPartialView(`admin${url}`, initialTable, "#newsTable");
+		tablesUpdetedData = {};
 	}
 
 	if (type && type === "update") {
@@ -71,7 +81,7 @@ let updetePosts = function (url, postData) {
 		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 		dataType: 'json',
 		type: "POST",
-		data: { tablePosts: postData },
+		data: { tableUsers: postData },
 		success: function (data) {
 			console.log(data);
 		}

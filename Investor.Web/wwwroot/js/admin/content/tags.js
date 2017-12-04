@@ -44,24 +44,6 @@ $(document).on("click", ".tag-update", function (e) {
 	});
 });
 
-//$(document).on("click", "#tag-delete-submit", function (e) {
-//	let formData = new FormData(document.getElementById('tag-delete'));
-//	e.preventDefault();
-//	$.ajax({
-//		type: "POST",
-//		url: "/api/Content/RemoveTag",
-//		data: formData,
-//		cache: false,
-//		contentType: false,
-//		processData: false,
-
-//		success: function (data) {
-//			$("#tagsTable").dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
-//			initialTagsTable("#tagsTable");
-//		}
-//	});
-//});
-
 let initialTagsTable = function (tableId) {
 
 	tables[tableId] = $(tableId).DataTable({
