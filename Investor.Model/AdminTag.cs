@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Investor.Model.Views
+namespace Investor.Model
 {
     public class AdminTag
     {
