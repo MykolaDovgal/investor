@@ -106,7 +106,6 @@ var Cropper = (function () {
                     url: $('#userPhoto').attr('src'),
                     points: JSON.parse(tmp)
                 }).then(function () {
-                    console.log($('.form-control').attr('src'));
                 });  
             }
 			
@@ -120,8 +119,6 @@ var Cropper = (function () {
 				type: 'canvas',
 				size: 'viewport'
 			}).then(function (resp) {
-				console.log(resp);
-				console.log($uploadCrop.files);
 				popupResult({
 					src: resp
 				});

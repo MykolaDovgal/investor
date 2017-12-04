@@ -41,7 +41,9 @@ namespace Investor.Web
                     Description = "user",
                     Email = "user@gmail.com",
                     UserName = "user",
-                    Surname = "user"
+                    Surname = "user",
+                    Photo = "7956B0990989F1BF94306E45F9221DF1.jpg",
+                    SerializedCropPoints = "79;3;525;449"
                 };
                 var user1 = new UserEntity
                 {
@@ -49,7 +51,9 @@ namespace Investor.Web
                     Description = "user1",
                     Email = "user1@gmail.com",
                     UserName = "user1",
-                    Surname = "user1"
+                    Surname = "user1",
+                    Photo = "42F302DB6CD89CE29F1C0D70B792E686.jpg",
+                    SerializedCropPoints = "99;0;368;269"
                 };
                 var bloger1 = new UserEntity
                 {
@@ -57,7 +61,9 @@ namespace Investor.Web
                     Description = "bloger",
                     Email = "bloger1@gmail.com",
                     UserName = "bloger1",
-                    Surname = "bloger"
+                    Surname = "bloger",
+                    Photo = "7956B0990989F1BF94306E45F9221DF1.jpg",
+                    SerializedCropPoints = "79;3;525;449"
                 };
                 var bloger2 = new UserEntity
                 {
@@ -65,7 +71,9 @@ namespace Investor.Web
                     Description = "bloger",
                     Email = "bloger2@gmail.com",
                     UserName = "bloger2",
-                    Surname = "Волицька"
+                    Surname = "Волицька",
+                    Photo = "607FE0CDD44800E3C52E6E656F9D3EA0.jpg",
+                    SerializedCropPoints = "87;2;458;373"
                 };
                 var bloger3 = new UserEntity
                 {
@@ -73,7 +81,9 @@ namespace Investor.Web
                     Description = "bloger",
                     Email = "bloger@gmail.com",
                     UserName = "bloger3",
-                    Surname = "Ковальчук"
+                    Surname = "Ковальчук",
+                    Photo = "6E78BCE7D7787B79645169B799A6C57E.jpg",
+                    SerializedCropPoints = "226;0;1574;1347"
                 };
                 var bloger4 = new UserEntity
                 {
@@ -81,7 +91,9 @@ namespace Investor.Web
                     Description = "bloger",
                     Email = "bloger@gmail.com",
                     UserName = "bloger4",
-                    Surname = "Захарків"
+                    Surname = "Захарків",
+                    Photo = "50DF83C386548F47B731E0259F943E9F.jpg",
+                    SerializedCropPoints = "92;0;498;406"
                 };
                 var bloger5 = new UserEntity
                 {
@@ -89,7 +101,9 @@ namespace Investor.Web
                     Description = "bloger",
                     Email = "bloger@gmail.com",
                     UserName = "bloge5r",
-                    Surname = "Зеленська"
+                    Surname = "Зеленська",
+                    SerializedCropPoints = "87;2;458;373",
+                    Photo = "607FE0CDD44800E3C52E6E656F9D3EA0.jpg"
                 };
                 var bloger6 = new UserEntity
                 {
@@ -97,7 +111,9 @@ namespace Investor.Web
                     Description = "bloger",
                     Email = "bloger@gmail.com",
                     UserName = "bloger6",
-                    Surname = "Яворська"
+                    Surname = "Яворська",
+                    Photo = "50DF83C386548F47B731E0259F943E9F.jpg",
+                    SerializedCropPoints = "92;0;498;406"
                 };
                 var admin = new UserEntity
                 {
@@ -105,7 +121,9 @@ namespace Investor.Web
                     Description = "admin",
                     Email = "admin@gmail.com",
                     UserName = "admin",
-                    Surname = "admin"
+                    Surname = "admin",
+                    Photo = "6E78BCE7D7787B79645169B799A6C57E.jpg",
+                    SerializedCropPoints = "226;0;1574;1347"
                 };
 
                 var userRegisterResult = userManager.CreateAsync(user, "user123123").Result;
