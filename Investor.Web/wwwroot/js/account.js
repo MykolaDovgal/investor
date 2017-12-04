@@ -59,7 +59,6 @@ let getCreatePostFormData = function() {
     const formData = new FormData(document.getElementById("createUserPostForm"));
 
     let tagsArray = $("#userPostTags").tagsinput('items');
-	console.log(tinyMCE.get('createUserPost').getContent());
 	formData.set('Article', tinyMCE.get('createUserPost').getContent());    
     for (let i = 0; i < tagsArray.length; i++)
         formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
@@ -73,7 +72,6 @@ let getRegistrationFormData = function () {
 	var points = $('#upload-demo').croppie('get').points;
 	for (let i = 0; i < points.length; i++)
 		formData.append(`CropPoints[` + i + `]`, points[i]);
-	console.log($('#input-value-fb').val());
 	formData.append('Socials[0]', $('#input-value-fb').val());
 	formData.append('Socials[1]', $('#input-value-tw').val());
 	formData.append('Socials[2]', $('#input-value-google').val());
@@ -85,10 +83,8 @@ let getUserBiographyFormData = function () {
 	formData.append("Image", $(`#upload`).get(0).files === null ? null : $(`#upload`).get(0).files[0]);
 	formData.append("Photo", $('#userPhoto').attr('src'));
 	var points = $('#upload-demo').croppie('get').points;
-	console.log(points[0]);
 	for (let i = 0; i < points.length; i++)
 		formData.append(`Points[` + i + `]`, points[i]);
-	console.log($('#input-value-fb').val());
 	formData.append('Socials[0]', $('#input-value-fb').val());
 	formData.append('Socials[1]', $('#input-value-tw').val());
 	formData.append('Socials[2]', $('#input-value-google').val());
@@ -101,7 +97,6 @@ let getUpdateUserDataForm = function () {
 }
 
 let getUpdateUserPasswordForm = function () {
-	console.log($("input[name='pass_old']").val(), $("input[name='pass_confirmation']").val());
 	const formData = new FormData(document.getElementById("updateUserPasswordForm"));
 	formData.append("Password", $("input[name='pass_old']").val());
 	formData.append("NewPassword", $("input[name='pass_confirmation']").val())
@@ -116,7 +111,6 @@ let getAllTags = function () {
             data.data.map(item => {
                 userPostTags.push(item.name);
             });
-            console.log(userPostTags);
             initUserTagsInput();
         }
     });
@@ -182,7 +176,6 @@ let logOff = function() {
 }
 
 let PostAJAX = function (fData, url) {
-	console.log(url);
     $.ajax({
 		url: url,
         type: "POST",

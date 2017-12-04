@@ -67,11 +67,18 @@ var Cropper = (function () {
 			console.log(result);
 			$('#img-upload').attr('style', 'background-image: url(' + result.src + ');');
 		}
-	}
+    }
 
+    var $uploadCrop = $('#upload-demo').croppie({
+        viewport: {
+            width: 100,
+            height: 100,
+            type: 'circle'
+        },
+        enableExif: true
+    });
 
-	function Upload() {
-		var $uploadCrop;
+	function Upload() {		
 		function readFile(input) {
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
@@ -90,24 +97,19 @@ var Cropper = (function () {
 			}
 		}
 
-		$uploadCrop = $('#upload-demo').croppie({
-			viewport: {
-				width: 100,
-				height: 100,
-				type: 'circle'
-			},
-			enableExif: true
-		});
+		
 
-		$(document).ready(function () {
-			console.log($('input[name="CropPoints"]').val());
-			console.log(JSON.parse($('input[name="CropPoints"]').val()));
-			$uploadCrop.croppie('bind', {
-				url: $('#userPhoto').attr('src'),
-				points: JSON.parse($('input[name="CropPoints"]').val())
-			}).then(function () {
-				console.log($('.form-control').attr('src'));
-				});
+        $(document).ready(function () {
+            const tmp = $('input[name="CropPoints"]').val();
+            if (tmp) {
+                $uploadCrop.croppie('bind', {
+                    url: $('#userPhoto').attr('src'),
+                    points: JSON.parse(tmp)
+                }).then(function () {
+                    console.log($('.form-control').attr('src'));
+                });  
+            }
+			
 			
 		});
 		
