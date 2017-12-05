@@ -35,11 +35,11 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdateTableUsers")]
         [HttpPost]
-        public async Task<JsonResult> UpdateTableUsers(List<TableUserPreview> tableUsers)
+        public async Task<JsonResult> UpdateTableUsers(List<TableUserPreview> content)
         {
-            for (int i = 0; i < tableUsers.Count; i++)
+            for (int i = 0; i < content.Count; i++)
             {
-                await _userService.SetUsersRole(tableUsers[i].Id, tableUsers[i].Role);
+                await _userService.SetUsersRole(content[i].Id, content[i].Role);
             }
             return Json(new { success = true });
 

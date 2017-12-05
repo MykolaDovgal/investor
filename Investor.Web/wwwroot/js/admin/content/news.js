@@ -77,7 +77,7 @@ let updetePosts = function (url, postData) {
 		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
 		dataType: 'json',
 		type: "POST",
-		data: { tableUsers: postData },
+        data: { content: postData },
 		success: function (data) {
 			console.log(data);
 		}

@@ -46,9 +46,9 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdateTableBlogs")]
         [HttpPost]
-        public async Task UpdateTableBlogs(List<Blog> tablePosts)
+        public async Task UpdateTableBlogs(List<Blog> content)
         {
-            await _blogService.UpdateBlogAsync<Blog>(tablePosts);
+            await _blogService.UpdateBlogAsync<Blog>(content);
         }
 
         [Route("DeleteBlog")]
