@@ -56,7 +56,6 @@ namespace Investor.Web
             services.AddTransient<IBlogRepository, BlogRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddTransient<TimeService>();
-            services.AddTransient<ThemeService>();
             //services.AddTransient<ImagePathService>();
 
             // Services

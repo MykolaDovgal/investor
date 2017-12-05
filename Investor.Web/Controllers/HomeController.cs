@@ -19,18 +19,31 @@ namespace Investor.Web.Controllers
     {
         private readonly INewsService _postService;
         private readonly ICategoryService _categoryService;
-        private readonly ThemeService _themeService;
         private readonly IBlogService _blogService;
+        private readonly Dictionary<string, int> _postPreviewCount = new Dictionary<string, int>
+        {
+            { "policy", 8 },
+            { "culture", 8 },
+            { "economy", 4 },
+            { "it", 4 },
+            { "socium", 4 }
+        };
+        private readonly Dictionary<string, int>  _largePostPreviewCount = new Dictionary<string, int>
+        {
+            { "policy", 2 },
+            { "culture", 2 },
+            { "economy", 1 },
+            { "it", 1 },
+            { "socium", 1}
+        };
 
 
         public HomeController(INewsService postService, 
             ICategoryService categoryService, 
-             ThemeService themeService,
              IBlogService blogService)
         {
             _postService = postService;
             _categoryService = categoryService;
-            _themeService = themeService;
             _blogService = blogService;
         }
 
@@ -40,8 +53,8 @@ namespace Investor.Web.Controllers
             List<Category> categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
             categories.ForEach(category =>
             {
-                var categoryPosts = _postService.GetLatestNewsByCategoryUrlAsync(category.Url, true, _themeService.postPreviewCount[category.Url]).Result.ToList();
-                int largePostCount = _themeService.largePostPreviewCount[category.Url];
+                var categoryPosts = _postService.GetLatestNewsByCategoryUrlAsync(category.Url, true, _postPreviewCount[category.Url]).Result.ToList();
+                int largePostCount = _largePostPreviewCount[category.Url];
                 news.Add(new CategoryPreviewViewModel
                 {
                     CategoryUrl = category.Url,
