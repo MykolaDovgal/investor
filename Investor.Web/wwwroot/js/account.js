@@ -105,7 +105,7 @@ let getUpdateUserPasswordForm = function () {
 
 let getAllTags = function () {
     $.ajax({
-        url: "/api/Content/GetAllTags",
+        url: "/api/TagsApi/GetAllTags",
         type: "GET",
         success: function (data) {
             data.data.map(item => {
