@@ -49,61 +49,64 @@ namespace Investor.Service
                 IEnumerable<string> enumerable = tags as IList<string> ?? tags.ToList();
                 foreach (var t in enumerable)
                 {
-                    var tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
+                    Tag tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
                     if (!postTags.Select(s => s.Name).Contains(t))
                     {
                         await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
                     }
                 }
-                postTags.Where(pt => !enumerable.Contains(pt.Name)).ToList().ForEach(async pt => await _postRepository.RemoveTagFromPostAsync(postId, pt)); //!!!!!!!!!!!!!!!!!
+                postTags
+                    .Where(pt => !enumerable.Contains(pt.Name))
+                    .ToList()
+                    .ForEach(async pt => await _postRepository.RemoveTagFromPostAsync(postId, pt)); //!!!!!!!!!!!!!!!!!
             }
         }
 
         public async Task<Tag> AddTagToBlogAsync(int postId, Tag tag)
         {
-            var tagEntity = await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
+            TagEntity tagEntity = await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
             return Mapper.Map<TagEntity, Tag>(tagEntity);
         }
 
         public async Task<IEnumerable<T>> GetAllBlogsByTagNameAsync<T>(string tagName)
         {
-            var blogs = await _postRepository.GetAllPostsByTagNameAsync<BlogEntity>(tagName);
+            IEnumerable<BlogEntity> blogs = await _postRepository.GetAllPostsByTagNameAsync<BlogEntity>(tagName);
             return blogs.Select(Mapper.Map<BlogEntity, T>);
         }
 
         public async Task<List<Tag>> GetAllTagsByBlogIdAsync(int id)
         {
-            var tags = await _postRepository.GetAllTagsByPostIdAsync(id) ?? new List<TagEntity>();
+            List<TagEntity> tags = await _postRepository.GetAllTagsByPostIdAsync(id) ?? new List<TagEntity>();
             return tags.Select(Mapper.Map<TagEntity, Tag>).ToList();
         }
 
         public async Task<IEnumerable<Blog>> GetBlogsBasedOnIdCollectionAsync(IEnumerable<int> postIds)
         {
-            var blogs = await _postRepository.GetPostsBasedOnIdCollectionAsync<BlogEntity>(postIds);
+            IEnumerable<BlogEntity> blogs = await _postRepository.GetPostsBasedOnIdCollectionAsync<BlogEntity>(postIds);
             return blogs.Select(Mapper.Map<BlogEntity, Blog>);
         }
 
         public async Task<IEnumerable<BlogPreview>> GetBlogsByUserIdAsync(string userId)
         {
-            var blogs = await _blogRepository.GetBlogsByUserIdAsync(userId);
+            IEnumerable<BlogEntity> blogs = await _blogRepository.GetBlogsByUserIdAsync(userId);
             return blogs.Select(Mapper.Map<BlogEntity, BlogPreview>);
         }
 
         public async Task<IEnumerable<T>> GetLatestBlogsAsync<T>(int limit = 10)
         {
-            var blogs = await _blogRepository.GetLatestBlogsAsync(limit);
+            IEnumerable<BlogEntity> blogs = await _blogRepository.GetLatestBlogsAsync(limit);
             return blogs.Select(Mapper.Map<BlogEntity, T>);
         }
 
         public async Task<IEnumerable<BlogPreview>> GetPopularBlogsAsync(int limit = 3)
         {
-            var blogs = await _blogRepository.GetPopularBlogsAsync(limit);
+            IEnumerable<BlogEntity> blogs = await _blogRepository.GetPopularBlogsAsync(limit);
             return blogs.Select(Mapper.Map<BlogEntity, BlogPreview>);
         }
 
         public async Task<T> GetBlogByIdAsync<T>(int id)
         {
-            var blog = await _postRepository.GetPostByIdAsync<BlogEntity>(id);
+            BlogEntity blog = await _postRepository.GetPostByIdAsync<BlogEntity>(id);
             return Mapper.Map<BlogEntity, T>(blog);
         }
 
@@ -120,7 +123,7 @@ namespace Investor.Service
         public async Task<Blog> UpdateBlogAsync(Blog post)
         {
             post.Author = _userService.GetCurrentUserAsync().Result;
-            var blog = await _postRepository.UpdatePostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(post));
+            BlogEntity blog = await _postRepository.UpdatePostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(post));
             await AddTagsToBlogAsync(blog.PostId, post.Tags?.Select(c => c.Name));
             return Mapper.Map<BlogEntity, Blog>(blog);
         }
@@ -145,11 +148,18 @@ namespace Investor.Service
 
         public async Task<IEnumerable<BlogPreview>> GetPagedLatestBlogsAsync(int page, int limit)
         {
-            var posts = (await _blogRepository
+            List<BlogPreview> posts = (await _blogRepository
                 .GetPagedLatestBlogsAsync(page, limit))
-                .Select(Mapper.Map<BlogEntity, BlogPreview>);
+                .Select(Mapper.Map<BlogEntity, BlogPreview>)
+                .ToList();
             int num = posts.Count();
             return posts;
+        }
+
+        public async Task<IEnumerable<T>> GetAllBlogsAsync<T>()
+        {
+            return (await _blogRepository.GetAllBlogsAsync())
+                .Select(Mapper.Map<BlogEntity, T>);
         }
     }
 }

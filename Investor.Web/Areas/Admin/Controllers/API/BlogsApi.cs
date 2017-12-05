@@ -29,7 +29,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpGet]
         public async Task<IActionResult> GetAllBlogs()
         {
-            IEnumerable<TableBlogPreview> result = await _blogService.GetLatestBlogsAsync<TableBlogPreview>();
+            IEnumerable<TableBlogPreview> result = await _blogService.GetAllBlogsAsync<TableBlogPreview>();
             return Json(new { data = result });
         }
 
