@@ -16,7 +16,7 @@ let initialUsersTable = function (tableId) {
 
 	tables[tableId] = $(tableId).DataTable({
 		ajax: {
-			url: "/api/UserApi/GetAllUsers",
+			url: "/api/UsersApi/GetAllUsers",
 			"dataSrc": function (json) {
 				select = $(`<select class="roles"></select>`);
 				for (let i = 0; i < json.data.roles.length; i++)
