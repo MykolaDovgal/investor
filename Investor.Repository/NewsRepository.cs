@@ -44,6 +44,7 @@ namespace Investor.Repository
         {
             return await _newsContext.News
                 .Include(p => p.Category)
+                .Where(c => c.IsPublished ?? false)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
                 .ToListAsync();
@@ -53,6 +54,7 @@ namespace Investor.Repository
         {
             return await _newsContext.News
                 .Where(p => p.IsImportant ?? false)
+                .Where(c => c.IsPublished ?? false)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
                 .Include(p => p.Category)
@@ -61,9 +63,10 @@ namespace Investor.Repository
 
         public async Task<IEnumerable<NewsEntity>> GetSideNewsAsync(int limit)
         {
-            var news = _newsContext.News;
-            var filteredNews = news.Where(n => (n.IsOnSide ?? false));
-            return await filteredNews
+            return await _newsContext
+                .News
+                .Where(c => c.IsPublished ?? false)
+                .Where(n => (n.IsOnSide ?? false))
                 .OrderByDescending(n => n.PublishedOn)
                 .Take(limit)
                 .ToListAsync();
@@ -73,8 +76,9 @@ namespace Investor.Repository
         {
             return await _newsContext
                 .News
-                .Where(n => (n.IsOnSlider ?? false) )
-                .OrderByDescending(n=>n.PublishedOn)
+                .Where(c => c.IsPublished ?? false)
+                .Where(n => (n.IsOnSlider ?? false))
+                .OrderByDescending(n => n.PublishedOn)
                 .Take(limit)
                 .ToListAsync();
         }
@@ -83,6 +87,7 @@ namespace Investor.Repository
         {
             return await _newsContext
                 .News
+                .Where(c => c.IsPublished ?? false)
                 .Include(c => c.Category)
                 .Where(n => n.Category.Url == url && n.IsOnMainPage == true)
                 .Take(limit)
