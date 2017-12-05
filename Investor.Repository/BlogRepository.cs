@@ -20,18 +20,19 @@ namespace Investor.Repository
         }
         public async Task<IEnumerable<BlogEntity>> GetLatestBlogsAsync(int limit)
         {
-            var b = _newsContext.Blogs
-                .Include(p => p.Author);
-            var b2 = b.OrderByDescending(p => p.PublishedOn)
-                .Take(limit);
-            var b3 = await b2.ToListAsync();
-            return b3;
+            var blogs = await _newsContext.Blogs
+                .Include(p => p.Author)
+                .Where(c => c.IsPublished ?? false)
+                .OrderByDescending(p => p.PublishedOn)
+                .ToListAsync();
+            return blogs;
         }
 
         public async Task<IEnumerable<BlogEntity>> GetPopularBlogsAsync(int limit)
         {
             return await _newsContext.Blogs
                 .Include(p => p.Author)
+                .Where(c => c.IsPublished ?? false)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
                 .ToListAsync();
@@ -68,8 +69,10 @@ namespace Investor.Repository
                 .Where(u=>_newsContext.UserRoles.Where(ur=>ur.RoleId == role.Id).Select(ur=>ur.UserId).Contains(u.Id))
                 .Include(c=>c.Blogs)
                 .ToListAsync();
-
-            users = users.OrderByDescending(u => u.Blogs.Where(b => b.IsPublished ?? false).Count()).Take(limit).ToList();
+            users = users
+                .OrderByDescending(u => u.Blogs.Count(b => b.IsPublished ?? false))
+                .Take(limit)
+                .ToList();
             return users;
         }
 

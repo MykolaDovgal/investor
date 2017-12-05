@@ -9,6 +9,5 @@ namespace Investor.Model
         public int CategoryId { set; get; }
         public string Name { set; get; }
         public string Url { set; get; }
-
     }
 }
