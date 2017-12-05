@@ -7,13 +7,13 @@ $(document).on('change',
 	'tbody td:not(:first-child)',
 	function (e) {
 
-		const tableId = "#" + $(this).closest('table').prop("id");
+		const tableId = `#${$(this).closest('table').prop("id")}`;
 		const idx = tables[tableId].cell(this).index().column;
 
-		const tableDataObj = tables[tableId].row($(this).parents('tr')).data();
+		const tableDataObj = tables[tableId].row($(this).parents("tr")).data();
 		const propertyName = tables[tableId].settings().init().columns[idx].data;
 		var properyValue;
-		if ($(e.target).is('input')) {
+		if ($(e.target).is("input")) {
 			properyValue = $(e.target).prop("checked");
 			if (tablesUpdetedData[tableDataObj.postId]) {
 				tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;

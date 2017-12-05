@@ -21,11 +21,9 @@ namespace Investor.Repository
 
         public async Task<T> AddPostAsync<T>(T map) where T : PostEntity
         {
-            if (map.IsPublished ?? false)
-                map.PublishedOn = DateTime.Now;
             map.ModifiedOn = DateTime.Now;
             map.CreatedOn = DateTime.Now;
-            map.PublishedOn = DateTime.Now; /// TODO!
+            map.PublishedOn = DateTime.Now; // TODO!
             await _newsContext.Set<T>().AddAsync(map);
             await _newsContext.SaveChangesAsync();
             return map;
@@ -61,6 +59,7 @@ namespace Investor.Repository
             return await _newsContext.Posts
                 .OfType<T>()
                 .Include(p => p.PostTags)
+                .Where(c => c.IsPublished ?? false)
                 .Where(p => p.PostTags.Select(posttag => posttag.Tag.Name)
                 .Contains(tagName))
                 .ToListAsync();
@@ -84,6 +83,7 @@ namespace Investor.Repository
                 .Posts
                 .OfType<T>()
                 .Include(p => p.Category)
+                .Where(c => c.IsPublished ?? false)
                 .Where(p => p.Category.Url == categoryUrl.ToLower())
                 .OrderByDescending(p => p.PublishedOn);
             return await posts.Take(limit).ToListAsync();
@@ -94,6 +94,7 @@ namespace Investor.Repository
             return await _newsContext.Posts
                 .Include(p => p.Category)
                 .OfType<T>()
+                .Where(c => c.IsPublished ?? false)
                 .Where(p => p.Category.Url.Contains(categoryUrl.ToLower()))
                 .OrderByDescending(p => p.PublishedOn)
                 .Skip(limit * (page - 1))
@@ -105,6 +106,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Posts
                 .OfType<T>()
+                .Where(c => c.IsPublished ?? false)
                 .Where(p => p.Category.Url == categoryUrl)
                 .OrderByDescending(p => p.PublishedOn)
                 .Take(limit)
@@ -113,8 +115,7 @@ namespace Investor.Repository
         }
 
         public async Task<T> GetPostByIdAsync<T>(int id) where T : PostEntity
-        {
-            
+        {  
             var blog = await _newsContext.Posts
                 .OfType<T>()
                 .Include(p => p.Category)

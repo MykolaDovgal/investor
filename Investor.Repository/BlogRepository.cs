@@ -49,6 +49,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Blogs
                 .Include(p => p.Author)
+                .Where(c => c.IsPublished ?? false)
                 .Where(p => p.AuthorId == userId)
                 .ToListAsync();
         }
@@ -66,7 +67,7 @@ namespace Investor.Repository
             var role = _newsContext.Roles.FirstOrDefault(r => r.Name == "bloger");
             List<UserEntity> users = await _newsContext
                 .Users
-                .Where(u=>_newsContext.UserRoles.Where(ur=>ur.RoleId == role.Id).Select(ur=>ur.UserId).Contains(u.Id))
+                .Where(u=>_newsContext.UserRoles.Where(ur=>ur.RoleId == role.Id).Select(ur=>ur.UserId).Contains(u.Id)) // select users in role "bloger"
                 .Include(c=>c.Blogs)
                 .ToListAsync();
             users = users
@@ -80,6 +81,7 @@ namespace Investor.Repository
         {
             var r = await _newsContext.Blogs
                 .Include(p => p.Author)
+                .Where(c => c.IsPublished ?? false)
                 .OrderByDescending(p => p.PublishedOn)
                 .Skip(limit * (page - 1))
                 .Take(limit)
