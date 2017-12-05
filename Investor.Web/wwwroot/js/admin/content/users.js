@@ -16,7 +16,7 @@ let initialUsersTable = function (tableId) {
 
 	tables[tableId] = $(tableId).DataTable({
 		ajax: {
-			url: '/api/Content/GetAllUsers',
+			url: "/api/UserApi/GetAllUsers",
 			"dataSrc": function (json) {
 				select = $(`<select class="roles"></select>`);
 				for (let i = 0; i < json.data.roles.length; i++)
@@ -72,7 +72,7 @@ let initialUsersTable = function (tableId) {
 				render: function (data) {
 					var newSelect = select.clone();
 					newSelect.children(`.${data}`).attr(`selected`, true);
-					return newSelect.prop('outerHTML');
+					return newSelect.prop("outerHTML");
 				}
 			}
 		]

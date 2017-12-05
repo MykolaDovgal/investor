@@ -33,7 +33,7 @@
 	$(document).ready(function () {
 
 		$.ajax({
-			url: "/api/Content/GetAllTags",
+			url: "/api/TagsApi/GetAllTags",
 			type: "GET",
 			success: function (data) {
 				console.log(data);
@@ -49,7 +49,7 @@
             $this.attr("disabled", "disabled");
 			var formId = $('.updateForm').attr('id');
 			var formData = new FormData(document.getElementById(formId));
-			console.log(formData.get("Category.Url"));
+            const category = formData.get("Category.Url");
 			formData.set('IsOnMainPage', $(`#${formId} input[name='IsOnMainPage']`).prop("checked"));
 			formData.set('IsPublished', $(`#${formId} input[name='IsPublished']`).prop("checked"));
 			formData.set('IsImportant', $(`#${formId} input[name='IsImportant']`).prop("checked"));
@@ -66,9 +66,10 @@
 			var file = $(`#${formId} input[name='Image']`).get(0).files;
 			formData.append("Image", $(`#${formId} input[name='Image']`).get(0).files[0]);
 
+            const apiTypeUrl = category ? "NewsApi" : "BlogsApi";
 			$.ajax({
 				type: "POST",
-				url: "/api/Content/" + $(this).data("action"),
+                url: `/api/${apiTypeUrl}/${$(this).data("action")}`,
 				data: formData,
 				cache: false,
 				contentType: false,
@@ -95,8 +96,8 @@
 
 	var substringMatcher = function (strs) {
 		return function findMatches(q, cb) {
-			var matches, substringRegex;
-			matches = [];
+			var substringRegex;
+			var matches = [];
 			// regex used to determine if a string contains the substring `q`
 			substrRegex = new RegExp(q, 'i');
 

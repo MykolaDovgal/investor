@@ -30,22 +30,24 @@ namespace Investor.Service
             _categoryService = categoryService;
         }
 
+
         public async Task<Blog> AddBlogAsync(Blog map)
         {
             map.Author = _userService.GetCurrentUserAsync().Result;
             map.Category = await _categoryService.GetCategoryByUrlAsync("blog");
             var response = await _postRepository.AddPostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(map));
-            await AddTagsToBlogAsync(response.PostId, map.Tags?.Select(c=>c.Name));
+            await AddTagsToBlogAsync(response.PostId, map.Tags?.Select(c => c.Name));
             map.PostId = response.PostId;
             return map;
         }
 
-        private async Task AddTagsToBlogAsync(int postId, IEnumerable<string> tags) // TODO rename method
+        public async Task AddTagsToBlogAsync(int postId, IEnumerable<string> tags) // TODO rename method
         {
             if (tags != null)
             {
-                var postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
-                foreach (var t in tags)
+                List<TagEntity> postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
+                IEnumerable<string> enumerable = tags as IList<string> ?? tags.ToList();
+                foreach (var t in enumerable)
                 {
                     var tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
                     if (!postTags.Select(s => s.Name).Contains(t))
@@ -53,7 +55,7 @@ namespace Investor.Service
                         await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
                     }
                 }
-                postTags.Where(pt => !tags.Contains(pt.Name)).ToList().ForEach(async pt => await _postRepository.RemoveTagFromPostAsync(postId, pt)); //!!!!!!!!!!!!!!!!!
+                postTags.Where(pt => !enumerable.Contains(pt.Name)).ToList().ForEach(async pt => await _postRepository.RemoveTagFromPostAsync(postId, pt)); //!!!!!!!!!!!!!!!!!
             }
         }
 

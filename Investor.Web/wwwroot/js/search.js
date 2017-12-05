@@ -69,7 +69,6 @@ $(document).ready(function () {
 
 
 let getMoreSearchResult = function (categoryUrl, queryText, date, page, count, tag) {
-	console.log(queryText);
     const params = `?categoryUrl=${categoryUrl}&query=${queryText}&date=${date}&page=${page}&count=${count}&tag=${tag}`;
     $.ajax({
         url: `/api/search/posts${params}`,

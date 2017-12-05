@@ -13,7 +13,7 @@ let initialTableBlogs = function (tableId) {
 
     tables[tableId] = $(tableId).DataTable({
 
-        "ajax": "/api/Content/GetAllBlogs",
+        "ajax": "/api/BlogsApi/GetAllBlogs",
 
         "columns": [
             {

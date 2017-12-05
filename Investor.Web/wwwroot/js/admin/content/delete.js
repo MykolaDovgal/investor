@@ -30,14 +30,12 @@ $(document).on('change',
 		console.log(tableDataObj);
 		const propertyValue = $(e.target).prop("checked");
 		if (propertyValue) {
-			console.log(ObjId);
 			chosenPostsIds.push(ObjId);
 		}
 		else {
 			delete chosenPostsIds[chosenPostsIds.indexOf(ObjId)];
 		}
-		console.log(chosenPostsIds);
-		console.log(($('tbody td:first-child :checked').length));
+
 		if (chosenPostsIds.length > 0) {
 			$(".delete").removeAttr('disabled');
 		}

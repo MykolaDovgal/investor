@@ -2,8 +2,6 @@
 let tablesUpdetedData = {};
 //let chosenPostsIds = [];
 
-$(document).ready(function () {
-});
 
 $(document).on('change',
 	'tbody td:not(:first-child)',
@@ -15,7 +13,6 @@ $(document).on('change',
 		const tableDataObj = tables[tableId].row($(this).parents('tr')).data();
 		const propertyName = tables[tableId].settings().init().columns[idx].data;
 		var properyValue;
-		console.log($(e.target));
 		if ($(e.target).is('input')) {
 			properyValue = $(e.target).prop("checked");
 			if (tablesUpdetedData[tableDataObj.postId]) {
@@ -34,7 +31,6 @@ $(document).on('change',
 				tablesUpdetedData[tableDataObj.id][propertyName] = properyValue;
 			}
 		}
-		console.log(tablesUpdetedData);
 	});
 
 $(document).on("click", "a.nav-link", function (e) {
@@ -60,16 +56,16 @@ $(document).on("click", "a.nav-link", function (e) {
     }
 
 	if (type && type === "singlepost") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdatePost");});
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdateNews");});
 	}
 	if (type && type === "createpost") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreatePost");});
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreateNews");});
 	}
 	if (type && type === "singleblog") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdatePost"); });
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdateBlog"); });
 	}
 	if (type && type === "createblog") {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreatePost");});
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "CreateBlog");});
 	}
 
 });
@@ -92,7 +88,7 @@ let initialTable = function (tableId) {
 
 	tables[tableId] = $(tableId).DataTable({
 
-		"ajax": "/api/Content/GetAllNews",
+		"ajax": "/api/NewsApi/GetAllNews",
 		"columns": [
 			{
 				data: null,

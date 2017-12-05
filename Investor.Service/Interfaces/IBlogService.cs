@@ -14,7 +14,7 @@ namespace Investor.Service.Interfaces
         Task<IEnumerable<BlogPreview>> GetPopularBlogsAsync(int limit = 3);
         Task<IEnumerable<BlogPreview>> GetBlogsByUserIdAsync(string userId);
         Task<IEnumerable<BlogPreview>> GetPagedLatestBlogsAsync(int page, int limit);
-
+        Task AddTagsToBlogAsync(int blogId, IEnumerable<string> tags);
         Task<T> GetBlogByIdAsync<T>(int id);
         Task<IEnumerable<T>> GetAllBlogsByTagNameAsync<T>(string tagName);
         Task<IEnumerable<Blog>> GetBlogsBasedOnIdCollectionAsync(IEnumerable<int> postIds);
