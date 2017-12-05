@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
 
     const hasStorage = ("sessionStorage" in window && window.sessionStorage);
-    const storageKey = "currensy";
+    const storageKey = "_currensy";
     let data = false;
 
     if (hasStorage) {
@@ -29,10 +29,12 @@
             success: function (content) {
 
                 if (hasStorage) {
-
+                    const eurRate = content.find(c => c["cc"] === "EUR");
+                    const usdRate = content.find(c => c["cc"] === "USD");
+                    console.log(eurRate);
                     const locContent = {
-                        "USD": parseFloat(Math.round(content[34]["rate"] * 100) / 100).toFixed(2),
-                        "EUR": parseFloat(Math.round(content[42]["rate"] * 100) / 100).toFixed(2)
+                        "USD": parseFloat(Math.round(usdRate["rate"] * 100) / 100).toFixed(2),
+                        "EUR": parseFloat(Math.round(eurRate["rate"] * 100) / 100).toFixed(2)
                     };
 
                     sessionStorage.setItem(storageKey, JSON.stringify({
