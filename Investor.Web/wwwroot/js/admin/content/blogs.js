@@ -39,9 +39,9 @@ let initialTableBlogs = function (tableId) {
 
             },
             {
-                "data": "author.name",
+                "data": null,
                 render: function (data, type, full) {
-                    return data ? data : "Unknown";
+					return `<a href="blog/blogerpage/${full["author"]["userName"]}">${full["author"] ? `${full["author"]["surname"]}  ${full["author"]["name"]}` : "Unknown"}</a>`;
                 }
             },
             {

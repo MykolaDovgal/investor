@@ -28,12 +28,12 @@ namespace Investor.Service
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();
                 cfg.CreateMap<AdminTag, TagEntity>().ReverseMap();
-                cfg.CreateMap<TableBlogPreview, PostEntity>().ReverseMap();
 
                 cfg.CreateMap<PostPreview, PostEntity>().ReverseMap();
                 cfg.CreateMap<NewsEntity, PostPreview>().ReverseMap();
 
                 cfg.CreateMap<BlogEntity, BlogPreview>();
+                cfg.CreateMap<BlogEntity, TableBlogPreview>().ReverseMap();
 
 
                 cfg.CreateMap<NewsEntity, TablePostPreview>().ReverseMap();
