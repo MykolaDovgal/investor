@@ -8,7 +8,7 @@
     <meta content="Preview page of Metronic Admin Theme #1 for statistics, charts, recent events and reports" name="description" />
     <meta content="" name="author" />
 
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    @*<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
     <link href="~/css/metronic/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/metronic/simple-line-icons.min.css" rel="stylesheet" />
     <link href="~/css/metronic/components-rounded.min.css" rel="stylesheet" />
@@ -19,31 +19,29 @@
     <link href="~/css/metronic/bootstrap-tagsinput.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <link href="~/css/metronic/bootstrap-modal-bs3patch.css" rel="stylesheet" />
-    <link href="~/css/metronic/bootstrap-modal.css" rel="stylesheet" />
+    <link href="~/css/metronic/bootstrap-modal.css" rel="stylesheet" />*@
+    
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <link href="~/css/metronic/style.css" rel="stylesheet" />
+    @*<link href="~/css/metronic/bootstrap-modal-bs3patch.css" rel="stylesheet" />
+    <link href="~/css/metronic/bootstrap-modal.css" rel="stylesheet" />*@
 </head>
 
-<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-<div class="page-wrapper">
+<body>
     <header>
         @Html.Partial("_HeaderSection")
     </header>
-    <div class="page-container">
-        <div>
-            @Html.Partial("_SideBarSection")
-        </div>
+    <div class=container>
         <div id="container">
             @RenderBody()
         </div>
 
 
     </div>
-    <footer>
-        @Html.Partial("_FooterSection")
-    </footer>
-</div>
+
 @*admin-content scripts*@
 
-
+<script src="~/js/allscripts.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.1/jquery-migrate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
@@ -66,10 +64,12 @@
 <script src="~/js/admin/content/tags.js"></script>
 <script src="~/js/admin/content/blogs.js"></script>
 <script src="~/js/admin/content/users.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js
+"></script>
 
-
-<script src="~/js/metronic/bootstrap-modal.js"></script>
-<script src="~/js/metronic/bootstrap-modalmanager.js"></script>
+@*<script src="~/js/metronic/bootstrap-modal.js"></script>
+<script src="~/js/metronic/bootstrap-modalmanager.js"></script>*@
 
 
 

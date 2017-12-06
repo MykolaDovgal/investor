@@ -1,4 +1,5 @@
-﻿<div class="page-content-wrapper">
+﻿@*
+<div class="page-content-wrapper">
     <div class="page-content">
         <a data-type="createpost" class="nav-link btn btn-success" data-href="/content/CreateNews">Додати</a>
         <a data-type="update" class="nav-link btn btn-success" data-href="/api/NewsApi/UpdateTableNews">Зберегти</a>
@@ -44,3 +45,52 @@
     </div>
 </div>
 
+*@
+
+<div class="container">
+    <div class="row mb-5 mt-5">
+        <a class="btns btn-dark mr-5 nav-link" data-type="createpost" data-href="/content/CreateNews">Додати новину</a>
+        <a class="btns btn-red  mr-5 nav-link delete news" data-toggle="modal" data-target="#deletenew" >Видалити новину</a>
+        <a class="btns btn-dark nav-link" data-href="/api/NewsApi/UpdateTableNews" data-type="update">Зберегти</a>
+    </div>
+    <table id="newsTable" class="table table-striped table-bordered nowrap" cellspacing="0" >
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th width="100">Назва</th>
+            <th>Дата публікації</th>
+            <th>Категорія</th>
+            <th>Опубліковано</th>
+            <th>На головінй сторінці</th>
+            <th>Важливий</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div class="modal fade" id="deletenew" tabindex="-1" role="dialog" aria-labelledby="deletenew"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Видалення</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <p class="col-form-label">Ви дійсно хочете видалити новини? </p>
+                        <p class="col-form-label" id="question">Кількість :</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
+                <button type="button" class="btn btn-primary">Видалити</button>
+            </div>
+        </div>
+    </div>
+</div>

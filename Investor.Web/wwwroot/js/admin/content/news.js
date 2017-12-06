@@ -108,7 +108,7 @@ let initialTable = function (tableId) {
 			{
 				"data": "title",
 				render: function (data, type, full) {
-					return `<a href="#" data-type="singlepost" class="nav-link" data-href="/content/singlepost/${full.postId}">${data}</a>`
+					return `<a href="#" data-type="singlepost" class="nav-link max-link-w" data-href="/content/singlepost/${full.postId}">${data}</a>`
 				}
 
 			},

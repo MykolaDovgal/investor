@@ -44,7 +44,7 @@ let initialUsersTable = function (tableId) {
 			{
 				"data": null,
 				render: function (data, type, full) {
-					return `<a data-toggle="modal" href="/blog/blogerpage/${full.userName}" class="tag-submit">${full.surname} ${full.name}</a>`;
+					return `<a href="/blog/blogerpage/${full.userName}" class="tag-submit">${full.surname} ${full.name}</a>`;
 				}
 
 			},
