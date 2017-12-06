@@ -115,7 +115,7 @@ let initialTable = function (tableId) {
 			{
 				"data": "publishedOn",
 				render: function (data, type, full, meta) {
-					return moment(data).format("DD.MM.YYYY HH:mm");
+					return `<p class="max-date-w">${moment(data).format("DD.MM.YYYY HH:mm")}<p>`;
 				}
 			},
 			{ "data": "category.name" },

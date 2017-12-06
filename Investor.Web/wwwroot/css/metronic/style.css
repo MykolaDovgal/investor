@@ -7213,11 +7213,10 @@ a.text-dark:focus, a.text-dark:hover {
     color: white !important;
     text-align: center;
 }
-.max-link-w {
-    width: 12em;
-    overflow: hidden;
-    text-overflow: ellipsis;
+th{
+    text-align: center;
 }
+
 .max-check-w {
     width: 4em;
 }
@@ -7421,17 +7420,78 @@ button.btn.btn-standart {
   -webkit-box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.07);
           box-shadow: 0 5px 20px 5px rgba(0, 0, 0, 0.07); }
 
+
 @media screen and (max-width: 575px) {
   .dataTables_wrapper table.dataTable thead th, table.dataTable thead td {
     padding: 10px 0;
-    font-size: 10px; } }
+    font-size: 10px;
+  }
+    .dataTables_wrapper.dt-jqueryui.no-footer {
+        overflow-x: scroll !important;
+    }
+    .table.dataTable.nowrap td, .table.dataTable.nowrap th {
+        font-size: 12px;
+    }
+  }
 
 @media screen and (min-width: 576px) and (max-width: 768px) {
-  .dataTables_wrapper table.dataTable thead th, table.dataTable thead td {
-    padding: 10px 5px;
-    font-size: 12px; } }
+    .dataTables_wrapper table.dataTable thead th, table.dataTable thead td {
+        padding: 10px 5px;
+        font-size: 12px;
+    }
+
+    .max-link-w {
+        width: 7em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    table.dataTable.nowrap th {
+        white-space: normal;
+        vertical-align: middle;
+    }
+    .max-date-w {
+        width: 6em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .table.dataTable.nowrap td {
+        font-size: 12px;
+    }
+}
+
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
   .dataTables_wrapper table.dataTable thead th, table.dataTable thead td {
     padding: 10px 5px;
-    font-size: 14px; } }
+    font-size: 14px;
+
+  }
+    .max-link-w {
+        width: 8em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    table.dataTable.nowrap th{
+        white-space: normal;
+        vertical-align: middle;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .max-link-w {
+        width: 12em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .table.dataTable.nowrap th {
+        font-size: 14px;
+    }
+}
+@media screen and (min-width: 1200px){
+    .max-link-w {
+        width: 14em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
