@@ -1,10 +1,110 @@
 ﻿@using Investor.Model
 @model Investor.Model.Blog
+@inject Investor.Service.Interfaces.IImagePathService ImagePath
 <form method="post" id="updateBlogForm" class="updateForm" enctype="multipart/form-data">
-    <fieldset>
-        <div class="page-content-wrapper">
-            @Html.Partial("_AddUpdateBlog", Model as Blog)
+    <section class="main-page-info mb-5">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-8 pr-3">
+                    <div class="own-container p-4">
+                        <h3 class="main-tittle">@(Model == null ? "Створити" : "Редагувати") статтю</h3>
+                        <input asp-for="PostId" hidden="hidden"/>
+                        <label asp-for="Title">Заголовок</label>
+                        <input asp-for="Title" name="Title" type="text" class="form-control" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле">
+                        <label asp-for="Description">Короткий опис</label>
+                        <textarea asp-for="Description" name="Description" class="form-control" rows="6" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"></textarea>
+                        <label asp-for="Article">Текст статті</label>
+                        <textarea asp-for="Article" id="Article" class="form-control text-editor" rows="10"></textarea>
+                        <div class="row mt-5 mb-5 justify-content-between">
+                            <a class="btns" form="updateForm" id="updateFormSubmit" data-action="UpdateBlog">Зберегти статтю</a>
+                            <a class="btns" data-toggle="modal" data-target="#deleteblog">Видалити статтю</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="own-container p-4">
+                        <h3 class="main-tittle">Опишіть деталі</h3>
+                        <div class="photo-group mb-4">
+                            <label>Завантажте фотографію</label>
+                            <div class="input-group input-file">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-second btn-file">
+                                        Вибрати файл <input type="file" id="imgInp" name="Image">
+                                    </span>
+                                </span>
+                                <input type="text" class="form-control" readonly="" />
+                            </div>
+                            <img id="blah" class="w-100 mt-4" src="@(Model == null ? "/img/no-img/no-img-blog.png" : ("/" + ImagePath.GetImagePath(Model.Image, Model.PostId)))">
+                        </div>
+                        @{
+                            string tags = "";
+                            if (ViewData.ContainsKey("Tags"))
+                            {
+                                foreach (Tag tag in ViewBag.Tags)
+                                {
+                                    tags += tag.Name + ",";
+                                }
+                            }
+                        }
+                        <div class="tags-group mb-4">
+                            <label>Додайте теги</label>
+                            <input id="tagTypeahead" type="text" class="form-control  focus-input form-control-tags" placeholder="tags" data-role="tagsinput" name="tagsName" value="@tags">
+                        </div>
+                        <div class="publ-group mb-4">
+                            <label>Публікація</label>
+                            <div class="custom-controls-stacked">
+                                <label class="custom-control custom-checkbox">
+                                    <input asp-for="IsPublished" type="checkbox" class="custom-control-input" name="IsPublished">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description">Опубліковано </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        @Html.Partial("_RightSideBarBlog", Model as Blog)
-    </fieldset>
+    </section>
 </form>
+<div class="modal fade" id="deleteblog" tabindex="-1" role="dialog" aria-labelledby="deletenew"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Видалення</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <p class="col-form-label" id="question">Ви дійсно хочете видалити статтю?</p>
+                        <input hidden="hidden" type="text" value="@Model?.PostId" name="PostId">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
+                <button type="submit" class="btn btn-primary delete single-blog" data-href="api/BlogsApi/DeleteBlog" data-dismiss="modal">Видалити</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function () {
+        readURL(this);
+    });
+</script>

@@ -40,8 +40,7 @@ namespace Investor.Web.Areas.Admin.Controllers
         public IActionResult CreateNews()
         {
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
-            News post = new News();
-            return PartialView("SinglePost", post);
+            return PartialView("SinglePost");
         }
 
         public IActionResult CreateBlog()

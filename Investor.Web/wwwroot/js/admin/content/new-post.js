@@ -58,15 +58,16 @@
 
 			formData.set('IsOnSide', $(`#${formId} input[name='IsOnSide']`).prop("checked"));
 			formData.set('IsOnSlider', $(`#${formId} input[name='IsOnSlider']`).prop("checked"));
-			formData.append('Article',tinyMCE.get('Article').getContent());
+			formData.set('Article',tinyMCE.get('Article').getContent());
 			var tagsArray = $(`#${formId} input[Name='tagsName']`).tagsinput('items');
 
 			for (let i = 0; i < tagsArray.length; i++)
 				formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
 			var file = $(`#${formId} input[name='Image']`).get(0).files;
-			formData.append("Image", $(`#${formId} input[name='Image']`).get(0).files[0]);
+			formData.set("Image", $(`#${formId} input[name='Image']`).get(0).files[0]);
 
-            const apiTypeUrl = category ? "NewsApi" : "BlogsApi";
+			const apiTypeUrl = category ? "NewsApi" : "BlogsApi";
+	        const apiAction = category ? "UpdateNews" : "UpdateBlog";
 			$.ajax({
 				type: "POST",
                 url: `/api/${apiTypeUrl}/${$(this).data("action")}`,
@@ -75,12 +76,14 @@
 				contentType: false,
 				processData: false,
                 success: function (data) {
-                    $("#updateFormSubmit").data("action", "UpdatePost");
+					$("#updateFormSubmit").data("action", apiAction);
                     $(`#${formId} input[name='PostId']`).val(data["id"]);
-                    $this.removeAttr("disabled");
+					$this.removeAttr("disabled");
+
 				},
 				error: function (data) {
-				    $this.removeAttr("disabled");
+					$this.removeAttr("disabled");
+					console.log("motherlo");
 				}
 			});
 			e.preventDefault();

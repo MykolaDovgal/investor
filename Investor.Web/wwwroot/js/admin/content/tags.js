@@ -14,7 +14,7 @@ $(document).on("click", "a.tag-submit", function (e) {
 	console.log(tableId);
 	const row = $(this).closest("tr").index();
 	const tableDataObj = tables[tableId].row($(this).parents("tr")).data();
-
+	console.log($(this).attr("href"));
 	$(`${$(this).attr("href")} input[name='TagId']`).val(tableDataObj.tagId);
 	$(`${$(this).attr("href")} input[name='Url']`).val(tableDataObj.url);
 	$(`${$(this).attr("href")} input[name='Name']`).val(tableDataObj.name);
@@ -68,7 +68,7 @@ let initialTagsTable = function (tableId) {
 			{
 				"data": "name",
 				render: function (data, type, full) {
-					return `<a data-toggle="modal" href="#updateTag" class="tag-submit">${data}</a>`;
+					return `<a data-toggle="modal" href="#editTag" class="tag-submit">${data}</a>`;
 				}
 
 			},

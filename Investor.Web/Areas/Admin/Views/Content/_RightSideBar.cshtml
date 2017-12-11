@@ -31,27 +31,27 @@
     </div>
     <label class="mt-checkbox mt-checkbox-outline">
         Опубліковано
-        <input type="checkbox" value="true" name="IsPublished" @(Model.IsPublished ? "checked" : "") />
+        <input asp-for="IsPublished" type="checkbox" value="true" name="IsPublished" />
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На головній сторінці
-        <input type="checkbox" value="true" name="IsOnMainPage" @(Model.IsOnMainPage ? "checked" : "") />
+        <input asp-for="IsOnMainPage" type="checkbox" value="true" name="IsOnMainPage"/>
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На боковій панелі слайдера
-        <input type="checkbox" value="true" name="IsOnSide" @(Model.IsOnSide ? "checked" : "") />
+        <input asp-for="IsOnSide" type="checkbox" value="true" name="IsOnSide"/>
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline">
         На слайдері
-        <input type="checkbox" value="true" name="IsOnSlider" @(Model.IsOnSlider ? "checked" : "") />
+        <input asp-for="IsOnSlider" type="checkbox" value="true" name="IsOnSlider"/>
         <span></span>
     </label>
     <label class="mt-checkbox mt-checkbox-outline color-white">
         Рекомендовано редакцією
-        <input type="checkbox" value="true" name="IsImportant" @(Model.IsImportant ? "checked" : "") />
+        <input asp-for="IsImportant" type="checkbox" value="true" name="IsImportant"/>
         <span></span>
     </label>
 </div>

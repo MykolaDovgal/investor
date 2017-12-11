@@ -12,7 +12,15 @@ $(document).on('click',
 		else if ($(this).hasClass('blogs')) {
 			$('#question').html("Ви дійсно хочете видалити блоги? Кільксть: "  + chosenPostsIds.length);
 		}
+		else if ($(this).hasClass('single-news') || $(this).hasClass('single-blog')) {
+			var postId = $("input[name='PostId']").val();
 
+			var url = $(this).data('href');
+			console.log(url);
+			chosenPostsIds.push(postId);
+			console.log(chosenPostsIds);
+			deleteSinglePost.call(this, url, chosenPostsIds);
+		}
 	});
 
 $(document).on('change',
@@ -33,7 +41,7 @@ $(document).on('change',
 			chosenPostsIds.push(ObjId);
 		}
 		else {
-			delete chosenPostsIds[chosenPostsIds.indexOf(ObjId)];
+			delete chosenPostsIds.splice([chosenPostsIds.indexOf(ObjId)], 1);
 		}
 
 		if (chosenPostsIds.length > 0) {
@@ -73,6 +81,28 @@ let deleteObj = function (url, data) {
 			}
 			else if ($("a.nav-link").hasClass('blogs')) {
 				initialTableBlogs(tableId);
+			}
+		}
+	});
+}
+
+let deleteSinglePost = function (url, data) {
+	let $this = this;
+	$.ajax({
+		url: url,
+		type: 'POST',
+		contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+		dataType: 'json',
+		data: { id: data },
+		success: function (data) {
+			console.log($($this));
+			if ($($this).hasClass('single-blog')) {
+				chosenPostsIds = [];
+				getPartialView('admin/content/Blogs', initialTableBlogs, "#blogsTable");
+			}
+			else if ($($this).hasClass('single-news')) {
+				chosenPostsIds = [];
+				getPartialView('admin/content/News', initialTable, "#newsTable");
 			}
 		}
 	});

@@ -20,7 +20,10 @@ let initialTableBlogs = function (tableId) {
                 data: null,
                 orderable: false,
                 render: function () {
-                    return `<div class="text-center"><input type="checkbox" class="md-check"></div>`
+	                return `<div class="text-center">  <label class="custom-control custom-checkbox ">
+                                    <input type="checkbox" class="custom-control-input md-check" >
+                                    <span class="custom-control-indicator size-check"></span>
+                                </label></div>`;
                 }
             },
             {
@@ -52,9 +55,13 @@ let initialTableBlogs = function (tableId) {
             },
             {
                 "data": "isPublished",
-                render: function (data, type, full, meta) {
-                    return `<div class="text-center"><input data-name="IsPublished" type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
-                }
+				render: function (data, type, full, meta) {
+					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
+                                    <input asp-for="IsPublished" type="checkbox" data-name="IsPublished"  ${data ? "checked" : ""} 
+									class="custom-control-input md-check"  name="IsPublished" >
+                                    <span class="custom-control-indicator size-check"></span>
+                                </label></div>`;
+				}
             }
         ]
     });

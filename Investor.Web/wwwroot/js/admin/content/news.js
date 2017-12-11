@@ -37,7 +37,8 @@ $(document).on("click", "a.nav-link", function (e) {
 	
 	const url = $(this).data("href");
 	const type = $(this).data("type");
-	if (type && type === "news") {
+	if (type && type === "news")
+	{
 		getPartialView(`admin${url}`, initialTable, "#newsTable");
 		tablesUpdetedData = {};
 	}
@@ -94,7 +95,10 @@ let initialTable = function (tableId) {
 				data: null,
 				orderable: false,
 				render: function () {
-					return `<div class="text-center"><input type="checkbox" class="md-check"></div>`
+					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
+                                    <input type="checkbox" class="custom-control-input md-check" >
+                                    <span class="custom-control-indicator size-check"></span>
+                                </label></div>`
 				}
 			},
 			{
@@ -122,19 +126,28 @@ let initialTable = function (tableId) {
 			{
 				"data": "isPublished",
 				render: function (data, type, full, meta) {
-					return `<div class="text-center"><input data-name="IsPublished" type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
+					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
+                                    <input type="checkbox" data-name="IsPublished" class="custom-control-input md-check" ${data ? "checked" : ""}>
+                                    <span class="custom-control-indicator size-check"></span>
+                                </label></div>`;
 				}
 			},
 			{
 				"data": "isOnMainPage",
 				render: function (data, type, full, meta) {
-					return `<div class="text-center"><input data-name="IsOnMainPage" type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
+					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
+                                    <input type="checkbox" data-name="IsOnMainPage" class="custom-control-input md-check" ${data ? "checked" : ""}>
+                                    <span class="custom-control-indicator size-check"></span>
+                                </label></div>`;
 				}
 			},
 			{
 				"data": "isImportant",
 				render: function (data, type, full, meta) {
-					return `<div class="text-center"><input data-name="IsImportant" type="checkbox" ${data ? "checked" : ""} class="md-check"></div>`;
+					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
+                                    <input type="checkbox" data-name="IsImportant" class="custom-control-input md-check" ${data ? "checked" : ""}>
+                                    <span class="custom-control-indicator size-check"></span>
+                                </label></div>`;
 				}
 			}
 		]
