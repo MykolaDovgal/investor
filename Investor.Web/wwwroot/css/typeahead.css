@@ -1,0 +1,19 @@
+﻿.tt-suggestion {
+    padding: 5px 10px;
+}
+
+.tt-menu {
+    width: max-content;
+    color: black;
+    background-color: white !important;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, .1);
+    border-radius: 4px;
+}
+.tt-suggestion:hover {
+    cursor: pointer;
+    background-color: #E9ECEF;
+}
+
+.tt-suggestion.tt-cursor {
+    background-color: #E9ECEF;
+}
