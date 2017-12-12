@@ -57,10 +57,10 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdateTableNews")]
         [HttpPost]
-        public async Task UpdateTableNews(List<News> content)
+        public async Task<JsonResult> UpdateTableNews(List<News> content)
         {
-
             await _newsService.UpdateNewsAsync(content);
+            return Json(new {success = true});
         }
 
         [Route("DeleteNews")]

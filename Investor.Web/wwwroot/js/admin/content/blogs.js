@@ -5,7 +5,7 @@
 
 	if (type && type === "blogs") {
 		tablesUpdetedData = {};
-        getPartialView(`admin${url}`, initialTableBlogs, "#blogsTable");
+		getPartialView(`admin${url}`, initialTableBlogs, "#blogsTable");
     }
 });
 
@@ -14,7 +14,6 @@ let initialTableBlogs = function (tableId) {
     tables[tableId] = $(tableId).DataTable({
 
         "ajax": "/api/BlogsApi/GetAllBlogs",
-
         "columns": [
             {
                 data: null,

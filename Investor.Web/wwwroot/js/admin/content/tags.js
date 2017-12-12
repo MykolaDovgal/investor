@@ -40,12 +40,19 @@ $(document).on("click", ".tag-update", function (e) {
 			console.log(tableId);
 			$(tableId).dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
 			initialTagsTable(tableId);
+			$.toaster({
+				priority: 'success',
+				title: 'Операція успішна',
+				message: "\nТег збережено!",
+				settings: {
+					'timeout': 40000
+				}
+			});
 		}
 	});
 });
 
 let initialTagsTable = function (tableId) {
-
 	tables[tableId] = $(tableId).DataTable({
 
         "ajax": "/api/TagsApi/GetAllTags",

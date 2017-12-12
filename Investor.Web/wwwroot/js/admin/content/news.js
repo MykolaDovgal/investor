@@ -80,7 +80,15 @@ let updetePosts = function (url, postData) {
 		type: "POST",
         data: { content: postData },
 		success: function (data) {
-			console.log(data);
+			console.log('wow');
+			$.toaster({
+				priority: 'success',
+				title: 'Операція успішна',
+				message: `Зміни збережено!`,
+				settings: {
+					'timeout': 4000
+				}
+			});
 		}
 	});
 }

@@ -49,7 +49,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Blogs
                 .Include(p => p.Author)
-                .Where(c => c.IsPublished ?? false)
+                //.Where(c => c.IsPublished ?? false)
                 .Where(p => p.AuthorId == userId)
                 .ToListAsync();
         }

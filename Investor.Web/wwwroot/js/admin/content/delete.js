@@ -58,7 +58,6 @@ $(document).on("click", "a.nav-link", function (e) {
 	const type = $(e.target).data("type");
 	if (type && type === "delete") {
 		deleteObj.call(this, url, chosenPostsIds);
-		chosenPostsIds = [];
 	}
 });
 
@@ -73,15 +72,28 @@ let deleteObj = function (url, data) {
 			const tableId = "#" + $('.table').attr('id');
 			console.log(tableId);
 			$(tableId).dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
+			var a = '';
 			if ($("a.nav-link").hasClass('tags')) {
 				initialTagsTable(tableId);
+				a = 'Теги';
 			}
 			else if ($("a.nav-link").hasClass('news')) {
 				initialTable(tableId);
+				a = 'Статті';
 			}
 			else if ($("a.nav-link").hasClass('blogs')) {
 				initialTableBlogs(tableId);
+				a = 'Блоги';
 			}
+			chosenPostsIds = [];
+			$.toaster({
+				priority: 'warning',
+				title: 'Операція успішна',
+				message: `\n ${a} видалено!`,
+				settings: {
+					'timeout': 4000
+				}
+			});
 		}
 	});
 }
@@ -99,10 +111,26 @@ let deleteSinglePost = function (url, data) {
 			if ($($this).hasClass('single-blog')) {
 				chosenPostsIds = [];
 				getPartialView('admin/content/Blogs', initialTableBlogs, "#blogsTable");
+				$.toaster({
+					priority: 'warning',
+					title: 'Операція успішна',
+					message: `Блог видалено!`,
+					settings: {
+						'timeout': 4000
+					}
+				});
 			}
 			else if ($($this).hasClass('single-news')) {
 				chosenPostsIds = [];
 				getPartialView('admin/content/News', initialTable, "#newsTable");
+				$.toaster({
+					priority: 'warning',
+					title: 'Операція успішна',
+					message: `Статтю видалено!`,
+					settings: {
+						'timeout': 4000
+					}
+				});
 			}
 		}
 	});

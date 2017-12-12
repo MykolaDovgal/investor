@@ -44,57 +44,76 @@
 			}
 		});
 
-        $('#updateFormSubmit').on("click", function (e) {
-            const $this = $(this);
-            $this.attr("disabled", "disabled");
-			var formId = $('.updateForm').attr('id');
-			var formData = new FormData(document.getElementById(formId));
-            const category = formData.get("Category.Url");
-			formData.set('IsOnMainPage', $(`#${formId} input[name='IsOnMainPage']`).prop("checked"));
-			formData.set('IsPublished', $(`#${formId} input[name='IsPublished']`).prop("checked"));
-			formData.set('IsImportant', $(`#${formId} input[name='IsImportant']`).prop("checked"));
+		$('#updateFormSubmit').on("click",
+			function (e) {
+				const $this = $(this);
+				$this.attr("disabled", "disabled");
+				var formId = $('.updateForm').attr('id');
+				var formData = new FormData(document.getElementById(formId));
+				const category = formData.get("Category.Url");
+				formData.set('IsOnMainPage', $(`#${formId} input[name='IsOnMainPage']`).prop("checked"));
+				formData.set('IsPublished', $(`#${formId} input[name='IsPublished']`).prop("checked"));
+				formData.set('IsImportant', $(`#${formId} input[name='IsImportant']`).prop("checked"));
 
-			console.log($(`#${formId} input[name='IsPublished']`).prop("checked"));
+				console.log($(`#${formId} input[name='IsPublished']`).prop("checked"));
 
-			formData.set('IsOnSide', $(`#${formId} input[name='IsOnSide']`).prop("checked"));
-			formData.set('IsOnSlider', $(`#${formId} input[name='IsOnSlider']`).prop("checked"));
-			formData.set('Article',tinyMCE.get('Article').getContent());
-			var tagsArray = $(`#${formId} input[Name='tagsName']`).tagsinput('items');
+				formData.set('IsOnSide', $(`#${formId} input[name='IsOnSide']`).prop("checked"));
+				formData.set('IsOnSlider', $(`#${formId} input[name='IsOnSlider']`).prop("checked"));
+				formData.set('Article', tinyMCE.get('Article').getContent());
+				var tagsArray = $(`#${formId} input[Name='tagsName']`).tagsinput('items');
 
-			for (let i = 0; i < tagsArray.length; i++)
-				formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
-			var file = $(`#${formId} input[name='Image']`).get(0).files;
-			formData.set("Image", $(`#${formId} input[name='Image']`).get(0).files[0]);
+				for (let i = 0; i < tagsArray.length; i++)
+					formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
+				var file = $(`#${formId} input[name='Image']`).get(0).files;
+				formData.set("Image", $(`#${formId} input[name='Image']`).get(0).files[0]);
 
-			const apiTypeUrl = category ? "NewsApi" : "BlogsApi";
-	        const apiAction = category ? "UpdateNews" : "UpdateBlog";
-			$.ajax({
-				type: "POST",
-                url: `/api/${apiTypeUrl}/${$(this).data("action")}`,
-				data: formData,
-				cache: false,
-				contentType: false,
-				processData: false,
-                success: function (data) {
-					$("#updateFormSubmit").data("action", apiAction);
-                    $(`#${formId} input[name='PostId']`).val(data["id"]);
-					$this.removeAttr("disabled");
+				const apiTypeUrl = category ? "NewsApi" : "BlogsApi";
+				const apiAction = category ? "UpdateNews" : "UpdateBlog";
+				$.ajax({
+					type: "POST",
+					url: `/api/${apiTypeUrl}/${$(this).data("action")}`,
+					data: formData,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success: function (data) {
+						$("#updateFormSubmit").data("action", apiAction);
+						$(`#${formId} input[name='PostId']`).val(data["id"]);
+						$this.removeAttr("disabled");
+						$(`.deletepost`).removeAttr('hidden');
+						$.toaster({
+							priority: 'success',
+							title: 'Операція успішна',
+							message: "\nСтаттю збережено!",
+							settings: {
+								'timeout': 4000
+							}
+						});
+					},
+					error: function (data) {
+						$this.removeAttr("disabled");
+						$.toaster({
+							priority: 'error',
+							title: 'Упс',
+							message: "\nЩось пішло не так!",
+							settings: {
+								'timeout': 4000
+							}
+						});
+					}
 
-				},
-				error: function (data) {
-					$this.removeAttr("disabled");
-					console.log("motherlo");
-				}
+
+				});
+				e.preventDefault();
 			});
-			e.preventDefault();
-				
-		});
 
-		$(document).on('submit', '.updateForm', function (e) {
-			//prevent the form from doing a submit
-			e.preventDefault();
-			return false;
-		})
+		$(document).on('submit',
+			'.updateForm',
+			function (e) {
+				//prevent the form from doing a submit
+				e.preventDefault();
+				return false;
+			});
 	});
 
 	var substringMatcher = function (strs) {
@@ -113,7 +132,7 @@
 			});
 			cb(matches);
 		};
-    };
+	};
 
 	$("#tagTypeahead").tagsinput({
 		typeaheadjs: {
@@ -122,7 +141,7 @@
 		}
 	});
 
-	
+
 
 
 
