@@ -14,6 +14,8 @@ using Investor.Service;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
 using Investor.Entity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace Investor.Web
@@ -71,6 +73,20 @@ namespace Investor.Web
 
             services.AddMvc();
             services.AddAutoMapper();
+
+            services
+                .AddAuthentication(o =>
+                {
+                    o.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+                {
+                    o.LoginPath = new PathString("/account/login/");
+                })
+                .AddCookie("backend", o =>
+                {
+                    o.LoginPath = new PathString("/admin/account/login/");
+                });
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,7 +108,6 @@ namespace Investor.Web
             }
 
             app.UseAuthentication();
-
             app.UseStaticFiles();
 
             app.UseMvc(routes =>

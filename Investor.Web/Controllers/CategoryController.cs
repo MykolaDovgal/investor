@@ -20,7 +20,7 @@ namespace Investor.Web.Controllers
             ViewBag.CategoryPopularPosts = _postService.GetPopularNewsByCategoryUrlAsync(url, 5).Result.ToList();
             ViewBag.CategoryPosts = _postService.GetLatestNewsByCategoryUrlAsync(url).Result.ToList();
             ViewBag.LatestPosts = _postService.GetLatestNewsAsync(20).Result.ToList();
-
+            ViewBag.Url = url;
             return View();
         }
     }

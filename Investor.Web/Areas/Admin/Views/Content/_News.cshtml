@@ -50,8 +50,8 @@
 <div class="container">
     <div class="row mb-5 mt-5">
         <a class="btns btn-dark mr-5 nav-link" data-type="createpost" data-href="/content/CreateNews">Додати новину</a>
-        <a class="btns btn-red  mr-5 nav-link delete news" data-toggle="modal" data-target="#deletenew" disabled="disabled">Видалити новину</a>
-        <a class="btns btn-dark nav-link" data-href="/api/NewsApi/UpdateTableNews" data-type="update">Зберегти</a>
+        <a class="btns btn-red btn mr-5 nav-link delete news disabled" data-toggle="modal" data-target="#deletenew">Видалити новину</a>
+        <a class="btns btn-dark btn nav-link update disabled" data-href="/api/NewsApi/UpdateTableNews" data-type="update">Зберегти</a>
     </div>
     <table id="newsTable" class="table table-striped table-bordered nowrap" cellspacing="0" >
         <thead>
@@ -62,8 +62,10 @@
             <th>Дата публікації</th>
             <th>Категорія</th>
             <th>Опубліковано</th>
-            <th>На головінй сторінці</th>
+            <th>На головній сторінці</th>
             <th>Важливий</th>
+            <th>На боковій панелі</th>
+            <th>На слайдері</th>
         </tr>
         </thead>
         <tbody></tbody>

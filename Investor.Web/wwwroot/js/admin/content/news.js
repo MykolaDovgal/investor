@@ -21,6 +21,12 @@ $(document).on('change',
 				tablesUpdetedData[tableDataObj.postId] = tableDataObj;
 				tablesUpdetedData[tableDataObj.postId][propertyName] = properyValue;
 			}
+			if ((e.target).classList.contains('modified')) {
+				(e.target).classList.remove('modified');
+			} else {
+				(e.target).classList.add('modified');
+			}
+			console.log((e.target).classList.contains('modified'));
 		}
 		else if ($(e.target).is('select')){
 			properyValue = $(e.target).val();
@@ -29,8 +35,14 @@ $(document).on('change',
 			} else {
 				tablesUpdetedData[tableDataObj.id] = tableDataObj;
 				tablesUpdetedData[tableDataObj.id][propertyName] = properyValue;
+				(e.target).classList.add('modified');
 			}
 		}
+		if ($('.modified').length > 0) {
+				$('.update').removeClass('disabled');
+			} else {
+				$('.update').addClass('disabled');
+			}
 	});
 
 $(document).on("click", "a.nav-link", function (e) {
@@ -53,7 +65,7 @@ $(document).on("click", "a.nav-link", function (e) {
 		}
 		console.log(tempArray);
 		updetePosts.call(this, url, tempArray);
-
+		tablesUpdetedData = {};
     }
 
 	if (type && type === "singlepost") {
@@ -72,6 +84,7 @@ $(document).on("click", "a.nav-link", function (e) {
 });
 
 let updetePosts = function (url, postData) {
+	var $this = this;
 	console.log(postData);
 	$.ajax({
 		url: url,
@@ -88,6 +101,10 @@ let updetePosts = function (url, postData) {
 				settings: {
 					'timeout': 4000
 				}
+			});
+			$($this).addClass('disabled');
+			$('input[type="checkbox"]').toArray().forEach(function(item) {
+				item.classList.remove('modified');
 			});
 		}
 	});
@@ -106,7 +123,7 @@ let initialTable = function (tableId) {
 					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
                                     <input type="checkbox" class="custom-control-input md-check" >
                                     <span class="custom-control-indicator size-check"></span>
-                                </label></div>`
+                                </label></div>`;
 				}
 			},
 			{
@@ -154,6 +171,24 @@ let initialTable = function (tableId) {
 				render: function (data, type, full, meta) {
 					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
                                     <input type="checkbox" data-name="IsImportant" class="custom-control-input md-check" ${data ? "checked" : ""}>
+                                    <span class="custom-control-indicator size-check"></span>
+                                </label></div>`;
+				}
+			},
+			{
+				"data": "isOnSide",
+				render: function (data, type, full, meta) {
+					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
+                                    <input type="checkbox" data-name="isOnSide" class="custom-control-input md-check" ${data ? "checked" : ""}>
+                                    <span class="custom-control-indicator size-check"></span>
+                                </label></div>`;
+				}
+			},
+			{
+				"data": "isOnSlider",
+				render: function (data, type, full, meta) {
+					return `<div class="text-center">  <label class="custom-control custom-checkbox ">
+                                    <input type="checkbox" data-name="isOnSlider" class="custom-control-input md-check" ${data ? "checked" : ""}>
                                     <span class="custom-control-indicator size-check"></span>
                                 </label></div>`;
 				}
