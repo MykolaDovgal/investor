@@ -1,4 +1,9 @@
-﻿<header>
+﻿@using Investor.Model
+@inject Investor.Service.Interfaces.IUserService UserService
+@{
+    User user = UserService.GetCurrentUserAsync().Result;
+}
+<header>
     <div class="top-header">
         <div class="container p-0">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -7,8 +12,8 @@
                         <li class="nav-item header-titles">Середа 29.04.1995</li>
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
-                        <p class="nav-item header-titles m-auto pr-4">Username</p>
-                        <button class="nav-item header-titles m-auto pl-2">Вийти</button>
+                        <p class="nav-item header-titles m-auto pr-4">@user.Surname @user.Name</p>
+                        <a class="nav-item header-titles m-auto pl-2 log-out-btn" id="logoff" href="/admin/account/logoff">Вийти</a>
                         <a href="#" class="btn p-0 m-auto"><i class="icons youtube ml-4"></i></a>
                         <a href="#" class="btn p-0 m-auto"><i class="icons facebook-logo ml-4"></i></a>
                         <a href="#" class="btn p-0 m-auto"><i class="icons twitter ml-4"></i></a>

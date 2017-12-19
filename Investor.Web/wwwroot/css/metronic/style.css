@@ -7504,3 +7504,12 @@ span.btn.btn-second.btn-file {
     padding: 8px 20px;
     border-radius: 3px 0 0 3px;
 }
+.log-out-btn {
+    color: #35414F !important;
+    border-left: 3px solid #35414F;
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
+}

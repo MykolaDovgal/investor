@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Investor</title>
     <link href="~/css/metronic/style.css" rel="stylesheet" />
+    <link href="~/css/addition_styles.css" rel="stylesheet" />
 </head>
 <body>
-    <a href="#" class="btn-back btn-fixed">&larr;Повернутись на Investor</a>
+    <a href="/home/index" class="btn-back btn-fixed">&larr;Повернутись на Investor</a>
     <section class="section-login">
         <div class="block-login">
             <img src="~/img/admin/admin%20Investor.png" class="img-fluid mx-auto d-block" />
@@ -21,7 +22,7 @@
                         <div class="col-md-11 pr-md-11 pl-0 pl-0 px-0 form-login-br">
                             <h3 class="form-login-title mb-4">Вхід в обліковий запис</h3>
                             <div class="form-group">
-                                <label  asp-for="Email">Електронна адреса</label>
+                                <label asp-for="Email">Електронна адреса</label>
                                 <input asp-for="Email" type="email" class="form-control">
                             </div>
                             <div class="form-group">
@@ -30,12 +31,16 @@
                             </div>
                             <div class="form-check m-0">
                                 <div class="checkbox">
-                                    <input asp-for="RememberMe" id="checkbox1" type="checkbox">
+                                    <label class="custom-control custom-checkbox ">
+                                        <input asp-for="RememberMe" id="checkbox1" type="checkbox" class="custom-control-input md-check">
+                                        <span class="custom-control-indicator"></span>
+                                    </label>
                                     <label asp-for="RememberMe" for="checkbox1" class="m-0">
                                         Запамятати мене
                                     </label>
                                 </div>
                             </div>
+                            <div class="error">@(ViewData.ContainsKey("Error") ? ViewBag.Error : "") </div>
                         </div>
                     </div>
                 </div>

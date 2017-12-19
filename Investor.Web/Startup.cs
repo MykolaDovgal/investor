@@ -14,7 +14,9 @@ using Investor.Service;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
 using Investor.Entity;
+using Investor.Web.Areas.Admin.Attribute;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
@@ -43,6 +45,7 @@ namespace Investor.Web
 
             services.AddIdentity<UserEntity, IdentityRole>(opts =>
             {
+                
                 opts.Password.RequiredLength = 6;   
                 opts.Password.RequireNonAlphanumeric = false;
                 opts.Password.RequireLowercase = false; 
@@ -74,19 +77,13 @@ namespace Investor.Web
             services.AddMvc();
             services.AddAutoMapper();
 
-            services
-                .AddAuthentication(o =>
-                {
-                    o.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                })
-                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
-                {
-                    o.LoginPath = new PathString("/account/login/");
-                })
-                .AddCookie("backend", o =>
-                {
-                    o.LoginPath = new PathString("/admin/account/login/");
-                });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminAuthorize", policy =>
+                    policy.Requirements.Add(new RoleAuthorizeRequirement("admin")));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, AdminAuthorize>();
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -112,6 +109,9 @@ namespace Investor.Web
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute("login", "login",
                     defaults: new { controller = "Account", action = "Login" });
                 routes.MapRoute("register", "register",
@@ -124,13 +124,10 @@ namespace Investor.Web
                     defaults: new { controller = "Blog", action = "Page" });
                 routes.MapRoute("category", "category/{url}",
                     defaults: new { controller = "Category", action = "Index" });
-
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "areas",
-                template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                
             });
         }
     }

@@ -12,13 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Investor</title>
     <link rel="stylesheet" href="~/css/style.min.css">
+    <link href="~/css/addition_styles.css" rel="stylesheet" />
 </head>
 <body>
     <a href="/" class="btn-back btn-fixed"><i class="icons icon-arrow-back"></i>Повернутись на Investor</a>
     <section class="section-login">
         <div class="block-login">
             <img src="~/img/logo-login.png" class="img-fluid mx-auto d-block" />
-            <form method="post" asp-controller="Home" asp-action="Login">
+            <form  method="post" asp-controller="Account" asp-action="Login">
                 <div class="form-login block-border-top default-border-color mb-3">
                     <div class="row">
                         <div class="col-md-9 pr-md-4 pl-0 pl-0 px-0 form-login-br">
@@ -37,6 +38,7 @@
                                     <label asp-for="RememberMe" class="m-0">Запамятати мене</label>
                                 </div>
                             </div>
+                            <div class="error">@(ViewData.ContainsKey("Error") ? ViewBag.Error : "") </div>
                         </div>
                         <div class="col-md-3 p-0 flex-v-center">
                             <div class="wrapper-login-social mx-auto d-block">

@@ -31,12 +31,26 @@ namespace Investor.Web.Areas.Admin.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            if (!await _userService.CheckUserForRole(model.Email, model.Password, "admin"))
+            {
+                ViewBag.Error = "У вас немає прав доступу!";
+                return View(model);
+            }
             var result = await _userService.PasswordSignInUserAsync(model.Email, model.Password, model.RememberMe, false);
+            
             if (result.Succeeded)
             {
                 return Redirect("/Admin");
             }
+            ViewBag.Error = "Неправильний пароль!";
             return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> LogOff()
+        {
+            await _userService.SignOutUserAsync();
+            return Json(Url.Action("Index", "Home", new { area = "Admin" }));
         }
     }
 }

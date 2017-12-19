@@ -99,7 +99,7 @@ let getUpdateUserDataForm = function () {
 let getUpdateUserPasswordForm = function () {
 	const formData = new FormData(document.getElementById("updateUserPasswordForm"));
 	formData.append("Password", $("input[name='pass_old']").val());
-	formData.append("NewPassword", $("input[name='pass_confirmation']").val())
+	formData.append("NewPassword", $("input[name='pass_confirmation']").val());
 	return formData;
 }
 

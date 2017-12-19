@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Routing;
 
 namespace Investor.Web.Areas.Admin.Controllers
 {
-    [Authorize(AuthenticationSchemes = "backend")]
     [Area("Admin")]
+    [Authorize(Policy = "AdminAuthorize")]
     public class HomeController : Controller
     {
         public IActionResult Index()
