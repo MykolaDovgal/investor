@@ -11013,15 +11013,15 @@ h1, h2, h3, h4, h5, h6, p, ul, ol {
 
 @font-face {
   font-family: "Circe-ExtraBold";
-  src: url("../fonts/Circe/Circe-ExtraBold.otf"); }
+  src: url("../fonts/circe/circe-extrabold.otf"); }
 
 @font-face {
   font-family: "Circe-Light";
-  src: url("../fonts/Circe/Circe-Light/Circe-Light.ttf") format("truetype"); }
+  src: url("../fonts/circe/circe-light.ttf") format("truetype"); }
 
 @font-face {
   font-family: "Circe-Bold";
-  src: url("../fonts/Circe/Circe-Bold.otf"); }
+  src: url("../fonts/circe/circe-bold.otf"); }
 
 /***color border category***/
 .btn {
