@@ -13,7 +13,8 @@ namespace Investor.Service.Interfaces
     public interface IUserService
     {
         Task<IdentityResult> CreateUserAsync(User user, string userRole = "user");
-        Task SignInUserAsync(User user, bool isLongTime);
+        Task<bool> CheckUserForRole(string email, string password, string role);
+        Task SignInUserAsync(User user, bool isLongTime, string schemeName = "default");
         Task<SignInResult> PasswordSignInUserAsync(string email, string password, bool rememberMe, bool isLongTime);
         Task SignOutUserAsync();
         Task<SortedDictionary<string, List<User>>> GetDictionaryOfBlogersAsync();

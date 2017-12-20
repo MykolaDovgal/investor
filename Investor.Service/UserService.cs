@@ -75,9 +75,10 @@ namespace Investor.Service
             return IdentityResult.Failed();
         }
 
-        public async Task SignInUserAsync(User user, bool isLongTime)
+        public async Task SignInUserAsync(User user, bool isLongTime, string schemeName = "default")
         {
             var userEntity = Mapper.Map<User, UserEntity>(user);
+            var schemes = (await _signInManager.GetExternalAuthenticationSchemesAsync()).Where(c=> c.Name == schemeName);
             await _signInManager.SignInAsync(userEntity, isLongTime);
         }
 
@@ -89,6 +90,16 @@ namespace Investor.Service
                 return await _signInManager.PasswordSignInAsync(user, password, rememberMe, isLongTime);
             }
             return SignInResult.Failed;
+        }
+
+        public async Task<bool> CheckUserForRole(string email, string password, string role)
+        {
+            UserEntity user = _userManager.Users.FirstOrDefault(c => c.Email == email);
+            if (user != null)
+            {
+                return await _userManager.IsInRoleAsync(user, role);
+            }
+            return false;
         }
 
         public async Task SignOutUserAsync()
@@ -116,7 +127,8 @@ namespace Investor.Service
 
         public async Task<User> GetCurrentUserAsync()
         {
-            return Mapper.Map<UserEntity, User>(await _userManager.GetUserAsync(_context.HttpContext.User));
+            var user = await _userManager.GetUserAsync(_context.HttpContext.User);
+            return Mapper.Map<UserEntity, User>(user);
         }
 
         public async Task<User> GetUserById(string id)

@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Investor.Web.Controllers.UsersControllers
 {
-    [Authorize(Roles = "bloger")]
+    [Authorize(Roles = "bloger, admin")]
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
@@ -119,11 +119,17 @@ namespace Investor.Web.Controllers.UsersControllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            if (!await _userService.CheckUserForRole(model.Email, model.Password, "bloger"))
+            {
+                ViewBag.Error = "Ваш обліковий запис не створений або не активований!";
+                return View(model);
+            }
             var result = await _userService.PasswordSignInUserAsync(model.Email, model.Password, model.RememberMe, false);
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");
             }
+            ViewBag.Error = "Неправильний пароль!";
             return View(model);
         }
 

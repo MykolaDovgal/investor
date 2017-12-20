@@ -45,9 +45,17 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PostPreview>> GetLatestNewsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false, int limit = 10)
         {
-            return (await _postRepository
-                .GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit))
-                .Select(Mapper.Map<NewsEntity, PostPreview>);
+            List<NewsEntity> posts = new List<NewsEntity>();
+            posts = onMainPage
+                ? (await _newsRepository.GetAllNewsByCategoryUrlOnMainPageAsync(categoryUrl, limit)).ToList()
+                : (await _postRepository.GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit)).ToList();
+            if (onMainPage && posts.Count < limit)
+            {
+                posts.AddRange((await _postRepository
+                    .GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit))
+                    .Where(p=>!posts.Select(s=>s.PostId).Contains(p.PostId)));
+            }
+            return posts.Select(Mapper.Map<NewsEntity, PostPreview>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetPagedLatestNewsByCategoryUrlAsync(string categoryUrl, int limit = 10, int page = 1)
@@ -159,14 +167,30 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PostPreview>> GetSideNewsAsync(int limit)
         {
-            var result = await _newsRepository.GetSideNewsAsync(limit);
-            return result.Select(Mapper.Map<NewsEntity, PostPreview>);
+            List<NewsEntity> result = (await _newsRepository.GetSideNewsAsync(limit)).ToList();
+            if (result.Count() < limit)
+            {
+                result
+                    .AddRange((await _newsRepository.GetLatestNewsAsync(limit))
+                        .Where(c=>(!result
+                            .Select(s=>s.PostId)
+                            .Contains(c.PostId) && !(c.IsOnSlider ?? false))));
+            }
+            return result.Take(limit).Select(Mapper.Map<NewsEntity, PostPreview>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetSliderNewsAsync(int limit)
         {
-            var result = await _newsRepository.GetSliderNewsAsync(limit);
-            return result.Select(Mapper.Map<NewsEntity, PostPreview>);
+            var result = (await _newsRepository.GetSliderNewsAsync(limit)).ToList();
+            if (result.Count() < limit)
+            {
+                result
+                    .AddRange((await _newsRepository.GetLatestNewsAsync(limit))
+                        .Where(c => (!result
+                            .Select(s => s.PostId)
+                            .Contains(c.PostId) && !(c.IsOnSide ?? false))));
+            }
+            return result.Take(limit).Select(Mapper.Map<NewsEntity, PostPreview>);
         }
     }
 }

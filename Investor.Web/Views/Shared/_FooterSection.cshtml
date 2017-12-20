@@ -1,13 +1,15 @@
-﻿<div class="footer-top">
+﻿@using Investor.Model
+@inject Investor.Service.Interfaces.ICategoryService CategoryService
+<div class="footer-top">
     <div class="container">
         <div class="row justify-content-between d-xs-block">
             <div class="wrapper-btn-all-news">
-                <a href="#" class="btn-default text-center">Дивитися всі новини</a>
+                <a href="/lastnews" class="btn-default text-center">Дивитися всі новини</a>
             </div>
 
             <div class="wrapper-subscribe-news d-flex justify-content-between">
                 <p class="text-sm-right">
-                    Підпишіться на нашу розсилку і будьте<br>
+                    Підпишіться на нашу розсилку і будьте <br>
                     в курсі всіх популярних подій
                 </p>
                 <div class="input-group subscribe-news">
@@ -33,18 +35,18 @@
                 <span class="footer-email">somemail@gmail.com</span>
             </div>
             <div class="col-md-4 col-sm-6 p-sm-0">
-                <span class="footer-title">Categories</span>
+                <span class="footer-title">Категорії</span>
                 <ul class="nav-footer">
-                    <li><a href="#">Main</a></li>
-                    <li><a href="#">Social</a></li>
-                    <li><a href="#">Politics</a></li>
-                    <li><a href="#">Life</a></li>
-                    <li><a href="#">IT</a></li>
-                    <li><a href="#">Blog</a></li>
+                    @{ IEnumerable<Category> categories = CategoryService.GetAllCategoriesAsync().Result;
+                        foreach (var category in categories)
+                        {
+                            <li><a href="/category/@category.Url">@category.Name</a></li>
+                        }
+                    }
                 </ul>
             </div>
             <div class="wrapper-footer-social col-md-2 col-sm-6 p-sm-0">
-                <span class="footer-title">Social</span>
+                <span class="footer-title">Соціальні мережі</span>
                 <ul class="social">
                     <li>
                         <a href="#"><i class="fa fa-youtube-play color-default" aria-hidden="true"></i></a>

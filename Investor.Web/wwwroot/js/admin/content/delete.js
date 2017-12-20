@@ -45,10 +45,10 @@ $(document).on('change',
 		}
 
 		if (chosenPostsIds.length > 0) {
-			$(".delete").removeAttr('disabled');
+			$(".delete").removeClass('disabled');
 		}
 		else {
-			$(".delete").attr('disabled', 'true');
+			$(".delete").addClass('disabled');
 		}
 
 	});
