@@ -1,6 +1,6 @@
 ﻿@model Investor.Model.PostPreview
-@inject Investor.Service.TimeService PostPublicationDate
-@inject Investor.Service.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Utils.TimeService PostPublicationDate
+@inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
 
 @{
     string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);

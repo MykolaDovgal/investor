@@ -19,6 +19,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Investor.Service.Utils;
+using Investor.Service.Utils.Interfaces;
 
 namespace Investor.Web
 {
@@ -96,13 +98,15 @@ namespace Investor.Web
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                //app.UseDeveloperExceptionPage();
+                //app.UseBrowserLink();
+                app.UseExceptionHandler("/Home/Error");
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
 
             app.UseAuthentication();
             app.UseStaticFiles();

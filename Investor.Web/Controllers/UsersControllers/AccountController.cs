@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.IO;
+using Investor.Service.Utils.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Investor.Web.Controllers.UsersControllers

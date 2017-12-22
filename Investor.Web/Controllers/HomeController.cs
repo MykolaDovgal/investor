@@ -70,7 +70,11 @@ namespace Investor.Web.Controllers
             var blogs = _blogService.GetLatestBlogsAsync<BlogPreview>(7).Result.ToList();
             ViewBag.Blogs = blogs;
             return View();
-  
+        }
+        [Route("Error")]
+        public IActionResult Error(int code)
+        {
+            return RedirectToAction("Index");
         }
 
     }

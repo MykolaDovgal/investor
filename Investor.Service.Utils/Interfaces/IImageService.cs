@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Investor.Service.Interfaces
+namespace Investor.Service.Utils.Interfaces
 {
     public interface IImageService
     {

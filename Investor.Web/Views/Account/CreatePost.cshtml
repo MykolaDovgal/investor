@@ -1,6 +1,6 @@
 ﻿@model Investor.Model.Blog
 @using Investor.Model
-@inject Investor.Service.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
 <section class="section-create-post">
     <div class="container">
         <form id="createUserPostForm" action='/Account/@(Model == null ? "CreatePost" : "UpdatePost")'>

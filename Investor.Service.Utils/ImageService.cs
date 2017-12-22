@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Text;
-using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using SixLabors.ImageSharp;
@@ -9,8 +8,9 @@ using SixLabors.Primitives;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using Investor.Service.Utils.Interfaces;
 
-namespace Investor.Service
+namespace Investor.Service.Utils
 {
     public class ImageService : IImageService
     {

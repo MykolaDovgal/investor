@@ -42,6 +42,7 @@
     <ProjectReference Include="..\Investor.Entity\Investor.Entity.csproj" />
     <ProjectReference Include="..\Investor.Model\Investor.Model.csproj" />
     <ProjectReference Include="..\Investor.Repository\Investor.Repository.csproj" />
+    <ProjectReference Include="..\Investor.Service.Utils\Investor.Service.Utils.csproj" />
     <ProjectReference Include="..\Investor.Service\Investor.Service.csproj" />
   </ItemGroup>
   <ItemGroup>

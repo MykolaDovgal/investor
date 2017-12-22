@@ -2,14 +2,14 @@
 using Investor.Model;
 using Investor.Repository;
 using Investor.Repository.Interfaces;
-using Investor.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Investor.Service.Utils.Interfaces;
 
-namespace Investor.Service
+namespace Investor.Service.Utils
 {
     public class ImagePathService : IImagePathService
     {

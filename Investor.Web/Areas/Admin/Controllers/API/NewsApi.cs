@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Model;
 using Investor.Service.Interfaces;
+using Investor.Service.Utils.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

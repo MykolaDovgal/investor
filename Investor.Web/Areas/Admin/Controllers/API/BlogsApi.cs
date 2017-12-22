@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Investor.Model;
 using Investor.Service.Interfaces;
+using Investor.Service.Utils.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
