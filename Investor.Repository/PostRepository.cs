@@ -72,7 +72,7 @@ namespace Investor.Repository
                 .Include(p => p.PostTags)
                 .ThenInclude(p => p.Tag)
                 .FirstOrDefaultAsync(p => p.PostId == id);
-            return post.PostTags.Select(p => p.Tag).ToList();
+            return post?.PostTags?.Select(p => p.Tag).ToList();
         }
 
         public async Task<IEnumerable<T>> GetLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit) where T : PostEntity

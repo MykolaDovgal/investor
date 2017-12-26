@@ -75,6 +75,8 @@ namespace Investor.Service
             return IdentityResult.Failed();
         }
 
+       
+
         public async Task SignInUserAsync(User user, bool isLongTime, string schemeName = "default")
         {
             var userEntity = Mapper.Map<User, UserEntity>(user);

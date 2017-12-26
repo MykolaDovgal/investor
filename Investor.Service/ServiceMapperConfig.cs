@@ -19,33 +19,31 @@ namespace Investor.Service
                     .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)))
                     .ForMember(x => x.SerializedCropPoints, opt => opt.MapFrom(src => string.Join(";", src.CropPoints)))
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-
                 cfg.CreateMap<UserEntity, TableUserPreview>().ReverseMap();
                 cfg.CreateMap<UserEntity, User>()
                     .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';',StringSplitOptions.None)))
                     .ForMember(x=>x.CropPoints, opt => opt.MapFrom(src=>src.SerializedCropPoints.Split(';', StringSplitOptions.None).Select(c=>int.Parse(c))));
                 cfg.CreateMap<RegisterViewModel, User>().ReverseMap();
+
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();
+
                 cfg.CreateMap<Tag, TagEntity>().ReverseMap();
                 cfg.CreateMap<AdminTag, TagEntity>().ReverseMap();
 
                 cfg.CreateMap<PostPreview, PostEntity>().ReverseMap();
-                cfg.CreateMap<NewsEntity, PostPreview>().ReverseMap();
-
+                
                 cfg.CreateMap<BlogEntity, BlogPreview>();
                 cfg.CreateMap<BlogEntity, TableBlogPreview>().ReverseMap();
 
-
+                cfg.CreateMap<NewsEntity, PostPreview>().ReverseMap();
                 cfg.CreateMap<NewsEntity, TablePostPreview>().ReverseMap();
                 cfg.CreateMap<News, PostPreview>();
                 cfg.CreateMap<News, PostEntity>()
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-
                 cfg.CreateMap<NewsEntity, NewsEntity>()
                 .ForMember(x => x.CreatedOn, opt => opt.Ignore())
                 .ForMember(x => x.PostTags, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-
                 cfg.CreateMap<News, News>()
                     .ForMember(x => x.CreatedOn, opt => opt.Ignore())
                     .ForMember(x => x.Tags, opt => opt.Ignore())
@@ -62,8 +60,6 @@ namespace Investor.Service
                     .ForMember(x => x.ModifiedOn, opt => opt.Ignore())
                     .ForMember(x => x.PublishedOn, opt => opt.Ignore())
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-                
-                    
 
                 cfg.CreateMap<BlogEntity, BlogEntity>()
                     .ForMember(x=>x.Author, opt=>opt.Ignore())

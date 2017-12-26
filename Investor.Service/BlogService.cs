@@ -92,6 +92,12 @@ namespace Investor.Service
             return blogs.Select(Mapper.Map<BlogEntity, BlogPreview>);
         }
 
+        public async Task<IEnumerable<BlogPreview>> GetPublishedBlogsByUserIdAsync(string userId)
+        {
+            IEnumerable<BlogEntity> blogs = (await _blogRepository.GetBlogsByUserIdAsync(userId)).Where(c=>c.IsPublished ?? false);
+            return blogs.Select(Mapper.Map<BlogEntity, BlogPreview>);
+        }
+
         public async Task<IEnumerable<T>> GetLatestBlogsAsync<T>(int limit = 10)
         {
             IEnumerable<BlogEntity> blogs = await _blogRepository.GetLatestBlogsAsync(limit);

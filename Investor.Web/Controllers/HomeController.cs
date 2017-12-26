@@ -46,35 +46,32 @@ namespace Investor.Web.Controllers
             _categoryService = categoryService;
             _blogService = blogService;
         }
-
+        
         public IActionResult Index()
         {
             List<CategoryPreviewViewModel> news = new List<CategoryPreviewViewModel>();
             List<Category> categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
             categories.ForEach(category =>
             {
-                var categoryPosts = _postService.GetLatestNewsByCategoryUrlAsync(category.Url, true, _postPreviewCount[category.Url]).Result.ToList();
+                var categoryPosts = _postService
+                    .GetLatestNewsByCategoryUrlAsync(category.Url, true, _postPreviewCount[category.Url]).Result
+                    .ToList();
                 int largePostCount = _largePostPreviewCount[category.Url];
                 news.Add(new CategoryPreviewViewModel
                 {
                     CategoryUrl = category.Url,
                     CategoryName = category.Name,
                     LargePostPreviewTemplate = categoryPosts.Take(largePostCount),
-                    SmallPostPreviewTemplate = categoryPosts.Skip(largePostCount)                    
+                    SmallPostPreviewTemplate = categoryPosts.Skip(largePostCount)
                 });
             });
             ViewBag.SideNews = _postService.GetSideNewsAsync(2).Result.ToList();
             ViewBag.SliderNews = _postService.GetSliderNewsAsync(7).Result.ToList();
-            ViewBag.News = news;        
+            ViewBag.News = news;
             ViewBag.LatestPosts = _postService.GetLatestNewsAsync(20).Result.ToList();
             var blogs = _blogService.GetLatestBlogsAsync<BlogPreview>(7).Result.ToList();
             ViewBag.Blogs = blogs;
             return View();
-        }
-        [Route("Error")]
-        public IActionResult Error(int code)
-        {
-            return RedirectToAction("Index");
         }
 
     }

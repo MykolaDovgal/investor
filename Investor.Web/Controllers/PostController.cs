@@ -21,7 +21,14 @@ namespace Investor.Web.Controllers
         public IActionResult Index(int id)
         {
             ViewBag.PathBase = Request.Host.Value;
-            ViewBag.Post = _postService.GetNewsByIdAsync(id).Result; 
+            var post = _postService.GetNewsByIdAsync(id).Result;
+
+            if (!(post?.IsPublished) ?? true)
+            {
+                Response.StatusCode = 403;
+                return StatusCode(Response.StatusCode);
+            }
+            ViewBag.Post = post;
             ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result?.ToList();
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList(); 
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();

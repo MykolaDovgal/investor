@@ -1,8 +1,8 @@
 ﻿@using Investor.Model
 @inject Investor.Service.Interfaces.IUserService UserService
-
 @{
     User user = UserService.GetCurrentUserAsync().Result;
+    user = UserService.GetRoleByUserAsync(user.Id).Result == "bloger" ? user : null; 
 }
 
 <header class="header-account">

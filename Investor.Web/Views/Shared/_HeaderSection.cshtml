@@ -3,6 +3,10 @@
 
 @{
     User user = UserService.GetCurrentUserAsync().Result;
+    if (user != null)
+    {
+        user = UserService.GetRoleByUserAsync(user.Id).Result == "bloger" ? user : null;
+    }
 }
 
 <div class="header-top">

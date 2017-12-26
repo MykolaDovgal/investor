@@ -14,16 +14,6 @@ namespace Investor.Web.Areas.Admin.Controllers
     {
         public IActionResult Index()
         {
-
-            //bool isAuthenticated = User.Identity.IsAuthenticated;
-            //if (isAuthenticated)
-            //{
-            //    return View("~/Areas/Admin/Views/Home/Index.cshtml");
-            //}
-            //else
-            //{
-            //    return View("Login");
-            //}
             return View();
         }
     }

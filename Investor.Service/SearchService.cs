@@ -23,7 +23,7 @@ namespace Investor.Service
         public async Task<IEnumerable<PostPreview>> SearchPosts(PostSearchQuery query)
         {
             var posts = await _postRepository.GetQueriedNews(query);
-            //var posts = await _newsRepository.GetAllNewsAsync();
+
             return posts.Select(Mapper.Map<PostEntity, PostPreview>);
         }
     }

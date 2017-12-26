@@ -27,6 +27,13 @@ namespace Investor.Web.Areas.Admin.Attribute
             RoleAuthorizeRequirement requirement)
         {
             var controllerContext = context.Resource as AuthorizationFilterContext;
+            var redirectResult = new RedirectToRouteResult(new RouteValueDictionary(new
+            {
+                area = requirement.Role,
+                controller = "Account",
+                action = "Login"
+
+            }));
             if (context.User?.Identity.IsAuthenticated ?? false)
             {
                 if (context.User.HasClaim(c => c.Type == ClaimTypes.Role) && context.User.IsInRole(requirement.Role))
@@ -35,20 +42,19 @@ namespace Investor.Web.Areas.Admin.Attribute
                 }
                 else
                 {
-                    return Task.CompletedTask;
+                    if (controllerContext != null)
+                    {
+                        controllerContext.Result = redirectResult;
+                    }
+                    context.Succeed(requirement);
                 }
             }
             else
             {
                 if (controllerContext != null)
-                    controllerContext.Result =
-                        new RedirectToRouteResult(new RouteValueDictionary(new
-                        {
-                            area = requirement.Role,
-                            controller = "Account",
-                            action = "Login"
-                            
-                        }));
+                {
+                    controllerContext.Result = redirectResult;
+                }
                 context.Succeed(requirement);
             }
             return Task.CompletedTask;
