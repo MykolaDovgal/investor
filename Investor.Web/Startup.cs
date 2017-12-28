@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Investor.Service.Utils;
 using Investor.Service.Utils.Interfaces;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Investor.Web
 {
@@ -107,7 +108,11 @@ namespace Investor.Web
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
-
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                                   ForwardedHeaders.XForwardedProto
+            });
             app.UseAuthentication();
             app.UseStaticFiles();
 
