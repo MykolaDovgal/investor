@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -39,7 +38,12 @@ namespace Investor.Web.Controllers
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
-            string externalip = new WebClient().DownloadString("http://icanhazip.com");
+            var ip = IPAddress.Loopback;
+            NetworkCredential cred = CredentialCache.DefaultNetworkCredentials;
+            WebClient wc = new WebClient();
+            wc.Credentials = cred;
+            string externalip = wc.DownloadString("http://icanhazip.com");
+            var ip2 = _accessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
             ViewBag.IP = externalip;
             return View("Index");
         }
