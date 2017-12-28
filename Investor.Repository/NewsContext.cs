@@ -14,6 +14,7 @@ namespace Investor.Repository
         public DbSet<PostEntity> Posts { get; set; }
         public DbSet<NewsEntity> News { get; set; }
         public DbSet<TagEntity> Tags { get; set; }
+        //public DbSet<ClientEntity> Clients { get; set; }
 
         public NewsContext(DbContextOptions<NewsContext> options) 
             : base(options)
@@ -33,6 +34,21 @@ namespace Investor.Repository
                .HasOne(pt => pt.Tag)
                .WithMany(pt => pt.PostTags)
                .HasForeignKey(pt => pt.TagId);
+
+
+            //modelBuilder.Entity<ClientPostEntity>()
+            //    .HasKey(t => new { t.PostId, t.ClientId });
+
+            //modelBuilder.Entity<ClientPostEntity>()
+            //    .HasOne(pt => pt.Post)
+            //    .WithMany(pt => pt.ClientVisits)
+            //    .HasForeignKey(pt => pt.PostId);
+
+            //modelBuilder.Entity<ClientPostEntity>()
+            //    .HasOne(pt => pt.Client)
+            //    .WithMany(pt => pt.PostVisits)
+            //    .HasForeignKey(pt => pt.ClientId);
+
             base.OnModelCreating(modelBuilder);
         }
 

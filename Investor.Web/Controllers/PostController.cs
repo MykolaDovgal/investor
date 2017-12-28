@@ -4,8 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace Investor.Web.Controllers
 {
@@ -13,11 +16,13 @@ namespace Investor.Web.Controllers
     {
         private readonly INewsService _postService;
         private readonly ITagService _tagService;
-        public PostController(INewsService postService, ITagService tagService)
+        private IHttpContextAccessor _accessor;
+        public PostController(INewsService postService, ITagService tagService, IHttpContextAccessor accessor)
         {
             _postService = postService;
             _tagService = tagService;
-        } 
+            _accessor = accessor;
+        }
         public IActionResult Index(int id)
         {
             ViewBag.PathBase = Request.Host.Value;
@@ -30,9 +35,12 @@ namespace Investor.Web.Controllers
             }
             ViewBag.Post = post;
             ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result?.ToList();
-            ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList(); 
+            ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
+            var ip = IPAddress.Loopback;
+            var ip2 = _accessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+            ViewBag.IP = ip2;
             return View("Index");
         }
 
@@ -42,6 +50,6 @@ namespace Investor.Web.Controllers
             return View(lastNews);
         }
 
-        
+
     }
 }

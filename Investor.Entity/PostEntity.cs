@@ -41,10 +41,12 @@ namespace Investor.Entity
         public CategoryEntity Category { set; get; }
 
         public List<PostTagEntity> PostTags { get; set; }
+        //public List<ClientPostEntity> ClientVisits { set; get; }
 
         public PostEntity()
         {
             PostTags = new List<PostTagEntity>();
+            //ClientVisits = new List<ClientPostEntity>();
             Category = null;
         }
     }
