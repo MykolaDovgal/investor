@@ -58,6 +58,7 @@ namespace Investor.Web.Controllers
             
             String direction = "";
             WebRequest request = WebRequest.Create("http://checkip.dyndns.org");
+            
             using (WebResponse response = request.GetResponse()) 
             using (StreamReader stream = new StreamReader(response.GetResponseStream()))
             { direction = stream.ReadToEnd(); }
