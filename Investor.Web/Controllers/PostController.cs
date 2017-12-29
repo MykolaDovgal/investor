@@ -41,35 +41,35 @@ namespace Investor.Web.Controllers
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
-            var ip = IPAddress.Loopback;
-            IPHostEntry ips = Dns.GetHostByName(Dns.GetHostName());
-            string myNIC = ips.AddressList[0].ToString();
+            //var ip = IPAddress.Loopback;
+            //IPHostEntry ips = Dns.GetHostByName(Dns.GetHostName());
+            //string myNIC = ips.AddressList[0].ToString();
 
-            string myInternetIP = ips.AddressList[0].ToString();
+            //string myInternetIP = ips.AddressList[0].ToString();
 
-            //
-            //UTF8Encoding utf8 = new UTF8Encoding();
-            //string whatIsMyIp = "http://automation.whatismyip.com/n09230945.asp";
-            //WebClient wc = new WebClient();
-            //string response1 = utf8.GetString(wc.DownloadData(whatIsMyIp));
-            //IPAddress myIPAddress = IPAddress.Parse(response1);
+            ////
+            ////UTF8Encoding utf8 = new UTF8Encoding();
+            ////string whatIsMyIp = "http://automation.whatismyip.com/n09230945.asp";
+            ////WebClient wc = new WebClient();
+            ////string response1 = utf8.GetString(wc.DownloadData(whatIsMyIp));
+            ////IPAddress myIPAddress = IPAddress.Parse(response1);
 
-            //
+            ////
             
-            String direction = "";
-            WebRequest request = WebRequest.Create("http://checkip.dyndns.org");
+            //String direction = "";
+            //WebRequest request = WebRequest.Create("http://checkip.dyndns.org");
             
-            using (WebResponse response = request.GetResponse()) 
-            using (StreamReader stream = new StreamReader(response.GetResponseStream()))
-            { direction = stream.ReadToEnd(); }
-            //Search for the ip in the html 
-            int first = direction.IndexOf("Address: ") + 9;
-            int last = direction.LastIndexOf("</body>");
-            direction = direction.Substring(first, last - first);
+            //using (WebResponse response = request.GetResponse()) 
+            //using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+            //{ direction = stream.ReadToEnd(); }
+            ////Search for the ip in the html 
+            //int first = direction.IndexOf("Address: ") + 9;
+            //int last = direction.LastIndexOf("</body>");
+            //direction = direction.Substring(first, last - first);
 
-            var ip2 = direction;
-            bool i = _accessor.HttpContext.Request.Headers.ContainsKey("X_FORWARDED_FOR");
-            ViewBag.IP = _accessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
+            //var ip2 = direction;
+            //bool i = _accessor.HttpContext.Request.Headers.ContainsKey("X_FORWARDED_FOR");
+            //ViewBag.IP = _accessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
 
             return View("Index");
         }
