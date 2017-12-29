@@ -55,7 +55,7 @@ namespace Investor.Web.Controllers
             //IPAddress myIPAddress = IPAddress.Parse(response1);
 
             //
-
+            
             String direction = "";
             WebRequest request = WebRequest.Create("http://checkip.dyndns.org");
             using (WebResponse response = request.GetResponse()) 
@@ -67,7 +67,8 @@ namespace Investor.Web.Controllers
             direction = direction.Substring(first, last - first);
 
             var ip2 = direction;
-            ViewBag.IP = direction;
+            bool i = _accessor.HttpContext.Request.Headers.ContainsKey("X_FORWARDED_FOR");
+            ViewBag.IP = _accessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
 
             return View("Index");
         }
