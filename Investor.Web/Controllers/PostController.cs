@@ -40,19 +40,13 @@ namespace Investor.Web.Controllers
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
             var ip = IPAddress.Loopback;
-            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
-            String sMacAddress = string.Empty;
-            foreach (NetworkInterface adapter in nics)
-            {
-                if (sMacAddress == String.Empty)// only return MAC Address from first card
-                {
-                    IPInterfaceProperties properties = adapter.GetIPProperties();
-                    sMacAddress = adapter.GetPhysicalAddress().ToString();
-                }
-            }
-            var _webClient = new System.Net.WebClient();
-            var ip2 = _accessor.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
-            ViewBag.IP = sMacAddress;
+            IPHostEntry ips = Dns.GetHostByName(Dns.GetHostName());
+            string myNIC = ips.AddressList[0].ToString();
+
+            string myInternetIP = ips.AddressList[0].ToString();
+
+            var ip2 = myNIC +  myInternetIP;
+            ViewBag.IP = ip2;
             return View("Index");
         }
 
