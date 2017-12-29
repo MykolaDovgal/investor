@@ -3,9 +3,11 @@ using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -45,8 +47,28 @@ namespace Investor.Web.Controllers
 
             string myInternetIP = ips.AddressList[0].ToString();
 
-            var ip2 = myNIC +  myInternetIP;
-            ViewBag.IP = ip2;
+            //
+            //UTF8Encoding utf8 = new UTF8Encoding();
+            //string whatIsMyIp = "http://automation.whatismyip.com/n09230945.asp";
+            //WebClient wc = new WebClient();
+            //string response1 = utf8.GetString(wc.DownloadData(whatIsMyIp));
+            //IPAddress myIPAddress = IPAddress.Parse(response1);
+
+            //
+
+            String direction = "";
+            WebRequest request = WebRequest.Create("http://checkip.dyndns.org");
+            using (WebResponse response = request.GetResponse()) 
+            using (StreamReader stream = new StreamReader(response.GetResponseStream()))
+            { direction = stream.ReadToEnd(); }
+            //Search for the ip in the html 
+            int first = direction.IndexOf("Address: ") + 9;
+            int last = direction.LastIndexOf("</body>");
+            direction = direction.Substring(first, last - first);
+
+            var ip2 = direction;
+            ViewBag.IP = direction;
+
             return View("Index");
         }
 
