@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\currency_converter.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Areas\Admin\Controllers\API\ContentController.cs.orig" />
     <None Remove="Areas\Admin\Views\Shared\_Layout.cshtml.orig" />
     <None Remove="Properties\PublishProfiles\InvestorWeb2017 - Web Deploy.pubxml" />

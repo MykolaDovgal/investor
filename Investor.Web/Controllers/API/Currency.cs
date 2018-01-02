@@ -13,14 +13,13 @@ namespace Investor.Web.Controllers.API
     [Route("api/[controller]")]
     public class Currency : Controller
     {
-        public static double GetRate(string currencyAbbreviation)
+        public async Task<double> GetRate(string currencyAbbreviation)
         {
             HttpClient web = new HttpClient();
             const string urlPattern = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
-            string response = web.GetStringAsync(urlPattern).Result;
+            string response = await web.GetStringAsync(urlPattern);
             JArray jObject = JArray.Parse(response);
             JToken rate = jObject.First(c => (string)c["cc"] == currencyAbbreviation);
-            var vr = (string)rate["rate"];
             return double.Parse((string)rate["rate"], CultureInfo.InvariantCulture);
         }
     }

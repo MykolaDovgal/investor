@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Identity;
 using Investor.Service.Utils;
 using Investor.Service.Utils.Interfaces;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Investor.Web
 {
@@ -63,9 +64,10 @@ namespace Investor.Web
             services.AddTransient<INewsRepository, NewsRepository>();
             services.AddTransient<IBlogRepository, BlogRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
-            services.AddTransient<TimeService>();
-            //services.AddTransient<ImagePathService>();
 
+            //services.AddTransient<ImagePathService>();
+            //services.AddTransient<IMemoryCache, MemoryCache>();
+            services.AddMemoryCache();
             // Services
             services.AddTransient<IImagePathService, ImagePathService>();
             services.AddTransient<IImageService, ImageService>();
@@ -75,6 +77,8 @@ namespace Investor.Web
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<INewsService, NewsService>();
             services.AddTransient<ITagService, TagService>();
+            services.AddTransient<TimeService>();
+            services.AddTransient<CurrencyService>();
 
 
             services.AddMvc();
