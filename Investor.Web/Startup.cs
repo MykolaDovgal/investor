@@ -79,7 +79,7 @@ namespace Investor.Web
             services.AddTransient<ITagService, TagService>();
             services.AddTransient<TimeService>();
             services.AddTransient<CurrencyService>();
-
+            services.AddTransient<CacheService>();
 
             services.AddMvc();
             services.AddAutoMapper();
