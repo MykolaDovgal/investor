@@ -7230,7 +7230,7 @@ header {
 
 .header-titles {
   color: #35414F;
-  font: 15px "Circe-Bold", sans-serif; }
+  font: 15px "circe-bold", sans-serif; }
 
 .form-inline button {
   border: none;
@@ -7239,7 +7239,7 @@ header {
 
 .navbar-dark .navbar-nav .nav-link.active-item {
   color: white;
-  font: 18px "Circe-Bold", sans-serif; }
+  font: 18px "circe-bold", sans-serif; }
 
 footer {
   background-color: #35414F; }
@@ -7256,7 +7256,7 @@ section.main-page-info {
   padding-top: 65px; }
 
 .main-tittle {
-  font: 25px "Circe-Light", sans-serif;
+  font: 25px "circe-light", sans-serif;
   margin: 30px 0; }
 
 .custom-control-indicator {
