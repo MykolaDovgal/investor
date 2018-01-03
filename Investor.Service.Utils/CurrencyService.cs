@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -13,10 +14,12 @@ namespace Investor.Service.Utils
     public class CurrencyService
     {
         private readonly IMemoryCache _memoryCache;
+        private IHttpContextAccessor _accessor;
 
-        public CurrencyService(IMemoryCache memoryCache)
+        public CurrencyService(IMemoryCache memoryCache, IHttpContextAccessor accessor)
         {
             _memoryCache = memoryCache;
+            _accessor = accessor;
         }
         public double GetRate(string currencyAbbreviation)
         {
@@ -30,7 +33,7 @@ namespace Investor.Service.Utils
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     string response = client
-                        .GetStringAsync($"http://localhost:45949/api/currency?currencyAbbreviation={currencyAbbreviation}").Result;
+                        .GetStringAsync($"http://{_accessor.HttpContext.Request.Host.Value}/api/currency?currencyAbbreviation={currencyAbbreviation}").Result;
                     rate = double.Parse(response, CultureInfo.InvariantCulture);
                 }
                 _memoryCache.Set(currencyAbbreviation, rate,
