@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Investor.Service.Utils
@@ -29,7 +30,7 @@ namespace Investor.Service.Utils
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     string response = client
-                        .GetStringAsync($"http://localhost:50583/api/currency?currencyAbbreviation={currencyAbbreviation}").Result;
+                        .GetStringAsync($"http://localhost:45949/api/currency?currencyAbbreviation={currencyAbbreviation}").Result;
                     rate = double.Parse(response, CultureInfo.InvariantCulture);
                 }
                 _memoryCache.Set(currencyAbbreviation, rate,
