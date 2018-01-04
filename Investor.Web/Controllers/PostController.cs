@@ -32,7 +32,7 @@ namespace Investor.Web.Controllers
         public IActionResult Index(int id)
         {
             ViewBag.PathBase = Request.Host.Value;
-            var post = _postService.GetNewsByIdAsync(id).Result;
+            News post = _postService.GetNewsByIdAsync(id).Result;
 
             if (!(post?.IsPublished) ?? true)
             {
@@ -44,9 +44,6 @@ namespace Investor.Web.Controllers
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
-            var ip = _ipService.GetRequestIp();
-            
-            ViewBag.IP = ip;
 
             return View("Index");
         }

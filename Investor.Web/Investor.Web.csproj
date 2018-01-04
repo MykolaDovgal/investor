@@ -51,7 +51,6 @@
     <ProjectReference Include="..\Investor.Service\Investor.Service.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="obj\" />
     <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
