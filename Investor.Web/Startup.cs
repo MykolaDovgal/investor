@@ -77,6 +77,8 @@ namespace Investor.Web
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<INewsService, NewsService>();
             services.AddTransient<ITagService, TagService>();
+
+            services.AddTransient<IpService>();
             services.AddTransient<TimeService>();
             services.AddTransient<CurrencyService>();
             services.AddTransient<CacheService>();
