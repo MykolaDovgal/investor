@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    /***data***//*
+    /***data***/
     var data=new Date();
     var weekday=new Array(7);
     weekday[0]="Неділя";
@@ -15,7 +15,7 @@ $(document).ready(function () {
     
     $("#data").html('<span class="day">'+day+'</span><span class="current-date">'+currentDate+'</span>');
     
-    $("#my-datepicker").val(day+' '+currentDate);*/
+    $("#my-datepicker").val(day+' '+currentDate);
     /***/
     function numberPagination() {
         var windowSize = $(window).width();
