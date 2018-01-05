@@ -16,9 +16,7 @@ $(document).on('click',
 			var postId = $("input[name='PostId']").val();
 
 			var url = $(this).data('href');
-			console.log(url);
 			chosenPostsIds.push(postId);
-			console.log(chosenPostsIds);
 			deleteSinglePost.call(this, url, chosenPostsIds);
 		}
 	});
@@ -35,7 +33,6 @@ $(document).on('change',
 		else if (tableId == "#tagsTable") {
 			ObjId = tableDataObj.tagId;
 		}
-		console.log(tableDataObj);
 		const propertyValue = $(e.target).prop("checked");
 		if (propertyValue) {
 			chosenPostsIds.push(ObjId);
@@ -70,11 +67,10 @@ let deleteObj = function (url, data) {
 		data: { id: data },
 		success: function (data) {
 			const tableId = "#" + $('.table').attr('id');
-			console.log(tableId);
 			$(tableId).dataTable().fnDestroy(); //TODO ВИПРАВИТИ!!!!!!!!
 			var a = '';
 			if ($("a.nav-link").hasClass('tags')) {
-				initialTagsTable(tableId);
+				initialTable(tableId);
 				a = 'Теги';
 			}
 			else if ($("a.nav-link").hasClass('news')) {
@@ -82,7 +78,7 @@ let deleteObj = function (url, data) {
 				a = 'Статті';
 			}
 			else if ($("a.nav-link").hasClass('blogs')) {
-				initialTableBlogs(tableId);
+				initialTable(tableId);
 				a = 'Блоги';
 			}
 			chosenPostsIds = [];
@@ -107,10 +103,9 @@ let deleteSinglePost = function (url, data) {
 		dataType: 'json',
 		data: { id: data },
 		success: function (data) {
-			console.log($($this));
 			if ($($this).hasClass('single-blog')) {
 				chosenPostsIds = [];
-				getPartialView('admin/content/Blogs', initialTableBlogs, "#blogsTable");
+				location.replace("/admin#/content/blogs");
 				$.toaster({
 					priority: 'warning',
 					title: 'Операція успішна',
@@ -122,7 +117,7 @@ let deleteSinglePost = function (url, data) {
 			}
 			else if ($($this).hasClass('single-news')) {
 				chosenPostsIds = [];
-				getPartialView('admin/content/News', initialTable, "#newsTable");
+				location.replace("/admin#/content/news");
 				$.toaster({
 					priority: 'warning',
 					title: 'Операція успішна',

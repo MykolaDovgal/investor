@@ -116,9 +116,9 @@ namespace Investor.Web
 
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
-
+                //app.UseDeveloperExceptionPage();
+                //app.UseBrowserLink();
+                app.UseExceptionHandler("/Home/Error");
             }
             else
             {
@@ -126,6 +126,7 @@ namespace Investor.Web
             }
 
             app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
+
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor |
@@ -138,7 +139,10 @@ namespace Investor.Web
             {
                 routes.MapRoute(
                     name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    template: "{area:exists}/{controller=Home}/{action=Index}");
+                //routes.MapRoute(
+                //    name: "areas",
+                //    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute("login", "login",
                     defaults: new { controller = "Account", action = "Login" });
                 routes.MapRoute("register", "register",

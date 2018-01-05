@@ -36,11 +36,9 @@
 			url: "/api/TagsApi/GetAllTags",
 			type: "GET",
 			success: function (data) {
-				console.log(data);
 				data.data.map(item => {
 					tags.push(item.name);
 				});
-				console.log(tags);
 			}
 		});
 
@@ -54,8 +52,6 @@
 				formData.set('IsOnMainPage', $(`#${formId} input[name='IsOnMainPage']`).prop("checked"));
 				formData.set('IsPublished', $(`#${formId} input[name='IsPublished']`).prop("checked"));
 				formData.set('IsImportant', $(`#${formId} input[name='IsImportant']`).prop("checked"));
-
-				console.log($(`#${formId} input[name='IsPublished']`).prop("checked"));
 
 				formData.set('IsOnSide', $(`#${formId} input[name='IsOnSide']`).prop("checked"));
 				formData.set('IsOnSlider', $(`#${formId} input[name='IsOnSlider']`).prop("checked"));
@@ -140,13 +136,7 @@
 			source: substringMatcher(tags)
 		}
 	});
-
-
-
-
-
 }
-
 
 
 

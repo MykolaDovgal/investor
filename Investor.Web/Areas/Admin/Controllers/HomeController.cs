@@ -16,5 +16,10 @@ namespace Investor.Web.Areas.Admin.Controllers
         {
             return View();
         }
+        [HttpGet("admin/StatusCode/{statusCode}")]
+        public IActionResult AdminError(int statusCode)
+        {
+            return PartialView("Error", statusCode);
+        }
     }
 }
