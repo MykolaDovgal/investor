@@ -20,7 +20,7 @@ namespace Investor.Web.Areas.Admin.Controllers
             _tagService = tagService;
             _blogService = blogService;
         }
-
+        [Route("admin/post/{id}")]
         public IActionResult SinglePost(int id)
         {
             News post = _postService.GetNewsByIdAsync(id).Result;
@@ -28,7 +28,7 @@ namespace Investor.Web.Areas.Admin.Controllers
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result.ToList();
             return PartialView("SinglePost", post);
         }
-
+        [Route("admin/blog/{id}")]
         public IActionResult SingleBlog(int id)
         {
             Blog blog = _blogService.GetBlogByIdAsync<Blog>(id).Result;
@@ -36,7 +36,7 @@ namespace Investor.Web.Areas.Admin.Controllers
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result.ToList();
             return PartialView("SingleBlog", blog);
         }
-
+        [Route("admin/createpost")]
         public IActionResult CreateNews()
         {
             ViewBag.Categories = _categoryService.GetAllCategoriesAsync().Result.ToList();

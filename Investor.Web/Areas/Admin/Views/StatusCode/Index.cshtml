@@ -1,0 +1,33 @@
+﻿@model int
+@{
+    var statusCode = Model;
+    var statusmessage = "";
+    switch (statusCode)
+    {
+        case 400:
+            statusmessage = "Bad request: The request cannot be fulfilled due to bad syntax";
+            break;
+        case 403:
+            statusmessage = "Пост не опублікований";
+            break;
+        case 404:
+            statusmessage = "Сторінка тимчасово недоступна!";
+            break;
+        case 408:
+            statusmessage = "The server timed out waiting for the request";
+            break;
+        case 500:
+            statusmessage = "Internal Server Error - server was unable to finish processing the request";
+            break;
+        default:
+            statusmessage = "That’s odd... Something we didn't expect happened";
+            break;
+    }
+}
+<div class="container2" style="text-align: center; margin-bottom: 17.2%">
+    <div>
+        <h1>@statusCode</h1>
+        <p>@statusmessage</p>
+    </div>
+</div>
+

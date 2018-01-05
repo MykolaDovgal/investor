@@ -8,24 +8,33 @@
     }
 }
 
+let getContent = function (e) {
+	var url = location.hash.replace("#", "");
+	if (url.startsWith("/post/")) {
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdateNews"); });
+	}
+	else if (url.startsWith("/blog/")) {
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdateBlog"); });
+	}
+	else if (url.startsWith("/createpost")) {
+		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormBlogSubmit").data("action", "UpdateBlog"); });
+	}
+	else if(url !== ""){
+		getPartialView(`admin${url}`, initialTable);
+	}
 
-window.addEventListener("popstate",
-    function (e) {
-        var a = $(`a[href="/admin${location.hash}"]`);
-        a.click();
-    },
-    false);
+	tablesUpdetedData = {};
+}
 
-window.addEventListener("pushstate",
-    function (e) {
-        var a = $(`a[href="/admin${location.hash}"]`);
-        a.click();
-    },
-    false);
+window.addEventListener("popstate", getContent, false);
 
-window.addEventListener("load",
-    function (e) {
-        var a = $(`a[href="/admin${location.hash}"]`);
-        a.click();
-    },
-    false);
+//window.addEventListener("pushstate",
+//	function (e) {	
+//		var a = $(`a[href="/admin${location.hash}"]`);
+//	    console.log(location.hash);
+//	    console.log(a);
+//        a.click();
+//    },
+//    false);
+window.addEventListener("load", getContent, false);
+
