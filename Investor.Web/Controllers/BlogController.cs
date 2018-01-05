@@ -46,7 +46,7 @@ namespace Investor.Web.Controllers
         public IActionResult BlogerPage(string id)
         {
             User bloger = _userService.GetUserByNickName(id).Result;
-            ViewBag.Blogs = _blogService.GetBlogsByUserIdAsync(bloger.Id).Result.ToList();
+            ViewBag.Blogs = _blogService.GetBlogsByUserIdAsync(bloger.Id, true).Result.ToList();
             ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(5).Result.ToList();
             ViewBag.IsBlog = true;
             return View("Bloger/BlogerPage", bloger);

@@ -2,6 +2,8 @@
 //let chosenPostsIds = [];
 
 $(document).on("click", "a.nav-link", function (e) {
+
+	const url = $(this).data("href");
 	const type = $(this).data("type");
 
 	if (type && type === "update") {
