@@ -158,7 +158,7 @@ namespace Investor.Web
                 var identityResult4 = userManager.CreateAsync(bloger4, "bloger123123").Result;
                 if (identityResult4.Succeeded)
                 {
-                    var x5 = userManager.AddToRoleAsync(bloger4, "bloger").Result;
+                    var x5 = userManager.AddToRoleAsync(bloger4, "admin").Result;
                 }
 
                 var identityResult5 = userManager.CreateAsync(bloger5, "bloger123123").Result;
@@ -225,6 +225,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg",
                         AuthorId = myUsers[0].Id
                     },
@@ -237,6 +238,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
                         AuthorId = myUsers[1].Id
 
@@ -250,6 +252,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
                         AuthorId = myUsers[2].Id
                     },
@@ -262,6 +265,8 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
+
                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg",
                         AuthorId = myUsers[0].Id
 
@@ -275,6 +280,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg",
                         AuthorId = myUsers[3].Id
                     },
@@ -287,6 +293,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "5F18619AC74A43065C98941313647F07.jpg",
                         AuthorId = myUsers[2].Id
                     },
@@ -299,6 +306,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
+                         IsPublished = true,
                          Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg",
                          AuthorId = myUsers[1].Id
                      },
@@ -311,6 +319,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg",
                         AuthorId = myUsers[1].Id
                     },
@@ -323,6 +332,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "904E420568BDB9D329F914D562E091AE.jpg",
                         AuthorId = myUsers[1].Id
                     },
@@ -335,6 +345,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "904E420568BDB9D329F914D562E091AE.jpg",
                         AuthorId = myUsers[1].Id
                     }
@@ -355,6 +366,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -369,6 +381,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "5F18619AC74A43065C98941313647F07.jpg"
                     },
                     new Entity.NewsEntity
@@ -382,6 +395,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
                     new Entity.NewsEntity
@@ -395,6 +409,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                     },
                     new Entity.NewsEntity
@@ -407,6 +422,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
                     new Entity.NewsEntity
@@ -419,6 +435,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "904E420568BDB9D329F914D562E091AE.jpg"
 
                     },
@@ -432,6 +449,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -446,6 +464,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "904E420568BDB9D329F914D562E091AE.jpg"
 
                     },
@@ -461,6 +480,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
 
                     },
@@ -474,6 +494,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -487,6 +508,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
 
                     },
@@ -501,6 +523,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "96EFCF1E052A4431ACA79958DA503DC1.jpg"
                     },
                     new Entity.NewsEntity
@@ -513,6 +536,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -526,6 +550,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
@@ -539,6 +564,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -552,6 +578,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
@@ -565,6 +592,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -578,6 +606,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
@@ -591,6 +620,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "A32DD87FC9ACE674FB62A13564A28C0C.jpg"
 
                     },
@@ -605,6 +635,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -618,6 +649,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
@@ -631,6 +663,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
@@ -645,6 +678,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -659,6 +693,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "B0CFF4CF27F0BAC7EC145AFE29E29C5A.jpg"
 
                     },
@@ -672,6 +707,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -687,6 +723,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
@@ -702,6 +739,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
@@ -717,6 +755,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
@@ -733,6 +772,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
@@ -748,6 +788,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "BEB774B63B3FC1C93265D738A0A9C295.jpg"
 
                     },
@@ -764,6 +805,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
 
                     },
@@ -780,6 +822,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
                     },
                     new Entity.NewsEntity
@@ -793,6 +836,7 @@ namespace Investor.Web
                         CreatedOn = DateTime.Now,
                         ModifiedOn = DateTime.Now,
                         PublishedOn = DateTime.Now,
+                        IsPublished = true,
                         Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                     },
                      new Entity.NewsEntity
@@ -808,6 +852,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
+                         IsPublished = true,
                          Image = "577DCD471FA7D92D5B1850A5CB37F02C.jpg"
                      },
                      new Entity.NewsEntity
@@ -821,6 +866,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
+                         IsPublished = true,
                          Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                      },
                      new Entity.NewsEntity
@@ -834,6 +880,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
+                         IsPublished = true,
                          Image = "5F18619AC74A43065C98941313647F07.jpg"
                      },
                      new Entity.NewsEntity
@@ -849,6 +896,7 @@ namespace Investor.Web
                          CreatedOn = DateTime.Now,
                          ModifiedOn = DateTime.Now,
                          PublishedOn = DateTime.Now,
+                         IsPublished = true,
                          Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                      },
                       new Entity.NewsEntity
@@ -864,6 +912,7 @@ namespace Investor.Web
                           CreatedOn = DateTime.Now,
                           ModifiedOn = DateTime.Now,
                           PublishedOn = DateTime.Now,
+                          IsPublished = true,
                           Image = "5F18619AC74A43065C98941313647F07.jpg"
                       },
                        new Entity.NewsEntity
@@ -879,6 +928,7 @@ namespace Investor.Web
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
+                           IsPublished = true,
                            Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                        },
                        new Entity.NewsEntity
@@ -894,6 +944,7 @@ namespace Investor.Web
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
+                           IsPublished = true,
                            Image = "8B434E6DF776872697D72E7BBA33CD9E.jpg"
                        },
                        new Entity.NewsEntity
@@ -909,6 +960,7 @@ namespace Investor.Web
                            CreatedOn = DateTime.Now,
                            ModifiedOn = DateTime.Now,
                            PublishedOn = DateTime.Now,
+                           IsPublished = true,
                            Image = "2F43526F98C22E1E649666A572C7661C.jpg"
                        }
                     );

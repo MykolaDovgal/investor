@@ -7,34 +7,36 @@ using System.Security.Claims;
 
 namespace Investor.Repository
 {
-    public class NewsContext : IdentityDbContext<UserEntity> 
+    public class NewsContext : IdentityDbContext<UserEntity>
     {
         public DbSet<CategoryEntity> Categories { get; set; }
         public DbSet<BlogEntity> Blogs { get; set; }
         public DbSet<PostEntity> Posts { get; set; }
         public DbSet<NewsEntity> News { get; set; }
         public DbSet<TagEntity> Tags { get; set; }
-        //public DbSet<ClientEntity> Clients { get; set; }
+        public DbSet<StatisticsEntity> Statistics { get; set; }
 
-        public NewsContext(DbContextOptions<NewsContext> options) 
+        public NewsContext(DbContextOptions<NewsContext> options)
             : base(options)
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {  
+        {
             modelBuilder.Entity<PostTagEntity>()
              .HasKey(t => new { t.PostId, t.TagId });
 
             modelBuilder.Entity<PostTagEntity>()
                 .HasOne(pt => pt.Post)
-                .WithMany(pt=>pt.PostTags)
-                .HasForeignKey(pt=>pt.PostId);
+                .WithMany(pt => pt.PostTags)
+                .HasForeignKey(pt => pt.PostId);
 
             modelBuilder.Entity<PostTagEntity>()
                .HasOne(pt => pt.Tag)
                .WithMany(pt => pt.PostTags)
                .HasForeignKey(pt => pt.TagId);
 
+            modelBuilder.Entity<StatisticsEntity>()
+                .HasOne(pt => pt.Post);
 
             //modelBuilder.Entity<ClientPostEntity>()
             //    .HasKey(t => new { t.PostId, t.ClientId });

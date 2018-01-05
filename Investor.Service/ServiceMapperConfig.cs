@@ -31,7 +31,7 @@ namespace Investor.Service
                 cfg.CreateMap<AdminTag, TagEntity>().ReverseMap();
 
                 cfg.CreateMap<PostPreview, PostEntity>().ReverseMap();
-                
+
                 cfg.CreateMap<BlogEntity, BlogPreview>();
                 cfg.CreateMap<BlogEntity, TableBlogPreview>().ReverseMap();
 
@@ -73,10 +73,11 @@ namespace Investor.Service
                     .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)))
                     .ReverseMap();
 
-
                 cfg.CreateMap<IList<PostEntity>, IList<News>>().ReverseMap();
 
-                
+                cfg.CreateMap<Statistics, StatisticsEntity>().ReverseMap();
+
+
             });
 
         }

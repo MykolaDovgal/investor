@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Investor.Service.Utils;
+using Investor.Web.Filters;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Primitives;
@@ -29,6 +30,8 @@ namespace Investor.Web.Controllers
             _tagService = tagService;
             _ipService = ipService;
         }
+
+        [ServiceFilter(typeof(HitCount))]
         public IActionResult Index(int id)
         {
             ViewBag.PathBase = Request.Host.Value;
@@ -44,6 +47,12 @@ namespace Investor.Web.Controllers
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
+
+            
+            if (HttpContext.Session.Keys.Contains("count"))
+            {
+                int? count = HttpContext.Session.GetInt32("count");
+            }
 
             return View("Index");
         }

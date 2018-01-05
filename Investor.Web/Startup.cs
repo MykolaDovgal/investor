@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Investor.Service.Utils;
 using Investor.Service.Utils.Interfaces;
+using Investor.Web.Filters;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -43,6 +44,10 @@ namespace Investor.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            services.AddScoped<HitCount>();
+
             services.AddDbContext<NewsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Add framework services.
@@ -64,6 +69,7 @@ namespace Investor.Web
             services.AddTransient<INewsRepository, NewsRepository>();
             services.AddTransient<IBlogRepository, BlogRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
+            services.AddTransient<IStatisticsRepository, StatisticsRepository>();
 
             //services.AddTransient<ImagePathService>();
             //services.AddTransient<IMemoryCache, MemoryCache>();
@@ -77,6 +83,8 @@ namespace Investor.Web
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<INewsService, NewsService>();
             services.AddTransient<ITagService, TagService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
+
 
             services.AddTransient<IpService>();
             services.AddTransient<TimeService>();
@@ -85,6 +93,9 @@ namespace Investor.Web
 
             services.AddMvc();
             services.AddAutoMapper();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             services.AddAuthorization(options =>
             {
@@ -123,7 +134,7 @@ namespace Investor.Web
             });
             app.UseAuthentication();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
