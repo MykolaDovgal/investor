@@ -45,11 +45,11 @@ namespace Investor.Repository
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<BlogEntity>> GetBlogsByUserIdAsync(string userId)
+        public async Task<IEnumerable<BlogEntity>> GetBlogsByUserIdAsync(string userId, bool? isPublished = null)
         {
             return await _newsContext.Blogs
                 .Include(p => p.Author)
-                //.Where(c => c.IsPublished ?? false)
+                .Where(c => isPublished == null || (c.IsPublished == isPublished && isPublished!=null ))
                 .Where(p => p.AuthorId == userId)
                 .ToListAsync();
         }

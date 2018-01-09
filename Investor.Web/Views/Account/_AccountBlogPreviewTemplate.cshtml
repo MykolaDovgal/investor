@@ -6,12 +6,12 @@
 <div class="item-my-post body-block block-border-top default-border-color">
     <div class="col-12">
         <div class="img-news">
-            <img src=~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "small-")" class="img-fluid rounded-circle">
+            <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "small-")" class="img-fluid rounded-circle">
         </div>
         <div class="body-all-news">
-            <a href="/blog/page/@Model.PostId" class="title-news">@Model.Title</a>
+            <a href="@(Model.IsPublished ? "" : "/unpublished")/post/Model.PostId" class="title-news">@Model.Title</a>
             <p class="text-news">@Model.Description</p>
-            <span class="default-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+            <span class="default-today-color">@(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
         </div>
         <a href="/Account/UpdatePost/@Model.PostId" class="btn btn-edit btn-edit-default pull-right">Редагувати<i class="icons icon-pencil-default"></i></a>
     </div>

@@ -57,6 +57,27 @@ namespace Investor.Web.Controllers
             return View("Index");
         }
 
+        [Route("/unpublished/post/{id}")]
+        public IActionResult PostPreview(int id)
+        {
+            ViewBag.PathBase = Request.Host.Value;
+            News post = _postService.GetNewsByIdAsync(id).Result;
+
+            if (!(post?.IsPublished) ?? true)
+            {
+                Response.StatusCode = 403;
+                return StatusCode(Response.StatusCode);
+            }
+            ViewBag.Post = post;
+            ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result?.ToList();
+            ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
+            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
+            ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
+
+            return View("Index");
+        }
+
+
         public IActionResult LastNews()
         {
             IEnumerable<PostPreview> lastNews = _postService.GetLatestNewsAsync(10).Result.ToList();

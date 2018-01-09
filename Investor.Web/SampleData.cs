@@ -79,7 +79,7 @@ namespace Investor.Web
                 {
                     Name = "Влад",
                     Description = "bloger",
-                    Email = "bloger@gmail.com",
+                    Email = "bloger3@gmail.com",
                     UserName = "bloger3",
                     Surname = "Ковальчук",
                     Photo = "6E78BCE7D7787B79645169B799A6C57E.jpg",
@@ -89,7 +89,7 @@ namespace Investor.Web
                 {
                     Name = "Роман",
                     Description = "bloger",
-                    Email = "bloger@gmail.com",
+                    Email = "bloger4@gmail.com",
                     UserName = "bloger4",
                     Surname = "Захарків",
                     Photo = "50DF83C386548F47B731E0259F943E9F.jpg",
@@ -99,7 +99,7 @@ namespace Investor.Web
                 {
                     Name = "Оксана",
                     Description = "bloger",
-                    Email = "bloger@gmail.com",
+                    Email = "bloger5@gmail.com",
                     UserName = "bloge5r",
                     Surname = "Зеленська",
                     SerializedCropPoints = "87;2;458;373",
@@ -109,7 +109,7 @@ namespace Investor.Web
                 {
                     Name = "Діана",
                     Description = "bloger",
-                    Email = "bloger@gmail.com",
+                    Email = "bloger6@gmail.com",
                     UserName = "bloger6",
                     Surname = "Яворська",
                     Photo = "50DF83C386548F47B731E0259F943E9F.jpg",

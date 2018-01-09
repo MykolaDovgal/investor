@@ -86,9 +86,9 @@ namespace Investor.Service
             return blogs.Select(Mapper.Map<BlogEntity, Blog>);
         }
 
-        public async Task<IEnumerable<BlogPreview>> GetBlogsByUserIdAsync(string userId)
+        public async Task<IEnumerable<BlogPreview>> GetBlogsByUserIdAsync(string userId, bool? isPublished = null)
         {
-            IEnumerable<BlogEntity> blogs = await _blogRepository.GetBlogsByUserIdAsync(userId);
+            IEnumerable<BlogEntity> blogs = await _blogRepository.GetBlogsByUserIdAsync(userId, isPublished);
             return blogs.Select(Mapper.Map<BlogEntity, BlogPreview>);
         }
 

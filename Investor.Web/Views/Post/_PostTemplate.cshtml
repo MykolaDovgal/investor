@@ -9,7 +9,7 @@
 </h1>
 <div class="info-news">
     <span class="card-category-news color-@(Model.Category.Url) m"><img src="/img/little-icons/no-img-@(Model.Category.Url).png">@Model.Category.Name</span>
-    <span class="data-post"><i class="icons icon-clock"></i> @PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+    <span class="data-post"><i class="icons icon-clock"></i> @(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
     <span class="reviews-post"><i class="icons icon-reviews"></i>@StatisticsService.GetPostViewsCountByIdAsync(Model.PostId).Result</span>
 </div>
 <div class="wrapper-social-share">
