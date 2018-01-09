@@ -15,37 +15,43 @@ namespace Investor.Service.Utils
 {
     public class CurrencyService
     {
-        private HttpClient _httpClient;
-        private Dictionary<string, double> _currencyRates;
-        private CacheService _cacheService;
+        private readonly HttpClient _httpClient;
+        private readonly CacheService _cacheService;
+        private const string UrlPattern = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
         public CurrencyService(CacheService cacheService)
         {
             _httpClient = new HttpClient();
-            _currencyRates = new Dictionary<string, double>();
             _cacheService = cacheService;
         }
-        public Dictionary<string, double> GetRate(List<string> keysList)
-        {
+
+        public Dictionary<string, double> GetRate(IEnumerable<string> keysList)
+        {  
             Dictionary<string, double> rates = (Dictionary<string, double>)_cacheService.GetValue("Currency");
-            if (! keysList.Any(c => { return rates != null && rates.ContainsKey(c); }))
-            {
-                rates = GetRatesDictionary(keysList).Result;
-                _cacheService.SetValue("Currency", (object) rates, TimeSpan.FromMinutes(5));
-            }
+
+            if (rates != null) return rates;
+
+            rates = GetRatesDictionary(keysList).Result;
+            _cacheService.SetValue("Currency", rates, TimeSpan.FromMinutes(5));
+
             return rates;
         }
 
-        private async Task<Dictionary<string, double>> GetRatesDictionary(List<string> keys)
+        private async Task<Dictionary<string, double>> GetRatesDictionary(IEnumerable<string> keys)
         {
-            const string urlPattern = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
-            string response = await _httpClient.GetStringAsync(urlPattern);
+            var response = await _httpClient.GetStringAsync(UrlPattern);
+
             JArray jObject = JArray.Parse(response);
             Dictionary<string, double> rates = new Dictionary<string, double>();
-            keys.ForEach(k =>
+
+            foreach (var k in keys)
             {
-                JToken rate = jObject.First(c => (string)c["cc"] == k);
-                rates.Add(k, Math.Round(double.Parse((string)rate["rate"], CultureInfo.InvariantCulture), 2)); ;
-            });
+                JToken rate = jObject.FirstOrDefault(c => c["cc"].ToString() == k);
+                if (rate != null)
+                {
+                    rates.Add(k, Math.Round(double.Parse(rate["rate"].ToString(), CultureInfo.InvariantCulture), 2));
+                }             
+            }
+
             return rates;
         }
     }

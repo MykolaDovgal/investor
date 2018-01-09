@@ -9,6 +9,7 @@ namespace Investor.Service.Interfaces
 {
     public interface IStatisticsService
     {
-        Task AddStatistics(Statistics statistics);
+        Task AddStatisticsAsync(Statistics statistics);
+        Task<int> GetPostViewsCountByIdAsync(int postId,bool isUnique = false);
     }
 }

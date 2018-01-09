@@ -37,7 +37,7 @@ namespace Investor.Web.Filters
                     if (value == null)
                     {
                         context.HttpContext.Session.SetString(id.ToString(), "value");
-                        await _statisticsService.AddStatistics(new Statistics
+                        await _statisticsService.AddStatisticsAsync(new Statistics
                         {
                             PostId = id,
                             Date = DateTime.Now,

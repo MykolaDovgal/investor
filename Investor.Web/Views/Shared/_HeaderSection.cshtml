@@ -1,4 +1,5 @@
-﻿@using Investor.Model
+﻿@using System.Globalization
+@using Investor.Model
 @inject Investor.Service.Interfaces.IUserService UserService
 @inject Investor.Service.Utils.CurrencyService CurrencyService
 @{
@@ -7,14 +8,14 @@
     {
         user = UserService.GetRoleByUserAsync(user.Id).Result == "bloger" ? user : null;
     }
-    Dictionary<string, double> rates = CurrencyService.GetRate(new List<string>() {"USD", "EUR"});
+    Dictionary<string, double> rates = CurrencyService.GetRate(new[] {"USD", "EUR"});
 }
 
 <div class="header-top">
     <div class="container">
         <div class="row">
             <div class="col p-0 header-block-left">
-                <div id="data"></div>
+                <div id="data"><span class="day">@DateTime.Now.ToString("dddd, dd.MM.yyyy", CultureInfo.CreateSpecificCulture("uk-UA"))</span></div>
                 <div class="wrapper-exchange-rate">
                     <span class="exchange-rate color-white-70" id="USD">USD  @rates["USD"]</span>
                     <span class="exchange-rate color-white-70" id="EUR">EUR  @rates["EUR"]</span>

@@ -17,9 +17,14 @@ namespace Investor.Service
         {
             _statisticsRepository = statisticsRepository;
         }
-        public async Task AddStatistics(Statistics statistics)
+        public async Task AddStatisticsAsync(Statistics statistics)
         {
             await _statisticsRepository.AddStatistics(Mapper.Map<Statistics, StatisticsEntity>(statistics));
+        }
+
+        public async Task<int> GetPostViewsCountByIdAsync(int postId,bool isUnique = false)
+        {
+            return await _statisticsRepository.GetPostViewsCountByIdAsync(postId, isUnique);
         }
     }
 }
