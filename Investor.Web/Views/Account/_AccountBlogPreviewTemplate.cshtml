@@ -9,7 +9,7 @@
             <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "small-")" class="img-fluid rounded-circle">
         </div>
         <div class="body-all-news">
-            <a href="@(Model.IsPublished ? "" : "/unpublished")/post/Model.PostId" class="title-news">@Model.Title</a>
+            <a href="@(Model.IsPublished ? "" : "/unpublished")/blog@(Model.IsPublished ? "/page" : "")/@Model.PostId" class="title-news">@Model.Title</a>
             <p class="text-news">@Model.Description</p>
             <span class="default-today-color">@(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
         </div>

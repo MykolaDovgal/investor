@@ -41,7 +41,8 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             post.Image = image != null ? _imageService.SaveImage(image) : null;
             _blogService.AddTagsToBlogAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
             post.Category = _categoryService.GetCategoryByUrlAsync("blog").Result;
-            return Json(new { id = _blogService.UpdateBlogAsync(post).Result.PostId });
+            post = _blogService.UpdateBlogAsync(post).Result;
+            return Json(new { id = post.PostId, href = $"{(post.IsPublished ? "" : "/unpublished")}/blog{(post.IsPublished ? "/page" : "")}/{post.PostId}" });
         }
 
 

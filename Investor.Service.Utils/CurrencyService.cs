@@ -31,7 +31,7 @@ namespace Investor.Service.Utils
             if (rates != null) return rates;
 
             rates = GetRatesDictionary(keysList).Result;
-            _cacheService.SetValue("Currency", rates, TimeSpan.FromMinutes(5));
+            _cacheService.SetValue("Currency", rates, TimeSpan.FromMinutes(30));
 
             return rates;
         }
@@ -48,7 +48,7 @@ namespace Investor.Service.Utils
                 JToken rate = jObject.FirstOrDefault(c => c["cc"].ToString() == k);
                 if (rate != null)
                 {
-                    rates.Add(k, Math.Round(double.Parse(rate["rate"].ToString(), CultureInfo.InvariantCulture), 2));
+                    rates.Add(k, Math.Round(double.Parse(rate["rate"].ToString()), 2));
                 }             
             }
 

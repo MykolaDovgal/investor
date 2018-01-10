@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Investor.Service.Utils;
 using Investor.Web.Filters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.Primitives;
@@ -39,7 +40,7 @@ namespace Investor.Web.Controllers
 
             if (!(post?.IsPublished) ?? true)
             {
-                Response.StatusCode = 403;
+                Response.StatusCode = 404;
                 return StatusCode(Response.StatusCode);
             }
             ViewBag.Post = post;
@@ -56,25 +57,20 @@ namespace Investor.Web.Controllers
 
             return View("Index");
         }
-
         [Route("/unpublished/post/{id}")]
         public IActionResult PostPreview(int id)
         {
-            ViewBag.PathBase = Request.Host.Value;
             News post = _postService.GetNewsByIdAsync(id).Result;
-
-            if (!(post?.IsPublished) ?? true)
-            {
-                Response.StatusCode = 403;
-                return StatusCode(Response.StatusCode);
-            }
+            if (!HttpContext.User.IsInRole("admin") || post == null || post.IsPublished == true)
+                return new StatusCodeResult(404);
+            ViewBag.PathBase = Request.Host.Value;
             ViewBag.Post = post;
             ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result?.ToList();
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
 
-            return View("Index");
+            return View("UnpublishedPost");
         }
 
 

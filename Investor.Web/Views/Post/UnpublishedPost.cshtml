@@ -1,0 +1,30 @@
+﻿@using Investor.Model
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Investor</title>
+    <meta property="og:url" content="http://www.your-domain.com/your-page.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Your Website Title" />
+    <meta property="og:description" content="Your description" />
+    <meta property="og:image" content="http://www.your-domain.com/path/image.jpg" />
+    <link rel="canonical" href="/web/tweet-button">
+    <link rel="me" href="https://twitter.com/twitterdev">
+</head>
+
+<section class="card-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 p-sm-0 pr-lg-2">
+                @Html.Partial("_UnpublishedPostTemplate", ViewBag.Post as News)
+            </div>
+            <div class="col-lg-4 pl-lg-2  p-0 pr-0">
+
+                @Html.Partial("_PopularPostTagsTemplate", ViewBag.PopularTags as IEnumerable<Tag>)
+                @Html.Partial("_LastNewsPreviewTemplate", ViewBag.LatestPosts as IEnumerable<PostPreview>)
+            </div>
+        </div>
+    </div>
+</section>
+

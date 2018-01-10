@@ -73,10 +73,14 @@
 					contentType: false,
 					processData: false,
 					success: function (data) {
+						console.log(data);
 						$("#updateFormSubmit").data("action", apiAction);
 						$(`#${formId} input[name='PostId']`).val(data["id"]);
 						$this.removeAttr("disabled");
 						$(`.deletepost`).removeAttr('hidden');
+						$(`.previewpost`).removeAttr('hidden');
+						$(`.previewpost`).attr('href', data["href"]);
+
 						$.toaster({
 							priority: 'success',
 							title: 'Операція успішна',

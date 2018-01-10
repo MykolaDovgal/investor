@@ -2,6 +2,7 @@
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Investor.Model;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Investor.Web.Controllers
 {
@@ -41,6 +42,22 @@ namespace Investor.Web.Controllers
             ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(10).Result.ToList();           
             ViewBag.Tags = _tagService.GetPopularTagsAsync(5).Result.ToList();
             return View("Single/BlogPage");
+        }
+
+        [Route("/unpublished/blog/{id}")]
+        public IActionResult BlogPreview(int id)
+        {
+            User currentUser = _userService.GetCurrentUserAsync().Result;
+            ViewBag.PathBase = Request.Host.Value;
+            var blog = _blogService.GetBlogByIdAsync<Blog>(id).Result;
+            if (blog != null && ((!HttpContext.User.IsInRole("admin") && !HttpContext.User.IsInRole("bloger")) || blog.IsPublished ||
+                                 (HttpContext.User.IsInRole("bloger") && currentUser.Id != blog.Author.Id)))
+                return new StatusCodeResult(404);
+
+            ViewBag.Post = blog;
+            ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(10).Result.ToList();
+            ViewBag.Tags = _tagService.GetPopularTagsAsync(5).Result.ToList();
+            return View("Single/UnpublishedBlog");
         }
 
         public IActionResult BlogerPage(string id)

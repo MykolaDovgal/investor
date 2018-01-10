@@ -8,7 +8,7 @@
 </h1>
 <div class="info-news">
     <a href="/blog/blogerpage/@Model.Author.UserName" class="data-post">@Model.Author.Surname @Model.Author.Name</a>
-    <span class="data-post"><i class="icons icon-clock"></i> @PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+    <span class="data-post"><i class="icons icon-clock"></i> @(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
     <span class="reviews-post"><i class="icons icon-reviews"></i>154</span>
 </div>
 
@@ -43,6 +43,7 @@
         <li><a asp-controller="Search" asp-action="SearchByTag" asp-route-tag="@tag.Name" class="item-hashtag">@tag.Name</a></li>
     }
 </ul>
+
 <div class="post-comment">
     <span class="title-block">Коментарі</span>
     <div class='fb-comments' data-href="http://@{@ViewBag.PathBase;}/post/@{@ViewBag.Post.PostId;}" data-num-posts='2' data-width='470'></div>

@@ -42,7 +42,8 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             _newsService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
             News newPost = _newsService.GetNewsByIdAsync(post.PostId).Result;
             newPost = Mapper.Map(post, newPost);
-            return Json(new { id = _newsService.UpdateNewsAsync(newPost).Result.PostId });
+            newPost = _newsService.UpdateNewsAsync(newPost).Result;
+            return Json(new { id = newPost.PostId, href = $"{(newPost.IsPublished ? "" : "/unpublished" )}/post/{newPost.PostId}" });
         }
 
         [Route("CreateNews")]
@@ -53,7 +54,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             post.Image = image != null ? _imageService.SaveImage(image) : null;
             News tmp = _newsService.AddNewsAsync(post).Result;
             _newsService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
-            return Json(new { id = tmp.PostId });
+            return Json(new { id = tmp.PostId, href = $"{(tmp.IsPublished ? "" : "/unpublished")}/post/{tmp.PostId}" });
         }
 
         [Route("UpdateTableNews")]

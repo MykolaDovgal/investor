@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Investor.Web.Controllers.UsersControllers
 {
-    //[Authorize(Roles = "bloger, admin")]
+    [Authorize(Roles = "bloger")]
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
@@ -30,22 +30,18 @@ namespace Investor.Web.Controllers.UsersControllers
             _blogService = blogService;
         }
 
-        public IActionResult Profile(string id)
+        public IActionResult Profile()
         {
             ViewBag.Header = "_AccountHeaderSection";
             var currentUser = _userService.GetCurrentUserAsync().Result;
             ViewBag.User = currentUser;
-            ViewBag.IsOwner = currentUser != null && (String.IsNullOrWhiteSpace(id) && String.IsNullOrWhiteSpace(currentUser.Id) &&
-                                                      id == currentUser.Id);
             return View(currentUser);
         }
-        public IActionResult Account(string id)
+        public IActionResult Account()
         {
             ViewBag.Header = "_AccountHeaderSection";
             var currentUser = _userService.GetCurrentUserAsync().Result;
             ViewBag.User = currentUser;
-            ViewBag.IsOwner = currentUser != null && (String.IsNullOrWhiteSpace(id) && String.IsNullOrWhiteSpace(currentUser.Id) &&
-                                                      id == currentUser.Id);
             var res = _blogService.GetBlogsByUserIdAsync(currentUser?.Id).Result;
             return View(res);
         }
