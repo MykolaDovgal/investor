@@ -20,7 +20,7 @@ namespace Investor.Web.Controllers
         [HttpGet]
         public IActionResult Posts(int page = 1, int count = 10, string categoryUrl = null, string query = null, string date = null)
         {
-            DateTime? dt = null;
+            DateTime? dt = (DateTime?)null;
             if (!String.IsNullOrEmpty(date))
             {
                 dt = DateTime.Parse(date);

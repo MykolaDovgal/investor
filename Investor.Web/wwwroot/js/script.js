@@ -292,7 +292,8 @@ if($("textarea").is(".textarea")) {
 
 
 /***/
-if($("div").is("#upload-demo")) {
+if ($("div").is("#upload-demo")) {
+
     var cropper = (function () {
 
 
@@ -361,6 +362,7 @@ if($("div").is("#upload-demo")) {
         };
 
     })();
+
     cropper.init();
 };
 /***/
