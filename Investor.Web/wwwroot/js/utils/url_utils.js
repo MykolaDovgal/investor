@@ -1,7 +1,7 @@
-﻿const getUrlFragment = function(url){
-    const fragmentPosition = url.indexOf("#"); 
+﻿const getUrlFragment = function (url) {
+    const fragmentPosition = url.indexOf("#");
     if (fragmentPosition !== -1) {
-        return url.slice(fragmentPosition + 1,url.length);
+        return url.slice(fragmentPosition + 1, url.length);
     }
     else {
         return undefined;
@@ -9,29 +9,33 @@
 }
 
 let getContent = function (e) {
-	var url = location.hash.replace("#", "");
-	if (url.startsWith("/post/")) {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdateNews"); });
-	}
-	else if (url.startsWith("/createpost")) {
-		getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreateNews"); });
-	}
-	else if(url !== ""){
-		getPartialView(`admin${url}`, initialTable);
-	}
+    var url = location.hash.replace("#", "");
+    if (url.startsWith("/post/")) {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdateNews"); });
+    }
+    else if (url.startsWith("/createpost")) {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreateNews"); });
+    }
+    else if (url !== "") {
+        getPartialView(`admin${url}`, initialTable);
+    }
 
-	tablesUpdetedData = {};
+    tablesUpdetedData = {};
+
+
+
+    var path = window.location.pathname + window.location.hash;
+    $('.nav-item a').each(function () {
+        $(this).removeClass('active-item');
+    });
+    $('.nav-item a').each(function () {
+        if ($(this).attr('href') === path) {
+            $(this).addClass('active-item');
+            $(this).parent().prev('.nav-item a').addClass('active-item');
+        }
+    });
 }
 
 window.addEventListener("popstate", getContent, false);
-
-//window.addEventListener("pushstate",
-//	function (e) {	
-//		var a = $(`a[href="/admin${location.hash}"]`);
-//	    console.log(location.hash);
-//	    console.log(a);
-//        a.click();
-//    },
-//    false);
 window.addEventListener("load", getContent, false);
 
