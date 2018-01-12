@@ -27,7 +27,7 @@
             <div class="search-filter">
                 <div class="dropdown filter-dropdown float-left">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @(categoryName != null ? categoryName : Html.Raw("Все")) 
+                        @(categoryName != null ? categoryName : Html.Raw("Все"))
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item" type="button" data-category-url="">Все</button>
@@ -43,6 +43,7 @@
                         <span class="input-group-btn">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                         </span>
+                        <input type="text" hidden class="date" value="@(ViewData.ContainsKey("Date") ? ViewBag.Date : "")">
                         <input type="text" id="my-datepicker" class="my-datepicker" />
                     </div>
                 </div>
@@ -51,14 +52,17 @@
             <div id="searchResultContainer">
                 @Html.Partial("_SearchResultTemplate", Model as IEnumerable<PostPreview>)
             </div>
+            @if (Model.Any())
+            {
+                <div class="wrapper-btn-more bnt-more-search">
+                    <a id="moreSearchResult" href="/search/posts" class="btn-more text-center">
+                        <span class="circle circle-default-color">
+                            <i class="icons icon-arrow-down"></i>
+                        </span>Більше новин
+                    </a>
+                </div>
 
-            <div class="wrapper-btn-more bnt-more-search">
-                <a id="moreSearchResult" href="/search/posts" class="btn-more text-center">
-                    <span class="circle circle-default-color">
-                        <i class="icons icon-arrow-down"></i>
-                    </span>Більше новин
-                </a>
-            </div>
+            }
 
         </div>
     </div>

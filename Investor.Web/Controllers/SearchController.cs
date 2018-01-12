@@ -36,6 +36,7 @@ namespace Investor.Web.Controllers
 
             ViewBag.CategoryName = _categoryService.GetCategoryByUrlAsync(categoryUrl).Result;
             ViewBag.Query = postQuery;
+            ViewBag.Date = dt?.ToShortDateString();
             var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
 
             return View("Index", searchResult);
