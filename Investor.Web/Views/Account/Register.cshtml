@@ -12,11 +12,11 @@
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label asp-for="UserName">Ваш nickname</label>
-                                <input asp-for="UserName" id="input-value1" type="text" class="form-control focus-input focus-color-default input-value" data-validation="length unique_nickname" data-validation-length="min4" data-validation="custom" data-validation-regexp="^([a-z]+)$" />
+                                <input asp-for="UserName" id="input-value1" type="text" class="form-control focus-input focus-color-default input-value" data-validation="length server" data-validation-length="min4" data-validation-url="/api/account/checkNickname" data-validation-param-name="nickname" data-validation-regexp="^([a-z]+)$" />
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Email">Електронна адреса</label>
-                                <input asp-for="Email" type="text" class="form-control focus-input focus-color-default" data-validation="email unique_email" name="email" />
+                                <input asp-for="Email" type="text" class="form-control focus-input focus-color-default" data-validation="email server" name="email" data-validation-url="/api/account/checkEmail"/>
                             </div>
                         </div>
 

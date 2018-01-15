@@ -133,6 +133,11 @@ namespace Investor.Service
             return Mapper.Map<UserEntity, User>(user);
         }
 
+        public async Task<User> GetUserByEmail(string email)
+        {
+            return Mapper.Map<UserEntity, User>(await _userManager.FindByEmailAsync(email));
+        }
+
         public async Task<User> GetUserById(string id)
         {
             return Mapper.Map<UserEntity, User>(await _userManager.FindByIdAsync(id));

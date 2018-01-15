@@ -16,19 +16,21 @@ namespace Investor.Web.Controllers.API
         {
             _userService = userService;
         }
-        [Route("nicknames")]
-        [HttpGet]
-        public async Task<IEnumerable<string>> GetNicknames()
+        [Route("checkNickname")]
+        [HttpPost]
+        public async Task<JsonResult> GetNicknames(string nickname)
         {
-            var users = await  _userService.GetAllUsersAsync<TableUserPreview>();
-            return users.Select(c => c.UserName);
+            var user = await _userService.GetUserByNickName(nickname);
+            bool isValid = user == null;
+            return new JsonResult(new {valid= isValid, message="Такий нікнейм вже існує"});
         }
-        [Route("emails")]
-        [HttpGet]
-        public async Task<IEnumerable<string>> GetEmails()
+        [Route("checkEmail")]
+        [HttpPost]
+        public async Task<JsonResult> GetEmails(string email)
         {
-            var users = await _userService.GetAllUsersAsync<TableUserPreview>();
-            return users.Select(c => c.Email);
+            var user = await _userService.GetUserByEmail(email);
+            bool isValid = user == null;
+            return new JsonResult(new { valid = isValid, message = "Користувач з таким email-ом вже існує" });
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Investor.Service.Interfaces
         Task<SortedDictionary<string, List<User>>> GetDictionaryOfBlogersAsync();
         Task<User> GetCurrentUserAsync();
         Task<User> GetUserById(string id);
+        Task<User> GetUserByEmail(string email);
         Task<IEnumerable<TableUserPreview>> GetTableUsersAsync();
         Task<User> GetUserByNickName(string id);
         Task<IdentityResult> UpdateUserAsync(User user);
