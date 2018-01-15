@@ -19,10 +19,11 @@ namespace Investor.Service
                     .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)))
                     .ForMember(x => x.SerializedCropPoints, opt => opt.MapFrom(src => string.Join(";", src.CropPoints)))
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-                cfg.CreateMap<UserEntity, TableUserPreview>().ReverseMap();
+                cfg.CreateMap<UserEntity, TableUserPreview>().ForMember(x=>x.NumberOfBlogs, opt => opt.MapFrom(src => src.Blogs.Count));
+                cfg.CreateMap<TableUserPreview, UserEntity>();
                 cfg.CreateMap<UserEntity, User>()
                     .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';',StringSplitOptions.None)))
-                    .ForMember(x=>x.CropPoints, opt => opt.MapFrom(src=>src.SerializedCropPoints.Split(';', StringSplitOptions.None).Select(c=>int.Parse(c))));
+                    .ForMember(x=>x.CropPoints, opt => opt.MapFrom(src=>src.SerializedCropPoints.Split(';', StringSplitOptions.None).Select(int.Parse)));
                 cfg.CreateMap<RegisterViewModel, User>().ReverseMap();
 
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();

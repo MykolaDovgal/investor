@@ -240,9 +240,9 @@ let initialTable = function (tableId) {
 						}
 					},
 					{
-						"data": "blogs",
+						"data": "numberOfBlogs",
 						render: function (data, type, full) {
-							return data.length;
+							return data;
 						}
 					},
 					{

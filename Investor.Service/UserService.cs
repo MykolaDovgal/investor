@@ -158,7 +158,22 @@ namespace Investor.Service
 
         public async Task<string> GetRoleByUserAsync(string userId)
         {
-            string result = (await _userManager.GetRolesAsync(await _userManager.FindByIdAsync(userId))).ToList()[0];
+            string result = (await _userManager.GetRolesAsync(await _userManager.FindByIdAsync(userId))).FirstOrDefault();
+            return result;
+        }
+
+        public async Task<IEnumerable<TableUserPreview>> GetTableUsersAsync()
+        {
+            List<UserEntity> users = await _userManager
+                .Users
+                .Include(c => c.Blogs)
+                .ToListAsync();
+            List<TableUserPreview> result = users
+                .Select(Mapper.Map<UserEntity, TableUserPreview>).ToList();
+            for (int i = 0; i < result.Count; i++)
+            {
+                result[i].Role = (await _userManager.GetRolesAsync(users[i])).FirstOrDefault();
+            }
             return result;
         }
 

@@ -7532,26 +7532,6 @@ a:hover {
 	font-family: "Circe-Regular", sans-serif;
 }
 
-/* font-family: "Circe"; */
-@font-face {
-	font-family: "Circe-Regular";
-	src: url("../fonts/circe-regular.ttf") format("truetype");
-}
-
-@font-face {
-	font-family: "Circe-ExtraBold";
-	src: url("../fonts/circe/circe-extrabold.otf");
-}
-
-@font-face {
-	font-family: "Circe-Light";
-	src: url("../fonts/circe/circe-light.ttf") format("truetype");
-}
-
-@font-face {
-	font-family: "Circe-Bold";
-	src: url("../fonts/circe/circe-bold.otf");
-}
 .fg-toolbar.ui-toolbar.ui-widget-header.ui-helper-clearfix.ui-corner-bl.ui-corner-br {
 	padding-top:20px;
 }

@@ -12,7 +12,6 @@ namespace Investor.Model
         public string Name { get; set; }
         public string Role { get; set; }
         public string Surname { get; set; }
-        public List<string> Socials { get; set; }
-        public List<Blog> Blogs { set; get; }
+        public int NumberOfBlogs { set; get; }
     }
 }

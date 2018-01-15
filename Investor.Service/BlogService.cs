@@ -146,7 +146,10 @@ namespace Investor.Service
             List<PopularUserViewModel> popUsers = new List<PopularUserViewModel>();
             users.ForEach(u =>
             {
-                BlogEntity blog = u.Blogs.OrderBy(b => b.PublishedOn)?.FirstOrDefault();
+                BlogEntity blog = u.Blogs
+                .Where(b=> { return b.IsPublished != null && b.IsPublished.Value; })
+                .OrderBy(b => b.PublishedOn)?
+                .FirstOrDefault();
                 popUsers.Add(new PopularUserViewModel { User = Mapper.Map<UserEntity, User>(u), NumberOfPosts = u.Blogs.Count, PostId = blog?.PostId ?? 0, Title = blog?.Title ?? String.Empty });
             });
             return popUsers;

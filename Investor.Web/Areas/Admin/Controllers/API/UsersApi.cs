@@ -22,15 +22,9 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            List<TableUserPreview> result = (await _userService.GetAllUsersAsync<TableUserPreview>()).ToList();
-            IEnumerable<string> roles = await _userService.GetAllRolesAsync();
-            for (var i = 0; i < result.Count; i++)
-            {
-                var role = await _userService.GetRoleByUserAsync(result[i].Id);
-                result[i].Role = role;
-                
-            }
-            return Json(new { data = new { result = result, roles = roles } }); ;
+            List<TableUserPreview> result = (await _userService.GetTableUsersAsync()).ToList();
+            IEnumerable<string> allRoles = await _userService.GetAllRolesAsync();
+            return Json(new { data = new { result = result, roles = allRoles } }); ;
         }
 
         [Route("UpdateTableUsers")]
