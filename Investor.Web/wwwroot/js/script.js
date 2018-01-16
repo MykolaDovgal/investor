@@ -239,36 +239,42 @@ if ($("textarea").is(".textarea")) {
 /******/
 
 
+
+
 /***/
 if ($("div").is("#upload-demo")) {
 
-    var cropper = (function () {
+    var Cropper = (function () {
 
 
         function popupResult(result) {
             if (result.src) {
-                $('#img-upload').attr('style', 'background-image: url(' + result.src + ');');
+                console.log(result);
+                $("#img-upload").attr("style", "background-image: url(" + result.src + ");");
             }
         }
 
+        var $uploadCrop = $("#upload-demo").croppie({
+            viewport: {
+                width: 100,
+                height: 100,
+                type: "circle"
+            },
+            enableExif: true
+        });
 
-        function demoUpload() {
-            var $uploadCrop;
-
+        function Upload() {
             function readFile(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
-
                     reader.onload = function (e) {
-                        $('.upload-demo').addClass('ready');
-                        $uploadCrop.croppie('bind', {
+                        $(".upload-demo").addClass("ready");
+                        $uploadCrop.croppie("bind", {
                             url: e.target.result
                         }).then(function () {
 
                         });
-
                     }
-
                     reader.readAsDataURL(input.files[0]);
                 }
                 else {
@@ -276,42 +282,49 @@ if ($("div").is("#upload-demo")) {
                 }
             }
 
-            $uploadCrop = $('#upload-demo').croppie({
-                viewport: {
-                    width: 100,
-                    height: 100,
-                    type: 'circle'
-                },
-                enableExif: true
+
+
+            $(document).ready(function () {
+                const tmp = $('input[name="CropPoints"]').val();
+                if (tmp) {
+                    $uploadCrop.croppie("bind", {
+                        url: $("#userPhoto").attr("src"),
+                        points: JSON.parse(tmp)
+                    }).then(function () {
+                    });
+                }
+
+
             });
 
-            $('#upload').on('change', function () {
-                readFile(this);
-            });
-            $('.upload-result').on('click', function (ev) {
-                $uploadCrop.croppie('result', {
-                    type: 'canvas',
-                    size: 'viewport'
+
+            $("#upload").on("change", function () { readFile(this); });
+            $(".upload-result").on("click", function (ev) {
+                $uploadCrop.croppie("result", {
+                    type: "canvas",
+                    size: "viewport"
                 }).then(function (resp) {
                     popupResult({
                         src: resp
                     });
+                    $("#cropped").attr("src", resp);
                 });
             });
-        };
+        }
 
 
         function init() {
-            demoUpload();
-        };
+            Upload();
+        }
 
         return {
             init: init
-        };
+        }
 
     })();
 
-    cropper.init();
+
+    Cropper.init();
 };
 /***/
 

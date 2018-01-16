@@ -89,7 +89,8 @@ let deleteObj = function (url, data) {
 				settings: {
 					'timeout': 4000
 				}
-			});
+            });
+		    $(".delete").addClass('disabled');
 		}
 	});
 }

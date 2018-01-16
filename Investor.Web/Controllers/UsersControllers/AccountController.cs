@@ -18,67 +18,12 @@ namespace Investor.Web.Controllers.UsersControllers
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
-        private readonly IBlogService _blogService;
-        private readonly INewsService _postService;
         private readonly IImageService _imageService;
 
-        public AccountController(IUserService userService, IBlogService blogService, IImageService imageService, INewsService postService)
+        public AccountController(IUserService userService, IImageService imageService)
         {
             _userService = userService;
-            _postService = postService;
             _imageService = imageService;
-            _blogService = blogService;
-        }
-
-        public IActionResult Profile()
-        {
-            ViewBag.Header = "_AccountHeaderSection";
-            var currentUser = _userService.GetCurrentUserAsync().Result;
-            ViewBag.User = currentUser;
-            return View(currentUser);
-        }
-        public IActionResult Account()
-        {
-            ViewBag.Header = "_AccountHeaderSection";
-            var currentUser = _userService.GetCurrentUserAsync().Result;
-            ViewBag.User = currentUser;
-            var res = _blogService.GetBlogsByUserIdAsync(currentUser?.Id).Result;
-            return View(res);
-        }
-
-        public IActionResult CreatePost(string id)
-        {
-            ViewBag.Header = "_AccountHeaderSection";
-            var currentUser = _userService.GetCurrentUserAsync().Result;
-            ViewBag.User = currentUser;
-            ViewBag.IsOwner = currentUser != null && (String.IsNullOrWhiteSpace(id) && String.IsNullOrWhiteSpace(currentUser.Id) &&
-                                                      id == currentUser.Id);
-
-            return View();
-        }
-
-        public IActionResult UpdatePost(int id)
-        {
-            ViewBag.Header = "_AccountHeaderSection";
-            ViewBag.Tags = _blogService.GetAllTagsByBlogIdAsync(id).Result.ToList();
-            var blog = _blogService.GetBlogByIdAsync<Blog>(id).Result;
-            return View("CreatePost", blog);
-        }
-
-        [HttpPost]
-        public IActionResult CreatePost([FromForm] Blog blog, [FromForm]IFormFile image)
-        {
-            blog.Image = image != null ? _imageService.SaveImage(image) : null;
-            var tmp = _blogService.AddBlogAsync(blog).Result;
-            return Json(Url.Action("Account", "Account"));
-        }
-
-        [HttpPost]
-        public IActionResult UpdatePost([FromForm] Blog blog, [FromForm]IFormFile image)
-        {
-            blog.Image = image != null ? _imageService.SaveImage(image) : null;
-            var tmp = _blogService.UpdateBlogAsync(blog).Result;
-            return Json(Url.Action("Account", "Account"));
         }
 
         [AllowAnonymous]
@@ -136,19 +81,6 @@ namespace Investor.Web.Controllers.UsersControllers
             return Json(Url.Action("Index", "Home"));
         }
 
-        [HttpPost]
-        public async Task UpdateUser(User model, [FromForm]IFormFile Image, [FromForm]List<int> Points)
-        {
-
-            model.CropPoints = Points;
-            model.Photo = Image != null ? _imageService.SaveAccountImage(Image, Points) : _imageService.CropExistingImage(Path.GetFileName(model.Photo), Points);
-            await _userService.UpdateUserAsync(model);
-        }
-
-        [HttpPost]
-        public async Task ChangePassword(User model, string newPassword)
-        {
-            await _userService.ChangePasswordAsync(model, newPassword);
-        }
+        
     }
 }
