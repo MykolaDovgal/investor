@@ -127,11 +127,11 @@ namespace Investor.Web
 
             app.UseStatusCodePagesWithReExecute("/StatusCode/{0}");
 
-            //app.UseForwardedHeaders(new ForwardedHeadersOptions
-            //{
-            //    ForwardedHeaders = ForwardedHeaders.XForwardedFor |
-            //                       ForwardedHeaders.XForwardedProto
-            //});
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+                                   ForwardedHeaders.XForwardedProto
+            });
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseSession();
