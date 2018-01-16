@@ -85,7 +85,10 @@ let initialTable = function (tableId) {
                                 </label></div>`;
 						}
 					}
-				]
+                ],
+				"language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Ukrainian.json"
+				}
 			});
 			break;
 		case "#blogsTable":
@@ -142,7 +145,10 @@ let initialTable = function (tableId) {
                                 </label></div>`;
 						}
 					}
-				]
+				],
+				"language": {
+				    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Ukrainian.json"
+				}
 			});
 			break;
 		case "#tagsTable":
@@ -185,7 +191,10 @@ let initialTable = function (tableId) {
 							return data;
 						}
 					}
-				]
+				],
+				"language": {
+				    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Ukrainian.json"
+				}
 			});
 			break;
 		case "#usersTable":
@@ -253,7 +262,10 @@ let initialTable = function (tableId) {
 							return newSelect.prop("outerHTML");
 						}
 					}
-				]
+				],
+				"language": {
+				    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Ukrainian.json"
+				}
 			});
 			break;
 		default:

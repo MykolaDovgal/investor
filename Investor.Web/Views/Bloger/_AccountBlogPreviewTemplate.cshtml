@@ -13,7 +13,7 @@
             <p class="text-news">@Model.Description</p>
             <span class="default-today-color">@(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
         </div>
-        <a href="/Account/UpdatePost/@Model.PostId" class="btn btn-edit btn-edit-default pull-right">Редагувати<i class="icons icon-pencil-default"></i></a>
+        <a href="/Bloger/UpdatePost/@Model.PostId" class="btn btn-edit btn-edit-default pull-right">Редагувати<i class="icons icon-pencil-default"></i></a>
     </div>
 </div>
 
