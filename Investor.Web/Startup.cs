@@ -99,7 +99,20 @@ namespace Investor.Web
             services.AddSession();
 
             services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Optimal);
-            services.AddResponseCompression();
+            services.AddResponseCompression(options =>
+            {
+                options.MimeTypes = new[]
+                {
+                    "text/plain",
+                    "text/css",
+                    "application/javascript",
+                    "text/html",
+                    "application/xml",
+                    "text/xml",
+                    "application/json",
+                    "text/json"
+                };
+            });
 
             services.AddAuthorization(options =>
             {
@@ -137,11 +150,11 @@ namespace Investor.Web
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor |
                                    ForwardedHeaders.XForwardedProto
             });
-
+            app.UseResponseCompression();
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseSession();
-            app.UseResponseCompression();
+            
 
             app.UseMvc(routes =>
             {
