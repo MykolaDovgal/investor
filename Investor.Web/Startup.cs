@@ -23,6 +23,7 @@ using Investor.Service.Utils;
 using Investor.Service.Utils.Interfaces;
 using Investor.Web.Filters;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace Investor.Web
@@ -97,6 +98,9 @@ namespace Investor.Web
             services.AddDistributedMemoryCache();
             services.AddSession();
 
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Optimal);
+            services.AddResponseCompression();
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdminAuthorize", policy =>
@@ -113,6 +117,7 @@ namespace Investor.Web
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
 
             if (env.IsDevelopment())
             {
@@ -136,6 +141,8 @@ namespace Investor.Web
             app.UseAuthentication();
             app.UseStaticFiles();
             app.UseSession();
+            app.UseResponseCompression();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
