@@ -9,9 +9,13 @@
 }
 
 let getContent = function (e) {
-    var url = location.hash.replace("#", "");
+    const url = location.hash.replace("#", "");
+
     if (url.startsWith("/post/")) {
         getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdateNews"); });
+    }
+    else if (url.startsWith("/dashboard")) {
+        getPartialView(`admin${url}`, initialGoogleAnalyticsDashboard);
     }
     else if (url.startsWith("/createpost")) {
         getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "CreateNews"); });

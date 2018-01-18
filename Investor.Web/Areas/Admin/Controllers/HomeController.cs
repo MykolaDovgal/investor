@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using Investor.Model.Views;
-using Investor.Service.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Internal;
-using Microsoft.AspNetCore.Routing;
 
 namespace Investor.Web.Areas.Admin.Controllers
 {
@@ -15,11 +14,6 @@ namespace Investor.Web.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View();
-        }
-        [HttpGet("admin/StatusCode/{statusCode}")]
-        public IActionResult AdminError(int statusCode)
-        {
-            return PartialView("Error", statusCode);
         }
     }
 }

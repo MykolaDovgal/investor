@@ -71,8 +71,19 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js"></script>
     <script src="~/js/admin/content/myscript.js"></script>
 
+
     @*<script src="~/js/metronic/bootstrap-modal.js"></script>
         <script src="~/js/metronic/bootstrap-modalmanager.js"></script>*@
+
+    <script>
+        (function (w, d, s, g, js, fjs) {
+            g = w.gapi || (w.gapi = {}); g.analytics = { q: [], ready: function (cb) { this.q.push(cb) } };
+            js = d.createElement(s); fjs = d.getElementsByTagName(s)[0];
+            js.src = 'https://apis.google.com/js/platform.js';
+            fjs.parentNode.insertBefore(js, fjs); js.onload = function () { g.load('analytics') };
+        }(window, document, 'script'));
+    </script>
+<script src="~/js/admin/content/google_analytics.js"></script>
 
 
 
