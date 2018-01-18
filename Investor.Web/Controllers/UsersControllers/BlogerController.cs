@@ -44,6 +44,7 @@ namespace Investor.Web.Controllers.UsersControllers
         public IActionResult CreatePost([FromForm] Blog blog, [FromForm]IFormFile image)
         {
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
+            blog.Author = _userService.GetCurrentUserAsync().Result;
             var tmp = _blogService.AddBlogAsync(blog).Result;
             return Json(Url.Action("Account", "Bloger"));
         }
@@ -52,6 +53,7 @@ namespace Investor.Web.Controllers.UsersControllers
         public IActionResult UpdatePost([FromForm] Blog blog, [FromForm]IFormFile image)
         {
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
+            blog.Author = _userService.GetCurrentUserAsync().Result;
             var tmp = _blogService.UpdateBlogAsync(blog).Result;
             return Json(Url.Action("Account", "Bloger"));
         }

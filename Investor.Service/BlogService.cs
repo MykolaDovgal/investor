@@ -16,15 +16,13 @@ namespace Investor.Service
     {
         private readonly IBlogRepository _blogRepository;
         private readonly IPostRepository _postRepository;
-        private readonly IUserService _userService;
         private readonly ITagService _tagService;
         private readonly ICategoryService _categoryService;
 
 
-        public BlogService(IBlogRepository blogRepository, IUserService userService, IPostRepository postRepository, ITagService tagService, ICategoryService categoryService)
+        public BlogService(IBlogRepository blogRepository, IPostRepository postRepository, ITagService tagService, ICategoryService categoryService)
         {
             _blogRepository = blogRepository;
-            _userService = userService;
             _postRepository = postRepository;
             _tagService = tagService;
             _categoryService = categoryService;
@@ -33,7 +31,6 @@ namespace Investor.Service
 
         public async Task<Blog> AddBlogAsync(Blog map)
         {
-            map.Author = _userService.GetCurrentUserAsync().Result;
             map.Category = await _categoryService.GetCategoryByUrlAsync("blog");
             var response = await _postRepository.AddPostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(map));
             await AddTagsToBlogAsync(response.PostId, map.Tags?.Select(c => c.Name));
@@ -128,7 +125,6 @@ namespace Investor.Service
 
         public async Task<Blog> UpdateBlogAsync(Blog post)
         {
-            post.Author = _userService.GetCurrentUserAsync().Result;
             BlogEntity blog = await _postRepository.UpdatePostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(post));
             await AddTagsToBlogAsync(blog.PostId, post.Tags?.Select(c => c.Name));
             return Mapper.Map<BlogEntity, Blog>(blog);
