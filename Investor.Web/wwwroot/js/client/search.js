@@ -24,7 +24,7 @@ $(document).ready(function () {
         dateFormat: 'DD dd.mm.yyyy',
         timeFormat: 'hh:ii'
     }
-    
+    console.log($('.date').val());
     var inputDate = new Date(moment($('.date').val(), 'DD.MM.YYYY').toDate());
     
     $("#my-datepicker").datepicker({
@@ -43,7 +43,6 @@ $(document).ready(function () {
 				searchTagQuery);
         },
         onRenderCell: function (date, cellType) {
-            console.log(moment(inputDate).format("YYYY-MM-DD"));
             if (!isNaN(inputDate) && moment(date).format("YYYY-MM-DD") === moment(inputDate).format("YYYY-MM-DD")) {
                 return {
                     classes: '-selected-'
@@ -64,7 +63,7 @@ $(document).ready(function () {
     weekday[6] = "Субота";
     
     var day = weekday[inputDate.getDay()];
-    var currentDate = inputDate.toLocaleDateString();
+    var currentDate = moment(inputDate).format("DD.MM.YYYY");
     $("#my-datepicker").val(day + ' ' + currentDate);
 
     $("#postTextQuery").blur(function () {
