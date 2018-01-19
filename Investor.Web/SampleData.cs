@@ -43,6 +43,7 @@ namespace Investor.Web
                     UserName = "user",
                     Surname = "user",
                     Photo = "7956B0990989F1BF94306E45F9221DF1.jpg",
+                    SerializedSocials = ";;",
                     SerializedCropPoints = "79;3;525;449"
                 };
                 var user1 = new UserEntity
@@ -53,7 +54,19 @@ namespace Investor.Web
                     UserName = "user1",
                     Surname = "user1",
                     Photo = "42F302DB6CD89CE29F1C0D70B792E686.jpg",
+                    SerializedSocials = ";;",
                     SerializedCropPoints = "99;0;368;269"
+                };
+                var bloger = new UserEntity
+                {
+                    Name = "bloger",
+                    Description = "bloger",
+                    Email = "bloger@gmail.com",
+                    UserName = "Pavlo",
+                    Surname = "Klychko",
+                    Photo = "7956B0990989F1BF94306E45F9221DF1.jpg",
+                    SerializedSocials = ";;",
+                    SerializedCropPoints = "79;3;525;449"
                 };
                 var bloger1 = new UserEntity
                 {
@@ -63,6 +76,7 @@ namespace Investor.Web
                     UserName = "bloger1",
                     Surname = "bloger",
                     Photo = "7956B0990989F1BF94306E45F9221DF1.jpg",
+                    SerializedSocials = ";;",
                     SerializedCropPoints = "79;3;525;449"
                 };
                 var bloger2 = new UserEntity
@@ -73,6 +87,7 @@ namespace Investor.Web
                     UserName = "bloger2",
                     Surname = "Волицька",
                     Photo = "607FE0CDD44800E3C52E6E656F9D3EA0.jpg",
+                    SerializedSocials = ";;",
                     SerializedCropPoints = "87;2;458;373"
                 };
                 var bloger3 = new UserEntity
@@ -83,6 +98,7 @@ namespace Investor.Web
                     UserName = "bloger3",
                     Surname = "Ковальчук",
                     Photo = "6E78BCE7D7787B79645169B799A6C57E.jpg",
+                    SerializedSocials = ";;",
                     SerializedCropPoints = "226;0;1574;1347"
                 };
                 var bloger4 = new UserEntity
@@ -93,6 +109,7 @@ namespace Investor.Web
                     UserName = "bloger4",
                     Surname = "Захарків",
                     Photo = "50DF83C386548F47B731E0259F943E9F.jpg",
+                    SerializedSocials = ";;",
                     SerializedCropPoints = "92;0;498;406"
                 };
                 var bloger5 = new UserEntity
@@ -103,6 +120,7 @@ namespace Investor.Web
                     UserName = "bloge5r",
                     Surname = "Зеленська",
                     SerializedCropPoints = "87;2;458;373",
+                    SerializedSocials = ";;",
                     Photo = "607FE0CDD44800E3C52E6E656F9D3EA0.jpg"
                 };
                 var bloger6 = new UserEntity
@@ -113,6 +131,7 @@ namespace Investor.Web
                     UserName = "bloger6",
                     Surname = "Яворська",
                     Photo = "50DF83C386548F47B731E0259F943E9F.jpg",
+                    SerializedSocials = ";;",
                     SerializedCropPoints = "92;0;498;406"
                 };
                 var admin = new UserEntity
@@ -123,6 +142,7 @@ namespace Investor.Web
                     UserName = "admin",
                     Surname = "admin",
                     Photo = "6E78BCE7D7787B79645169B799A6C57E.jpg",
+                    SerializedSocials = ";;",
                     SerializedCropPoints = "226;0;1574;1347"
                 };
 
@@ -133,6 +153,12 @@ namespace Investor.Web
                 }
 
                 var userRegisterResult1 = userManager.CreateAsync(user1, "user1123123").Result;
+                if (userRegisterResult1.Succeeded)
+                {
+                    var x1 = userManager.AddToRoleAsync(user1, "admin").Result;
+                }
+
+                var userRegisterResult2 = userManager.CreateAsync(bloger, "bloger123123").Result;
                 if (userRegisterResult1.Succeeded)
                 {
                     var x1 = userManager.AddToRoleAsync(user1, "admin").Result;

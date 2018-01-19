@@ -13,7 +13,7 @@
                             <button type="button" class="btn btn-edit btn-edit-default pull-right">Редагувати<i class="icons icon-pencil-default"></i></button>
                             <button type="submit" class="btn btn-save btn-edit-default pull-right" hidden>Зберегти</button>
                         </h2>
-                        <input hidden asp-for="Id"/>
+                        <input hidden name="Id" value="@Model.Id"/>
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label>Ваш nickname</label>
@@ -40,7 +40,7 @@
                     <div class="block-border-top default-border-color body-block block-edit edit-data">
                         <div class="d-inline-block w-100"><button type="submit" class="btn btn-edit btn-save btn-edit-default pull-right">Зберегти</button></div>
                         <div class="row inline-form">
-                            <input hidden asp-for="Id" />
+                            <input hidden name="Id" value="@Model.Id"/>
                             <div class="col-sm-4 form-group">
                                 <label>Введіть старий пароль</label>
                                 <input type="password" class="form-control focus-input focus-color-default" name="pass_old">
@@ -59,7 +59,7 @@
                 </form>
                 <form id="updateUserBiographyForm"  action="/Bloger/UpdateUser">
                     <div class="block-border-top turquoise-border-top body-block mb-3 block-edit edit-biography" data-edit="biography">
-                        <input hidden asp-for="Id"/>
+                        <input hidden name="Id" value="@Model.Id"/>
                         <h2 class="title-block">
                             Біографія
                             <button type="button" class="btn btn-edit btn-edit-second pull-right">Редагувати<i class="icons icon-pencil-second"></i></button>

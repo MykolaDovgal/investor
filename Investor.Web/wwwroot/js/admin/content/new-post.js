@@ -4,8 +4,7 @@
 	tinymce.init({
 		mode: "specific_textareas",
         selector: ".text-editor",
-        language: 'uk_UA',
-		content_css: "css/metronic/style.css",
+		//content_css: "css/metronic/style.css",
 		theme: "modern",
 		height: "480",
 		plugins: [

@@ -7,18 +7,38 @@
     "outputFileName": "wwwroot/js/minify/alljs.min.js",
     "inputFiles": [
       "wwwroot/lib/jquery-form-validator/form-validator/jquery.form-validator.js",
-      "wwwroot/lib/air-datepicker/dist/js/datepicker.min.js",
-      "wwwroot/js/metronic/bootstrap-tagsinput.js",
-      "wwwroot/js/typeahead/typeahead.bundle.js",
+      //"wwwroot/lib/air-datepicker/dist/js/datepicker.min.js",
+      //"wwwroot/js/metronic/bootstrap-tagsinput.js",
+      //"wwwroot/js/typeahead/typeahead.bundle.js",
       "wwwroot/js/client/script.js",
       "wwwroot/js/client/social_networks.js",
       "wwwroot/js/client/post_pagination.js",
       "wwwroot/js/client/search.js",
-      "wwwroot/js/client/account.js"
+      "wwwroot/js/client/account.js",
+      "wwwroot/lib/jquery-form-validator/form-validator/security.js"
     ],
     "minify": {
       "enabled": true,
       "renameLocals": true
     }
-  }  
+  },
+  {
+    "outputFileName": "wwwroot/js/minify/alladminjs.min.js",
+    "inputFiles": [
+      "wwwroot/lib/toastr/jquery.toaster.js",
+      "wwwroot/js/admin/content/delete.js",
+      "wwwroot/js/admin/content/common_functions.js",
+      "wwwroot/js/admin/content/news.js",
+      "wwwroot/js/admin/content/new-post.js",
+      "wwwroot/js/admin/content/tags.js",
+      "wwwroot/js/utils/url_utils.js",
+      "wwwroot/js/admin/content/logoff.js",
+      "wwwroot/js/admin/content/google_analytics.js"
+      
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
 ]

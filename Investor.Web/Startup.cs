@@ -134,9 +134,9 @@ namespace Investor.Web
 
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
-                //app.UseBrowserLink();
-                app.UseExceptionHandler("/Home/Error");
+                app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
+                //app.UseExceptionHandler("/Home/Error");
             }
             else
             {

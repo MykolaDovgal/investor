@@ -1,5 +1,4 @@
 ﻿let tablesUpdetedData = {};
-//let chosenPostsIds = [];
 
 $(document).on("click", "a.nav-link", function (e) {
 
