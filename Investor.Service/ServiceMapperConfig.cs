@@ -15,10 +15,12 @@ namespace Investor.Service
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<User, UserEntity>()
+                cfg.CreateMap<UserDescriptionViewModel, UserEntity>()
                     .ForMember(x => x.SerializedSocials, opt => opt.MapFrom(src => string.Join(";", src.Socials)))
                     .ForMember(x => x.SerializedCropPoints, opt => opt.MapFrom(src => string.Join(";", src.CropPoints)))
                     .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
+                cfg.CreateMap<UserPasswordChangeViewModel, UserEntity>();
+                cfg.CreateMap<UserPersonalDataViewModel, UserEntity>();
                 cfg.CreateMap<UserEntity, TableUserPreview>().ForMember(x => x.NumberOfBlogs, opt => opt.MapFrom(src => src.Blogs.Count));
                 cfg.CreateMap<TableUserPreview, UserEntity>();
                 cfg.CreateMap<UserEntity, User>()

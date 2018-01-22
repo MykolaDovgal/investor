@@ -14,6 +14,9 @@ let getContent = function (e) {
     if (url.startsWith("/post/")) {
         getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdateNews"); });
     }
+    else if (url.startsWith("/blog/")) {
+        getPartialView(`admin${url}`, function () { initTypeahead(); $("#updateFormSubmit").data("action", "UpdateBlog"); });
+    }
     else if (url.startsWith("/dashboard")) {
         getPartialView(`admin${url}`, initialGoogleAnalyticsDashboard);
     }

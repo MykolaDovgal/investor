@@ -40,9 +40,20 @@ namespace Investor.Service
 
         }
 
-        public async Task<IdentityResult> UpdateUserAsync(User user)
+        public async Task<IdentityResult> UpdateUserAsync(UserDescriptionViewModel user)
         {
-            var userEntity = Mapper.Map<User, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
+            var userEntity = Mapper.Map<UserDescriptionViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
+            var userUpdateResult = await _userManager.UpdateAsync(userEntity);
+            if (userUpdateResult.Succeeded)
+            {
+                return IdentityResult.Success;
+            }
+            return IdentityResult.Failed();
+        }
+
+        public async Task<IdentityResult> UpdateUserAsync(UserPersonalDataViewModel user)
+        {
+            var userEntity = Mapper.Map<UserPersonalDataViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
             var userUpdateResult = await _userManager.UpdateAsync(userEntity);
             if (userUpdateResult.Succeeded)
             {

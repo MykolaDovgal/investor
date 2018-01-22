@@ -7,7 +7,6 @@ using Investor.Service.Interfaces;
 using Investor.Model;
 using Investor.Repository;
 using Investor.Repository.Interfaces;
-using Investor.Model.Views;
 using Investor.Service;
 using Microsoft.AspNetCore.Authorization;
 using UnidecodeSharpFork;
@@ -49,7 +48,7 @@ namespace Investor.Web.Controllers
         
         public IActionResult Index()
         {
-            List<CategoryPreviewViewModel> news = new List<CategoryPreviewViewModel>();
+            List<CategoryPreview> news = new List<CategoryPreview>();
             List<Category> categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
             categories.ForEach(category =>
             {
@@ -57,7 +56,7 @@ namespace Investor.Web.Controllers
                     .GetLatestNewsByCategoryUrlAsync(category.Url, true, _postPreviewCount[category.Url]).Result
                     .ToList();
                 int largePostCount = _largePostPreviewCount[category.Url];
-                news.Add(new CategoryPreviewViewModel
+                news.Add(new CategoryPreview
                 {
                     CategoryUrl = category.Url,
                     CategoryName = category.Name,

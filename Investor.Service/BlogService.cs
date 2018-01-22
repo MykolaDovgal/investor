@@ -39,23 +39,23 @@ namespace Investor.Service
 
         public async Task AddTagsToBlogAsync(int postId, IEnumerable<string> tags) // TODO rename method
         {
-            if (tags != null)
+            tags = tags ?? new List<string>();
+            List<TagEntity> postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
+            IEnumerable<string> enumerable = tags as IList<string> ?? tags.ToList();
+            foreach (var t in enumerable)
             {
-                List<TagEntity> postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
-                IEnumerable<string> enumerable = tags as IList<string> ?? tags.ToList();
-                foreach (var t in enumerable)
+                Tag tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
+                if (!postTags.Select(s => s.Name).Contains(t))
                 {
-                    Tag tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
-                    if (!postTags.Select(s => s.Name).Contains(t))
-                    {
-                        await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
-                    }
+                    await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
                 }
-                postTags
-                    .Where(pt => !enumerable.Contains(pt.Name))
-                    .ToList()
-                    .ForEach(async pt => await _postRepository.RemoveTagFromPostAsync(postId, pt)); //!!!!!!!!!!!!!!!!!
             }
+            var tagsToRemove = postTags?.Where(pt => !tags.Contains(pt.Name)).ToList() ?? new List<TagEntity>();
+            foreach (var pt in tagsToRemove)
+            {
+                await _postRepository.RemoveTagFromPostAsync(postId, pt);
+            }
+
         }
 
         public async Task<Tag> AddTagToBlogAsync(int postId, Tag tag)
@@ -90,7 +90,7 @@ namespace Investor.Service
 
         public async Task<IEnumerable<BlogPreview>> GetPublishedBlogsByUserIdAsync(string userId)
         {
-            IEnumerable<BlogEntity> blogs = (await _blogRepository.GetBlogsByUserIdAsync(userId)).Where(c=>c.IsPublished ?? false);
+            IEnumerable<BlogEntity> blogs = (await _blogRepository.GetBlogsByUserIdAsync(userId)).Where(c => c.IsPublished ?? false);
             return blogs.Select(Mapper.Map<BlogEntity, BlogPreview>);
         }
 
@@ -142,7 +142,7 @@ namespace Investor.Service
             users.ForEach(u =>
             {
                 BlogEntity blog = u.Blogs
-                .Where(b=> { return b.IsPublished != null && b.IsPublished.Value; })
+                .Where(b => { return b.IsPublished != null && b.IsPublished.Value; })
                 .OrderBy(b => b.PublishedOn)?
                 .FirstOrDefault();
                 popUsers.Add(new PopularUser { User = Mapper.Map<UserEntity, User>(u), NumberOfPosts = u.Blogs.Count, PostId = blog?.PostId ?? 0, Title = blog?.Title ?? String.Empty });

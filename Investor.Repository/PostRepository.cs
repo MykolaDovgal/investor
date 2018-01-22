@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using AutoMapper;
 using Investor.Model;
+using Investor.Model.Views;
 
 namespace Investor.Repository
 {
@@ -195,7 +196,7 @@ namespace Investor.Repository
             await _newsContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<PostEntity>> GetQueriedNews(PostSearchQuery query)
+        public async Task<IEnumerable<PostEntity>> GetQueriedNews(PostSearchQueryViewModel query)
         {
             DateTime? dtStart = null;
             DateTime? dtEnd = null;

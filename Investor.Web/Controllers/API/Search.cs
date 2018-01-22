@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Investor.Model;
+using Investor.Model.Views;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,7 +27,7 @@ namespace Investor.Web.Controllers.API
             {
                 dt = DateTime.Parse(date);
             }
-            PostSearchQuery postQuery = new PostSearchQuery
+            PostSearchQueryViewModel postQuery = new PostSearchQueryViewModel
             {
                 CategoryUrl = categoryUrl,
                 Count = count,

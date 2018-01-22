@@ -6,7 +6,6 @@ namespace Investor.Model
 {
     public class Statistics
     {
-
         public int StatisticsId { set; get; }
         public int PostId { set; get; }
         public string ClientIp { set; get; }

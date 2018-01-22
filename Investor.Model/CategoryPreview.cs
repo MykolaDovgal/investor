@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Investor.Model.Views
+namespace Investor.Model
 {
-    public class CategoryPreviewViewModel
+    public class CategoryPreview
     {
         public IEnumerable<PostPreview> LargePostPreviewTemplate;
         public IEnumerable<PostPreview> SmallPostPreviewTemplate;

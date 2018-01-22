@@ -135,7 +135,7 @@
 		};
 	};
 
-	$("#tagTypeahead").tagsinput({
+	$(".tagTypeahead").tagsinput({
 		typeaheadjs: {
 			name: 'tags',
 			source: substringMatcher(tags)

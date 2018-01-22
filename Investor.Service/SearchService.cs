@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Entity;
 using Investor.Model;
+using Investor.Model.Views;
 using Investor.Repository;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
@@ -20,7 +21,7 @@ namespace Investor.Service
             _postRepository = postRepository;
         }
 
-        public async Task<IEnumerable<PostPreview>> SearchPosts(PostSearchQuery query)
+        public async Task<IEnumerable<PostPreview>> SearchPosts(PostSearchQueryViewModel query)
         {
             var posts = await _postRepository.GetQueriedNews(query);
 

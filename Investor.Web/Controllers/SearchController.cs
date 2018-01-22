@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Investor.Model;
+using Investor.Model.Views;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,7 +26,7 @@ namespace Investor.Web.Controllers
             {
                 dt = DateTime.Parse(date);
             }
-            var postQuery = new PostSearchQuery
+            var postQuery = new PostSearchQueryViewModel
             {
                 CategoryUrl = categoryUrl,
                 Count = count,
@@ -45,7 +46,7 @@ namespace Investor.Web.Controllers
         public IActionResult SearchByTag(string tag, string categoryUrl)
         {
             ViewBag.CategoryName = _categoryService.GetCategoryByUrlAsync(categoryUrl).Result;
-            var postQuery = new PostSearchQuery { Tag = tag, CategoryUrl = categoryUrl };
+            var postQuery = new PostSearchQueryViewModel { Tag = tag, CategoryUrl = categoryUrl };
             ViewBag.Query = postQuery;
             var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
             return View(searchResult);

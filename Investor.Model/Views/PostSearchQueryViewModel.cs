@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Investor.Model
+namespace Investor.Model.Views
 {
-    public class PostSearchQuery
+    public class PostSearchQueryViewModel
     {
         public string Query { get; set; }
         public string CategoryUrl { get; set; }
@@ -13,7 +13,7 @@ namespace Investor.Model
         public int Count { get; set; }
         public string Tag { get; set; }
 
-        public PostSearchQuery()
+        public PostSearchQueryViewModel()
         {
             Query = string.Empty;
             CategoryUrl = string.Empty;

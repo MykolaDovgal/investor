@@ -18,8 +18,8 @@
       "wwwroot/lib/jquery-form-validator/form-validator/security.js"
     ],
     "minify": {
-      "enabled": true,
-      "renameLocals": true
+      "enabled": false,
+      "renameLocals": false
     }
   },
   {
@@ -37,8 +37,8 @@
       
     ],
     "minify": {
-      "enabled": true,
-      "renameLocals": true
+      "enabled": false,
+      "renameLocals": false
     }
   }
 ]
