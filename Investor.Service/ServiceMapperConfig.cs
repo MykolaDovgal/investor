@@ -23,7 +23,8 @@ namespace Investor.Service
                 cfg.CreateMap<TableUserPreview, UserEntity>();
                 cfg.CreateMap<UserEntity, User>()
                     .ForMember(x => x.Socials, opt => opt.MapFrom(src => src.SerializedSocials.Split(';',StringSplitOptions.None)))
-                    .ForMember(x=>x.CropPoints, opt => opt.MapFrom(src=>src.SerializedCropPoints.Split(';', StringSplitOptions.None).Select(int.Parse)));
+                    .ForMember(x=>x.CropPoints, opt => opt.MapFrom(src=>src.SerializedCropPoints.Split(';', StringSplitOptions.None).Select(int.Parse)))
+                    .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
                 cfg.CreateMap<RegisterViewModel, User>().ReverseMap();
 
                 cfg.CreateMap<Category, CategoryEntity>().ReverseMap();

@@ -80,8 +80,10 @@ namespace Investor.Web.Controllers.UsersControllers
         [HttpPost]
         public async Task UpdateUser(User model, [FromForm]IFormFile Image, [FromForm]List<int> Points)
         {
-
-            model.CropPoints = Points;
+            if(Points.Count > 0)
+            { 
+                model.CropPoints = Points;
+            }
             model.Photo = Image != null ? _imageService.SaveAccountImage(Image, Points) : _imageService.CropExistingImage(Path.GetFileName(model.Photo), Points);
             await _userService.UpdateUserAsync(model);
         }
