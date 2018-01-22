@@ -29,13 +29,12 @@ namespace Investor.Service
         }
 
 
-        public async Task<Blog> AddBlogAsync(Blog map)
+        public async Task<Blog> AddBlogAsync(BlogViewModel map)
         {
             map.Category = await _categoryService.GetCategoryByUrlAsync("blog");
-            var response = await _postRepository.AddPostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(map));
+            var response = await _postRepository.AddPostAsync<BlogEntity>(Mapper.Map<BlogViewModel, BlogEntity>(map));
             await AddTagsToBlogAsync(response.PostId, map.Tags?.Select(c => c.Name));
-            map.PostId = response.PostId;
-            return map;
+            return Mapper.Map<BlogEntity, Blog>(response);
         }
 
         public async Task AddTagsToBlogAsync(int postId, IEnumerable<string> tags) // TODO rename method
@@ -123,9 +122,9 @@ namespace Investor.Service
             await _postRepository.RemovePostAsync(id);
         }
 
-        public async Task<Blog> UpdateBlogAsync(Blog post)
+        public async Task<Blog> UpdateBlogAsync(BlogViewModel post)
         {
-            BlogEntity blog = await _postRepository.UpdatePostAsync<BlogEntity>(Mapper.Map<Blog, BlogEntity>(post));
+            BlogEntity blog = await _postRepository.UpdatePostAsync<BlogEntity>(Mapper.Map<BlogViewModel, BlogEntity>(post));
             await AddTagsToBlogAsync(blog.PostId, post.Tags?.Select(c => c.Name));
             return Mapper.Map<BlogEntity, Blog>(blog);
         }
@@ -135,18 +134,18 @@ namespace Investor.Service
             await _postRepository.UpdatePostAsync<BlogEntity>(post.Select(Mapper.Map<T, BlogEntity>));
         }
 
-        public async Task<IEnumerable<PopularUserViewModel>> GetPopularUsers(int limit)
+        public async Task<IEnumerable<PopularUser>> GetPopularUsers(int limit)
         {
             List<UserEntity> users = (await _blogRepository.GetPopularUsers(limit)).ToList();
 
-            List<PopularUserViewModel> popUsers = new List<PopularUserViewModel>();
+            List<PopularUser> popUsers = new List<PopularUser>();
             users.ForEach(u =>
             {
                 BlogEntity blog = u.Blogs
                 .Where(b=> { return b.IsPublished != null && b.IsPublished.Value; })
                 .OrderBy(b => b.PublishedOn)?
                 .FirstOrDefault();
-                popUsers.Add(new PopularUserViewModel { User = Mapper.Map<UserEntity, User>(u), NumberOfPosts = u.Blogs.Count, PostId = blog?.PostId ?? 0, Title = blog?.Title ?? String.Empty });
+                popUsers.Add(new PopularUser { User = Mapper.Map<UserEntity, User>(u), NumberOfPosts = u.Blogs.Count, PostId = blog?.PostId ?? 0, Title = blog?.Title ?? String.Empty });
             });
             return popUsers;
         }

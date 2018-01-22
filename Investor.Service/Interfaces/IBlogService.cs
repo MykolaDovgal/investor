@@ -20,14 +20,14 @@ namespace Investor.Service.Interfaces
         Task<T> GetBlogByIdAsync<T>(int id);
         Task<IEnumerable<T>> GetAllBlogsByTagNameAsync<T>(string tagName);
         Task<IEnumerable<Blog>> GetBlogsBasedOnIdCollectionAsync(IEnumerable<int> postIds);
-        Task<Blog> AddBlogAsync(Blog map);
-        Task<Blog> UpdateBlogAsync(Blog post);
+        Task<Blog> AddBlogAsync(BlogViewModel map);
+        Task<Blog> UpdateBlogAsync(BlogViewModel post);
         Task UpdateBlogAsync<T>(IEnumerable<T> post);
         Task RemoveBlogAsync(int id);
         Task RemoveBlogAsync(IEnumerable<int> id);
         Task<Tag> AddTagToBlogAsync(int postId, Tag tag);
         Task<List<Tag>> GetAllTagsByBlogIdAsync(int id);
-        Task<IEnumerable<PopularUserViewModel>> GetPopularUsers(int limit);
+        Task<IEnumerable<PopularUser>> GetPopularUsers(int limit);
         //Task<int> GetNumberOfBlogsByUserId(string userId);
     }
 }

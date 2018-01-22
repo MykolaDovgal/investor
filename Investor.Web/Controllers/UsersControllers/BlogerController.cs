@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Investor.Model;
+using Investor.Model.Views;
 using Investor.Service.Interfaces;
 using Investor.Service.Utils.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -41,7 +42,7 @@ namespace Investor.Web.Controllers.UsersControllers
         }
 
         [HttpPost]
-        public IActionResult CreatePost([FromForm] Blog blog, [FromForm]IFormFile image)
+        public IActionResult CreatePost([FromForm] BlogViewModel blog, [FromForm]IFormFile image)
         {
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
             blog.Author = _userService.GetCurrentUserAsync().Result;
@@ -50,7 +51,7 @@ namespace Investor.Web.Controllers.UsersControllers
         }
 
         [HttpPost]
-        public IActionResult UpdatePost([FromForm] Blog blog, [FromForm]IFormFile image)
+        public IActionResult UpdatePost([FromForm] BlogViewModel blog, [FromForm]IFormFile image)
         {
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
             blog.Author = _userService.GetCurrentUserAsync().Result;

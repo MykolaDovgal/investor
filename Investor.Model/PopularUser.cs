@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Investor.Model.Views
+namespace Investor.Model
 {
-    public class PopularUserViewModel
+    public class PopularUser
     {
         public User User { set; get; }
         public int PostId { set; get; }

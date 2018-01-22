@@ -1,12 +1,11 @@
 ﻿@using Investor.Model
-@using Investor.Model.Views
 <section class="page-blog">
     <div class="container">
         <div class="row">
             <div class="block-border-top blog-border-color top-blog">
                 <div class="offset-p">
                     <h1 class="title-block">Топ блогерів</h1>
-                    @Html.Partial("_BlogersCarrouselTemplate", ViewBag.PopularBlogers as List<PopularUserViewModel>)
+                    @Html.Partial("_BlogersCarrouselTemplate", ViewBag.PopularBlogers as List<PopularUser>)
                 </div>
             </div>
 

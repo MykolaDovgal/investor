@@ -37,7 +37,7 @@ namespace Investor.Repository
                  .FirstOrDefault(p => p.PostId == postId);
 
             var newTag = new PostTagEntity() { Post = post, Tag = tag };
-            post.PostTags.Add(newTag);
+            post?.PostTags?.Add(newTag);
             await _newsContext.SaveChangesAsync();
             return newTag.Tag;
         }
@@ -173,9 +173,9 @@ namespace Investor.Repository
             oldPost.PublishedOn = (post.IsPublished ?? false) && !(oldPost.IsPublished ?? false) ? DateTime.Now : oldPost.PublishedOn;
             oldPost = Mapper.Map(post, oldPost);
             oldPost.Category = _newsContext.Categories.Find(post.CategoryId ?? oldPost.Category.CategoryId);
-            _newsContext.Set<T>().Update(oldPost);
+            var newPost = _newsContext.Set<T>().Update(oldPost);
             await _newsContext.SaveChangesAsync();
-            return post;
+            return oldPost;
         }
 
         public async Task UpdatePostAsync<T>(IEnumerable<T> posts) where T : PostEntity
@@ -213,10 +213,10 @@ namespace Investor.Repository
                 .ThenInclude(post => post.Tag)
                 .Where(post => (string.IsNullOrEmpty(query.CategoryUrl) || post.Category.Url == query.CategoryUrl) &&
                                (string.IsNullOrEmpty(query.Tag) && (string.IsNullOrEmpty(query.Query) || post.Description.ToLower().Contains(query.Query.ToLower()) ||
-                                post.Title.ToLower().Contains(query.Query.ToLower()) || (post.PostTags != null ? post.PostTags.Select(posttag => posttag.Tag).Any(c => c.Name.ToLower().Contains(query.Query.ToLower())) : false))
-                                || (!string.IsNullOrEmpty(query.Tag) && post.PostTags != null ? post.PostTags.Select(posttag => posttag.Tag.Name.ToLower()).Contains(query.Tag.ToLower()) : false)) &&
+                                post.Title.ToLower().Contains(query.Query.ToLower()) || (post.PostTags != null && post.PostTags.Select(posttag => posttag.Tag).Any(c => c.Name.ToLower().Contains(query.Query.ToLower()))))
+                                || (!string.IsNullOrEmpty(query.Tag) && post.PostTags != null && post.PostTags.Select(posttag => posttag.Tag.Name.ToLower()).Contains(query.Tag.ToLower()))) &&
                                (!query.Date.HasValue || post.PublishedOn.HasValue && (post.PublishedOn.Value > dtStart && post.PublishedOn.Value < dtEnd)) &&
-                               (post.IsPublished ?? true))//TODO change true to false
+                               (post.IsPublished ?? false))//TODO change true to false
                 .OrderByDescending(x => x.PublishedOn)
                 .Skip((query.Page - 1) * query.Count)
                 .Take(query.Count);

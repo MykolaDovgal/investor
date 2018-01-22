@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Model;
+using Investor.Model.Views;
 using Investor.Service.Interfaces;
 using Investor.Service.Utils.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -35,15 +36,15 @@ namespace Investor.Web.Areas.Admin.Controllers.API
 
         [Route("UpdateNews")]
         [HttpPost]
-        public JsonResult UpdatePost([FromForm]News post, [FromForm]IFormFile image)
+        public JsonResult UpdatePost([FromForm]NewsViewModel post, [FromForm]IFormFile image)
         {
             post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
             post.Image = image != null ? _imageService.SaveImage(image) : null;
             _newsService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
-            News newPost = _newsService.GetNewsByIdAsync(post.PostId).Result;
-            newPost = Mapper.Map(post, newPost);
-            newPost = _newsService.UpdateNewsAsync(newPost).Result;
-            return Json(new { id = newPost.PostId, href = $"{(newPost.IsPublished ? "" : "/unpublished" )}/post/{newPost.PostId}" });
+            //NewsViewModel newPost = Mapper.Map<News, NewsViewModel>(_newsService.GetNewsByIdAsync(post.PostId).Result);
+            //newPost = Mapper.Map(post, newPost);
+            var result =_newsService.UpdateNewsAsync(post).Result;
+            return Json(new { id = result.PostId, href = $"{(result.IsPublished ? "" : "/unpublished" )}/post/{result.PostId}" });
         }
 
         [Route("CreateNews")]

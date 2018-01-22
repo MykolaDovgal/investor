@@ -7,6 +7,7 @@ using Investor.Entity;
 using AutoMapper;
 using Investor.Repository.Interfaces;
 using System.Linq;
+using Investor.Model.Views;
 
 namespace Investor.Service
 {
@@ -53,7 +54,7 @@ namespace Investor.Service
             {
                 posts.AddRange((await _postRepository
                     .GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit))
-                    .Where(p=>!posts.Select(s=>s.PostId).Contains(p.PostId)));
+                    .Where(p => !posts.Select(s => s.PostId).Contains(p.PostId)));
             }
             return posts.Select(Mapper.Map<NewsEntity, PostPreview>);
         }
@@ -97,9 +98,9 @@ namespace Investor.Service
             return posts.Select(Mapper.Map<NewsEntity, PostPreview>);
         }
 
-        public async Task<News> UpdateNewsAsync(News post)
+        public async Task<News> UpdateNewsAsync(NewsViewModel post)
         {
-            NewsEntity newPost = Mapper.Map<News, NewsEntity>(post);
+            NewsEntity newPost = Mapper.Map<NewsViewModel, NewsEntity>(post);
             newPost.CategoryId = newPost.Category.CategoryId;
             var result = await _postRepository.UpdatePostAsync<NewsEntity>(newPost);
             return Mapper.Map<NewsEntity, News>(result);
@@ -144,19 +145,21 @@ namespace Investor.Service
 
         public async Task AddTagsToNewsAsync(int postId, IEnumerable<string> tags)
         {
-            if (tags != null)
+            tags = tags ?? new List<string>();
+            var postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
+            foreach (var t in tags)
             {
-                var postTags = await _postRepository.GetAllTagsByPostIdAsync(postId);
-                foreach(var t in tags)
+                var tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
+                if (!postTags.Select(s => s.Name).Contains(t))
                 {
-                    var tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
-                    if (!postTags.Select(s => s.Name).Contains(t))
-                    {
-                        await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
-                    }
+                    await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
                 }
-                postTags.Where(pt => !tags.Contains(pt.Name)).ToList().ForEach(async pt => await _postRepository.RemoveTagFromPostAsync(postId, pt));
-            } 
+            }
+            var tagsToRemove = postTags?.Where(pt => !tags.Contains(pt.Name)).ToList() ?? new List<TagEntity>();
+            foreach (var pt in tagsToRemove)
+            {
+                await _postRepository.RemoveTagFromPostAsync(postId, pt);
+            }
         }
 
         public async Task<IEnumerable<Tag>> GetAllTagsByNewsIdAsync(int id)
@@ -172,8 +175,8 @@ namespace Investor.Service
             {
                 result
                     .AddRange((await _newsRepository.GetLatestNewsAsync(limit))
-                        .Where(c=>(!result
-                            .Select(s=>s.PostId)
+                        .Where(c => (!result
+                            .Select(s => s.PostId)
                             .Contains(c.PostId) && !(c.IsOnSlider ?? false))));
             }
             return result.Take(limit).Select(Mapper.Map<NewsEntity, PostPreview>);
