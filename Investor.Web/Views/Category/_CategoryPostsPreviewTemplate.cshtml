@@ -14,12 +14,15 @@
                 }
             </div>
         </div>
-        <div class="wrapper-btn-more">
-            <a href="/category/@ViewBag.Url" data-category-name="@ViewBag.Url" class="btn-more text-center dynamic">
-                <span class="circle circle-@ViewBag.Url-color">
-                    <i class="icons icon-arrow-down"></i>
-                </span>Більше новин
-            </a>
-        </div>
+        @if (ViewBag.GetMoreEnabled)
+        {
+            <div class="wrapper-btn-more">
+                <a href="/category/@ViewBag.Url" data-category-name="@ViewBag.Url" class="btn-more text-center dynamic">
+                    <span class="circle circle-@ViewBag.Url-color">
+                        <i class="icons icon-arrow-down"></i>
+                    </span>Більше новин
+                </a>
+            </div>
+        }
     </div>
 </div>

@@ -53,7 +53,7 @@
             <div id="searchResultContainer">
                 @Html.Partial("_SearchResultTemplate", Model as IEnumerable<PostPreview>)
             </div>
-            @if (Model.Any())
+            @if (ViewBag.GetMoreEnabled)
             {
                 <div class="wrapper-btn-more bnt-more-search">
                     <a id="moreSearchResult" href="/search/posts" class="btn-more text-center">

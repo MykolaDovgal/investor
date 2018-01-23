@@ -28,7 +28,10 @@ namespace Investor.Web.Controllers
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result.ToList();
             ViewBag.PopularBlogers = _blogService.GetPopularUsers(10).Result.ToList(); ;
             ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(20).Result.ToList(); 
-            ViewBag.LatestBlogs = _blogService.GetLatestBlogsAsync<BlogPreview>().Result.ToList();
+            var latestBlogs = _blogService.GetLatestBlogsAsync<BlogPreview>().Result.ToList();
+            ViewBag.LatestBlogs = latestBlogs;
+            ViewBag.GetMoreEnabled = latestBlogs.Count == 10 &&
+                                     _blogService.GetPagedLatestBlogsAsync(2, 10).Result.Any();
             ViewBag.PopularBlogs = _blogService.GetPopularBlogsAsync().Result.ToList();
             ViewBag.Blogers = _userService.GetDictionaryOfBlogersAsync().Result;
             return View();

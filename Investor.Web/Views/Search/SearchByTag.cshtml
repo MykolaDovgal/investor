@@ -14,7 +14,7 @@
             <div class="search-filter">
                 <div class="dropdown filter-dropdown float-left">
                     <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @(categoryName != null ? categoryName : Html.Raw("Все")) 
+                        @(categoryName != null ? categoryName : Html.Raw("Все"))
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item" type="button" data-category-url="">Все</button>
@@ -31,13 +31,17 @@
                 @Html.Partial("_SearchResultTemplate", Model)
             </div>
 
-            <div class="wrapper-btn-more bnt-more-search">
-                <a id="moreSearchResult" class="btn-more text-center" href="#">
-                    <span class="circle circle-default-color">
-                        <i class="icons icon-arrow-down"></i>
-                    </span>Більше новин
-                </a>
-            </div>
+            @if (ViewBag.GetMoreEnabled)
+            {
+                <div class="wrapper-btn-more bnt-more-search">
+                    <a id="moreSearchResult" href="/search/posts" class="btn-more text-center">
+                        <span class="circle circle-default-color">
+                            <i class="icons icon-arrow-down"></i>
+                        </span>Більше новин
+                    </a>
+                </div>
+
+            }
 
         </div>
     </div>

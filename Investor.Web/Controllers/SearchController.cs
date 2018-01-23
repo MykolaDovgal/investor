@@ -39,6 +39,9 @@ namespace Investor.Web.Controllers
             ViewBag.Query = postQuery;
             ViewBag.Date = dt?.Day + "." + dt?.Month + "." + dt?.Year;
             var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
+            postQuery.Page++;
+            ViewBag.GetMoreEnabled = searchResult.Count == postQuery.Count &&
+                                     _searchService.SearchPosts(postQuery).Result.ToList().Count > 0;
 
             return View("Index", searchResult);
         }
@@ -49,6 +52,9 @@ namespace Investor.Web.Controllers
             var postQuery = new PostSearchQueryViewModel { Tag = tag, CategoryUrl = categoryUrl };
             ViewBag.Query = postQuery;
             var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
+            postQuery.Page++;
+            ViewBag.GetMoreEnabled = searchResult.Count == postQuery.Count &&
+                                     _searchService.SearchPosts(postQuery).Result.ToList().Count > 0;
             return View(searchResult);
         }
     }

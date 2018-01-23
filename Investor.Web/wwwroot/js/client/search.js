@@ -1,4 +1,4 @@
-﻿let searchMoreResultPage = 1;
+﻿let searchMoreResultPage = 2;
 const searchMoreResultCount = 5;
 let searchCategoryUrlQuery = "";
 let searchDateQuery = "";
