@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Investor.Model;
 
 namespace Investor.ViewModel
 {
@@ -15,7 +14,7 @@ namespace Investor.ViewModel
         public bool IsImportant { set; get; }
         public bool IsOnSlider { set; get; }
         public bool IsOnSide { set; get; }
-        public Category Category { set; get; }
-        public List<Tag> Tags { get; set; }
+        public string Category { set; get; }
+        public List<string> Tags { get; set; }
     }
 }

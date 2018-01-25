@@ -9,6 +9,7 @@ using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Security.Claims;
+using Investor.Service.Mapper;
 using Microsoft.AspNetCore.Http;
 using Investor.ViewModel;
 using Microsoft.EntityFrameworkCore;
@@ -39,13 +40,13 @@ namespace Investor.Service
                 await _roleManager.CreateAsync(new IdentityRole(role));
             }
             return IdentityResult.Success;
-
         }
 
         public async Task<IdentityResult> UpdateUserAsync(UserDescriptionViewModel user)
         {
             var userEntity = _mapper.Map<UserDescriptionViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
             var userUpdateResult = await _userManager.UpdateAsync(userEntity);
+            
             if (userUpdateResult.Succeeded)
             {
                 return IdentityResult.Success;

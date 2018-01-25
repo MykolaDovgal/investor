@@ -100,9 +100,9 @@ namespace Investor.Service
             return posts.Select(_mapper.Map<NewsEntity, PostPreview>);
         }
 
-        public async Task<News> UpdateNewsAsync(NewsViewModel post)
+        public async Task<News> UpdateNewsAsync(News post)
         {
-            NewsEntity newPost = _mapper.Map<NewsViewModel, NewsEntity>(post);
+            NewsEntity newPost = _mapper.Map<News, NewsEntity>(post);
             newPost.CategoryId = newPost.Category.CategoryId;
             var result = await _postRepository.UpdatePostAsync<NewsEntity>(newPost);
             return _mapper.Map<NewsEntity, News>(result);

@@ -49,7 +49,8 @@
 				$this.attr("disabled", "disabled");
 				var formId = $('.updateForm').attr('id');
 				var formData = new FormData(document.getElementById(formId));
-				const category = formData.get("Category.Url");
+                const category = formData.get("Category.Url");
+                formData.append('Category', formData.get("Category.Url"));
 				formData.set('IsOnMainPage', $(`#${formId} input[name='IsOnMainPage']`).prop("checked"));
 				formData.set('IsPublished', $(`#${formId} input[name='IsPublished']`).prop("checked"));
 				formData.set('IsImportant', $(`#${formId} input[name='IsImportant']`).prop("checked"));
@@ -60,7 +61,7 @@
 				var tagsArray = $(`#${formId} input[Name='tagsName']`).tagsinput('items');
 
 				for (let i = 0; i < tagsArray.length; i++)
-					formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
+					formData.append(`Tags[` + i + `]`, tagsArray[i]);
 				var file = $(`#${formId} input[name='Image']`).get(0).files;
 				formData.set("Image", $(`#${formId} input[name='Image']`).get(0).files[0]);
 
