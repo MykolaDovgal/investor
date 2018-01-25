@@ -16,16 +16,18 @@ namespace Investor.Service
     public class SearchService : ISearchService
     {
         private readonly IPostRepository _postRepository;
-        public SearchService(IPostRepository postRepository)
+        private readonly IMapper _mapper;
+        public SearchService(IPostRepository postRepository, IMapper mapper)
         {
             _postRepository = postRepository;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<PostPreview>> SearchPosts(PostSearchQueryViewModel query)
         {
             var posts = await _postRepository.GetQueriedNews(query);
 
-            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
+            return posts.Select(_mapper.Map<PostEntity, PostPreview>);
         }
     }
 }

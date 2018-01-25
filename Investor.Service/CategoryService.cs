@@ -13,16 +13,18 @@ namespace Investor.Service
 {
     public class CategoryService : ICategoryService
     {
+        private readonly IMapper _mapper;
         private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryService(ICategoryRepository categoryRepository)
+        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
+            _mapper = mapper;
         }
         public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
         {
             var categories = await _categoryRepository.GetAllCategoriesAsync();
-            return categories.Select(Mapper.Map<CategoryEntity, Category>);
+            return categories.Select(_mapper.Map<CategoryEntity, Category>);
         }
 
         public async Task<Category> GetCategoryByUrlAsync(string url)
@@ -32,7 +34,7 @@ namespace Investor.Service
                 return null;
             }
             var category = await _categoryRepository.GetCategoryByUrlAsync(url);
-            return Mapper.Map<CategoryEntity, Category>(category);
+            return _mapper.Map<CategoryEntity, Category>(category);
         }
     }
 }

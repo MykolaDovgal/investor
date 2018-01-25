@@ -21,13 +21,15 @@ namespace Investor.Service
         private readonly SignInManager<UserEntity> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IHttpContextAccessor _context;
+        private readonly IMapper _mapper;
 
-        public UserService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, RoleManager<IdentityRole> roleManager, IHttpContextAccessor context)
+        public UserService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, RoleManager<IdentityRole> roleManager, IHttpContextAccessor context, IMapper mapper)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _mapper = mapper;
         }
 
         private async Task<IdentityResult> CreateRoleAsync(string role)
@@ -42,7 +44,7 @@ namespace Investor.Service
 
         public async Task<IdentityResult> UpdateUserAsync(UserDescriptionViewModel user)
         {
-            var userEntity = Mapper.Map<UserDescriptionViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
+            var userEntity = _mapper.Map<UserDescriptionViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
             var userUpdateResult = await _userManager.UpdateAsync(userEntity);
             if (userUpdateResult.Succeeded)
             {
@@ -53,7 +55,7 @@ namespace Investor.Service
 
         public async Task<IdentityResult> UpdateUserAsync(UserPersonalDataViewModel user)
         {
-            var userEntity = Mapper.Map<UserPersonalDataViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
+            var userEntity = _mapper.Map<UserPersonalDataViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
             var userUpdateResult = await _userManager.UpdateAsync(userEntity);
             if (userUpdateResult.Succeeded)
             {
@@ -75,7 +77,7 @@ namespace Investor.Service
 
         public async Task<IdentityResult> CreateUserAsync(User user, string userRole = "user")
         {
-            var userEntity = Mapper.Map<User, UserEntity>(user);
+            var userEntity = _mapper.Map<User, UserEntity>(user);
             var userRegisterResult = await _userManager.CreateAsync(userEntity, user.Password);
 
             if (userRegisterResult.Succeeded && CreateRoleAsync(userRole).Result.Succeeded)
@@ -90,7 +92,7 @@ namespace Investor.Service
 
         public async Task SignInUserAsync(User user, bool isLongTime, string schemeName = "default")
         {
-            var userEntity = Mapper.Map<User, UserEntity>(user);
+            var userEntity = _mapper.Map<User, UserEntity>(user);
             var schemes = (await _signInManager.GetExternalAuthenticationSchemesAsync()).Where(c=> c.Name == schemeName);
             await _signInManager.SignInAsync(userEntity, isLongTime);
         }
@@ -127,11 +129,11 @@ namespace Investor.Service
             {
                 if (blogers.ContainsKey(u.Surname[0].ToString()))
                 {
-                    blogers[u.Surname.Substring(0, 1)].Add(Mapper.Map<UserEntity, User>(u));
+                    blogers[u.Surname.Substring(0, 1)].Add(_mapper.Map<UserEntity, User>(u));
                 }
                 else
                 {
-                    blogers.Add(u.Surname[0].ToString(), new List<User>() { Mapper.Map<UserEntity, User>(u) });
+                    blogers.Add(u.Surname[0].ToString(), new List<User>() { _mapper.Map<UserEntity, User>(u) });
                 }
             }
             );
@@ -141,21 +143,21 @@ namespace Investor.Service
         public async Task<User> GetCurrentUserAsync()
         {
             var user = await _userManager.GetUserAsync(_context.HttpContext.User);
-            return Mapper.Map<UserEntity, User>(user);
+            return _mapper.Map<UserEntity, User>(user);
         }
 
         public async Task<User> GetUserByEmail(string email)
         {
-            return Mapper.Map<UserEntity, User>(await _userManager.FindByEmailAsync(email));
+            return _mapper.Map<UserEntity, User>(await _userManager.FindByEmailAsync(email));
         }
 
         public async Task<User> GetUserById(string id)
         {
-            return Mapper.Map<UserEntity, User>(await _userManager.FindByIdAsync(id));
+            return _mapper.Map<UserEntity, User>(await _userManager.FindByIdAsync(id));
         }
         public async Task<User> GetUserByNickName(string nickName)
         {
-            return Mapper.Map<UserEntity, User>(await _userManager.FindByNameAsync(nickName));
+            return _mapper.Map<UserEntity, User>(await _userManager.FindByNameAsync(nickName));
         }
 
         public async Task<IEnumerable<T>> GetAllUsersAsync<T>()
@@ -165,7 +167,7 @@ namespace Investor.Service
                 .Include(c => c.Blogs)
                 .ToListAsync();
             return variable
-                .Select(Mapper.Map<UserEntity, T>);
+                .Select(_mapper.Map<UserEntity, T>);
         }
         public async Task<IEnumerable<string>> GetAllRolesAsync()
         {
@@ -185,7 +187,7 @@ namespace Investor.Service
                 .Include(c => c.Blogs)
                 .ToListAsync();
             List<TableUserPreview> result = users
-                .Select(Mapper.Map<UserEntity, TableUserPreview>).ToList();
+                .Select(_mapper.Map<UserEntity, TableUserPreview>).ToList();
             for (int i = 0; i < result.Count; i++)
             {
                 result[i].Role = (await _userManager.GetRolesAsync(users[i])).FirstOrDefault();

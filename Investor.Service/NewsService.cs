@@ -16,12 +16,14 @@ namespace Investor.Service
         private readonly INewsRepository _newsRepository;
         private readonly IPostRepository _postRepository;
         private readonly ITagService _tagService;
+        private readonly IMapper _mapper;
 
-        public NewsService(INewsRepository newsRepository, ITagService tagService, IPostRepository postRepository)
+        public NewsService(INewsRepository newsRepository, ITagService tagService, IPostRepository postRepository, IMapper mapper)
         {
             _newsRepository = newsRepository;
             _tagService = tagService;
             _postRepository = postRepository;
+            _mapper = mapper;
         }
 
         public async Task<News> AddNewsAsync(News map)
@@ -32,7 +34,7 @@ namespace Investor.Service
             }
             map.ModifiedOn = DateTime.Now;
             map.CreatedOn = DateTime.Now;
-            var response = await _postRepository.AddPostAsync<NewsEntity>(Mapper.Map<News, NewsEntity>(map));
+            var response = await _postRepository.AddPostAsync<NewsEntity>(_mapper.Map<News, NewsEntity>(map));
             map.PostId = response.PostId;
 
             return map;
@@ -41,7 +43,7 @@ namespace Investor.Service
         public async Task<IEnumerable<T>> GetAllNewsAsync<T>()
         {
             var posts = _postRepository.GetAllPosts<NewsEntity>();
-            return posts.Select(Mapper.Map<NewsEntity, T>);
+            return posts.Select(_mapper.Map<NewsEntity, T>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetLatestNewsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false, int limit = 10)
@@ -56,25 +58,25 @@ namespace Investor.Service
                     .GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit))
                     .Where(p => !posts.Select(s => s.PostId).Contains(p.PostId)));
             }
-            return posts.Select(Mapper.Map<NewsEntity, PostPreview>);
+            return posts.Select(_mapper.Map<NewsEntity, PostPreview>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetPagedLatestNewsByCategoryUrlAsync(string categoryUrl, int limit = 10, int page = 1)
         {
             return (await _postRepository
                 .GetPagedLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit, page))
-                .Select(Mapper.Map<NewsEntity, PostPreview>);
+                .Select(_mapper.Map<NewsEntity, PostPreview>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetAllNewsByTagNameAsync(string tagName)
         {
             var posts = await _postRepository.GetAllPostsByTagNameAsync<NewsEntity>(tagName);
-            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
+            return posts.Select(_mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task<News> GetNewsByIdAsync(int id)
         {
-            return Mapper.Map<PostEntity, News>(await _postRepository.GetPostByIdAsync<NewsEntity>(id));
+            return _mapper.Map<PostEntity, News>(await _postRepository.GetPostByIdAsync<NewsEntity>(id));
         }
 
         public async Task<int> GetTotalNumberOfNewsByTagAsync(string tag)
@@ -95,19 +97,19 @@ namespace Investor.Service
         public async Task<IEnumerable<PostPreview>> GetLatestNewsAsync(int limit)
         {
             var posts = await _newsRepository.GetLatestNewsAsync(limit);
-            return posts.Select(Mapper.Map<NewsEntity, PostPreview>);
+            return posts.Select(_mapper.Map<NewsEntity, PostPreview>);
         }
 
         public async Task<News> UpdateNewsAsync(NewsViewModel post)
         {
-            NewsEntity newPost = Mapper.Map<NewsViewModel, NewsEntity>(post);
+            NewsEntity newPost = _mapper.Map<NewsViewModel, NewsEntity>(post);
             newPost.CategoryId = newPost.Category.CategoryId;
             var result = await _postRepository.UpdatePostAsync<NewsEntity>(newPost);
-            return Mapper.Map<NewsEntity, News>(result);
+            return _mapper.Map<NewsEntity, News>(result);
         }
         public async Task UpdateNewsAsync(IEnumerable<News> posts)
         {
-            await _postRepository.UpdatePostAsync<NewsEntity>(posts.Select(Mapper.Map<News, NewsEntity>));
+            await _postRepository.UpdatePostAsync<NewsEntity>(posts.Select(_mapper.Map<News, NewsEntity>));
         }
 
         public async Task RemoveNewsAsync(int id)
@@ -123,13 +125,13 @@ namespace Investor.Service
         public async Task<IEnumerable<PostPreview>> GetPopularNewsByCategoryUrlAsync(string categoryUrl, int limit)
         {
             var posts = await _postRepository.GetPopularPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit);
-            return posts.Select(Mapper.Map<PostEntity, PostPreview>);
+            return posts.Select(_mapper.Map<PostEntity, PostPreview>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetImportantNewsAsync(int limit)
         {
             var posts = await _newsRepository.GetImportantNewsAsync(limit);
-            var test = posts.Select(Mapper.Map<PostEntity, PostPreview>);
+            var test = posts.Select(_mapper.Map<PostEntity, PostPreview>);
             return test;
         }
 
@@ -139,7 +141,7 @@ namespace Investor.Service
             var tag = await _tagService.GetTagByNameAsync(tagName) ?? await _tagService.AddTagAsync(new Tag { Name = tagName });
             if (!postTags.Select(s => s.Name).Contains(tagName))
             {
-                await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
+                await _postRepository.AddTagToPostAsync(postId, _mapper.Map<Tag, TagEntity>(tag));
             }
         }
 
@@ -152,7 +154,7 @@ namespace Investor.Service
                 var tag = await _tagService.GetTagByNameAsync(t) ?? await _tagService.AddTagAsync(new Tag { Name = t });
                 if (!postTags.Select(s => s.Name).Contains(t))
                 {
-                    await _postRepository.AddTagToPostAsync(postId, Mapper.Map<Tag, TagEntity>(tag));
+                    await _postRepository.AddTagToPostAsync(postId, _mapper.Map<Tag, TagEntity>(tag));
                 }
             }
             var tagsToRemove = postTags?.Where(pt => !tags.Contains(pt.Name)).ToList() ?? new List<TagEntity>();
@@ -165,7 +167,7 @@ namespace Investor.Service
         public async Task<IEnumerable<Tag>> GetAllTagsByNewsIdAsync(int id)
         {
             List<TagEntity> tags = await _postRepository.GetAllTagsByPostIdAsync(id) ?? new List<TagEntity>();
-            return tags.Select(Mapper.Map<TagEntity, Tag>);
+            return tags.Select(_mapper.Map<TagEntity, Tag>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetSideNewsAsync(int limit)
@@ -179,7 +181,7 @@ namespace Investor.Service
                             .Select(s => s.PostId)
                             .Contains(c.PostId) && !(c.IsOnSlider ?? false))));
             }
-            return result.Take(limit).Select(Mapper.Map<NewsEntity, PostPreview>);
+            return result.Take(limit).Select(_mapper.Map<NewsEntity, PostPreview>);
         }
 
         public async Task<IEnumerable<PostPreview>> GetSliderNewsAsync(int limit)
@@ -193,7 +195,7 @@ namespace Investor.Service
                             .Select(s => s.PostId)
                             .Contains(c.PostId) && !(c.IsOnSide ?? false))));
             }
-            return result.Take(limit).Select(Mapper.Map<NewsEntity, PostPreview>);
+            return result.Take(limit).Select(_mapper.Map<NewsEntity, PostPreview>);
         }
     }
 }
