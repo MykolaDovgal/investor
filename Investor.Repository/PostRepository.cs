@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using AutoMapper;
 using Investor.Model;
-using Investor.Model.Views;
+using Investor.ViewModel;
 
 namespace Investor.Repository
 {

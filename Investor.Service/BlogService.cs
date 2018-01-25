@@ -8,7 +8,7 @@ using Investor.Entity;
 using Investor.Model;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
-using Investor.Model.Views;
+using Investor.ViewModel;
 
 namespace Investor.Service
 {

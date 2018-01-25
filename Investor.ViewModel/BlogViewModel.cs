@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Investor.Model;
 
 namespace Investor.ViewModel
 {
@@ -11,8 +10,9 @@ namespace Investor.ViewModel
         public string Description { set; get; }
         public string Image { set; get; }
         public string Article { set; get; }
-        public string Category { set; get; }
+        public Category Category { set; get; }
         public bool IsPublished { set; get; }
-        public List<string> Tags { get; set; }
+        public User Author { set; get; }
+        public List<Tag> Tags { get; set; }
     }
 }

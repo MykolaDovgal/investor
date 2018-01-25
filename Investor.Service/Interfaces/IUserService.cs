@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Model;
 using Microsoft.AspNetCore.Identity;
-using Investor.Model.Views;
+using Investor.ViewModel;
 
 namespace Investor.Service.Interfaces
 {

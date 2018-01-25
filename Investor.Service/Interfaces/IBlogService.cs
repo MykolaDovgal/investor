@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Model;
-using Investor.Model.Views;
+using Investor.ViewModel;
 
 namespace Investor.Service.Interfaces
 {

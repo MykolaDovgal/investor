@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Investor.Model;
 
 namespace Investor.ViewModel
 {
@@ -16,6 +15,7 @@ namespace Investor.ViewModel
         public bool IsImportant { set; get; }
         public bool IsOnSlider { set; get; }
         public bool IsOnSide { set; get; }
-        public List<string> Tags { get; set; }
+        public Category Category { set; get; }
+        public List<Tag> Tags { get; set; }
     }
 }

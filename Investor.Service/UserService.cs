@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using Investor.Model.Views;
+using Investor.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Service

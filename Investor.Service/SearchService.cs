@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Entity;
 using Investor.Model;
-using Investor.Model.Views;
 using Investor.Repository;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
+using Investor.ViewModel;
 
 namespace Investor.Service
 {

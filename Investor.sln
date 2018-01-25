@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.0
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investor.Web", "Investor.Web\Investor.Web.csproj", "{4EA48446-6C6B-43CD-A243-5C938E53B69E}"
 EndProject
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investor.Entity", "Investor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investor.Model", "Investor.Model\Investor.Model.csproj", "{A1D8B36E-A80E-489C-BA12-D73F28881A11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investor.Service.Utils", "Investor.Service.Utils\Investor.Service.Utils.csproj", "{28AD7258-2E3C-486E-9926-9FC5F82AF415}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Investor.Service.Utils", "Investor.Service.Utils\Investor.Service.Utils.csproj", "{28AD7258-2E3C-486E-9926-9FC5F82AF415}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Investor.ViewModel", "Investor.ViewModel\Investor.ViewModel.csproj", "{7840FE69-2D20-4A9F-AB12-1EE16EA85022}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{28AD7258-2E3C-486E-9926-9FC5F82AF415}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28AD7258-2E3C-486E-9926-9FC5F82AF415}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28AD7258-2E3C-486E-9926-9FC5F82AF415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7840FE69-2D20-4A9F-AB12-1EE16EA85022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7840FE69-2D20-4A9F-AB12-1EE16EA85022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7840FE69-2D20-4A9F-AB12-1EE16EA85022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7840FE69-2D20-4A9F-AB12-1EE16EA85022}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,7 +7,7 @@ using Investor.Entity;
 using AutoMapper;
 using Investor.Repository.Interfaces;
 using System.Linq;
-using Investor.Model.Views;
+using Investor.ViewModel;
 
 namespace Investor.Service
 {

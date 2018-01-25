@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Investor.Model.Views;
 
 namespace Investor.Repository
 {

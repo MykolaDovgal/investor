@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Investor.Model.Views;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

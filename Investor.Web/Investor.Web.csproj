@@ -51,6 +51,7 @@
     <ProjectReference Include="..\Investor.Repository\Investor.Repository.csproj" />
     <ProjectReference Include="..\Investor.Service.Utils\Investor.Service.Utils.csproj" />
     <ProjectReference Include="..\Investor.Service\Investor.Service.csproj" />
+    <ProjectReference Include="..\Investor.ViewModel\Investor.ViewModel.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\PublishProfiles\" />
