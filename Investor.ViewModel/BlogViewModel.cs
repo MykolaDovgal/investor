@@ -10,9 +10,7 @@ namespace Investor.ViewModel
         public string Description { set; get; }
         public string Image { set; get; }
         public string Article { set; get; }
-        public Category Category { set; get; }
         public bool IsPublished { set; get; }
-        public User Author { set; get; }
-        public List<Tag> Tags { get; set; }
+        public List<string> Tags { get; set; }
     }
 }

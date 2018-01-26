@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Investor.Model;
 using Investor.Service.Interfaces;
 using Investor.Service.Utils.Interfaces;
@@ -19,11 +20,13 @@ namespace Investor.Web.Controllers.UsersControllers
         private readonly IUserService _userService;
         private readonly IBlogService _blogService;
         private readonly IImageService _imageService;
-        public BlogerController(IUserService userService, IBlogService blogService, IImageService imageService)
+        private readonly IMapper _mapper;
+        public BlogerController(IUserService userService, IBlogService blogService, IImageService imageService, IMapper mapper)
         {
             _userService = userService;
             _imageService = imageService;
             _blogService = blogService;
+            _mapper = mapper;
         }
         public IActionResult Profile()
         {
@@ -45,8 +48,8 @@ namespace Investor.Web.Controllers.UsersControllers
         public IActionResult CreatePost([FromForm] BlogViewModel blog, [FromForm]IFormFile image)
         {
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
-            blog.Author = _userService.GetCurrentUserAsync().Result;
-            var tmp = _blogService.AddBlogAsync(blog).Result;
+            var newBlog = _mapper.Map<BlogViewModel, Blog>(blog);
+            var tmp = _blogService.AddBlogAsync(newBlog).Result;
             return Json(Url.Action("Account", "Bloger"));
         }
 
@@ -54,8 +57,9 @@ namespace Investor.Web.Controllers.UsersControllers
         public IActionResult UpdatePost([FromForm] BlogViewModel blog, [FromForm]IFormFile image)
         {
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
-            blog.Author = _userService.GetCurrentUserAsync().Result;
-            var tmp = _blogService.UpdateBlogAsync(blog).Result;
+            //_blogService.AddTagsToBlogAsync(blog.PostId, blog.Tags).Wait();
+            var newBlog = _mapper.Map<BlogViewModel, Blog>(blog);
+            var tmp = _blogService.UpdateBlogAsync(newBlog).Result;
             return Json(Url.Action("Account", "Bloger"));
         }
 

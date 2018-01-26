@@ -19,8 +19,6 @@ namespace Investor.Web.Mapper
                 .ForMember(s=>s.PublishedOn, opt=>opt.Ignore())
                 .ForMember(s=>s.CreatedOn, opt=>opt.Ignore())
                 .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-
-            CreateMap<News, NewsViewModel>();
         }
     }
 }

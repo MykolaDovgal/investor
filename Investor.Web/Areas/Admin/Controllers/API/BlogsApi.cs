@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Investor.Model;
 using Investor.Service.Interfaces;
 using Investor.Service.Utils.Interfaces;
@@ -17,13 +18,15 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         private readonly ICategoryService _categoryService;
         private readonly IBlogService _blogService;
         private readonly IImageService _imageService;
+        private readonly IMapper _mapper;
 
-        public BlogsApi(IBlogService blogService, ICategoryService categoryService, IImageService imageService)
+        public BlogsApi(IBlogService blogService, ICategoryService categoryService, IImageService imageService, IMapper mapper)
         {
 
             _blogService = blogService;
             _categoryService = categoryService;
             _imageService = imageService;
+            _mapper = mapper;
         }
 
         [Route("GetAllBlogs")]
@@ -39,9 +42,9 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         public JsonResult UpdateBlog([FromForm]BlogViewModel post, [FromForm]IFormFile image)
         {
             post.Image = image != null ? _imageService.SaveImage(image) : null;
-            _blogService.AddTagsToBlogAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
-            post.Category = _categoryService.GetCategoryByUrlAsync("blog").Result;
-            var result = _blogService.UpdateBlogAsync(post).Result;
+            //_blogService.AddTagsToBlogAsync(post.PostId, post.Tags).Wait();
+            var newBlog = _mapper.Map<BlogViewModel, Blog>(post);
+            var result = _blogService.UpdateBlogAsync(newBlog).Result;
             return Json(new { id = result.PostId, href = $"{(result.IsPublished ? "" : "/unpublished")}/blog{(result.IsPublished ? "/page" : "")}/{result.PostId}" });
         }
 

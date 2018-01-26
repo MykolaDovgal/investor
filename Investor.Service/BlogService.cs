@@ -18,24 +18,26 @@ namespace Investor.Service
         private readonly IPostRepository _postRepository;
         private readonly ITagService _tagService;
         private readonly ICategoryService _categoryService;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
 
-        public BlogService(IBlogRepository blogRepository, IPostRepository postRepository, ITagService tagService, ICategoryService categoryService, IMapper mapper)
+        public BlogService(IBlogRepository blogRepository, IPostRepository postRepository, ITagService tagService, ICategoryService categoryService, IUserService userSesrvice, IMapper mapper)
         {
             _blogRepository = blogRepository;
             _postRepository = postRepository;
             _tagService = tagService;
             _categoryService = categoryService;
+            _userService = userSesrvice;
             _mapper = mapper;
         }
 
 
-        public async Task<Blog> AddBlogAsync(BlogViewModel map)
+        public async Task<Blog> AddBlogAsync(Blog map)
         {
+            map.Author = _userService.GetCurrentUserAsync().Result;
             map.Category = await _categoryService.GetCategoryByUrlAsync("blog");
-
-            var blog = _mapper.Map<BlogViewModel, BlogEntity>(map);
+            var blog = _mapper.Map<Blog, BlogEntity>(map);
             var response = await _postRepository.AddPostAsync<BlogEntity>(blog);
             await AddTagsToBlogAsync(response.PostId, map.Tags?.Select(c => c.Name));
             return _mapper.Map<BlogEntity, Blog>(response);
@@ -126,9 +128,10 @@ namespace Investor.Service
             await _postRepository.RemovePostAsync(id);
         }
 
-        public async Task<Blog> UpdateBlogAsync(BlogViewModel post)
+        public async Task<Blog> UpdateBlogAsync(Blog post)
         {
-            BlogEntity blog = await _postRepository.UpdatePostAsync<BlogEntity>(_mapper.Map<BlogViewModel, BlogEntity>(post));
+            post.Category = await _categoryService.GetCategoryByUrlAsync("blog");
+            BlogEntity blog = await _postRepository.UpdatePostAsync<BlogEntity>(_mapper.Map<Blog, BlogEntity>(post));
             await AddTagsToBlogAsync(blog.PostId, post.Tags?.Select(c => c.Name));
             return _mapper.Map<BlogEntity, Blog>(blog);
         }
