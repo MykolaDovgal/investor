@@ -8,16 +8,15 @@ using Investor.ViewModel;
 
 namespace Investor.Web.Mapper
 {
-    public class BlogMappingProfile : Profile
+    public class UserMappingProfile : Profile
     {
-        public BlogMappingProfile()
+        public UserMappingProfile()
         {
-            CreateMap<BlogViewModel, Blog>()
-                .ForMember(s => s.Category, opt => opt.Ignore()).ReverseMap()
+            CreateMap<UserDescriptionViewModel, User>()
                 .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
-            CreateMap<string, Tag>()
-                .ForMember(s => s.Name, opt => opt.MapFrom(s => s));
-
+            CreateMap<UserPasswordChangeViewModel, User>();
+            CreateMap<UserPersonalDataViewModel, User>();
+            CreateMap<RegisterViewModel, User>().ReverseMap();
         }
     }
 }

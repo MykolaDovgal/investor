@@ -47,10 +47,13 @@ namespace Investor.Web.Controllers.UsersControllers
         [HttpPost]
         public IActionResult CreatePost([FromForm] BlogViewModel blog, [FromForm]IFormFile image)
         {
+            if (ModelState.IsValid) { 
             blog.Image = image != null ? _imageService.SaveImage(image) : null;
             var newBlog = _mapper.Map<BlogViewModel, Blog>(blog);
             var tmp = _blogService.AddBlogAsync(newBlog).Result;
             return Json(Url.Action("Account", "Bloger"));
+            }
+            return View(_mapper.Map<BlogViewModel, Blog>(blog));
         }
 
         [HttpPost]
@@ -90,13 +93,13 @@ namespace Investor.Web.Controllers.UsersControllers
                 model.CropPoints = Points;
             }
             model.Photo = Image != null ? _imageService.SaveAccountImage(Image, Points) : _imageService.CropExistingImage(Path.GetFileName(model.Photo), Points);
-            await _userService.UpdateUserAsync(model);
+            await _userService.UpdateUserAsync(_mapper.Map<UserDescriptionViewModel, User>(model));
         }
 
         [HttpPost]
         public async Task UpdateUserPersonalData(UserPersonalDataViewModel model)
         {
-            await _userService.UpdateUserAsync(model);
+            await _userService.UpdateUserAsync(_mapper.Map<UserPersonalDataViewModel, User>(model));
         }
 
         [HttpPost]

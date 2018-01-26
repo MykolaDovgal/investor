@@ -11,7 +11,6 @@ using System.Linq;
 using System.Security.Claims;
 using Investor.Service.Mapper;
 using Microsoft.AspNetCore.Http;
-using Investor.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Service
@@ -42,22 +41,11 @@ namespace Investor.Service
             return IdentityResult.Success;
         }
 
-        public async Task<IdentityResult> UpdateUserAsync(UserDescriptionViewModel user)
+        public async Task<IdentityResult> UpdateUserAsync(User user)
         {
-            var userEntity = _mapper.Map<UserDescriptionViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
+            var userEntity = _mapper.Map<User, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
             var userUpdateResult = await _userManager.UpdateAsync(userEntity);
             
-            if (userUpdateResult.Succeeded)
-            {
-                return IdentityResult.Success;
-            }
-            return IdentityResult.Failed();
-        }
-
-        public async Task<IdentityResult> UpdateUserAsync(UserPersonalDataViewModel user)
-        {
-            var userEntity = _mapper.Map<UserPersonalDataViewModel, UserEntity>(user, await _userManager.FindByIdAsync(user.Id));
-            var userUpdateResult = await _userManager.UpdateAsync(userEntity);
             if (userUpdateResult.Succeeded)
             {
                 return IdentityResult.Success;
