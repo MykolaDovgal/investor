@@ -32,7 +32,7 @@ namespace Investor.Web
                     var signInManager = services.GetService<SignInManager<UserEntity>>();
                     var userManager = services.GetService<UserManager<UserEntity>>();
                     var roleManager = services.GetService<RoleManager<IdentityRole>>();
-                    SampleData.Initialize(context, signInManager, userManager,roleManager);
+                    SampleData.Initialize(context, signInManager, userManager, roleManager);
                 }
                 catch (Exception ex)
                 {
@@ -46,8 +46,10 @@ namespace Investor.Web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseStartup<Startup>()
-                .Build();
+            .UseKestrel()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseUrls("http://localhost:6969")
+            .UseStartup<Startup>()
+            .Build();
     }
 }
