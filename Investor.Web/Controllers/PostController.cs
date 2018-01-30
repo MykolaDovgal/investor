@@ -1,21 +1,10 @@
 ﻿using Investor.Model;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Investor.Service.Utils;
 using Investor.Web.Filters;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Primitives;
 
 namespace Investor.Web.Controllers
 {
@@ -48,12 +37,6 @@ namespace Investor.Web.Controllers
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
             ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
-
-            
-            if (HttpContext.Session.Keys.Contains("count"))
-            {
-                int? count = HttpContext.Session.GetInt32("count");
-            }
 
             return View("Index");
         }

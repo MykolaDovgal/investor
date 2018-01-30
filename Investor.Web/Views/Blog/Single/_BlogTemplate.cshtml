@@ -1,6 +1,7 @@
 ﻿@model Investor.Model.Blog
 @inject Investor.Service.Utils.TimeService PostPublicationDate
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Interfaces.IStatisticsService StatisticsService
 @using Investor.Model
 
 <h1 class="title-card-page">
@@ -9,7 +10,7 @@
 <div class="info-news">
     <a href="/blog/blogerpage/@Model.Author.UserName" class="data-post">@Model.Author.Surname @Model.Author.Name</a>
     <span class="data-post"><i class="icons icon-clock"></i> @(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
-    <span class="reviews-post"><i class="icons icon-reviews"></i>154</span>
+    <span class="reviews-post"><i class="icons icon-reviews"></i>@StatisticsService.GetPostViewsCountByIdAsync(Model.PostId).Result</span>
 </div>
 
 <div class="wrapper-social-share">

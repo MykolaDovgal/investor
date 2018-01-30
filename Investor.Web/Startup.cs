@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,16 +11,13 @@ using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
 using Investor.Entity;
 using Investor.Web.Areas.Admin.Attribute;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Investor.Service.Utils;
 using Investor.Service.Utils.Interfaces;
 using Investor.Web.Filters;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Investor.Web
 {
