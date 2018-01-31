@@ -2,15 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 using Investor.Entity;
-using Investor.Model;
-using Investor.Service;
 using Investor.Service.Utils;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using UnidecodeSharpFork;
 
 namespace Investor.Web
 {

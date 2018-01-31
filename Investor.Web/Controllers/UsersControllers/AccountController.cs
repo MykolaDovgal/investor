@@ -1,13 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Model;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.IO;
 using Investor.Service.Utils.Interfaces;
 using Investor.ViewModel;
 using Microsoft.AspNetCore.Authorization;

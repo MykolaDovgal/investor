@@ -1,13 +1,10 @@
 ﻿using Investor.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Investor.Entity;
-using Investor.Model;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 
 namespace Investor.Repository
 {

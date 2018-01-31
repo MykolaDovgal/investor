@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using System.Threading.Tasks;
 using Investor.Entity;
@@ -8,8 +6,6 @@ using Investor.Model;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
-using System.Security.Claims;
-using Investor.Service.Mapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 

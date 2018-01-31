@@ -1,9 +1,6 @@
 ﻿using Investor.Model;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Investor.ViewModel;
 
 namespace Investor.Service.Interfaces
 {

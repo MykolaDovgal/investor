@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Entity;
 using Investor.Model;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
-using Investor.ViewModel;
 
 namespace Investor.Service
 {

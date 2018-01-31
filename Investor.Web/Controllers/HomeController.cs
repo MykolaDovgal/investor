@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Investor.Service.Interfaces;
 using Investor.Model;
-using Investor.Repository;
-using Investor.Repository.Interfaces;
-using Investor.Service;
-using Microsoft.AspNetCore.Authorization;
-using UnidecodeSharpFork;
 
 namespace Investor.Web.Controllers
 {

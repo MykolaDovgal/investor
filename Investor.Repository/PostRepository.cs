@@ -1,18 +1,13 @@
 ﻿using AutoMapper;
 using Investor.Entity;
-using Investor.Model.Views;
 using Investor.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
-using Investor.Model;
 using Investor.ViewModel;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Investor.Service.Utils;
-using UnidecodeSharpFork;
 
 namespace Investor.Repository
 {

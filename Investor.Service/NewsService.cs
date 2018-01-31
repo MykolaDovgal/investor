@@ -7,8 +7,6 @@ using Investor.Entity;
 using AutoMapper;
 using Investor.Repository.Interfaces;
 using System.Linq;
-using Investor.ViewModel;
-using Investor.Model.Views;
 using UnidecodeSharpFork;
 
 namespace Investor.Service

@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using Investor.Entity;
-using Investor.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Investor.ViewModel;
-
-namespace Investor.Service
+﻿namespace Investor.Service
 {
     public class ServiceMapperConfig
     {

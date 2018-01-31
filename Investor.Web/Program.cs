@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Investor.Entity;
-using Investor.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Investor.Repository;
-using Investor.Service;
 using Investor.Service.Utils;
 using Microsoft.AspNetCore.Identity;
 
