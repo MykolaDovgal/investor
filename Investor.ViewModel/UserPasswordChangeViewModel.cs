@@ -1,10 +1,16 @@
-﻿namespace Investor.ViewModel
+﻿using System.ComponentModel.DataAnnotations;
+using Investor.ViewModel.Attributes;
+
+namespace Investor.ViewModel
 {
     public class UserPasswordChangeViewModel
     {
         public string Id { get; set; }
-        public string OldPassword { get; set; }
-        public string OldConfirmedPassword { get; set; }
-        public string NewPassword { set; get; }   
+        [PasswordCheck]
+        public string Password { get; set; }
+        [DataType(DataType.Password)]
+        public string NewPassword { set; get; }
+        [Compare("NewPassword")]
+        public string NewConfirmedPassword { set; get; }
     }
 }

@@ -3,7 +3,6 @@ using System.Linq;
 using AutoMapper;
 using Investor.Entity;
 using Investor.Model;
-using Investor.ViewModel;
 
 namespace Investor.Service.Mapper
 {

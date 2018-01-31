@@ -7,6 +7,9 @@
     "outputFileName": "wwwroot/js/minify/alljs.min.js",
     "inputFiles": [
       "wwwroot/lib/jquery-form-validator/form-validator/jquery.form-validator.js",
+      "wwwroot/lib/jquery-form-validator/form-validator/security.js",
+      "wwwroot/lib/jquery-validation/dist/jquery.validate.min.js",
+      "wwwroot/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       //"wwwroot/lib/air-datepicker/dist/js/datepicker.min.js",
       //"wwwroot/js/metronic/bootstrap-tagsinput.js",
       //"wwwroot/js/typeahead/typeahead.bundle.js",
@@ -14,8 +17,8 @@
       "wwwroot/js/client/social_networks.js",
       "wwwroot/js/client/post_pagination.js",
       "wwwroot/js/client/search.js",
-      "wwwroot/js/client/account.js",
-      "wwwroot/lib/jquery-form-validator/form-validator/security.js"
+      "wwwroot/js/client/account.js"
+
     ],
     "minify": {
       "enabled": false,

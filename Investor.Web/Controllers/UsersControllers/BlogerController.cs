@@ -32,7 +32,9 @@ namespace Investor.Web.Controllers.UsersControllers
         {
             ViewBag.Header = "_AccountHeaderSection";
             var currentUser = _userService.GetCurrentUserAsync().Result;
-            ViewBag.User = currentUser;
+            ViewBag.PersonalData = _mapper.Map<User, UserPersonalDataViewModel>(currentUser);
+            ViewBag.PasswordChange = _mapper.Map<User, UserPasswordChangeViewModel>(currentUser);
+            ViewBag.Description = _mapper.Map<User, UserDescriptionViewModel>(currentUser);
             return View(currentUser);
         }
         public IActionResult Account()
@@ -47,11 +49,12 @@ namespace Investor.Web.Controllers.UsersControllers
         [HttpPost]
         public IActionResult CreatePost([FromForm] BlogViewModel blog, [FromForm]IFormFile image)
         {
-            if (ModelState.IsValid) { 
-            blog.Image = image != null ? _imageService.SaveImage(image) : null;
-            var newBlog = _mapper.Map<BlogViewModel, Blog>(blog);
-            var tmp = _blogService.AddBlogAsync(newBlog).Result;
-            return Json(Url.Action("Account", "Bloger"));
+            if (ModelState.IsValid)
+            {
+                blog.Image = image != null ? _imageService.SaveImage(image) : null;
+                var newBlog = _mapper.Map<BlogViewModel, Blog>(blog);
+                var tmp = _blogService.AddBlogAsync(newBlog).Result;
+                return Json(Url.Action("Account", "Bloger"));
             }
             return View(_mapper.Map<BlogViewModel, Blog>(blog));
         }
@@ -86,26 +89,51 @@ namespace Investor.Web.Controllers.UsersControllers
         }
 
         [HttpPost]
-        public async Task UpdateUserDescription(UserDescriptionViewModel model, [FromForm]IFormFile Image, [FromForm]List<int> Points)
+        public async Task<ActionResult> UpdateUserDescription(UserDescriptionViewModel model, [FromForm]IFormFile Image, [FromForm]List<int> Points)
         {
-            if(Points.Count > 0)
-            { 
-                model.CropPoints = Points;
-            }
+            model.CropPoints = Points;
             model.Photo = Image != null ? _imageService.SaveAccountImage(Image, Points) : _imageService.CropExistingImage(Path.GetFileName(model.Photo), Points);
-            await _userService.UpdateUserAsync(_mapper.Map<UserDescriptionViewModel, User>(model));
+            if (ModelState.IsValid)
+            {
+                await _userService.UpdateUserAsync(_mapper.Map<UserDescriptionViewModel, User>(model));
+                return RedirectToAction("Profile", "Bloger");
+            }
+            var currentUser = _userService.GetCurrentUserAsync().Result;
+            ViewBag.PersonalData = _mapper.Map<User, UserPersonalDataViewModel>(currentUser);
+            ViewBag.PasswordChange = _mapper.Map<User, UserPasswordChangeViewModel>(currentUser);
+            ViewBag.Description = model;
+            return View("Profile", currentUser);
         }
 
         [HttpPost]
-        public async Task UpdateUserPersonalData(UserPersonalDataViewModel model)
+        public async Task<ActionResult> UpdateUserPersonalData(UserPersonalDataViewModel model)
         {
-            await _userService.UpdateUserAsync(_mapper.Map<UserPersonalDataViewModel, User>(model));
+            if (ModelState.IsValid)
+            {
+                await _userService.UpdateUserAsync(_mapper.Map<UserPersonalDataViewModel, User>(model));
+                return RedirectToAction("Profile", "Bloger");
+
+            }
+            var currentUser = _userService.GetCurrentUserAsync().Result;
+            ViewBag.PersonalData = model;
+            ViewBag.PasswordChange = _mapper.Map<User, UserPasswordChangeViewModel>(currentUser);
+            ViewBag.Description = _mapper.Map<User, UserDescriptionViewModel>(currentUser);
+            return View("Profile", currentUser);
         }
 
         [HttpPost]
-        public async Task ChangePassword(User model, string newPassword)
+        public async Task<ActionResult> ChangePassword(UserPasswordChangeViewModel model)
         {
-            await _userService.ChangePasswordAsync(model, newPassword);
+            if (ModelState.IsValid)
+            {
+                await _userService.ChangePasswordAsync(_mapper.Map<UserPasswordChangeViewModel, User>(model), model.NewPassword);
+                return RedirectToAction("Profile");
+            }
+            var currentUser = _userService.GetCurrentUserAsync().Result;
+            ViewBag.PersonalData = _mapper.Map<User, UserPersonalDataViewModel>(currentUser);
+            ViewBag.PasswordChange = model;
+            ViewBag.Description = _mapper.Map<User, UserDescriptionViewModel>(currentUser);
+            return View("Profile", currentUser);
         }
     }
 }

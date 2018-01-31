@@ -1,0 +1,61 @@
+﻿@using Investor.ViewModel
+@using Microsoft.AspNetCore.Mvc.ModelBinding
+@model UserDescriptionViewModel
+@{
+    var a = ViewData.ModelState;
+}
+<form id="updateUserBiographyForm" action="/Bloger/UpdateUserDescription" method="post" class="validate">
+    <div class="block-border-top turquoise-border-top body-block mb-3 block-edit edit-biography" data-edit="biography">
+        <input hidden name="Id" value="@Model.Id" />
+        <h2 class="title-block">
+            Біографія
+            <button type="button" class="btn btn-edit btn-edit-second pull-right">Редагувати<i class="icons icon-pencil-second"></i></button>
+            <button type="submit" class="btn btn-save btn-edit-second pull-right" hidden>Зберегти</button>
+        </h2>
+        <div class="form-group inline-form">
+            <label>Розкажіть про себе</label>
+            <textarea asp-for="Description" id="input-value-autobiography" class="form-control focus-input focus-color-turquoise input-value disabled" rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly></textarea>
+            <span asp-validation-for="Description"></span>
+        </div>
+        <div class="form-group inline-form">
+            <label>Змінити фотографію</label>
+            <div class="input-group input-file">
+                <span class="input-group-btn">
+                    <span class="btn btn-turquoise btn-file">
+                        Вибрати файл <input type="file" id="upload" accept="image/*" disabled>
+                    </span>
+                </span>
+                <input type="text" class="form-control" readonly>
+            </div>
+            <img hidden id="userPhoto" src="~/img/accounts/@(System.IO.Path.GetFileNameWithoutExtension(Model.Photo) + "/" + Model.Photo)" />
+            <input hidden name="CropPoints" value="[@Model.CropPoints[0], @Model.CropPoints[1], @Model.CropPoints[2], @Model.CropPoints[3]]">
+        </div>
+        <div class="col-1-2">
+            <div class="upload-msg">
+                Вибреріть область
+            </div>
+            <div class="upload-demo-wrap">
+                <div id="upload-demo"></div>
+            </div>
+            <button type="button" class="upload-result btn btn-save btn-edit-second" disabled>Зафіксувати</button>
+        </div>
+        <div class="social-form">
+            <p>Редагувати посилання на профілі</p>
+            <div class="input-group input-social">
+                <span class="input-group-addon"><i class="fa fa-facebook fa-1_3x color-fb" aria-hidden="true"></i></span>
+                <input id="input-value-fb" asp-for="@Model.Socials[0]" value="@Model.Socials?[0]" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
+                @Html.ValidationMessageFor(c=>c.Socials[0])
+            </div>
+            <div class="input-group input-social">
+                <span class="input-group-addon"><i class="fa fa-twitter fa-1_3x color-tw" aria-hidden="true"></i></span>
+                <input id="input-value-tw" asp-for="@Model.Socials[1]"  value="@Model.Socials?[1]" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
+                @Html.ValidationMessageFor(c => c.Socials[1])
+            </div>
+            <div class="input-group input-social">
+                <span class="input-group-addon"><i class="fa fa-google-plus fa-1_3x color-g" aria-hidden="true"></i></span>
+                <input id="input-value-google" asp-for="@Model.Socials[2]"  value="@Model.Socials?[2]" type="text" class="form-control focus-input focus-color-turquoise input-value disabled" disabled readonly>
+                @Html.ValidationMessageFor(c => c.Socials[2])
+            </div>
+        </div>
+    </div>
+</form>

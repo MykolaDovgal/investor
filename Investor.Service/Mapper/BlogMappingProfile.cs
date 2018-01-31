@@ -5,7 +5,7 @@ using System.Text;
 using AutoMapper;
 using Investor.Entity;
 using Investor.Model;
-using Investor.ViewModel;
+
 
 namespace Investor.Service.Mapper
 {
@@ -13,9 +13,6 @@ namespace Investor.Service.Mapper
     {
         public BlogMappingProfile()
         {
-            CreateMap<BlogViewModel, BlogEntity>()
-                .ReverseMap()
-                .ForAllMembers(p => p.Condition((source, destination, sourceMember, destMember) => (sourceMember != null)));
             CreateMap<BlogEntity, BlogPreview>();
             CreateMap<BlogEntity, TableBlogPreview>().ReverseMap();
             CreateMap<BlogEntity, Blog>()

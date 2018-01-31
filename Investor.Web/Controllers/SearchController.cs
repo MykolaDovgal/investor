@@ -26,7 +26,7 @@ namespace Investor.Web.Controllers
             {
                 dt = DateTime.Parse(date);
             }
-            var postQuery = new PostSearchQueryViewModel
+            var postQuery = new PostSearchQuery
             {
                 CategoryUrl = categoryUrl,
                 Count = count,
@@ -49,7 +49,7 @@ namespace Investor.Web.Controllers
         public IActionResult SearchByTag(string tag, string categoryUrl)
         {
             ViewBag.CategoryName = _categoryService.GetCategoryByUrlAsync(categoryUrl).Result;
-            var postQuery = new PostSearchQueryViewModel { Tag = tag, CategoryUrl = categoryUrl };
+            var postQuery = new PostSearchQuery { Tag = tag, CategoryUrl = categoryUrl };
             ViewBag.Query = postQuery;
             var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
             postQuery.Page++;

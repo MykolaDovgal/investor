@@ -9,7 +9,6 @@ using Investor.Model;
 using Investor.Repository;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
-using Investor.ViewModel;
 
 namespace Investor.Service
 {
@@ -23,7 +22,7 @@ namespace Investor.Service
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<PostPreview>> SearchPosts(PostSearchQueryViewModel query)
+        public async Task<IEnumerable<PostPreview>> SearchPosts(PostSearchQuery query)
         {
             var posts = await _postRepository.GetQueriedNews(query);
 

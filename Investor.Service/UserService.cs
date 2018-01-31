@@ -195,5 +195,11 @@ namespace Investor.Service
             }
             
         }
+
+        public async Task<bool> PasswordCheck(string password)
+        {
+            var user = await _userManager.GetUserAsync(_context.HttpContext.User);
+            return await _userManager.CheckPasswordAsync(user, password);
+        }
     }
 }

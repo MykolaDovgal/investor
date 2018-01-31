@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Investor.Model\Investor.Model.csproj" />
+    <ProjectReference Include="..\Investor.Service\Investor.Service.csproj" />
   </ItemGroup>
 
 </Project>

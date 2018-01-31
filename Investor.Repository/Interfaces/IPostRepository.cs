@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Investor.ViewModel;
 
 namespace Investor.Repository.Interfaces
 {
@@ -17,7 +16,7 @@ namespace Investor.Repository.Interfaces
         Task<IEnumerable<T>> GetPagedLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit, int page) where T : PostEntity;
         Task<IEnumerable<T>> GetAllPostsByTagNameAsync<T>(string tagName) where T : PostEntity;
         Task<IEnumerable<T>> GetPostsBasedOnIdCollectionAsync<T>(IEnumerable<int> postIds) where T : PostEntity;
-        Task<IEnumerable<PostEntity>> GetQueriedNews(PostSearchQueryViewModel query);
+        Task<IEnumerable<PostEntity>> GetQueriedNews(PostSearchQuery query);
         Task<T> AddPostAsync<T>(T map) where T : PostEntity;
         Task<T> UpdatePostAsync<T>(T post) where T : PostEntity;
         Task UpdatePostAsync<T>(IEnumerable<T> post) where T : PostEntity;

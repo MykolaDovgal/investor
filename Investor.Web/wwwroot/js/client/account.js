@@ -22,8 +22,10 @@ $(document).ready(function () {
 	});
 
 	$("#updateUserDataForm").submit(function (e) {
-		e.preventDefault();
-		PostAJAX(getUpdateUserDataForm(this), $(this).attr('action'));
+		//e.preventDefault();
+		//PostAJAX(getUpdateUserDataForm(this), $(this).attr('action'));
+        $(this).FormData.append("addddd", "dfjkdjf");
+	    return true;
 	});
 
 	$("#updateUserPasswordForm").submit(function (e) {
@@ -32,8 +34,22 @@ $(document).ready(function () {
 	});
 
 	$("#updateUserBiographyForm").submit(function (e) {
-		e.preventDefault();
-		PostAJAX(getUserBiographyFormData(this), $(this).attr('action'));
+		//e.preventDefault();
+		//PostAJAX(getUserBiographyFormData(this), $(this).attr('action'));
+        //$(this).FormData.append("addddd", "dfjkdjf");
+	    var fd = new FormData((document.getElementById($(this).attr("id"))));
+	    fd.append("Image", $(`#upload`).get(0).files === null ? null : $(`#upload`).get(0).files[0]);
+	    fd.append("Photo", $('#userPhoto').attr('src'));
+	    var points = $('#upload-demo').croppie('get').points;
+	    for (let i = 0; i < points.length; i++)
+	        fd.append(`Points[` + i + `]`, points[i]);
+	    fd.append('Socials[0]', $('#input-value-fb').val());
+	    fd.append('Socials[1]', $('#input-value-tw').val());
+        fd.append('Socials[2]', $('#input-value-google').val());
+        $(this).FormData = fd;
+        console.log($(this).attr("id"));
+	    console.log($(this).FormData);
+	    return true;
 	});
 
     initUserTinyMCE();
@@ -98,8 +114,8 @@ let getUpdateUserDataForm = function () {
 
 let getUpdateUserPasswordForm = function () {
 	const formData = new FormData(document.getElementById("updateUserPasswordForm"));
-	formData.append("Password", $("input[name='pass_old']").val());
-	formData.append("NewPassword", $("input[name='pass_confirmation']").val());
+	//formData.append("Password", $("input[name='Password']").val());
+	formData.append("NewPassword", $("input[name='NewConfirmedPassword_confirmation']").val());
 	return formData;
 }
 
@@ -183,7 +199,8 @@ let PostAJAX = function (fData, url) {
         contentType: false,
         processData: false,
         success: function (data) {
-            window.location.href = data;
+            //window.location.href = data;
+            console.log(data);
         }
     });
 }

@@ -17,7 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Investor.Entity\Investor.Entity.csproj" />
     <ProjectReference Include="..\Investor.Model\Investor.Model.csproj" />
-    <ProjectReference Include="..\Investor.ViewModel\Investor.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

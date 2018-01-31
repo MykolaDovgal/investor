@@ -1,0 +1,32 @@
+﻿@using Investor.ViewModel
+@model UserPersonalDataViewModel
+<form id="updateUserDataForm" action="/Bloger/UpdateUserPersonalData" method="post" class="validate">
+    <div class="block-border-top default-border-color body-block block-edit edit-data" data-edit="data">
+        <h2 class="title-block">
+            Мої дані
+            <button type="button" class="btn btn-edit btn-edit-default pull-right">Редагувати<i class="icons icon-pencil-default"></i></button>
+            <button type="submit" class="btn btn-save btn-edit-default pull-right" hidden>Зберегти</button>
+        </h2>
+        <input hidden name="Id" value="@Model.Id" />
+        <div class="row inline-form">
+            <div class="col-sm-6 form-group">
+                <label>Ваш nickname</label>
+                <input type="text" asp-for="UserName" class="form-control focus-input focus-color-default input-value disabled" data-validation="length" data-validation-length="min4" data-validation="custom" data-validation-regexp="^([a-z]+)$" disabled readonly>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>Електронна адреса</label>
+                <input type="text" asp-for="Email" class="form-control focus-input focus-color-default disabled" name="email" data-validation="email" disabled readonly>
+            </div>
+        </div>
+        <div class="row inline-form">
+            <div class="col-sm-6 form-group">
+                <label>Ваше ім’я</label>
+                <input type="text" asp-for="Name" id="input-value-name" class="form-control focus-input focus-color-default input-value disabled" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label>Ваше прізвище</label>
+                <input type="text" asp-for="Surname" id="input-value-lastname" class="form-control focus-input focus-color-default input-value disabled" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" disabled readonly>
+            </div>
+        </div>
+    </div>
+</form>

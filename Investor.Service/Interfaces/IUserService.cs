@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Model;
 using Microsoft.AspNetCore.Identity;
-using Investor.ViewModel;
 
 namespace Investor.Service.Interfaces
 {
@@ -29,5 +28,6 @@ namespace Investor.Service.Interfaces
         Task<IEnumerable<string>> GetAllRolesAsync();
         Task<string> GetRoleByUserAsync(string userId);
         Task SetUsersRole(string id, string role);
+        Task<bool> PasswordCheck(string password);
     }
 }
