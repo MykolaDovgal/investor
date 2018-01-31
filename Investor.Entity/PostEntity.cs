@@ -26,6 +26,8 @@ namespace Investor.Entity
         [StringLength(20000)]
         public string Article { set; get; }
 
+        public string Url { get; set; }
+
         [DataType(DataType.DateTime)]
         public DateTime CreatedOn { set; get; }
 
@@ -41,12 +43,10 @@ namespace Investor.Entity
         public CategoryEntity Category { set; get; }
 
         public List<PostTagEntity> PostTags { get; set; }
-        //public List<ClientPostEntity> ClientVisits { set; get; }
 
         public PostEntity()
         {
             PostTags = new List<PostTagEntity>();
-            //ClientVisits = new List<ClientPostEntity>();
             Category = null;
         }
     }

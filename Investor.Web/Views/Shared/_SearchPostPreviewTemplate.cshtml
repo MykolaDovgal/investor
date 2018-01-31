@@ -2,23 +2,29 @@
 @model PostPreview
 @inject Investor.Service.Utils.TimeService PostPublicationDate
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
-
+@inject Investor.Service.Utils.UrlService UrlService
+    
+@{
+    var publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+    var fullPostRelativePath = UrlService.GetPostRelativePath(Model);
+    var imagePath = ImagePath.GetImagePath(Model.Image, Model.PostId, "medium-");
+}
 
 <div class="item-search-result p-3 p-md-0">
     <div class="row">
         
         <div class="col-md-4 img-result">
-            <a href="/@(Model.Category.Url == "blog" ? "blog/page" : "post" )/@Model.PostId">
-                <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "medium-")" class="img-fluid" />
+            <a href="@(Model.Category.Url == "blog" ? "/blog/page/" + Model.PostId : fullPostRelativePath)">
+                <img src="~/@imagePath" class="img-fluid" />
             </a>
         </div>
 
         <div class="col-md-8">
-            <a href="/@(Model.Category.Url == "blog" ? "blog/page" : "post" )/@Model.PostId" class="title-news title-search">@Model.Title</a>
+            <a href="@(Model.Category.Url == "blog" ? "/blog/page/" + Model.PostId : fullPostRelativePath)" class="title-news title-search">@Model.Title</a>
             <p class="text-news text-search">@Model.Description</p>
             <div class="footer-result">
                 <span class="@Model.Category.Url-today-color">@Model.Category.Name</span>
-                <span class="today-item-news default-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+                <span class="today-item-news default-today-color">@publishedTime</span>
             </div>
         </div>
 

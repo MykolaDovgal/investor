@@ -1,16 +1,16 @@
 ﻿@model Investor.Model.PostPreview
 @inject Investor.Service.Utils.TimeService PostPublicationDate
-<div class="item-last-news">
-    @{
-        string classStyle = "";
-        if (Model.IsImportant ?? false)
-        {
-            classStyle = "bold";
-        }
+@inject Investor.Service.Utils.UrlService UrlService
 
-    }
-    <a bold href="/post/@Model.PostId" class="title-last-news @classStyle">
+@{
+    var fullPostRelativePath = UrlService.GetPostRelativePath(Model);
+    var publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+    var classStyle = Model.IsImportant ?? false ? "bold" : "";
+}
+
+<div class="item-last-news">
+    <a bold href="@fullPostRelativePath" class="title-last-news @classStyle">
         @Model.Title
     </a>
-    <span class="today-item-news @(ViewBag.IsBlog != null ? "blog" : "default")-today-color" > @PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+    <span class="today-item-news @(ViewBag.IsBlog != null ? "blog" : "default")-today-color" >@publishedTime</span>
 </div>

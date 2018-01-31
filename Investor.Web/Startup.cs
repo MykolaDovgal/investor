@@ -27,8 +27,8 @@ namespace Investor.Web
         {
             IConfigurationBuilder builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -84,6 +84,7 @@ namespace Investor.Web
             services.AddTransient<TimeService>();
             services.AddTransient<CurrencyService>();
             services.AddTransient<CacheService>();
+            services.AddTransient<UrlService>();
 
             services.AddMvc();
             services.AddAutoMapper();
@@ -115,8 +116,7 @@ namespace Investor.Web
 
             services.AddSingleton<IAuthorizationHandler, AdminAuthorize>();
         }
-        
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             ServiceMapperConfig.Config();
@@ -129,7 +129,6 @@ namespace Investor.Web
             {
                 app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
-                //app.UseExceptionHandler("/Home/Error");
             }
             else
             {
@@ -159,19 +158,24 @@ namespace Investor.Web
                 //    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute("login", "login",
                     defaults: new { controller = "Account", action = "Login" });
+
                 routes.MapRoute("register", "register",
                     defaults: new { controller = "Account", action = "Register" });
+
                 routes.MapRoute("lastnews", "lastnews",
                     defaults: new { controller = "Post", action = "LastNews" });
-                routes.MapRoute("post", "post/{id}",
-                    defaults: new { controller = "Post", action = "Index" });
+
                 routes.MapRoute("blog", "blog/page/{id}",
                     defaults: new { controller = "Blog", action = "Page" });
-                routes.MapRoute("category", "category/{url}",
+
+                routes.MapRoute("post", "{category}/{postUrl}-{postId:int}",
+                    defaults: new { controller = "Post", action = "Index" });
+
+                routes.MapRoute("category", "{categoryUrl:regex(^[a-zA-Z]+$)}",
                     defaults: new { controller = "Category", action = "Index" });
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+
                 
             });
         }

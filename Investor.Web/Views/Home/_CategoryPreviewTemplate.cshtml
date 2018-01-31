@@ -1,5 +1,4 @@
 ﻿@model Investor.Model.CategoryPreview
-@using Investor.Model
 
 <div class="category-news @Model.CategoryUrl-news">
     <div class="body-block block-border-top @Model.CategoryUrl-border-color mb-3">
@@ -7,7 +6,7 @@
         <div class="row">
             @foreach (var largePost in Model.LargePostPreviewTemplate)
             {
-                @Html.Partial("_LargePostTemplate", largePost as PostPreview)
+                @Html.Partial("_LargePostTemplate", largePost)
             }
 
             @if (Model.LargePostPreviewTemplate.Count() == 1)
@@ -15,15 +14,15 @@
                 <div class="col-md-6">
                     @foreach (var smallPost in Model.SmallPostPreviewTemplate)
                     {
-                        @Html.Partial("_SmallPostTemplate", smallPost as PostPreview)
+                        @Html.Partial("_SmallPostTemplate", smallPost)
                     }
                 </div>
             }
             else
             {
-                @foreach (var middlePost in Model.SmallPostPreviewTemplate)
+                foreach (var middlePost in Model.SmallPostPreviewTemplate)
                 {
-                    @Html.Partial("_MiddlePostTemplate", middlePost as PostPreview)
+                    @Html.Partial("_MiddlePostTemplate", middlePost)
                 }
 
             }
@@ -31,7 +30,7 @@
     </div>
 
     <div class="wrapper-btn-more">
-        <a href="/category/@Model.CategoryUrl" class="btn-more text-center"><span class="circle circle-@Model.CategoryUrl-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
+        <a href="@Model.CategoryUrl" class="btn-more text-center"><span class="circle circle-@Model.CategoryUrl-color"><i class="icons icon-arrow-down"></i></span>Більше новин</a>
     </div>
 
 </div>

@@ -51,7 +51,7 @@
             </div>
 
             <div id="searchResultContainer">
-                @Html.Partial("_SearchResultTemplate", Model as IEnumerable<PostPreview>)
+                @Html.Partial("_SearchResultTemplate", Model)
             </div>
             @if (ViewBag.GetMoreEnabled)
             {

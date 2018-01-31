@@ -11,7 +11,5 @@ namespace Investor.Entity
 
         [ForeignKey("AuthorId")]
         public UserEntity Author { set; get; }
-
-        public BlogEntity() : base() { }
     }
 }

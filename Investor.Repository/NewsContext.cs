@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace Investor.Repository
 {
-    public class NewsContext : IdentityDbContext<UserEntity>
+    public sealed class NewsContext : IdentityDbContext<UserEntity>
     {
         public DbSet<CategoryEntity> Categories { get; set; }
         public DbSet<BlogEntity> Blogs { get; set; }
@@ -18,7 +18,9 @@ namespace Investor.Repository
 
         public NewsContext(DbContextOptions<NewsContext> options)
             : base(options)
-        { }
+        {
+            Database.EnsureCreated();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,19 +39,6 @@ namespace Investor.Repository
 
             modelBuilder.Entity<StatisticsEntity>()
                 .HasOne(pt => pt.Post);
-
-            //modelBuilder.Entity<ClientPostEntity>()
-            //    .HasKey(t => new { t.PostId, t.ClientId });
-
-            //modelBuilder.Entity<ClientPostEntity>()
-            //    .HasOne(pt => pt.Post)
-            //    .WithMany(pt => pt.ClientVisits)
-            //    .HasForeignKey(pt => pt.PostId);
-
-            //modelBuilder.Entity<ClientPostEntity>()
-            //    .HasOne(pt => pt.Client)
-            //    .WithMany(pt => pt.PostVisits)
-            //    .HasForeignKey(pt => pt.ClientId);
 
             base.OnModelCreating(modelBuilder);
         }

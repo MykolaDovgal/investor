@@ -7,12 +7,12 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0002" />
+    <PackageReference Include="UnidecodeSharpFork" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Investor.Entity\Investor.Entity.csproj" />
     <ProjectReference Include="..\Investor.Model\Investor.Model.csproj" />
-    <ProjectReference Include="..\Investor.Repository\Investor.Repository.csproj" />
   </ItemGroup>
 
 </Project>

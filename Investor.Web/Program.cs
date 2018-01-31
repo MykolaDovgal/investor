@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Investor.Repository;
 using Investor.Service;
+using Investor.Service.Utils;
 using Microsoft.AspNetCore.Identity;
 
 namespace Investor.Web
@@ -32,7 +33,8 @@ namespace Investor.Web
                     var signInManager = services.GetService<SignInManager<UserEntity>>();
                     var userManager = services.GetService<UserManager<UserEntity>>();
                     var roleManager = services.GetService<RoleManager<IdentityRole>>();
-                    SampleData.Initialize(context, signInManager, userManager, roleManager);
+                    var urlService = services.GetService<UrlService>();
+                    SampleData.Initialize(context, signInManager, userManager, roleManager, urlService);
                 }
                 catch (Exception ex)
                 {

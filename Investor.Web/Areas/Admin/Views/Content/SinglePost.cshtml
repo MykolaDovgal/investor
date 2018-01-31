@@ -1,5 +1,5 @@
 ﻿@using Investor.Model
-@model Investor.Model.News
+@model News
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
 <form method="post" id="updateForm" class="updateForm" enctype="multipart/form-data">
     <section class="main-page-info mb-5">
@@ -10,14 +10,14 @@
                         <h3 class="main-tittle">@(Model == null ? "Створити" : "Редагувати") статтю</h3>
                         <input asp-for="PostId" hidden="hidden">
                         <label asp-for="Title">Заголовок</label>
-                        <input asp-for="Title" name="Title" type="text" class="form-control" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"/>
+                        <input asp-for="Title" name="Title" type="text" class="form-control" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
                         <label asp-for="Description">Короткий опис</label>
                         <textarea asp-for="Description" name="Description" class="form-control" rows="6" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"></textarea>
                         <label asp-for="Article">Текст статті</label>
                         <textarea asp-for="Article" id="Article" class="form-control text-editor" rows="10"></textarea>
                         <div class="row mt-5 mb-5 justify-content-between">
                             <button class="btns btn-dark" form="updateForm" id="updateFormSubmit" data-action="">Зберегти статтю</button>
-                            <a class="btns btn-for-a previewpost" target="_blank" @(Model == null ? "hidden" : "") href="@(Model?.IsPublished ?? false ? "" : "/unpublished")/post/@Model?.PostId">Перейти до поста</a>
+                            <a class="btns btn-for-a previewpost" target="_blank" @(Model == null ? "hidden" : "") href="@(Model?.IsPublished ?? false ? "/" + Model.Category.Url : "/unpublished")/@(Model?.Url + "-" + Model?.PostId)">Перейти до поста</a>
                             <button class="btns btn-red deletepost" @(Model == null ? "hidden" : "") data-toggle="modal" data-target="#deletenew">Видалити статтю</button>
                         </div>
                     </div>
@@ -42,7 +42,7 @@
                         <div class="category-group mb-4">
                             <label>До якого розділу це віднести?</label>
                             <select class="bs-select form-control" tabindex="-98" asp-for="Category.Url">
-                                @foreach(Category category in ViewBag.Categories)
+                                @foreach (Category category in ViewBag.Categories)
                                 {
                                     <option value="@category.Url">@category.Name</option>
                                 }
@@ -50,7 +50,8 @@
                         </div>
                         @{
                             string tags = "";
-                            if (ViewData.ContainsKey("Tags")) {
+                            if (ViewData.ContainsKey("Tags"))
+                            {
                                 foreach (Tag tag in ViewBag.Tags)
                                 {
                                     tags += tag.Name + ",";
@@ -71,22 +72,22 @@
                                     <span class="custom-control-description">Опубліковано </span>
                                 </label>
                                 <label class="custom-control custom-checkbox">
-                                    <input asp-for="IsOnMainPage" type="checkbox" class="custom-control-input" name="IsOnMainPage" >
+                                    <input asp-for="IsOnMainPage" type="checkbox" class="custom-control-input" name="IsOnMainPage">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">На головній сторінці </span>
                                 </label>
                                 <label class="custom-control custom-checkbox">
-                                    <input asp-for="IsOnSide" type="checkbox" class="custom-control-input"  name="IsOnSide">
+                                    <input asp-for="IsOnSide" type="checkbox" class="custom-control-input" name="IsOnSide">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">На боковій панелі слайдера</span>
                                 </label>
                                 <label class="custom-control custom-checkbox">
-                                    <input asp-for="IsOnSlider" type="checkbox" class="custom-control-input"  name="IsOnSlider" >
+                                    <input asp-for="IsOnSlider" type="checkbox" class="custom-control-input" name="IsOnSlider">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">На слайдері </span>
                                 </label>
                                 <label class="custom-control custom-checkbox">
-                                    <input asp-for="IsImportant" type="checkbox" class="custom-control-input"  name="IsImportant" >
+                                    <input asp-for="IsImportant" type="checkbox" class="custom-control-input" name="IsImportant">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description">Рекомендовано редакцією </span>
                                 </label>
