@@ -1,5 +1,4 @@
 ﻿using Investor.Model;
-using Investor.Model.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;

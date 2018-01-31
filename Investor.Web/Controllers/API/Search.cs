@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Investor.Model;
-using Investor.Model.Views;
 using Investor.Service.Interfaces;
+using Investor.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Investor.Web.Controllers.API

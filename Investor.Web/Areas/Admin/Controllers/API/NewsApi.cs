@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Model;
-using Investor.Model.Views;
 using Investor.Service.Interfaces;
 using Investor.Service.Utils.Interfaces;
+using Investor.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,12 +18,14 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         private readonly INewsService _newsService;
         private readonly IImageService _imageService;
         private readonly ICategoryService _categoryService;
+        private readonly IMapper _mapper;
 
-        public NewsApi(INewsService newsService, IImageService imageService, ICategoryService categoryService)
+        public NewsApi(INewsService newsService, IImageService imageService, ICategoryService categoryService, IMapper mapper)
         {
             _newsService = newsService;
             _imageService = imageService;
             _categoryService = categoryService;
+            _mapper = mapper;
         }
 
         [Route("GetAllNews")]
@@ -38,9 +40,10 @@ namespace Investor.Web.Areas.Admin.Controllers.API
         [HttpPost]
         public JsonResult UpdatePost([FromForm]NewsViewModel post, [FromForm]IFormFile image)
         {
-            post.Category = _categoryService.GetCategoryByUrlAsync(post.Category.Url).Result;
-            post.Image = image != null ? _imageService.SaveImage(image) : null;
-            _newsService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
+            News newPost = _mapper.Map<NewsViewModel, News>(post);
+            newPost.Category = _categoryService.GetCategoryByUrlAsync(post.Category).Result;
+            newPost.Image = image != null ? _imageService.SaveImage(image) : null;
+            _newsService.AddTagsToNewsAsync(newPost.PostId, post.Tags).Wait();
             //NewsViewModel newPost = Mapper.Map<News, NewsViewModel>(_newsService.GetNewsByIdAsync(post.PostId).Result);
             //newPost = Mapper.Map(post, newPost);
             News result =_newsService.UpdateNewsAsync(post).Result;

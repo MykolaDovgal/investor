@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Investor.Model.Views
+﻿namespace Investor.ViewModel
 {
     public class UserPersonalDataViewModel
     {

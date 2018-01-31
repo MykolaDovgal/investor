@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Investor.Model.Views;
+using Investor.ViewModel;
 
 namespace Investor.Service.Interfaces
 {
@@ -26,7 +26,7 @@ namespace Investor.Service.Interfaces
         Task AddTagsToNewsAsync(int postId, IEnumerable<string> tags);
         Task<IEnumerable<Tag>> GetAllTagsByNewsIdAsync(int id);
         Task<News> AddNewsAsync(News map);
-        Task<News> UpdateNewsAsync(NewsViewModel post);
+        Task<News> UpdateNewsAsync(News post);
         Task UpdateNewsAsync(IEnumerable<News> post);
         Task RemoveNewsAsync(int id);
         Task RemoveNewsAsync(IEnumerable<int> posts);

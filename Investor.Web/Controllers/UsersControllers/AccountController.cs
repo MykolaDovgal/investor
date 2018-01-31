@@ -3,13 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Investor.Model;
-using Investor.Model.Views;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.IO;
 using Investor.Service.Utils.Interfaces;
+using Investor.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Investor.Web.Controllers.UsersControllers
@@ -19,11 +19,13 @@ namespace Investor.Web.Controllers.UsersControllers
     {
         private readonly IUserService _userService;
         private readonly IImageService _imageService;
+        private readonly IMapper _mapper;
 
-        public AccountController(IUserService userService, IImageService imageService)
+        public AccountController(IUserService userService, IImageService imageService, IMapper mapper)
         {
             _userService = userService;
             _imageService = imageService;
+            _mapper = mapper;
         }
 
         [AllowAnonymous]
@@ -37,7 +39,7 @@ namespace Investor.Web.Controllers.UsersControllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model, [FromForm]IFormFile Photo)
         {
-            var user = Mapper.Map<RegisterViewModel, User>(model);
+            var user = _mapper.Map<RegisterViewModel, User>(model);
             user.Photo = _imageService.SaveAccountImage(Photo, model.CropPoints);
 
             if ((await _userService.CreateUserAsync(user)).Succeeded)

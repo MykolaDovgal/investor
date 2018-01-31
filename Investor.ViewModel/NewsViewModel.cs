@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Investor.Model.Views
+namespace Investor.ViewModel
 {
     public class NewsViewModel
     {
@@ -16,7 +14,7 @@ namespace Investor.Model.Views
         public bool IsImportant { set; get; }
         public bool IsOnSlider { set; get; }
         public bool IsOnSide { set; get; }
-        public Category Category { set; get; }
-        public List<Tag> Tags { get; set; }
+        public string Category { set; get; }
+        public List<string> Tags { get; set; }
     }
 }

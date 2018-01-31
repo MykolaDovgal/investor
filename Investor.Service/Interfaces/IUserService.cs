@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Model;
 using Microsoft.AspNetCore.Identity;
-using Investor.Model.Views;
+using Investor.ViewModel;
 
 namespace Investor.Service.Interfaces
 {
@@ -23,8 +23,7 @@ namespace Investor.Service.Interfaces
         Task<User> GetUserByEmail(string email);
         Task<IEnumerable<TableUserPreview>> GetTableUsersAsync();
         Task<User> GetUserByNickName(string id);
-        Task<IdentityResult> UpdateUserAsync(UserDescriptionViewModel user);
-        Task<IdentityResult> UpdateUserAsync(UserPersonalDataViewModel user);
+        Task<IdentityResult> UpdateUserAsync(User user);
         Task<IdentityResult> ChangePasswordAsync(User user, string newPassword);
         Task<IEnumerable<T>> GetAllUsersAsync<T>();
         Task<IEnumerable<string>> GetAllRolesAsync();

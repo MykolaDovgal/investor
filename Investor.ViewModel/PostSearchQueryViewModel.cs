@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace Investor.Model.Views
+namespace Investor.ViewModel
 {
     public class PostSearchQueryViewModel
     {

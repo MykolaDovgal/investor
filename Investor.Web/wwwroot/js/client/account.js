@@ -61,7 +61,7 @@ let getCreatePostFormData = function() {
     let tagsArray = $("#userPostTags").tagsinput('items');
 	formData.set('Article', tinyMCE.get('createUserPost').getContent());    
     for (let i = 0; i < tagsArray.length; i++)
-        formData.append(`Tags[` + i + `].Name`, tagsArray[i]);
+        formData.append(`Tags[` + i + `]`, tagsArray[i]);
     return formData;
 }
 

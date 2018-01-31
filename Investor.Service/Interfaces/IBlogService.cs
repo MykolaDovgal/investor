@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Model;
-using Investor.Model.Views;
+using Investor.ViewModel;
 
 namespace Investor.Service.Interfaces
 {
@@ -20,8 +20,8 @@ namespace Investor.Service.Interfaces
         Task<T> GetBlogByIdAsync<T>(int id);
         Task<IEnumerable<T>> GetAllBlogsByTagNameAsync<T>(string tagName);
         Task<IEnumerable<Blog>> GetBlogsBasedOnIdCollectionAsync(IEnumerable<int> postIds);
-        Task<Blog> AddBlogAsync(BlogViewModel map);
-        Task<Blog> UpdateBlogAsync(BlogViewModel post);
+        Task<Blog> AddBlogAsync(Blog map);
+        Task<Blog> UpdateBlogAsync(Blog post);
         Task UpdateBlogAsync<T>(IEnumerable<T> post);
         Task RemoveBlogAsync(int id);
         Task RemoveBlogAsync(IEnumerable<int> id);

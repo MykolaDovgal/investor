@@ -15,14 +15,16 @@ namespace Investor.Service
     {
         private readonly IStatisticsRepository _statisticsRepository;
         private readonly CacheService _cacheService;
-        public StatisticsService(IStatisticsRepository statisticsRepository, CacheService cacheService)
+        private readonly IMapper _mapper;
+        public StatisticsService(IStatisticsRepository statisticsRepository, CacheService cacheService, IMapper mapper)
         {
             _statisticsRepository = statisticsRepository;
             _cacheService = cacheService;
+            _mapper = mapper;
         }
         public async Task AddStatisticsAsync(Statistics statistics)
         {
-            await _statisticsRepository.AddStatistics(Mapper.Map<Statistics, StatisticsEntity>(statistics));
+            await _statisticsRepository.AddStatistics(_mapper.Map<Statistics, StatisticsEntity>(statistics));
         }
 
         public async Task<int> GetPostViewsCountByIdAsync(int postId, bool isUnique = false)

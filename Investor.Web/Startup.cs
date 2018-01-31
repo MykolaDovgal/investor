@@ -119,7 +119,7 @@ namespace Investor.Web
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            ServiceMapperConfig.Config();
+            //ServiceMapperConfig.Config();
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
