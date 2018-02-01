@@ -171,10 +171,12 @@ namespace Investor.Web
                 routes.MapRoute("post", "{category}/{postUrl}-{postId:int}",
                     defaults: new { controller = "Post", action = "Index" });
 
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute("category", "{categoryUrl:regex(^[a-zA-Z]+$)}",
                     defaults: new { controller = "Category", action = "Index" });
 
-                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                
 
                 
             });
