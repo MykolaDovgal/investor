@@ -2,16 +2,23 @@
 @model BlogPreview
 @inject Investor.Service.Utils.TimeService PostPublicationDate
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Utils.UrlService UrlService
+
+@{
+    var publishedTime = Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано";
+    var fullPostRelativePath = UrlService.GetPostRelativePath(Model);
+    var imagePath = ImagePath.GetImagePath(Model.Image, Model.PostId, "small-");
+}
 
 <div class="item-my-post body-block block-border-top default-border-color">
     <div class="col-12">
         <div class="img-news">
-            <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "small-")" class="img-fluid rounded-circle">
+            <img src="~/@imagePath" class="img-fluid rounded-circle">
         </div>
         <div class="body-all-news">
-            <a href="@(Model.IsPublished ? "" : "/unpublished")/blog@(Model.IsPublished ? "/page" : "")/@Model.PostId" class="title-news">@Model.Title</a>
+            <a href="@fullPostRelativePath" class="title-news">@Model.Title</a>
             <p class="text-news">@Model.Description</p>
-            <span class="default-today-color">@(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
+            <span class="default-today-color">@publishedTime</span>
         </div>
         <a href="/Bloger/UpdatePost/@Model.PostId" class="btn btn-edit btn-edit-default pull-right">Редагувати<i class="icons icon-pencil-default"></i></a>
     </div>
