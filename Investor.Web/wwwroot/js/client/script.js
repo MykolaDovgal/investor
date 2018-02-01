@@ -387,7 +387,7 @@ if ($("form").is(".validate")) {
                 strong: ''
             };
 
-            $('input[name="pass_confirmation"]').displayPasswordStrength(optionalConfig);
+            $('input[name="PasswordConfirm_confirmation"]').displayPasswordStrength(optionalConfig);
         }
     });
 };
