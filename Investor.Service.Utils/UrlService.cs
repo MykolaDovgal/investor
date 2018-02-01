@@ -30,9 +30,19 @@ namespace Investor.Service.Utils
             return $"/{news.Category.Url}/{news.Url}-{news.PostId}";
         }
 
+        public string GetPostRelativePath(Blog news)
+        {
+            return $"/{news.Category.Url}/{news.Url}-{news.PostId}";
+        }
+
         public string GetPostRelativePath(PostPreview news)
         {
             return $"/{news.Category.Url}/{news.Url}-{news.PostId}";
+        }
+
+        public string GetPostRelativePath(BlogPreview news)
+        {
+            return $"/{(news.IsPublished ? "blog" : "unpublished")}/{news.Url}-{news.PostId}";
         }
     }
 }

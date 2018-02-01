@@ -12,7 +12,7 @@
     <div class="img-eclipse">
         <img src="~/@imagePath" class="img-fluid" />
         <div class="body-popular-news">
-            <span href="@(Model.Category.Url == "blog" ? "/blog/page/" + Model.PostId : fullPostRelativePath)" class="title-popular-news color-white">@Model.Title</span>
+            <span href="@fullPostRelativePath" class="title-popular-news color-white">@Model.Title</span>
             <span class="data-popular-news other-days">@publishedTime</span>
         </div>
     </div>

@@ -2,19 +2,27 @@
 @model BlogPreview
 @inject Investor.Service.Utils.TimeService PostPublicationDate
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Utils.UrlService UrlService
+
+@{
+    var publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+    var fullPostRelativePath = UrlService.GetPostRelativePath(Model);
+    var accountImagePath = ImagePath.GetAccountImagePath(Model.Author.Photo);
+    var postImagePath = ImagePath.GetImagePath(Model.Image, Model.PostId, "small-");
+}
 
 <div class="item-blog-news col-12">
     <div class="img-news">
-        <a href="/blog/page/@Model.PostId">
-            <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "small-")" class="img-fluid rounded-circle">
+        <a href="@fullPostRelativePath">
+            <img src="~/@postImagePath" class="img-fluid rounded-circle">
         </a>
     </div>
     <div class="body-all-news">
-        <a href="/blog/page/@Model.PostId" class="title-news">@Model.Title</a>
+        <a href="@fullPostRelativePath" class="title-news">@Model.Title</a>
         <p class="text-news brief-description">@Model.Description</p>
-        <span class="blog-today-color data-blog">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+        <span class="blog-today-color data-blog">@publishedTime</span>
         <a href="/blog/blogerpage/@Model.Author.UserName" class="user-publish ml-3">
-            <img src="~/@ImagePath.GetAccountImagePath(Model.Author.Photo)" class="photo-img rounded-circle" />@Model.Author.Name
+            <img src="~/@accountImagePath" class="photo-img rounded-circle" />@Model.Author.Name
         </a>
     </div>
 </div>

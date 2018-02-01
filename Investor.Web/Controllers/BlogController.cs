@@ -38,11 +38,17 @@ namespace Investor.Web.Controllers
         }
 
         [ServiceFilter(typeof(HitCount))]
-        public IActionResult Page(int id)
+        public IActionResult Page(string blogUrl,int blogId)
         {
             ViewBag.PathBase = Request.Host.Value;
-            var blogs = _blogService.GetBlogByIdAsync<Blog>(id).Result;
-            ViewBag.Post = blogs;
+            Blog blog = _blogService.GetBlogByIdAsync<Blog>(blogId).Result;
+
+            if (blog == null || !blog.IsPublished || blog.Url != blogUrl)
+            {
+                Response.StatusCode = 404;
+                return StatusCode(Response.StatusCode);
+            }
+            ViewBag.Post = blog;
             ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(10).Result.ToList();           
             ViewBag.Tags = _tagService.GetPopularTagsAsync(5).Result.ToList();
             return View("Single/BlogPage");

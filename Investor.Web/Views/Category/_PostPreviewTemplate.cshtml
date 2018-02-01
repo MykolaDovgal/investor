@@ -10,12 +10,12 @@
 }
 <div class="item-news item-all-news col-12">
     <div class="img-news">
-        <a href="@(Model.Category.Url == "blog" ? "/blog/page/" + Model.PostId : fullPostRelativePath)">
+        <a href="@fullPostRelativePath">
             <img src="~/@imagePath" class="img-fluid" />
         </a>
     </div>
     <div class="body-all-news">
-        <a href="@(Model.Category.Url == "blog" ? "/blog/page/" + Model.PostId : fullPostRelativePath)" class="title-news">
+        <a href="@fullPostRelativePath" class="title-news">
             @Model.Title
         </a>
         <p class="text-news brief-description">

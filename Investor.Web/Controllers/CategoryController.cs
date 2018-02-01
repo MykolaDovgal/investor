@@ -18,7 +18,6 @@ namespace Investor.Web.Controllers
         }
         public IActionResult Index(string categoryUrl, int numberOfPosts = 10)
         {
-
             Category category = _categoryService.GetCategoryByUrlAsync(categoryUrl).Result;
 
             if (category == null)

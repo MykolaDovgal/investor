@@ -1,7 +1,7 @@
 ﻿@using Investor.Model
 @model SortedDictionary<string, List<User>>
 <div class="wrapper-all-bloggers grid">
-    @foreach (var blogers in Model)
+    @foreach (KeyValuePair<string, List<User>> blogers in Model)
     {
         <div class="item-blogger grid-item col-6 col-md-4 mb-4">
             <p class="letter">@blogers.Key.ToUpper()</p>

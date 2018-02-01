@@ -2,8 +2,8 @@
 @using Investor.ViewModel
 @model IEnumerable<PostPreview>
 @{
-    var query = ViewBag.Query as PostSearchQueryViewModel;
-    var categoryName = ViewBag?.CategoryName?.Name;
+    PostSearchQueryViewModel query = ViewBag.Query as PostSearchQueryViewModel;
+    dynamic categoryName = ViewBag?.CategoryName?.Name;
 }
 <section class="page-search">
 

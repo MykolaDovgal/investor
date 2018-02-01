@@ -1,18 +1,25 @@
 ﻿@model Investor.Model.BlogPreview
 @inject Investor.Service.Utils.TimeService PostPublicationDate
-@inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath 
+@inject Investor.Service.Utils.UrlService UrlService
+
+@{
+    var publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+    var fullPostRelativePath = UrlService.GetPostRelativePath(Model);
+    var profileImagePath = ImagePath.GetAccountImagePath(Model.Author.Photo);
+}
 
 <div class="sidebar-item-blog vertical">
     <a class="author-blog" href="/blog/blogerpage/@Model.Author.UserName">
-        <img src="~/@ImagePath.GetAccountImagePath(Model.Author.Photo)" alt="" class="rounded-circle align-top" />
+        <img src="~/@profileImagePath" alt="" class="rounded-circle align-top" />
     </a>
     <div class="sidebar-item-blog-body align-top">
         <a class="author-blog" href="/blog/blogerpage/@Model.Author.UserName">
             @Model.Author.Name @Model.Author.Surname
         </a>
-        <a class="title-blog" href="/blog/page/@Model.PostId">
+        <a class="title-blog" href="@fullPostRelativePath">
             @Model.Title
         </a>
-        <span class="today-item-news default-today-color">@PostPublicationDate.GetFormattedDate(Model.PublishedOn)</span>
+        <span class="today-item-news default-today-color">@publishedTime</span>
     </div>
 </div>

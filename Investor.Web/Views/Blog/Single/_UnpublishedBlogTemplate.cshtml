@@ -3,17 +3,22 @@
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
 @using Investor.Model
 
+@{
+    var publishedTime = Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано";
+    var postImagePath = ImagePath.GetImagePath(Model.Image, Model.PostId, "large-");
+}
+
 <h1 class="title-card-page">
     @Model.Title
 </h1>
 <div class="info-news">
     <a href="/blog/blogerpage/@Model.Author.UserName" class="data-post">@Model.Author.Surname @Model.Author.Name</a>
-    <span class="data-post"><i class="icons icon-clock"></i> @(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
+    <span class="data-post"><i class="icons icon-clock"></i> @publishedTime)</span>
     <span class="reviews-post"><i class="icons icon-reviews"></i>0</span>
 </div>
 
 <div class="card-news-img mt-4 mb-5">
-    <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "large-")" class="img-fluid" />
+    <img src="~/@postImagePath" class="img-fluid" />
 </div>
 <div class="card-news-desc mb-5">
     @Html.Raw(Model.Article)

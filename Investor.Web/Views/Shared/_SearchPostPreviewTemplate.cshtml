@@ -14,13 +14,13 @@
     <div class="row">
         
         <div class="col-md-4 img-result">
-            <a href="@(Model.Category.Url == "blog" ? "/blog/page/" + Model.PostId : fullPostRelativePath)">
+            <a href="@fullPostRelativePath">
                 <img src="~/@imagePath" class="img-fluid" />
             </a>
         </div>
 
         <div class="col-md-8">
-            <a href="@(Model.Category.Url == "blog" ? "/blog/page/" + Model.PostId : fullPostRelativePath)" class="title-news title-search">@Model.Title</a>
+            <a href="@fullPostRelativePath" class="title-news title-search">@Model.Title</a>
             <p class="text-news text-search">@Model.Description</p>
             <div class="footer-result">
                 <span class="@Model.Category.Url-today-color">@Model.Category.Name</span>
