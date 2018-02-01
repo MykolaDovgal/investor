@@ -43,7 +43,7 @@ namespace Investor.Web
             services.AddScoped<HitCount>();
 
             services.AddDbContext<NewsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("TestConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             // Add framework services.
 
             services.AddIdentity<UserEntity, IdentityRole>(opts =>
