@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
 
 namespace Investor.ViewModel
 {
@@ -7,12 +8,10 @@ namespace Investor.ViewModel
     {
         [Required]
         public string Id { get; set; }
-        [StringLength(10)]
         [Required]
         public string Description { get; set; }
         public string Photo { get; set; }
         public List<int> CropPoints { get; set; }
-        [Url]
         public List<string> Socials { get; set; }
     }
 }

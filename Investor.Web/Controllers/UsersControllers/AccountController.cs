@@ -33,16 +33,19 @@ namespace Investor.Web.Controllers.UsersControllers
         }
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model, [FromForm]IFormFile Photo)
+        public async Task<IActionResult> Register(RegisterViewModel model, [FromForm]IFormFile Image)
         {
-            var user = _mapper.Map<RegisterViewModel, User>(model);
-            user.Photo = _imageService.SaveAccountImage(Photo, model.CropPoints);
-
-            if ((await _userService.CreateUserAsync(user)).Succeeded)
+            if (ModelState.IsValid)
             {
-                return Json(Url.Action("Login", "Account"));
-            }
+                var user = _mapper.Map<RegisterViewModel, User>(model);
+                user.Photo = _imageService.SaveAccountImage(Image, model.CropPoints);
 
+                if ((await _userService.CreateUserAsync(user)).Succeeded)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+
+            }
             return View(model);
         }
 

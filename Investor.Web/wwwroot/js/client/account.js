@@ -17,41 +17,30 @@ $(document).ready(function () {
     });
 
 	$("#registerUserForm").submit(function (e) {
-		e.preventDefault();
-		createRegisterAJAX(getRegistrationFormData(this));
+	    $("#" + $(this).attr('id')).append(`<input type='hidden' name='Photo' value='` + ($(`#upload`).get(0).files === null ? null : $(`#upload`).get(0).files[0]) + `' />`);
+	    $("#" + $(this).attr('id')).append(`<input type='password' hidden name='Password' value='` + $("input[name='PasswordConfirm_confirmation']").val() + `' />`);
+	    var points = $('#upload-demo').croppie('get').points;
+	    var points = $('#upload-demo').croppie('get').points;
+	    for (let i = 0; i < points.length; i++) {
+	        $("#" + $(this).attr('id')).append(`<input type='hidden' CausesValidation='false' name='CropPoints[` + i + `]' value='` + points[i] + `' />`);
+	    }
 	});
 
 	$("#updateUserDataForm").submit(function (e) {
-		//e.preventDefault();
-		//PostAJAX(getUpdateUserDataForm(this), $(this).attr('action'));
-        $(this).FormData.append("addddd", "dfjkdjf");
-	    return true;
 	});
 
 	$("#updateUserPasswordForm").submit(function (e) {
-		e.preventDefault();
-		PostAJAX(getUpdateUserPasswordForm(this), $(this).attr('action'));
+        $("#" + $(this).attr('id')).append(`<input type='password' name='NewPassword' hidden value='` + $("input[name='NewConfirmedPassword_confirmation']").val() + `' />`);
 	});
 
-	$("#updateUserBiographyForm").submit(function (e) {
-		//e.preventDefault();
-		//PostAJAX(getUserBiographyFormData(this), $(this).attr('action'));
-        //$(this).FormData.append("addddd", "dfjkdjf");
-	    e.preventDefault();
-	    var fd = new FormData((document.getElementById($(this).attr("id"))));
-	    fd.append("Image", $(`#upload`).get(0).files === null ? null : $(`#upload`).get(0).files[0]);
-	    fd.append("Photo", $('#userPhoto').attr('src'));
+    $("#updateUserBiographyForm").submit(function (e) {
 	    var points = $('#upload-demo').croppie('get').points;
-	    for (let i = 0; i < points.length; i++)
-	        fd.append(`Points[` + i + `]`, points[i]);
-	    fd.append('Socials[0]', $('#input-value-fb').val());
-	    fd.append('Socials[1]', $('#input-value-tw').val());
-        fd.append('Socials[2]', $('#input-value-google').val());
-        $(this).FormData = fd;
-        console.log($(this).attr("id"));
-	    console.log($(this).FormData);
-	    $(this).submit();
-	});
+        for (let i = 0; i < points.length; i++) {
+            $("#" + $(this).attr('id')).append(`<input type='hidden' CausesValidation='false' name='Points[` + i + `]' value='` + points[i] + `' />`);
+        }
+        $("#" + $(this).attr('id')).append(`<input type='hidden' name='Photo' value='` + $('#userPhoto').attr('src') + `' />`);
+        return true;
+    });
 
     initUserTinyMCE();
     getAllTags();
@@ -83,16 +72,7 @@ let getCreatePostFormData = function() {
 }
 
 let getRegistrationFormData = function () {
-	const formData = new FormData(document.getElementById("registerUserForm"));
-	formData.append("Photo", $(`#upload`).get(0).files === null ? null : $(`#upload`).get(0).files[0]);
-	formData.append("Password", $("input[name='pass_confirmation']").val());
-	var points = $('#upload-demo').croppie('get').points;
-	for (let i = 0; i < points.length; i++)
-		formData.append(`CropPoints[` + i + `]`, points[i]);
-	formData.append('Socials[0]', $('#input-value-fb').val());
-	formData.append('Socials[1]', $('#input-value-tw').val());
-	formData.append('Socials[2]', $('#input-value-google').val());
-	return formData;
+    
 }
 
 let getUserBiographyFormData = function () {

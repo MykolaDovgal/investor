@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 pl-0 p-0 pr-lg-2">
-                <form method="post" asp-controller="Account" asp-action="Register" id="registerUserForm" class="validate">
+                <form method="post" asp-controller="Account" asp-action="Register" id="registerUserForm" class="validate" enctype="multipart/form-data">
 
                     <div class="block-border-top default-border-color body-block body-registration-data">
                         <h1 class="title-block">Дані</h1>
@@ -13,10 +13,12 @@
                             <div class="col-sm-6 form-group">
                                 <label asp-for="UserName">Ваш nickname</label>
                                 <input asp-for="UserName" id="input-value1" type="text" class="form-control focus-input focus-color-default input-value" data-validation="length server" data-validation-length="min4" data-validation-url="/api/account/checkNickname" data-validation-param-name="nickname" data-validation-regexp="^([a-z]+)$" />
+                                <span asp-validation-for="UserName"></span>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Email">Електронна адреса</label>
                                 <input asp-for="Email" type="text" class="form-control focus-input focus-color-default" data-validation="email server" name="email" data-validation-url="/api/account/checkEmail"/>
+                                <span asp-validation-for="Email"></span>
                             </div>
                         </div>
 
@@ -24,22 +26,26 @@
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Name">Ваше ім’я</label>
                                 <input asp-for="Name" id="input-value-name" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
+                                <span asp-validation-for="Name"></span>
                             </div>
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Surname">Ваше прізвище</label>
                                 <input asp-for="Surname" id="input-value-lastname" type="text" class="form-control focus-input focus-color-default input-value" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле" />
+                                <span asp-validation-for="Surname"></span>
                             </div>
                         </div>
 
                         <div class="row inline-form">
                             <div class="col-sm-6 form-group">
                                 <label asp-for="Password">Придумайте пароль</label>
-                                <input asp-for="Password" type="password" class="form-control focus-input focus-color-default" name="pass_confirmation" data-validation="length custom strength" data-validation-length="min8" data-validation-regexp="^([a-z, A-Z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]+)$" />
+                                <input asp-for="Password" type="password" class="form-control focus-input focus-color-default" name="PasswordConfirm_confirmation" data-validation="length custom strength" data-validation-length="min8" data-validation-regexp="^([a-z, A-Z, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]+)$" />
+                                <span asp-validation-for="Password"></span>
                                 <label class="reliability">Надійність</label>
                             </div>
                             <div class="col form-group">
                                 <label asp-for="PasswordConfirm">Повторіть ваш пароль</label>
-                                <input asp-for="PasswordConfirm" type="password" class="form-control focus-input focus-color-default" name="pass" data-validation="confirmation" />
+                                <input asp-for="PasswordConfirm" type="password" class="form-control focus-input focus-color-default" name="PasswordConfirm" data-validation="confirmation" />
+                                <span asp-validation-for="PasswordConfirm"></span>
                             </div>
                         </div>
                     </div>
@@ -51,6 +57,7 @@
 
                             <label asp-for="Description">Розкажіть про себе</label>
                             <textarea asp-for="Description" id="input-value-autobiography" class="form-control focus-input focus-color-turquoise input-value" rows="7" data-validation="required" data-validation-error-msg-required="Це обов'язкове поле"></textarea>
+                            <span asp-validation-for="Description"></span>
                         </div>
 
                         <div class="form-group inline-form">
@@ -58,7 +65,7 @@
                             <div class="input-group input-file">
                                 <span class="input-group-btn">
                                     <span class="btn btn-turquoise btn-file">
-                                        Вибрати файл <input type="file" id="upload" accept="image/*" />
+                                        Вибрати файл <input type="file" id="upload" accept="image/*" name="Image" />
                                         <input type="file" hidden id="cropped" accept="image/*" />
                                     </span>
                                 </span>
@@ -80,14 +87,17 @@
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-facebook fa-1_3x color-fb" aria-hidden="true"></i></span>
                                 <input asp-for="@Model.Socials[0]" id="input-value-fb" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                                <span asp-validation-for="@Model.Socials[0]"></span>
                             </div>
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-twitter fa-1_3x color-tw" aria-hidden="true"></i></span>
                                 <input asp-for="@Model.Socials[1]" id="input-value-tw" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                                <span asp-validation-for="@Model.Socials[1]"></span>
                             </div>
                             <div class="input-group input-social">
                                 <span class="input-group-addon"><i class="fa fa-google-plus fa-1_3x color-g" aria-hidden="true"></i></span>
                                 <input asp-for="@Model.Socials[2]" id="input-value-google" type="text" class="form-control focus-input focus-color-turquoise input-value">
+                                <span asp-validation-for="@Model.Socials[2]"></span>
                             </div>
                         </div>
                     </div>

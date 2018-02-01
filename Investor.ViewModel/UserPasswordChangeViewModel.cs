@@ -11,6 +11,7 @@ namespace Investor.ViewModel
         [DataType(DataType.Password)]
         public string NewPassword { set; get; }
         [Compare("NewPassword")]
+        [DataType(DataType.Password)]
         public string NewConfirmedPassword { set; get; }
     }
 }

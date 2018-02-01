@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using Investor.Service;
 using Investor.Service.Interfaces;
 
 namespace Investor.ViewModel.Attributes
 {
-    public class PasswordCheck : ValidationAttribute
+    public class EmailCheck : ValidationAttribute
     {
         private IUserService _userService;
 
-        public PasswordCheck()
+        public EmailCheck()
         {
         }
 
@@ -19,11 +18,15 @@ namespace Investor.ViewModel.Attributes
         {
             _userService = (IUserService)validationContext
                 .GetService(typeof(IUserService));
-            if (_userService != null && _userService.PasswordCheck((string) value).Result)
+
+            var user = _userService?.GetUserByEmail((string)value).Result;
+            bool isValid = user == null;
+
+            if (_userService != null && isValid)
             {
                 return ValidationResult.Success;
             }
-            return new ValidationResult("Неправильний пароль!");
+            return new ValidationResult("Такий email вже існує!");
         }
     }
 }
