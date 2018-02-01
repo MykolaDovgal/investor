@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Investor.Model;
 using Investor.Service.Interfaces;
 using Investor.ViewModel;
 using Microsoft.AspNetCore.Mvc;

@@ -37,6 +37,7 @@ $(document).ready(function () {
 		//e.preventDefault();
 		//PostAJAX(getUserBiographyFormData(this), $(this).attr('action'));
         //$(this).FormData.append("addddd", "dfjkdjf");
+	    e.preventDefault();
 	    var fd = new FormData((document.getElementById($(this).attr("id"))));
 	    fd.append("Image", $(`#upload`).get(0).files === null ? null : $(`#upload`).get(0).files[0]);
 	    fd.append("Photo", $('#userPhoto').attr('src'));
@@ -49,7 +50,7 @@ $(document).ready(function () {
         $(this).FormData = fd;
         console.log($(this).attr("id"));
 	    console.log($(this).FormData);
-	    return true;
+	    $(this).submit();
 	});
 
     initUserTinyMCE();
