@@ -1,9 +1,5 @@
-﻿using System.Threading.Tasks;
-using Investor.Service.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Internal;
-using Microsoft.AspNetCore.Routing;
 
 namespace Investor.Web.Areas.Admin.Controllers
 {

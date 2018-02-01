@@ -7,6 +7,7 @@ using Investor.Entity;
 using AutoMapper;
 using Investor.Repository.Interfaces;
 using System.Linq;
+using UnidecodeSharpFork;
 
 namespace Investor.Service
 {
@@ -31,6 +32,7 @@ namespace Investor.Service
             {
                 map.Title = Guid.NewGuid().ToString();
             }
+            map.Url = map.Title.Unidecode();
             map.ModifiedOn = DateTime.Now;
             map.CreatedOn = DateTime.Now;
             var response = await _postRepository.AddPostAsync<NewsEntity>(_mapper.Map<News, NewsEntity>(map));

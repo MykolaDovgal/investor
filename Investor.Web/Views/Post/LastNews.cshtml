@@ -1,17 +1,12 @@
-﻿@using Investor.Model
-@using Investor.ViewModel
-@model IEnumerable<PostPreview>
-@{
-    var query = ViewBag.Query as PostSearchQueryViewModel;
-    var categoryName = ViewBag?.CategoryName?.Name;
-}
+﻿@model IEnumerable<Investor.Model.PostPreview>
+
 <section class="page-search">
     <div class="container">
         <div class="row">
             <h1 class="title-page-search p-3 p-md-0">Останні новини</h1>
             <div class="search-filter"></div>
             <div class="last-news-wrapper">
-                @Html.Partial(Url.Content("../Search/_SearchResultTemplate"), Model as IEnumerable<PostPreview>)
+                @Html.Partial(Url.Content("../Search/_SearchResultTemplate"), Model)
             </div>
             <div class="wrapper-btn-more bnt-more-search">
                 <a class="btn-more text-center lastnews" href="/post/getmorelastnews">

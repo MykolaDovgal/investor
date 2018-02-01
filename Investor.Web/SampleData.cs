@@ -2,13 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 using Investor.Entity;
-using Investor.Model;
-using Investor.Service;
+using Investor.Service.Utils;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Web
 {
@@ -17,7 +13,8 @@ namespace Investor.Web
         public static void Initialize(NewsContext context,
             SignInManager<UserEntity> signInManager,
             UserManager<UserEntity> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            UrlService urlService)
         {
             if (!context.Users.Any())
             {
@@ -245,6 +242,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "В The Economist вибачилися за фразу «громадянська війна на Донбасі»",
+                        Url = urlService.GetEncodedUrlString("В The Economist вибачилися за фразу «громадянська війна на Донбасі»"),
                         Article = "В РНБО України заявляють, що реальна кількість учасників навчань - до чверті мільйона військовослужбовців. У НАТО стурбовані активністю російських і білоруських військ і переконані, що навчання спрямовані на провокування країн-членів Альянсу.",
                         Description = "The Economist Intelligence Unit, дослідницька організація The Economist Group, вибачилася за фразу «громадянська війна”,",
                         Category = context.Categories.ToList()[5],
@@ -258,6 +256,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі",
+                        Url = urlService.GetEncodedUrlString("Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі"),
                         Article = "<h1>Hello, everybody</h1>",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
                         Category = context.Categories.ToList()[5],
@@ -272,6 +271,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 2",
+                        Url = urlService.GetEncodedUrlString("Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 2"),
                         Article = "<p>Крім України,  реальною загрозою війни ці навчання вважають у Литві та Польщі. Про це йдеться в сюжеті Сніданку з 1 + 1",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
                         Category = context.Categories.ToList()[5],
@@ -285,6 +285,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 3",
+                        Url = urlService.GetEncodedUrlString("Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 3"),
                         Article = "<p>Відповідно до міжнародних вимог, у таких масштабних навчаннях, без спостерігачів, можуть брати участь не більше 13 тисяч вояків. Якщо більше - міжнародне спостереження обов'язкове. </p>",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
                         Category = context.Categories.ToList()[5],
@@ -300,6 +301,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 4",
+                        Url = urlService.GetEncodedUrlString("Старший та молодший Буші прокоментували трагедію в Шарлоттсвіллі 4"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Колишні президенти Джордж Буш-старший і Джордж Буш-молодший закликали США «відмовитися від расизму, антисемітизму",
                         Category = context.Categories.ToList()[5],
@@ -313,6 +315,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "Чому Україна програла від «журналістського розслідування»",
+                        Url = urlService.GetEncodedUrlString("Чому Україна програла від «журналістського розслідування»"),
                         Article = "<p>ілвоипличдсшамрвап діовал</p>",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[5],
@@ -326,6 +329,7 @@ namespace Investor.Web
                      new Entity.BlogEntity
                      {
                          Title = "Фонд держмайна продав «Західерго» за ціною на 20 % вищою за стартову",
+                         Url = urlService.GetEncodedUrlString("Фонд держмайна продав «Західерго» за ціною на 20 % вищою за стартову"),
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                          Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                          Category = context.Categories.ToList()[5],
@@ -339,6 +343,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "Українських завод обслуговуватиме світових лідерів авіабудування",
+                        Url = urlService.GetEncodedUrlString("Українських завод обслуговуватиме світових лідерів авіабудування"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[5],
@@ -352,6 +357,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
+                        Url = urlService.GetEncodedUrlString("Поетичні новинки: що презентують на 24 Форумі видавців 2"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[5],
@@ -365,6 +371,7 @@ namespace Investor.Web
                     new Entity.BlogEntity
                     {
                         Title = "LvivMozArt: Що відвідати і послухати 22 серпня",
+                        Url = urlService.GetEncodedUrlString("LvivMozArt: Що відвідати і послухати 22 серпня"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[5],
@@ -385,6 +392,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Вижити тут можуть хіба ті, хто тут народився, – українка про життя у Конго(фото)",
+                        Url = urlService.GetEncodedUrlString("Вижити тут можуть хіба ті, хто тут народився, – українка про життя у Конго(фото)"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[0],
@@ -399,6 +407,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Перші «совєти» в Галичині: коли і хто такі ?",
+                        Url = urlService.GetEncodedUrlString("Перші «совєти» в Галичині: коли і хто такі ?"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[0],
@@ -413,6 +422,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "У «Борисполі» хочуть збудувати ще одну злітну смугу.",
+                        Url = urlService.GetEncodedUrlString("У «Борисполі» хочуть збудувати ще одну злітну смугу."),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[0],
@@ -427,6 +437,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "У «Борисполі» хочуть збудувати ще одну злітну смугу 2.",
+                        Url = urlService.GetEncodedUrlString("У «Борисполі» хочуть збудувати ще одну злітну смугу 2."),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[0],
@@ -441,6 +452,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Url = urlService.GetEncodedUrlString("Поетичні новинки: що презентують на 24 Форумі видавців"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -454,6 +466,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "На вихідних у Львівській опері стартує новий театральний сезон",
+                        Url = urlService.GetEncodedUrlString("На вихідних у Львівській опері стартує новий театральний сезон"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -468,6 +481,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "На вихідних у Львівській опері стартує новий театральний сезон",
+                        Url = urlService.GetEncodedUrlString("На вихідних у Львівській опері стартує новий театральний сезон"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -482,6 +496,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "LvivMozArt: Що відвідати і послухати 22 серпня",
+                        Url = urlService.GetEncodedUrlString("LvivMozArt: Що відвідати і послухати 22 серпня"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -498,6 +513,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Львів’ян запрошують на виставку моделей найбільш знакових будівель світу",
+                        Url = urlService.GetEncodedUrlString("Львів’ян запрошують на виставку моделей найбільш знакових будівель світу"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -513,6 +529,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Як Львів відсвяткує День Незалежності: програма заходів",
+                        Url = urlService.GetEncodedUrlString("Як Львів відсвяткує День Незалежності: програма заходів"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -527,6 +544,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Новий роман частково буде про пошук ідентичності, – Вікторія Амеліна",
+                        Url = urlService.GetEncodedUrlString("Новий роман частково буде про пошук ідентичності, – Вікторія Амеліна"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -541,6 +559,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Чому у Львові виник скандал навколо фільму про батярів",
+                        Url = urlService.GetEncodedUrlString("Чому у Львові виник скандал навколо фільму про батярів"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -555,6 +574,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Чому у Львові виник скандал навколо фільму про батярів 2",
+                        Url = urlService.GetEncodedUrlString("Чому у Львові виник скандал навколо фільму про батярів 2"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -569,6 +589,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "На «Арені Львів» відбудеться фінал проекту «Українська пісня»: чого очікувати ?",
+                        Url = urlService.GetEncodedUrlString("На «Арені Львів» відбудеться фінал проекту «Українська пісня»: чого очікувати ?"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[1],
@@ -583,6 +604,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Url = urlService.GetEncodedUrlString("Поетичні новинки: що презентують на 24 Форумі видавців"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -597,6 +619,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Url = urlService.GetEncodedUrlString("Поетичні новинки: що презентують на 24 Форумі видавців"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -611,6 +634,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців",
+                        Url = urlService.GetEncodedUrlString("Поетичні новинки: що презентують на 24 Форумі видавців"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -625,6 +649,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
+                        Url = urlService.GetEncodedUrlString("Поетичні новинки: що презентують на 24 Форумі видавців 2"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -639,6 +664,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Поетичні новинки: що презентують на 24 Форумі видавців 2",
+                        Url = urlService.GetEncodedUrlString("Поетичні новинки: що презентують на 24 Форумі видавців 2"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -653,6 +679,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "На «Арені Львів» відбудеться фінал проекту «Українська пісня»: чого очікувати ?",
+                        Url = urlService.GetEncodedUrlString("На «Арені Львів» відбудеться фінал проекту «Українська пісня»: чого очікувати ?"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -668,6 +695,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Чому у Львові виник скандал навколо фільму про батярів",
+                        Url = urlService.GetEncodedUrlString("Чому у Львові виник скандал навколо фільму про батярів"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -682,6 +710,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Як Львів відсвяткує День Незалежності: програма заходів",
+                        Url = urlService.GetEncodedUrlString("Як Львів відсвяткує День Незалежності: програма заходів"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -696,6 +725,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Як Львів відсвяткує День Незалежності: програма заходів",
+                        Url = urlService.GetEncodedUrlString("Як Львів відсвяткує День Незалежності: програма заходів"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -711,6 +741,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Як Львів відсвяткує День Незалежності: програма заходів 2",
+                        Url = urlService.GetEncodedUrlString("Як Львів відсвяткує День Незалежності: програма заходів 2"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[2],
@@ -726,6 +757,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "В Україні почалась нова хакерська атака",
+                        Url = urlService.GetEncodedUrlString("В Україні почалась нова хакерська атака"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
@@ -740,6 +772,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Google випустив нову Android — Oreo",
+                        Url = urlService.GetEncodedUrlString("Google випустив нову Android — Oreo"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "У новій операційній системі з’явилася можливість працювати в режимі «картинка в картинці». Наприклад, можна продовжувати...",
                         Category = context.Categories.ToList()[3],
@@ -756,6 +789,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Відомий львівський журналіст розповів, чому Садовому...",
+                        Url = urlService.GetEncodedUrlString("Відомий львівський журналіст розповів, чому Садовому..."),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
@@ -772,6 +806,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Відомий львівський журналіст розповів, чому Садовому... 2",
+                        Url = urlService.GetEncodedUrlString("Відомий львівський журналіст розповів, чому Садовому... 2"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
@@ -788,6 +823,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку",
+                        Url = urlService.GetEncodedUrlString("Petya.A-2: в Україні попереджають про можливу повторну кібератаку"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
@@ -805,6 +841,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку 2",
+                        Url = urlService.GetEncodedUrlString("Petya.A-2: в Україні попереджають про можливу повторну кібератаку 2"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
@@ -821,6 +858,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Petya.A-2: в Україні попереджають про можливу повторну кібератаку",
+                        Url = urlService.GetEncodedUrlString("Petya.A-2: в Україні попереджають про можливу повторну кібератаку"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[3],
@@ -838,6 +876,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "Актори \"гри престолів\" розповіли про \"божевільне\" засекречення фіналу серіалу",
+                        Url = urlService.GetEncodedUrlString("Актори \"гри престолів\" розповіли про \"божевільне\" засекречення фіналу серіалу"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[4],
@@ -854,6 +893,7 @@ namespace Investor.Web
                     new Entity.NewsEntity
                     {
                         Title = "У Москві шукають аноніма, який за один вечір повідомив про 20 замінувань",
+                        Url = urlService.GetEncodedUrlString("У Москві шукають аноніма, який за один вечір повідомив про 20 замінувань"),
                         Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                         Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                         Category = context.Categories.ToList()[4],
@@ -868,6 +908,7 @@ namespace Investor.Web
                      new Entity.NewsEntity
                      {
                          Title = "У Харкові Lexus влетів у натовп людей: Геращенко розповів, хто був за кермом",
+                         Url = urlService.GetEncodedUrlString("У Харкові Lexus влетів у натовп людей: Геращенко розповів, хто був за кермом"),
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                          Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                          Category = context.Categories.ToList()[4],
@@ -884,6 +925,7 @@ namespace Investor.Web
                      new Entity.NewsEntity
                      {
                          Title = "У США придумали намет, який плаває",
+                         Url = urlService.GetEncodedUrlString("У США придумали намет, який плаває"),
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                          Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                          Category = context.Categories.ToList()[4],
@@ -898,6 +940,7 @@ namespace Investor.Web
                      new Entity.NewsEntity
                      {
                          Title = "Жінка бореться проти \"ідеального світу\" в Instagram дотепними фото з подорожей",
+                         Url = urlService.GetEncodedUrlString("Жінка бореться проти \"ідеального світу\" в Instagram дотепними фото з подорожей"),
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                          Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                          Category = context.Categories.ToList()[4],
@@ -912,6 +955,7 @@ namespace Investor.Web
                      new Entity.NewsEntity
                      {
                          Title = "Дизайнер створює крихітні світи за допомогою звичайних речей",
+                         Url = urlService.GetEncodedUrlString("Дизайнер створює крихітні світи за допомогою звичайних речей"),
                          Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                          Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                          Category = context.Categories.ToList()[4],
@@ -928,6 +972,7 @@ namespace Investor.Web
                       new Entity.NewsEntity
                       {
                           Title = "Бред Пітт закрутив роман із 21-річною актрисою",
+                          Url = urlService.GetEncodedUrlString("Бред Пітт закрутив роман із 21-річною актрисою"),
                           Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                           Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                           Category = context.Categories.ToList()[4],
@@ -944,6 +989,7 @@ namespace Investor.Web
                        new Entity.NewsEntity
                        {
                            Title = "Професор пояснив, чому не варто поступатися старшим місцем у транспорті",
+                           Url = urlService.GetEncodedUrlString("Професор пояснив, чому не варто поступатися старшим місцем у транспорті"),
                            Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                            Category = context.Categories.ToList()[4],
@@ -960,6 +1006,7 @@ namespace Investor.Web
                        new Entity.NewsEntity
                        {
                            Title = "Три погані звички, через які ви виглядаєте старше",
+                           Url = urlService.GetEncodedUrlString("Три погані звички, через які ви виглядаєте старше"),
                            Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                            Category = context.Categories.ToList()[4],
@@ -976,6 +1023,7 @@ namespace Investor.Web
                        new Entity.NewsEntity
                        {
                            Title = "Чому українська медицина не завжди може допомогти психічно хворим людям",
+                           Url = urlService.GetEncodedUrlString("Чому українська медицина не завжди може допомогти психічно хворим людям"),
                            Article = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                            Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquam sit amet massa sit amet consequat. Mauris metus magna, aliquam quis tellus non, ullamcorper porttitor est. Ut eu pellentesque sem. ",
                            Category = context.Categories.ToList()[4],
@@ -999,27 +1047,27 @@ namespace Investor.Web
                     new TagEntity()
                     {
                         Name = "Ураган Ірма",
-                        Url = "uragan_irrma"
+                        Url = urlService.GetEncodedUrlString("Ураган Ірма")
                     },
                     new TagEntity()
                     {
                         Name = "Саакашвілі і Львів",
-                        Url = "saakashvili_i_lviv"
+                        Url = urlService.GetEncodedUrlString("Саакашвілі і Львів")
                     },
                     new TagEntity()
                     {
                         Name = "Культурний вибух",
-                        Url = "kulturnyi_vybukh"
+                        Url = urlService.GetEncodedUrlString("Культурний вибух")
                     },
                     new TagEntity()
                     {
                         Name = "Політична течія",
-                        Url = "politychna_techiya"
+                        Url = urlService.GetEncodedUrlString("Політична течія")
                     },
                     new TagEntity()
                     {
                         Name = "теракт у центрі Києва",
-                        Url = "teract_u_centri_Kyeva"
+                        Url = urlService.GetEncodedUrlString("теракт у центрі Києва")
                     }
                     );
                 context.SaveChanges();

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Investor.Model
 {
@@ -8,6 +6,7 @@ namespace Investor.Model
     {
         public int PostId { set; get; }
         public string Title { set; get; }
+        public string Url { set; get; }
         public DateTime PublishedOn { set; get; }
         public Category Category { set; get; }
         public bool? IsPublished { set; get; }

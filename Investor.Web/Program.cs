@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Investor.Entity;
-using Investor.Model;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Investor.Repository;
-using Investor.Service;
+using Investor.Service.Utils;
 using Microsoft.AspNetCore.Identity;
 
 namespace Investor.Web
@@ -32,7 +28,8 @@ namespace Investor.Web
                     var signInManager = services.GetService<SignInManager<UserEntity>>();
                     var userManager = services.GetService<UserManager<UserEntity>>();
                     var roleManager = services.GetService<RoleManager<IdentityRole>>();
-                    SampleData.Initialize(context, signInManager, userManager,roleManager);
+                    var urlService = services.GetService<UrlService>();
+                    SampleData.Initialize(context, signInManager, userManager, roleManager, urlService);
                 }
                 catch (Exception ex)
                 {
@@ -46,8 +43,10 @@ namespace Investor.Web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseStartup<Startup>()
-                .Build();
+            .UseKestrel()
+            .UseContentRoot(Directory.GetCurrentDirectory())
+            .UseUrls("http://localhost:6969")
+            .UseStartup<Startup>()
+            .Build();
     }
 }

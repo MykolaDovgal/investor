@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Investor.Entity;
+﻿using System.Threading.Tasks;
 using Investor.Model;
 
 namespace Investor.Service.Interfaces

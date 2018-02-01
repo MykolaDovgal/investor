@@ -1,16 +1,23 @@
-﻿@model Investor.Model.News
-@inject Investor.Service.Utils.TimeService PostPublicationDate
+﻿@inject Investor.Service.Utils.TimeService PostPublicationDate
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
 @inject Investor.Service.Interfaces.IStatisticsService StatisticsService
 @using Investor.Model
+@model News
+
+
+@{
+    var publishedDate = Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано";
+    var hitCount = StatisticsService.GetPostViewsCountByIdAsync(Model.PostId).Result;
+    var imagePath = ImagePath.GetImagePath(Model.Image, Model.PostId, "large-");
+}
 
 <h1 class="title-card-page">
     @Model.Title
 </h1>
 <div class="info-news">
     <span class="card-category-news color-@(Model.Category.Url) m"><img src="/img/little-icons/no-img-@(Model.Category.Url).png">@Model.Category.Name</span>
-    <span class="data-post"><i class="icons icon-clock"></i> @(Model.IsPublished ? PostPublicationDate.GetFormattedDate(Model.PublishedOn) : "Не опубліковано")</span>
-    <span class="reviews-post"><i class="icons icon-reviews"></i>@StatisticsService.GetPostViewsCountByIdAsync(Model.PostId).Result</span>
+    <span class="data-post"><i class="icons icon-clock"></i> @publishedDate</span>
+    <span class="reviews-post"><i class="icons icon-reviews"></i>@hitCount</span>
 </div>
 <div class="wrapper-social-share">
     <a onClick="openWinFb()" class="socail-share facebook-share">
@@ -32,7 +39,7 @@
 </div>
 
 <div class="card-news-img mt-4 mb-5">
-    <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "large-")" class="img-fluid" />
+    <img src="~/@imagePath" class="img-fluid" />
 </div>
 <div class="card-news-desc mb-4">
     @Html.Raw(Model.Article)

@@ -1,22 +1,24 @@
-﻿using Investor.Repository.Interfaces;
+﻿using AutoMapper;
+using Investor.Entity;
+using Investor.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Investor.Entity;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using AutoMapper;
 using Investor.Model;
+using System.Threading.Tasks;
+using Investor.Service.Utils;
 
 namespace Investor.Repository
 {
     public class PostRepository : IPostRepository
     {
         private readonly NewsContext _newsContext;
-        public PostRepository(NewsContext context)
+        private readonly UrlService _urlService;
+        public PostRepository(NewsContext context, UrlService urlService)
         {
             _newsContext = context;
+            _urlService = urlService;
         }
 
         public async Task<T> AddPostAsync<T>(T map) where T : PostEntity
@@ -24,6 +26,7 @@ namespace Investor.Repository
             map.ModifiedOn = DateTime.Now;
             map.CreatedOn = DateTime.Now;
             map.PublishedOn = DateTime.Now; // TODO!
+            map.Url = _urlService.GetEncodedUrlString(map.Title);
             await _newsContext.Set<T>().AddAsync(map);
             await _newsContext.SaveChangesAsync();
             return map;
@@ -173,7 +176,8 @@ namespace Investor.Repository
             oldPost.PublishedOn = (post.IsPublished ?? false) && !(oldPost.IsPublished ?? false) ? DateTime.Now : oldPost.PublishedOn;
             oldPost = Mapper.Map(post, oldPost);
             oldPost.Category = _newsContext.Categories.Find(post.CategoryId ?? oldPost.Category.CategoryId);
-            var newPost = _newsContext.Set<T>().Update(oldPost);
+            oldPost.Url = _urlService.GetEncodedUrlString(oldPost.Title);
+            _newsContext.Set<T>().Update(oldPost);
             await _newsContext.SaveChangesAsync();
             return oldPost;
         }
@@ -190,6 +194,7 @@ namespace Investor.Repository
                 oldPosts[i].PublishedOn = (newPost.IsPublished ?? false) && !(oldPosts[i].IsPublished ?? false) ? DateTime.Now : oldPosts[i].PublishedOn;
                 oldPosts[i] = Mapper.Map<T, T>(newPost, oldPosts[i]);  //TODO ??
                 oldPosts[i].ModifiedOn = DateTime.Now;
+                oldPosts[i].Url = _urlService.GetEncodedUrlString(oldPosts[i].Title);
             }
             _newsContext.Set<T>().UpdateRange(oldPosts);
             await _newsContext.SaveChangesAsync();

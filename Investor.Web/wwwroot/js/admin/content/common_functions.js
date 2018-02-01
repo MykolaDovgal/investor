@@ -146,9 +146,10 @@ let initialTable = function (tableId) {
 						}
 					}
 				],
-				"language": {
-				    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Ukrainian.json"
-				}
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Ukrainian.json"
+
+                }
 			});
 			break;
 		case "#tagsTable":

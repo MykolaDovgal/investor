@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Investor.Entity
 {
@@ -11,7 +8,5 @@ namespace Investor.Entity
 
         [ForeignKey("AuthorId")]
         public UserEntity Author { set; get; }
-
-        public BlogEntity() : base() { }
     }
 }

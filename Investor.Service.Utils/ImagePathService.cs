@@ -1,22 +1,15 @@
-﻿using Investor.Entity;
-using Investor.Model;
-using Investor.Repository;
-using Investor.Repository.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using Investor.Service.Utils.Interfaces;
 
 namespace Investor.Service.Utils
 {
     public class ImagePathService : IImagePathService
     {
-        private readonly IPostRepository _postRepository;
-        public ImagePathService(IPostRepository postRepository)
+        //private readonly IPostRepository _postRepository;
+        public ImagePathService()
         {
-            _postRepository = postRepository;
+            //_postRepository = postRepository;
         }
         public string GetImagePath(string imageName, int id, string prefix = "")
         {
@@ -25,9 +18,10 @@ namespace Investor.Service.Utils
                 return $"img/posts/{Path.GetFileNameWithoutExtension(imageName)}/{prefix}{imageName}";
             }
 
-            PostEntity post = _postRepository.GetPostByIdAsync<PostEntity>(id).Result;
-            
-            return post == null ? $"img/no-img/no-img.png" : $"img/no-img/no-img-{post.Category.Url}.png";
+            return "img/no-img/no-img-policy.png";
+            //PostEntity post = _postRepository.GetPostByIdAsync<PostEntity>(id).Result;
+
+            //return post == null ? $"img/no-img/no-img.png" : $"img/no-img/no-img-{post.Category.Url}.png";
         }
 
         public string GetAccountImagePath(string imageName, string prefix = "small-")

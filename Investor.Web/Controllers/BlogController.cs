@@ -2,7 +2,7 @@
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Investor.Model;
-using Microsoft.AspNetCore.Authorization;
+using Investor.Web.Filters;
 
 namespace Investor.Web.Controllers
 {
@@ -37,6 +37,7 @@ namespace Investor.Web.Controllers
             return View();
         }
 
+        [ServiceFilter(typeof(HitCount))]
         public IActionResult Page(int id)
         {
             ViewBag.PathBase = Request.Host.Value;

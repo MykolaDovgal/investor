@@ -1,7 +1,5 @@
 ﻿using Investor.Repository.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Investor.Entity;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;

@@ -1,18 +1,21 @@
 ﻿@model Investor.Model.PostPreview
 @inject Investor.Service.Utils.TimeService PostPublicationDate
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Utils.UrlService UrlService
 
 @{
-    string publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+    var publishedTime = PostPublicationDate.GetFormattedDate(Model.PublishedOn);
+    var fullPostRelativePath = UrlService.GetPostRelativePath(Model);
+    var imagePath = ImagePath.GetImagePath(Model.Image, Model.PostId, "medium-");
 }
 
 <div class="item-news col-md-6">
     <div class="img-news img-eclipse">
-        <a href="/post/@Model.PostId">
-            <img src="~/@ImagePath.GetImagePath(Model.Image, Model.PostId, "large-")" class="img-fluid" />
+        <a href="@fullPostRelativePath">
+            <img src="~/@imagePath" class="img-fluid" />
         </a>
     </div>
-    <a href="/post/@Model.PostId" class="title-news">
+    <a href="@fullPostRelativePath" class="title-news">
         @Model.Title
     </a>
     <p class="text-news">

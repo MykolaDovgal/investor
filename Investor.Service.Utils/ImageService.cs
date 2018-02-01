@@ -6,7 +6,6 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using SixLabors.Primitives;
 using System.Collections.Generic;
-using System.Linq;
 using System;
 using Investor.Service.Utils.Interfaces;
 

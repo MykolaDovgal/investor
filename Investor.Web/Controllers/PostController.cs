@@ -1,21 +1,10 @@
 ﻿using Investor.Model;
 using Investor.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Investor.Service.Utils;
 using Investor.Web.Filters;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.Primitives;
 
 namespace Investor.Web.Controllers
 {
@@ -23,45 +12,40 @@ namespace Investor.Web.Controllers
     {
         private readonly INewsService _postService;
         private readonly ITagService _tagService;
-        private readonly IpService _ipService;
 
         public PostController(INewsService postService, ITagService tagService, IpService ipService)
         {
             _postService = postService;
             _tagService = tagService;
-            _ipService = ipService;
         }
 
         [ServiceFilter(typeof(HitCount))]
-        public IActionResult Index(int id)
+        public IActionResult Index(string postUrl,int postId)
         {
             ViewBag.PathBase = Request.Host.Value;
-            News post = _postService.GetNewsByIdAsync(id).Result;
 
-            if (!(post?.IsPublished) ?? true)
+            News post = _postService.GetNewsByIdAsync(postId).Result;
+
+            if (post == null || !post.IsPublished || post.Url != postUrl)
             {
                 Response.StatusCode = 404;
                 return StatusCode(Response.StatusCode);
             }
+
             ViewBag.Post = post;
             ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result?.ToList();
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
-            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
+            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(postId).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
-
-            
-            if (HttpContext.Session.Keys.Contains("count"))
-            {
-                int? count = HttpContext.Session.GetInt32("count");
-            }
 
             return View("Index");
         }
-        [Route("/unpublished/post/{id}")]
-        public IActionResult PostPreview(int id)
+
+        [Route("/unpublished/{postUrl}-{id}")]
+        public IActionResult PostPreview(string postUrl,int id)
         {
             News post = _postService.GetNewsByIdAsync(id).Result;
-            if (!HttpContext.User.IsInRole("admin") || post == null || post.IsPublished == true)
+            if (!HttpContext.User.IsInRole("admin") || post == null || post.Url != postUrl || post.IsPublished)
                 return new StatusCodeResult(404);
             ViewBag.PathBase = Request.Host.Value;
             ViewBag.Post = post;
@@ -72,7 +56,6 @@ namespace Investor.Web.Controllers
 
             return View("UnpublishedPost");
         }
-
 
         public IActionResult LastNews()
         {

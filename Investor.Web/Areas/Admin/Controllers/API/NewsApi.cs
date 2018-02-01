@@ -44,10 +44,8 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             newPost.Category = _categoryService.GetCategoryByUrlAsync(post.Category).Result;
             newPost.Image = image != null ? _imageService.SaveImage(image) : null;
             _newsService.AddTagsToNewsAsync(newPost.PostId, post.Tags).Wait();
-            //NewsViewModel newPost = Mapper.Map<News, NewsViewModel>(_newsService.GetNewsByIdAsync(post.PostId).Result);
-            //newPost = Mapper.Map(post, newPost);
-            var result =_newsService.UpdateNewsAsync(newPost).Result;
-            return Json(new { id = result.PostId, href = $"{(result.IsPublished ? "" : "/unpublished" )}/post/{result.PostId}" });
+            News result = _newsService.UpdateNewsAsync(newPost).Result;
+            return Json(new { id = result.PostId, href = $"{(result.IsPublished ? "/" + result.Category.Url : "/unpublished" )}/{result.Url}-{result.PostId}" });
         }
 
         [Route("CreateNews")]
@@ -58,7 +56,7 @@ namespace Investor.Web.Areas.Admin.Controllers.API
             post.Image = image != null ? _imageService.SaveImage(image) : null;
             News tmp = _newsService.AddNewsAsync(post).Result;
             _newsService.AddTagsToNewsAsync(post.PostId, post.Tags?.Select(s => s.Name)).Wait();
-            return Json(new { id = tmp.PostId, href = $"{(tmp.IsPublished ? "" : "/unpublished")}/post/{tmp.PostId}" });
+            return Json(new { id = tmp.PostId, href = $"{(tmp.IsPublished ? "/" + tmp.Category.Url : "/unpublished")}/{tmp.Url}-{tmp.PostId}" });
         }
 
         [Route("UpdateTableNews")]

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Investor.Entity;
 using Investor.Model;
 using Microsoft.AspNetCore.Identity;
 

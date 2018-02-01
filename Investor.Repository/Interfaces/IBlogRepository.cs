@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Investor.Entity;
-using Investor.Model;
 
 namespace Investor.Repository.Interfaces
 {
