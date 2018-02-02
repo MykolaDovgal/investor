@@ -153,9 +153,6 @@ namespace Investor.Web
                 routes.MapRoute(
                     name: "areas",
                     template: "{area:exists}/{controller=Home}/{action=Index}");
-                //routes.MapRoute(
-                //    name: "areas",
-                //    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute("login", "login",
                     defaults: new { controller = "Account", action = "Login" });
 
