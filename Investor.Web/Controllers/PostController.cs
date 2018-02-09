@@ -20,11 +20,11 @@ namespace Investor.Web.Controllers
         }
 
         [ServiceFilter(typeof(HitCount))]
-        public IActionResult Index(string postUrl,int postId)
+        public IActionResult Index(string postUrl,int id)
         {
             ViewBag.PathBase = Request.Host.Value;
 
-            News post = _postService.GetNewsByIdAsync(postId).Result;
+            News post = _postService.GetNewsByIdAsync(id).Result;
 
             if (post == null || !post.IsPublished || post.Url != postUrl)
             {
@@ -35,7 +35,7 @@ namespace Investor.Web.Controllers
             ViewBag.Post = post;
             ViewBag.LatestPosts = _postService.GetLatestNewsAsync(10).Result?.ToList();
             ViewBag.ImportantPosts = _postService.GetImportantNewsAsync(10).Result?.ToList();
-            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(postId).Result?.ToList();
+            ViewBag.Tags = _postService.GetAllTagsByNewsIdAsync(id).Result?.ToList();
             ViewBag.PopularTags = _tagService.GetPopularTagsAsync(5).Result?.ToList();
 
             return View("Index");

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Repository.Interfaces;
@@ -18,6 +20,22 @@ namespace Investor.Repository
         {
             _newsContext.Statistics.Add(statistics);
             await _newsContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<int>> GetPopularPostIdsByCategoryAsync(string categoryUrl, int limit, DateTime fromDate, DateTime toDate)
+        {
+            return await (from record in _newsContext.Statistics
+                          where record.Date >= fromDate && record.Date <= toDate
+                          group record by new { record.PostId, record.ClientIp } into allHit
+                          select new
+                          {
+                              Name = allHit.Key,
+                              Count = allHit.Count()
+                          } into uniqueHit
+                          orderby uniqueHit.Count descending
+                          select uniqueHit.Name.PostId)
+                          .Take(limit)
+                          .ToListAsync();
         }
 
         public async Task<int> GetPostViewsCountByIdAsync(int postId, bool isUnique)

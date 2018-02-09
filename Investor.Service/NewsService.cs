@@ -17,13 +17,15 @@ namespace Investor.Service
         private readonly IPostRepository _postRepository;
         private readonly ITagService _tagService;
         private readonly IMapper _mapper;
+        private readonly IStatisticsService _statisticsService;
 
-        public NewsService(INewsRepository newsRepository, ITagService tagService, IPostRepository postRepository, IMapper mapper)
+        public NewsService(INewsRepository newsRepository, ITagService tagService, IPostRepository postRepository, IStatisticsService statisticsService, IMapper mapper)
         {
             _newsRepository = newsRepository;
             _tagService = tagService;
             _postRepository = postRepository;
             _mapper = mapper;
+            _statisticsService = statisticsService;
         }
 
         public async Task<News> AddNewsAsync(News map)
@@ -125,7 +127,19 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PostPreview>> GetPopularNewsByCategoryUrlAsync(string categoryUrl, int limit)
         {
-            var posts = await _postRepository.GetPopularPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit);
+            DateTime nowTime = DateTime.Now;
+            DateTime fromTime = nowTime.Date;
+            DateTime toTime = nowTime.Date.AddDays(1).AddTicks(-1);
+
+            List<int> postIds = (await _statisticsService.GetPopularPostIdsByCategoryAsync(categoryUrl, limit, fromTime, toTime)).ToList();
+
+            List<NewsEntity> posts = (await _postRepository.GetPostsBasedOnIdCollectionAsync<NewsEntity>(postIds)).ToList();
+
+            if (posts.Count < limit)
+            {
+                posts.AddRange(await _postRepository.GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit - posts.Count, postIds));
+            }
+
             return posts.Select(_mapper.Map<PostEntity, PostPreview>);
         }
 

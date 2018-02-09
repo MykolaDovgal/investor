@@ -1,4 +1,5 @@
-﻿using Investor.Entity;
+﻿using System;
+using Investor.Entity;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Investor.Model;
@@ -9,8 +10,8 @@ namespace Investor.Repository.Interfaces
     {
         IEnumerable<T> GetAllPosts<T>() where T : PostEntity;
         Task<T> GetPostByIdAsync<T>(int id) where T : PostEntity;
-        Task<IEnumerable<T>> GetPopularPostsByCategoryUrlAsync<T>(string categoryUrl, int limit) where T : PostEntity;
         Task<IEnumerable<T>> GetLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit) where T : PostEntity;
+        Task<IEnumerable<T>> GetLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit, IEnumerable<int> exeptPost) where T : PostEntity;
         Task<IEnumerable<T>> GetPagedLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit, int page) where T : PostEntity;
         Task<IEnumerable<T>> GetAllPostsByTagNameAsync<T>(string tagName) where T : PostEntity;
         Task<IEnumerable<T>> GetPostsBasedOnIdCollectionAsync<T>(IEnumerable<int> postIds) where T : PostEntity;

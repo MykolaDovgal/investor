@@ -38,10 +38,10 @@ namespace Investor.Web.Controllers
         }
 
         [ServiceFilter(typeof(HitCount))]
-        public IActionResult Page(string blogUrl,int blogId)
+        public IActionResult Page(string blogUrl,int id)
         {
             ViewBag.PathBase = Request.Host.Value;
-            Blog blog = _blogService.GetBlogByIdAsync<Blog>(blogId).Result;
+            Blog blog = _blogService.GetBlogByIdAsync<Blog>(id).Result;
 
             if (blog == null || !blog.IsPublished || blog.Url != blogUrl)
             {

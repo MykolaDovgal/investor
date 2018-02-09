@@ -29,7 +29,7 @@ namespace Investor.Web
                     var userManager = services.GetService<UserManager<UserEntity>>();
                     var roleManager = services.GetService<RoleManager<IdentityRole>>();
                     var urlService = services.GetService<UrlService>();
-                    //SampleData.Initialize(context, signInManager, userManager, roleManager, urlService);
+                    SampleData.Initialize(context, signInManager, userManager, roleManager, urlService);
                 }
                 catch (Exception ex)
                 {

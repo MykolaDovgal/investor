@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Investor.Model;
 using Investor.Service.Interfaces;
 using Investor.ViewModel;
@@ -11,17 +13,19 @@ namespace Investor.Web.Controllers
     {
         private readonly ISearchService _searchService;
         private readonly ICategoryService _categoryService;
+        private readonly IMapper _mapper;
 
-        public SearchController(ISearchService searchService, ICategoryService categoryService)
+        public SearchController(ISearchService searchService, ICategoryService categoryService, IMapper mapper)
         {
             _searchService = searchService;
             _categoryService = categoryService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         public IActionResult Posts(int page = 1, int count = 10, string categoryUrl = null, string query = null, string date = null)
         {
-            DateTime? dt = (DateTime?)null;
+            DateTime? dt = null;
             if (!String.IsNullOrEmpty(date))
             {
                 dt = DateTime.Parse(date);
@@ -49,9 +53,9 @@ namespace Investor.Web.Controllers
         public IActionResult SearchByTag(string tag, string categoryUrl)
         {
             ViewBag.CategoryName = _categoryService.GetCategoryByUrlAsync(categoryUrl).Result;
-            var postQuery = new PostSearchQuery { Tag = tag, CategoryUrl = categoryUrl };
+            PostSearchQuery postQuery = new PostSearchQuery { Tag = tag, CategoryUrl = categoryUrl };
             ViewBag.Query = postQuery;
-            var searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
+            List<PostPreview> searchResult = _searchService.SearchPosts(postQuery).Result.ToList();
             postQuery.Page++;
             ViewBag.GetMoreEnabled = searchResult.Count == postQuery.Count &&
                                      _searchService.SearchPosts(postQuery).Result.ToList().Count > 0;

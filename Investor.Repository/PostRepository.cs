@@ -44,7 +44,7 @@ namespace Investor.Repository
             await _newsContext.SaveChangesAsync();
             return newTag.Tag;
         }
-        public async Task RemoveTagFromPostAsync (int postId, TagEntity tag)
+        public async Task RemoveTagFromPostAsync(int postId, TagEntity tag)
         {
             var post = _newsContext
                  .Posts
@@ -80,9 +80,7 @@ namespace Investor.Repository
 
         public async Task<IEnumerable<T>> GetLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit) where T : PostEntity
         {
-            IQueryable<T> posts = null;
-
-            posts = _newsContext
+            IQueryable<T> posts = _newsContext
                 .Posts
                 .OfType<T>()
                 .Include(p => p.Category)
@@ -91,6 +89,22 @@ namespace Investor.Repository
                 .OrderByDescending(p => p.PublishedOn);
             return await posts.Take(limit).ToListAsync();
         }
+
+        public async Task<IEnumerable<T>> GetLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit, IEnumerable<int> exeptPost) where T : PostEntity
+        {
+            return await _newsContext
+                .Posts
+                .OfType<T>()
+                .Where(p => !exeptPost.Contains(p.PostId))
+                .Include(p => p.Category)
+                .Where(c => c.IsPublished ?? false)
+                .Where(p => p.Category.Url == categoryUrl.ToLower())
+                .OrderByDescending(p => p.PublishedOn)
+                .Take(limit)
+                .ToListAsync();
+        }
+
+
 
         public async Task<IEnumerable<T>> GetPagedLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit, int page) where T : PostEntity
         {
@@ -105,25 +119,51 @@ namespace Investor.Repository
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetPopularPostsByCategoryUrlAsync<T>(string categoryUrl, int limit) where T : PostEntity
-        {
-            return await _newsContext.Posts
-                .OfType<T>()
-                .Where(c => c.IsPublished ?? false)
-                .Where(p => p.Category.Url == categoryUrl)
-                .OrderByDescending(p => p.PublishedOn)
-                .Take(limit)
-                .Include(p => p.Category)
-                .ToListAsync();
-        }
+        //public async Task<IEnumerable<T>> GetPopularPostsByCategoryUrlAsync<T>(string categoryUrl, int limit) where T : PostEntity
+        //{
+
+        //    List<int> popularPostsId = ;
+
+        //    if (popularPostsId.Count < limit)
+        //    {
+        //        popularPostsId.AddRange(_newsContext.Posts
+        //            .OfType<T>()
+        //            .Where(c => c.IsPublished ?? false)
+        //            .Where(p => p.Category.Url == categoryUrl)
+        //            .Where(i => !popularPostsId.Contains(i.PostId))
+        //            .OrderByDescending(p => p.PublishedOn)
+        //            .Select(x => x.PostId)
+        //            .Take(limit - popularPostsId.Count).ToList());
+
+        //    }
+
+        //    return await _newsContext.Posts
+        //        .OfType<T>()
+        //        .Where(x => x.IsPublished ?? false)
+        //        .Where(y => y.Category.Url == categoryUrl)
+        //        .Where(i => popularPostsId.Contains(i.PostId))
+        //        .Include(p => p.Category).ToListAsync();
+
+
+
+
+        //    return await _newsContext.Posts
+        //        .OfType<T>()
+        //        .Where(c => c.IsPublished ?? false)
+        //        .Where(p => p.Category.Url == categoryUrl)
+        //        .OrderByDescending(p => p.PublishedOn)
+        //        .Take(limit)
+        //        .Include(p => p.Category)
+        //        .ToListAsync();
+        //}
 
         public async Task<T> GetPostByIdAsync<T>(int id) where T : PostEntity
-        {  
-            var blog = await _newsContext.Posts
+        {
+            T blog = await _newsContext.Posts
                 .OfType<T>()
                 .Include(p => p.Category)
                 .Include(p => p.PostTags)
-                .ThenInclude(p=>p.Tag)
+                .ThenInclude(p => p.Tag)
                 .FirstOrDefaultAsync(p => p.PostId == id);
             if (blog is BlogEntity)
                 _newsContext.Entry(blog as BlogEntity).Reference(c => c.Author).Load();
@@ -135,7 +175,7 @@ namespace Investor.Repository
         {
             return await _newsContext.Posts
                 .OfType<T>()
-                .Include(c=>c.Category)
+                .Include(c => c.Category)
                 .AsNoTracking()
                 .Where(p => postIds.Contains(p.PostId))
                 .ToListAsync();
@@ -169,7 +209,7 @@ namespace Investor.Repository
             T oldPost = _newsContext
                 .Posts
                 .OfType<T>()
-                .Include(c=>c.Category)
+                .Include(c => c.Category)
                 .FirstOrDefaultAsync(p => p.PostId == post.PostId)
                 .Result;
 
@@ -188,7 +228,7 @@ namespace Investor.Repository
             IEnumerable<int> postsId = newPosts.Select(x => x.PostId);
             List<T> oldPosts = (await GetPostsBasedOnIdCollectionAsync<T>(postsId)).ToList();
 
-            for (var i=0; i < oldPosts.Count(); i++)
+            for (var i = 0; i < oldPosts.Count(); i++)
             {
                 T newPost = newPosts.Find(x => x.PostId == oldPosts[i].PostId);
                 oldPosts[i].PublishedOn = (newPost.IsPublished ?? false) && !(oldPosts[i].IsPublished ?? false) ? DateTime.Now : oldPosts[i].PublishedOn;
@@ -234,7 +274,7 @@ namespace Investor.Repository
                 _newsContext.Users.Where(b => b.Blogs.Count > 0).Load();
             return _newsContext
                 .Set<T>()
-                .Include(c=>c.Category);
+                .Include(c => c.Category);
         }
     }
 }
