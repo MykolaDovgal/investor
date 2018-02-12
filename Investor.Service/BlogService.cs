@@ -7,6 +7,8 @@ using Investor.Entity;
 using Investor.Model;
 using Investor.Repository.Interfaces;
 using Investor.Service.Interfaces;
+using Investor.Service.Utils;
+using Microsoft.AspNetCore.Identity;
 
 namespace Investor.Service
 {
@@ -17,10 +19,11 @@ namespace Investor.Service
         private readonly ITagService _tagService;
         private readonly ICategoryService _categoryService;
         private readonly IUserService _userService;
+        private readonly CacheService _cacheService;
         private readonly IMapper _mapper;
 
 
-        public BlogService(IBlogRepository blogRepository, IPostRepository postRepository, ITagService tagService, ICategoryService categoryService, IUserService userSesrvice, IMapper mapper)
+        public BlogService(IBlogRepository blogRepository, IPostRepository postRepository, ITagService tagService, ICategoryService categoryService, IUserService userSesrvice, IMapper mapper, CacheService cacheService)
         {
             _blogRepository = blogRepository;
             _postRepository = postRepository;
@@ -28,6 +31,7 @@ namespace Investor.Service
             _categoryService = categoryService;
             _userService = userSesrvice;
             _mapper = mapper;
+            _cacheService = cacheService;
         }
 
 
@@ -141,17 +145,34 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PopularUser>> GetPopularUsers(int limit)
         {
-            List<UserEntity> users = (await _blogRepository.GetPopularUsers(limit)).ToList();
+            var popularBlogerCacheKay = "popular_bloger_ids";
+
+            List<string> popularUserIds = _cacheService.GetValue(popularBlogerCacheKay) as List<string>;
+
+            if (popularUserIds == null || !popularUserIds.Any())
+            {
+                popularUserIds = (await _blogRepository.GetPopularUserIds(limit)).ToList();
+                _cacheService.SetValue(popularBlogerCacheKay, popularUserIds, TimeSpan.FromMinutes(90));
+            }          
+
+            List<UserEntity> popularUsers = (await _blogRepository.GetBlogersBasedOnIdCollectionAsync(popularUserIds)).ToList();
 
             List<PopularUser> popUsers = new List<PopularUser>();
-            users.ForEach(u =>
+
+            popularUsers.ForEach(u =>
             {
                 BlogEntity blog = u.Blogs
-                .Where(b => { return b.IsPublished != null && b.IsPublished.Value; })
-                .OrderBy(b => b.PublishedOn)?
-                .FirstOrDefault();
-                popUsers.Add(new PopularUser { User = _mapper.Map<UserEntity, User>(u), NumberOfPosts = u.Blogs.Count, PostId = blog?.PostId ?? 0, Title = blog?.Title ?? String.Empty });
+                    .Where(b => b.IsPublished != null && b.IsPublished.Value)
+                    .OrderBy(b => b.PublishedOn)?
+                    .FirstOrDefault();
+                popUsers.Add(new PopularUser
+                {
+                    User = _mapper.Map<UserEntity, User>(u),
+                    NumberOfPosts = u.Blogs.Count,
+                    LatestBlog = _mapper.Map<BlogEntity, BlogPreview>(blog)
+                });
             });
+
             return popUsers;
         }
 

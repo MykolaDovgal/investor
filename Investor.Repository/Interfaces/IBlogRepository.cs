@@ -11,7 +11,8 @@ namespace Investor.Repository.Interfaces
         Task<IEnumerable<BlogEntity>> GetPopularBlogsAsync(int limit);
         Task<IEnumerable<BlogEntity>> GetBlogsByUserIdAsync(string userId, bool? isPublished = null);
         Task<int> GetNumberOfBlogsByUserId(string userId);
-        Task<IEnumerable<UserEntity>> GetPopularUsers(int limit);
+        Task<IEnumerable<string>> GetPopularUserIds(int limit);
         Task<IEnumerable<BlogEntity>> GetPagedLatestBlogsAsync(int page, int limit);
+        Task<IEnumerable<UserEntity>> GetBlogersBasedOnIdCollectionAsync(ICollection<string> ids);
     }
 }

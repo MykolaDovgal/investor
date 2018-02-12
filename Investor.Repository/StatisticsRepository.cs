@@ -24,18 +24,33 @@ namespace Investor.Repository
 
         public async Task<IEnumerable<int>> GetPopularPostIdsByCategoryAsync(string categoryUrl, int limit, DateTime fromDate, DateTime toDate)
         {
-            return await (from record in _newsContext.Statistics
-                          where record.Date >= fromDate && record.Date <= toDate
-                          group record by new { record.PostId, record.ClientIp } into allHit
-                          select new
-                          {
-                              Name = allHit.Key,
-                              Count = allHit.Count()
-                          } into uniqueHit
-                          orderby uniqueHit.Count descending
-                          select uniqueHit.Name.PostId)
-                          .Take(limit)
-                          .ToListAsync();
+            IQueryable<int> postIdsByCategoryUrl = _newsContext.Posts
+                .Include(x => x.Category)
+                .Where(x => x.Category.Url == categoryUrl)
+                .Select(x => x.PostId);
+
+            return await _newsContext.Statistics
+                .Where(record => record.Date >= fromDate && record.Date <= toDate)
+                .Where(x => postIdsByCategoryUrl.Contains(x.PostId))
+                .GroupBy(record => new { record.PostId, record.ClientIp })
+                .Select(allHit => new { Name = allHit.Key, Count = allHit.Count() })
+                .OrderByDescending(uniqueHit => uniqueHit.Count)
+                .Select(uniqueHit => uniqueHit.Name.PostId)
+                .Take(limit)
+                .ToListAsync();
+
+            //return await (from record in _newsContext.Statistics
+            //              where record.Date >= fromDate && record.Date <= toDate
+            //              group record by new { record.PostId, record.ClientIp } into allHit
+            //              select new
+            //              {
+            //                  Name = allHit.Key,
+            //                  Count = allHit.Count()
+            //              } into uniqueHit
+            //              orderby uniqueHit.Count descending
+            //              select uniqueHit.Name.PostId)
+            //              .Take(limit)
+            //              .ToListAsync();
         }
 
         public async Task<int> GetPostViewsCountByIdAsync(int postId, bool isUnique)

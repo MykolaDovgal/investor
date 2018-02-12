@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Investor.Entity;
 using Investor.Repository.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Investor.Repository
@@ -46,11 +47,11 @@ namespace Investor.Repository
         {
             return await _newsContext.Blogs
                 .Include(p => p.Author)
-                .Where(c => isPublished == null || (c.IsPublished == isPublished && isPublished!=null ))
+                .Where(c => isPublished == null || (c.IsPublished == isPublished && isPublished != null))
                 .Where(p => p.AuthorId == userId)
                 .ToListAsync();
         }
-  
+
         public async Task<int> GetNumberOfBlogsByUserId(string userId)
         {
             return await _newsContext.Blogs
@@ -59,19 +60,32 @@ namespace Investor.Repository
                 .CountAsync();
         }
 
-        public async Task<IEnumerable<UserEntity>> GetPopularUsers(int limit)
+        public async Task<IEnumerable<string>> GetPopularUserIds(int limit)
         {
-            var role = _newsContext.Roles.FirstOrDefault(r => r.Name == "bloger");
+            IdentityRole role = _newsContext.Roles.FirstOrDefault(r => r.Name == "bloger");
+
             List<UserEntity> users = await _newsContext
                 .Users
-                .Where(u=>_newsContext.UserRoles.Where(ur=>ur.RoleId == role.Id).Select(ur=>ur.UserId).Contains(u.Id)) // select users in role "bloger"
-                .Include(c=>c.Blogs)
+                .Where(u => _newsContext.UserRoles.Where(ur => ur.RoleId == role.Id).Select(ur => ur.UserId).Contains(u.Id)) // select users in role "bloger"
+                .Include(c => c.Blogs)
                 .ToListAsync();
-            users = users
+        
+            List<string> popularUserIds = users
                 .OrderByDescending(u => u.Blogs.Count(b => b.IsPublished ?? false))
                 .Take(limit)
+                .Select(u => u.Id)
                 .ToList();
-            return users;
+
+            return popularUserIds;
+        }
+
+        public async Task<IEnumerable<UserEntity>> GetBlogersBasedOnIdCollectionAsync(ICollection<string> ids)
+        {
+            return await _newsContext
+                .Users
+                .Where(u => ids.Contains(u.Id)) 
+                .Include(c => c.Blogs)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<BlogEntity>> GetPagedLatestBlogsAsync(int page, int limit)

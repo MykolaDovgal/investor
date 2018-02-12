@@ -10,7 +10,7 @@ namespace Investor.Service.Mapper
     {
         public BlogMappingProfile()
         {
-            CreateMap<BlogEntity, BlogPreview>();
+            CreateMap<BlogEntity, BlogPreview>().ReverseMap();
             CreateMap<BlogEntity, TableBlogPreview>().ReverseMap();
             CreateMap<BlogEntity, Blog>()
                 .ForMember(dto => dto.Tags, opt => opt.MapFrom(x => x.PostTags.Select(t => t.Tag)));

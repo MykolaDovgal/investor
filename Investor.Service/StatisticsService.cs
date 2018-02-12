@@ -29,14 +29,13 @@ namespace Investor.Service
 
         public async Task<IEnumerable<int>> GetPopularPostIdsByCategoryAsync(string categoryUrl, int limit, DateTime fromDate, DateTime toDate)
         {
-            const string popularPostCacheKay = "popular_post_ids";
+            var popularPostCacheKay = $"popular_{categoryUrl}_post_ids";
 
             List<int> popularPostsIds = _cacheService.GetValue(popularPostCacheKay) as List<int>;
 
             if (popularPostsIds != null && popularPostsIds.Any()) return popularPostsIds;
 
             popularPostsIds =  (await _statisticsRepository.GetPopularPostIdsByCategoryAsync(categoryUrl,limit,fromDate,toDate)).ToList();
-
             _cacheService.SetValue(popularPostCacheKay, popularPostsIds, TimeSpan.FromMinutes(60));
 
             return popularPostsIds;

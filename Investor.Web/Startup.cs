@@ -162,7 +162,7 @@ namespace Investor.Web
                 routes.MapRoute("lastnews", "lastnews",
                     defaults: new { controller = "Post", action = "LastNews" });
 
-                routes.MapRoute("blog", "blog/{blogUrl}-{id:int}",
+                routes.MapRoute("blog", "blog/{postUrl}-{id:int}",
                     defaults: new { controller = "Blog", action = "Page" });
 
                 routes.MapRoute("post", "{category}/{postUrl}-{id:int}",

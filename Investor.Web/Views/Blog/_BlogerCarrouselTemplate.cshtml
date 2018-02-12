@@ -1,0 +1,27 @@
+﻿@model Investor.Model.PopularUser
+@inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Utils.UrlService UrlService
+
+@{
+    var fullPostRelativePath = Model.LatestBlog == null ? null : UrlService.GetPostRelativePath(Model.LatestBlog);
+    var accountImagePath = ImagePath.GetAccountImagePath(Model.User.Photo);
+    var accountPath = $"/blog/blogerpage/{Model.User.UserName}";
+}
+
+<div class="sidebar-item-blog vertical">
+    <a href="@accountPath">
+        <img src="~/@accountImagePath" alt="" class="rounded-circle align-top">
+    </a>
+    <div class="sidebar-item-blog-body align-top">
+        <a class="author-blog" href="@accountPath">
+            @Model.User.Name  @Model.User.Surname
+        </a>
+
+            <a href="@fullPostRelativePath" class="title-blog">
+                @Model?.LatestBlog?.Title
+            </a>
+        
+
+        <span class="activity-level blog-today-color">Рівень активності @Model.NumberOfPosts</span>
+    </div>
+</div>

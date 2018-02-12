@@ -1,28 +1,16 @@
 ﻿@model List<Investor.Model.PopularUser>
 @inject Investor.Service.Utils.Interfaces.IImagePathService ImagePath
+@inject Investor.Service.Utils.UrlService UrlService
 
-    
+
 
 <div class="carousel-top-blog slick-carousel">
     @for (int i = 0; i < Model.Count / 3 + (Model.Count % 3 > 0 ? 1 : 0); i++)
     {
         <div class="colum-slider">
-            @for (int jIndex = i * 3; jIndex < i * 3 + 3 && jIndex < Model.Count(); jIndex++)
+            @for (int jIndex = i * 3; jIndex < i * 3 + 3 && jIndex < Model.Count; jIndex++)
             {
-                <div class="sidebar-item-blog vertical">
-                    <a href="/blog/blogerpage/@Model[jIndex].User.UserName">
-                        <img src="~/@ImagePath.GetAccountImagePath(Model[jIndex].User.Photo)" alt="" class="rounded-circle align-top">
-                    </a>
-                    <div class="sidebar-item-blog-body align-top">
-                        <a class="author-blog" href="/blog/blogerpage/@Model[jIndex].User.UserName">
-                            @Model[jIndex].User.Name  @Model[jIndex].User.Surname
-                        </a>
-                        <a href="/blog/page/@Model[jIndex].PostId" class="title-blog">
-                            @Model[jIndex].Title
-                        </a>
-                        <span class="activity-level blog-today-color">Рівень активності @Model[jIndex].NumberOfPosts</span>
-                    </div>
-                </div>
+                @Html.Partial("~/Views/Blog/_BlogerCarrouselTemplate.cshtml", Model[jIndex])
             }
         </div>
     }

@@ -38,12 +38,12 @@ namespace Investor.Web.Controllers
         }
 
         [ServiceFilter(typeof(HitCount))]
-        public IActionResult Page(string blogUrl,int id)
+        public IActionResult Page(string postUrl, int id)
         {
             ViewBag.PathBase = Request.Host.Value;
             Blog blog = _blogService.GetBlogByIdAsync<Blog>(id).Result;
 
-            if (blog == null || !blog.IsPublished || blog.Url != blogUrl)
+            if (blog == null || !blog.IsPublished || blog.Url != postUrl)
             {
                 Response.StatusCode = 404;
                 return StatusCode(Response.StatusCode);
