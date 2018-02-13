@@ -51,16 +51,18 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PostPreview>> GetLatestNewsByCategoryUrlAsync(string categoryUrl, bool onMainPage = false, int limit = 10)
         {
-            List<NewsEntity> posts = new List<NewsEntity>();
-            posts = onMainPage
+            List<NewsEntity> posts = onMainPage
                 ? (await _newsRepository.GetAllNewsByCategoryUrlOnMainPageAsync(categoryUrl, limit)).ToList()
                 : (await _postRepository.GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit)).ToList();
+
+
             if (onMainPage && posts.Count < limit)
             {
                 posts.AddRange((await _postRepository
-                    .GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit))
+                    .GetLatestPostsByCategoryUrlAsync<NewsEntity>(categoryUrl, limit - posts.Count))
                     .Where(p => !posts.Select(s => s.PostId).Contains(p.PostId)));
             }
+
             return posts.Select(_mapper.Map<NewsEntity, PostPreview>);
         }
 
@@ -99,7 +101,7 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PostPreview>> GetLatestNewsAsync(int limit)
         {
-            var posts = await _newsRepository.GetLatestNewsAsync(limit);
+            IEnumerable<NewsEntity> posts = await _newsRepository.GetLatestNewsAsync(limit);
             return posts.Select(_mapper.Map<NewsEntity, PostPreview>);
         }
 
@@ -188,7 +190,7 @@ namespace Investor.Service
         public async Task<IEnumerable<PostPreview>> GetSideNewsAsync(int limit)
         {
             List<NewsEntity> result = (await _newsRepository.GetSideNewsAsync(limit)).ToList();
-            if (result.Count() < limit)
+            if (result.Count < limit)
             {
                 result
                     .AddRange((await _newsRepository.GetLatestNewsAsync(limit))
@@ -201,8 +203,8 @@ namespace Investor.Service
 
         public async Task<IEnumerable<PostPreview>> GetSliderNewsAsync(int limit)
         {
-            var result = (await _newsRepository.GetSliderNewsAsync(limit)).ToList();
-            if (result.Count() < limit)
+            List<NewsEntity> result = (await _newsRepository.GetSliderNewsAsync(limit)).ToList();
+            if (result.Count < limit)
             {
                 result
                     .AddRange((await _newsRepository.GetLatestNewsAsync(limit))

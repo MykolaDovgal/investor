@@ -1,4 +1,5 @@
-﻿using Investor.Service.Interfaces;
+﻿using System;
+using Investor.Service.Interfaces;
 using System.Collections.Generic;
 using Investor.Model;
 using System.Threading.Tasks;
@@ -6,17 +7,20 @@ using Investor.Repository.Interfaces;
 using AutoMapper;
 using Investor.Entity;
 using System.Linq;
+using Investor.Service.Utils;
 
 namespace Investor.Service
 {
     public class TagService : ITagService
     {
         private readonly ITagRepository _tagRepository;
+        private readonly CacheService _cacheService;
         private readonly IMapper _mapper;
 
-        public TagService(ITagRepository tagRepository, IMapper mapper)
+        public TagService(ITagRepository tagRepository, IMapper mapper, CacheService cacheService)
         {
             _tagRepository = tagRepository;
+            _cacheService = cacheService;
             _mapper = mapper;
         }
 
@@ -35,11 +39,26 @@ namespace Investor.Service
 
         public async Task<IEnumerable<Tag>> GetPopularTagsAsync(int number)
         {
+            var popularTagsCacheKay = "popular_tags_ids";
+
+            List<int> popularTagsIds = _cacheService.GetValue(popularTagsCacheKay) as List<int>;
+
+            if (popularTagsIds == null || !popularTagsIds.Any())
+            {
+                popularTagsIds = (await _tagRepository
+                        .GetAllTagsAsync())
+                        .ToList()
+                        .OrderByDescending(t => t.PostTags.Count)
+                        .Select(x => x.TagId)
+                        .Take(number).ToList();
+
+                _cacheService.SetValue(popularTagsCacheKay, popularTagsIds, TimeSpan.FromMinutes(60));
+            }
+
+
             return (await _tagRepository
-                .GetAllTagsAsync())
+                .GetTagsBasedOnIdsCollectionAsync(popularTagsIds))
                 .ToList()
-                .OrderByDescending(t => t.PostTags.Count)
-                .Take(number)
                 .Select(_mapper.Map<TagEntity, Tag>);
         }
 

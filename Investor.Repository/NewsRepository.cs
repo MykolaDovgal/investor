@@ -63,7 +63,7 @@ namespace Investor.Repository
             return await _newsContext
                 .News
                 .Where(c => c.IsPublished ?? false)
-                .Where(n => (n.IsOnSide ?? false))
+                .Where(n => n.IsOnSide ?? false)
                 .OrderByDescending(n => n.PublishedOn)
                 .Take(limit)
                 .ToListAsync();
@@ -74,7 +74,7 @@ namespace Investor.Repository
             return await _newsContext
                 .News
                 .Where(c => c.IsPublished ?? false)
-                .Where(n => (n.IsOnSlider ?? false))
+                .Where(n => n.IsOnSlider ?? false)
                 .OrderByDescending(n => n.PublishedOn)
                 .Take(limit)
                 .ToListAsync();

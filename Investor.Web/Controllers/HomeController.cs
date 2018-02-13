@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Investor.Service.Interfaces;
@@ -9,7 +11,7 @@ namespace Investor.Web.Controllers
     //[Authorize(Roles = "user")]
     public class HomeController : Controller
     {
-        private readonly INewsService _postService;
+        private readonly INewsService _newsService;
         private readonly ICategoryService _categoryService;
         private readonly IBlogService _blogService;
         private readonly Dictionary<string, int> _postPreviewCount = new Dictionary<string, int>
@@ -34,7 +36,7 @@ namespace Investor.Web.Controllers
             ICategoryService categoryService, 
              IBlogService blogService)
         {
-            _postService = postService;
+            _newsService = postService;
             _categoryService = categoryService;
             _blogService = blogService;
         }
@@ -45,10 +47,10 @@ namespace Investor.Web.Controllers
             List<Category> categories = _categoryService.GetAllCategoriesAsync().Result.ToList();
             categories.ForEach(category =>
             {
-                var categoryPosts = _postService
+                List<PostPreview> categoryPosts = _newsService
                     .GetLatestNewsByCategoryUrlAsync(category.Url, true, _postPreviewCount[category.Url]).Result
                     .ToList();
-                int largePostCount = _largePostPreviewCount[category.Url];
+                var largePostCount = _largePostPreviewCount[category.Url];
                 news.Add(new CategoryPreview
                 {
                     CategoryUrl = category.Url,
@@ -57,11 +59,16 @@ namespace Investor.Web.Controllers
                     SmallPostPreviewTemplate = categoryPosts.Skip(largePostCount)
                 });
             });
-            ViewBag.SideNews = _postService.GetSideNewsAsync(2).Result.ToList();
-            ViewBag.SliderNews = _postService.GetSliderNewsAsync(7).Result.ToList();
+
+            ViewBag.SideNews = _newsService.GetSideNewsAsync(2).Result.ToList();
+
+            ViewBag.SliderNews = _newsService.GetSliderNewsAsync(7).Result.ToList();
+
             ViewBag.News = news;
-            ViewBag.LatestPosts = _postService.GetLatestNewsAsync(20).Result.ToList();
-            var blogs = _blogService.GetLatestBlogsAsync<BlogPreview>(7).Result.ToList();
+            ViewBag.LatestPosts = _newsService.GetLatestNewsAsync(20).Result.ToList();
+
+            List<BlogPreview> blogs = _blogService.GetLatestBlogsAsync<BlogPreview>(7).Result.ToList();
+
             ViewBag.Blogs = blogs;
             return View();
         }

@@ -22,7 +22,7 @@ namespace Investor.Service
         }
         public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
         {
-            var categories = await _categoryRepository.GetAllCategoriesAsync();
+            IEnumerable<CategoryEntity> categories = await _categoryRepository.GetAllCategoriesAsync();
             return categories.Select(_mapper.Map<CategoryEntity, Category>);
         }
 

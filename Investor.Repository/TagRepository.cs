@@ -36,6 +36,14 @@ namespace Investor.Repository
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<TagEntity>> GetTagsBasedOnIdsCollectionAsync(ICollection<int> ids)
+        {
+            return await _newsContext
+                .Tags
+                .Where(t => ids.Contains(t.TagId))
+                .ToListAsync();
+        }
+
         public async Task<TagEntity> GetTagByIdAsync(int id)
         {
             return await _newsContext

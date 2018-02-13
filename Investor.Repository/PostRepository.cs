@@ -80,14 +80,15 @@ namespace Investor.Repository
 
         public async Task<IEnumerable<T>> GetLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit) where T : PostEntity
         {
-            IQueryable<T> posts = _newsContext
+            return await _newsContext
                 .Posts
                 .OfType<T>()
                 .Include(p => p.Category)
                 .Where(c => c.IsPublished ?? false)
                 .Where(p => p.Category.Url == categoryUrl.ToLower())
-                .OrderByDescending(p => p.PublishedOn);
-            return await posts.Take(limit).ToListAsync();
+                .OrderByDescending(p => p.PublishedOn)
+                .Take(limit)
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<T>> GetLatestPostsByCategoryUrlAsync<T>(string categoryUrl, int limit, IEnumerable<int> exeptPost) where T : PostEntity

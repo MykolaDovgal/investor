@@ -18,12 +18,12 @@ namespace Investor.Repository
         }
         public async Task<IEnumerable<BlogEntity>> GetLatestBlogsAsync(int limit)
         {
-            var blogs = await _newsContext.Blogs
+            return await _newsContext.Blogs
                 .Include(p => p.Author)
                 .Where(c => c.IsPublished ?? false)
                 .OrderByDescending(p => p.PublishedOn)
                 .ToListAsync();
-            return blogs;
+            
         }
 
         public async Task<IEnumerable<BlogEntity>> GetPopularBlogsAsync(int limit)
